@@ -1,6 +1,9 @@
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import PeopleIcon from '@mui/icons-material/People';
 import ForumIcon from '@mui/icons-material/Forum';
+import CardMembershipIcon from '@mui/icons-material/CardMembership';
+import SettingsIcon from '@mui/icons-material/Settings';
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 export const UsermenuItems = [
     
      {
@@ -11,17 +14,17 @@ export const UsermenuItems = [
             {
                 path: "/dashboard/subadmin",
                 name: "Manage SubAdmin",
-                icon: "",
+                icon:<ManageAccountsIcon/> ,
               },
               {
                 path: "/dashboard/data",
                 name: "Manage Data",
-                icon: "",
+                icon: <SettingsIcon/>,
               },
               {
                 path: "/dashboard/roles",
                 name: "Manage Roles And Permission",
-                icon: "",
+                icon: <ForumIcon/>
               }
         ]
       },
@@ -52,22 +55,22 @@ export const AdminMenuItems=[
               {
                 path: "/dashboard/subscription",
                 name: "Manage Subscription",
-                icon: "",
+                icon: <CardMembershipIcon/>,
               },
               {
                 path: "/dashboard/roles",
                 name: "Roles and Permission",
-                icon: "",
+                icon: <SettingsIcon/>,
               },
               {
                 path: "/dashboard/cms",
                 name: "Manage CMS",
-                icon: "",
+                icon: <SupportAgentIcon/>,
               },
               {
                 path: "/dashboard/demo",
                 name: "Request For Demo",
-                icon: "",
+                icon:  <SettingsIcon/>,
               },
         ]
       },

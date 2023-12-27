@@ -1,7 +1,8 @@
 import { Outlet } from "react-router-dom";
+import ManageRoles from "../../pages/manageRoles";
+import ManageSubAdmin from "../../pages/manageSubAdmin";
 import ManageData from "../../pages/User/manageData";
-import ManageRoles from "../../pages/User/manageRoles";
-import ManageSubAdmin from "../../pages/User/manageSubAdmin";
+
 import RootLayout from "../nav/rootLayout";
 
 const UserRoutes = [

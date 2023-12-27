@@ -140,12 +140,12 @@ export default function RootLayout() {
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             {menuItems.isNested.map((nestedItem, index) => {
-              const { name, path } = nestedItem;
+              const { name, path,icon } = nestedItem;
               return (
                 <ListItemButton
                   // component={Link}
                   to={path}
-                  style={{ paddingLeft: 16 }}
+                  style={{ paddingLeft: 16,display:"flex" }}
                   key={`${index}-item`}
                   className="nested-list"
                   onClick={() => {
@@ -153,6 +153,7 @@ export default function RootLayout() {
                   }}
                 >
                   {/* <img src={RightIcon} alt="right-icon" /> */}
+                  <span style={{margin:"9px"}}>{icon}</span>
                   <ListItemText primary={name} />
                 </ListItemButton>
               );
@@ -166,15 +167,16 @@ export default function RootLayout() {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar position="fixed" open={openDrawer}>
+      <AppBar position="fixed" open={openDrawer} sx={{backgroundColor:"white"}}>
         <Toolbar>
           <IconButton
-            color="inherit"
+            color="white"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
             sx={{
               marginRight: 5,
+              position:"relative",left:"250px",color:"yellow",
               ...(openDrawer && { display: "none" }),
             }}
           >
