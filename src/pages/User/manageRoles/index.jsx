@@ -20,7 +20,7 @@ const ManageRoles = () => {
   
   return (
     <>
-      <h1>Manage Roles & permissions</h1>
+      <h1>Roles & permissions</h1>
       <div>
         <AddButton />
       </div>
