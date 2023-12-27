@@ -1,0 +1,39 @@
+.activeBtn {
+  color: black !important;
+  border-radius: 5px !important;
+  /* padding: 10px 10px !important; */
+}
+
+.edit-icon {
+  color: #5686e1 !important;
+}
+
+.addBtn {
+  background-color: #00e785 !important;
+  color: black !important;
+  display: flex;
+  float: inline-end;
+  margin: 10px 0px !important;
+  border: none !important;
+  outline: none !important;
+}
+
+.uploadBtn {
+  background-color: #00e785;
+  padding: 0px 20px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border: none;
+  outline: none;
+}
+.submitBtn {
+  background-color: #00e785 !important;
+  color: black !important;
+  border: none !important;
+  outline: none !important;
+}
+
+.contentCenter {
+    display: flex !important;
+    justify-content: center !important;
+}

@@ -205,7 +205,7 @@ export default function RootLayout() {
           </List>
         </Drawer>
       </div>
-      <span style={{ position: "relative", top: "77px", padding: "10px" }}>
+      <span style={{ position: "relative", top: "77px", padding: "10px",width:"100%" }}>
         <Outlet />
       </span>
     </Box>
