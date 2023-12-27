@@ -22,7 +22,7 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Collapse from "@mui/material/Collapse";
 import ListIcon from "@mui/icons-material/List";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import {
   AdminMenuItems,
   UsermenuItems,
@@ -100,7 +100,7 @@ export default function RootLayout() {
   const theme = useTheme();
   const [openDrawer, setOpenDrawer] = React.useState(true);
   const [layoutData, setLayoutData] = useState([]);
-
+const navigate = useNavigate();
   //setting adming and user routes
   let sessionValue = sessionStorage.getItem("ur");
   useEffect(() => {
@@ -130,7 +130,7 @@ export default function RootLayout() {
       <>
         <ListItemButton to={path} className="multi-list" onClick={handleClick}>
           <ListIcon sx={{ marginRight: "8px" }} />
-          <ListItemText primary={name} />
+          <ListItemText primary={name} onClick={()=>navigate('/')} />
           {open ? (
             <ExpandLessIcon className="listicon" />
           ) : (

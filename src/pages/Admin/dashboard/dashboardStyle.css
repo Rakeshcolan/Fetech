@@ -18,12 +18,12 @@ padding: 10px;
 
 .statistics{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     height: 60vh;
 }
 
 .dashboardcontainer{
-    padding: 10px;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-content: space-between;

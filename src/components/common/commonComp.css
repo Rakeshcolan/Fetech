@@ -41,9 +41,9 @@
     box-shadow: 0px 5px 15px 0px #00000040 !important;
     border-radius: 5px;
     height: 150px;
-    padding:5px;
-    width: 300px;
-    margin: 10px;
+    padding:8px;
+    width: 30%;
+    /* margin: 10px; */
 }
 .uppercontent {
     display: flex !important;
