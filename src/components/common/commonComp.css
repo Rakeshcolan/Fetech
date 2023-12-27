@@ -1,0 +1,33 @@
+.card{
+    box-shadow: 0px 5px 15px 0px #00000040 !important;
+    border-radius: 5px;
+    height: 150px;
+    padding:5px;
+    width: 400px;
+    margin: 10px;
+    
+
+}
+.uppercontent {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.cardText{
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    color: #000000;
+    text-align: center;
+    margin: 4px;
+    padding: 0px;
+    align-self: center;
+}
+
+.cardcontainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap:10px;
+}
