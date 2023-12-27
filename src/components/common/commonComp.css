@@ -36,16 +36,14 @@
 .contentCenter {
     display: flex !important;
     justify-content: center !important;}
-    
+
 .card{
     box-shadow: 0px 5px 15px 0px #00000040 !important;
     border-radius: 5px;
     height: 150px;
     padding:5px;
-    width: 400px;
+    width: 300px;
     margin: 10px;
-    
-
 }
 .uppercontent {
     display: flex !important;

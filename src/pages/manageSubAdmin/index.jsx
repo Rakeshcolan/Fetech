@@ -1,8 +1,8 @@
 import { useState } from "react";
-import CustomizedTables from "../../../components/common/table";
+import AddButton from "../../components/common/Button/addButton";
+import CustomizedTables from "../../components/common/table";
+import { subAdminTableData, subAdminTableHead } from "../../components/common/tableData";
 
-import AddButton from "../../../components/common/Button/addButton";
-import { subAdminTableData, subAdminTableHead } from "../../../components/common/tableData";
 
 const ManageSubAdmin = () => {
   const [size, setSize] = useState(0);

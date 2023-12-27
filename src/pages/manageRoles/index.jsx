@@ -1,7 +1,7 @@
 import { useState } from "react";
-import AddButton from "../../../components/common/Button/addButton";
-import CustomizedTables from "../../../components/common/table";
-import { RolesAndPermissionsData, RolesAndPermissionsHead } from "../../../components/common/tableData";
+import AddButton from "../../components/common/Button/addButton";
+import CustomizedTables from "../../components/common/table";
+import { RolesAndPermissionsData, RolesAndPermissionsHead } from "../../components/common/tableData";
 
 const ManageRoles = () => {
   const [size, setSize] = useState(0);
