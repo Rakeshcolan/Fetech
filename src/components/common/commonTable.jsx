@@ -16,11 +16,9 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: "#030028",
     color: theme.palette.common.white,
-  
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
-   
   },
 }));
 
@@ -38,18 +36,16 @@ function CustomizedTables(props) {
   const {
     rows,
     columns,
-    buttonclick,
     page,
     size,
     rowsPerPageOptions,
     handleChangePage,
     handleChangeRowsPerPage,
     paginationStatus,
-    isReportsTable,
   } = props;
 
   const prevCountRef = React.useRef();
- 
+
   React.useEffect(() => {
     prevCountRef.current = rows;
   }, []);
@@ -59,9 +55,9 @@ function CustomizedTables(props) {
   const totalEntries = rows?.length;
 
   return (
-    <Paper elevation={0} >
+    <Paper elevation={0}>
       <TableContainer component={Paper}>
-        <Table  aria-label="customized table">
+        <Table aria-label="customized table">
           <TableHead>
             <TableRow>
               {columns.map((column, i) => (
@@ -89,11 +85,12 @@ function CustomizedTables(props) {
               {rows?.slice(size * page, size * page + page).map((row, i) => {
                 return (
                   <StyledTableRow hover role="checkbox" tabIndex={-1} key={i}>
-                    {columns.map((column) => {
+                    {columns?.map((column) => {
                       const value =
                         column.id === "Action" ||
                         column.id === "Status" ||
-                        column.id === "checkbox"
+                        column.id === "checkbox" ||
+                        column.id === "Delete"
                           ? column.id
                           : row[column.id];
                       console.log(value, "value");
@@ -104,7 +101,7 @@ function CustomizedTables(props) {
                               <DriveFileRenameOutlineIcon className="edit-icon" />
                             ) : value === "Status" ? (
                               <Button
-                              className="activeBtn"
+                                className="activeBtn"
                                 sx={{
                                   backgroundColor:
                                     row[column.id] === "Active"
@@ -115,6 +112,8 @@ function CustomizedTables(props) {
                                 {row[column.id]}
                               </Button>
                             ) : value === "checkbox" ? (
+                              <Checkbox />
+                            ) : value === "Delete" ? (
                               <Checkbox />
                             ) : (
                               value

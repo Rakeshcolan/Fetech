@@ -3,11 +3,12 @@ import { useState } from "react";
 import AddButton from "../../../components/common/Button/addButton";
 import CommonTextFields from "../../../components/common/Field/CommonTextFIelds";
 import CommonUpload from "../../../components/common/Field/CommonUpload";
-import CustomizedTables from "../../../components/common/table";
+import CustomizedTables from "../../../components/common/commonTable";
 import {
   manageDataTableData,
   manageDataTableHead,
 } from "../../../components/common/tableData";
+import DynamicField from "../../../components/common/Field/DynamicField";
 
 const ManageData = () => {
   const [size, setSize] = useState(0);
@@ -33,15 +34,27 @@ const ManageData = () => {
       <div>
         <AddButton />
       </div>
+      <br />
       <div className="row">
-        <div className="col-lg-4">
-          <CommonTextFields label="Name" id="Name" />
+        <div className="col-lg-6">
+          <CommonTextFields label="First Name" id="Name" />
         </div>
-        <div className="col-lg-4">
+        <div className="col-lg-6">
+          <CommonTextFields label="Last Name" id="Name" />
+        </div>
+
+        <div className="col-lg-6">
+          <CommonTextFields label="PhoneNumber" id="PhoneNumber" />
+        </div>
+        <div className="col-lg-6">
           <CommonTextFields label="Email" id="Email" />
         </div>
-        <div className="col-lg-4">
-          <CommonTextFields label="PhoneNumber" id="PhoneNumber" />
+
+        <div className="col-lg-6">
+          <CommonTextFields label="Email" id="Email" />
+        </div>
+        <div className="col-lg-6">
+          <DynamicField />
         </div>
       </div>
       <div>

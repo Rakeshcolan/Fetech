@@ -31,40 +31,56 @@
   color: black !important;
   border: none !important;
   outline: none !important;
+  width: 80px;
+  border-radius: 10px;
 }
 
 .contentCenter {
-    display: flex !important;
-    justify-content: center !important;}
-
-.card{
-    box-shadow: 0px 5px 15px 0px #00000040 !important;
-    border-radius: 5px;
-    height: 150px;
-    padding:5px;
-    width: 300px;
-    margin: 10px;
+  display: flex !important;
+  justify-content: center !important;
 }
+
+.card {
+  box-shadow: 0px 5px 15px 0px #00000040 !important;
+  border-radius: 5px;
+  height: 150px;
+  padding: 5px;
+  width: 300px;
+  margin: 10px;
+}
+
 .uppercontent {
-    display: flex !important;
-    justify-content: space-between;
-    align-items: center;
-    
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.cardText{
-    font-size: 18px !important;
-    font-weight: 600 !important;
-    color: #000000;
-    text-align: center;
-    margin: 4px;
-    padding: 0px;
-    align-self: center;
+.cardText {
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  color: #000000;
+  text-align: center;
+  margin: 4px;
+  padding: 0px;
+  align-self: center;
 }
 
-.cardcontainer{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    gap:10px;
+.cardcontainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 10px;
+}
+.cancelBtn {
+  border: solid 1px #ff3939;
+  border-radius: 10px;
+  padding: 10px 10px;
+  background-color: white;
+  color: black;
+  outline: none !important;
+  margin-right: 20px;
+}
+.cancelBtn:hover {
+  background-color: #ff3939;
+  border: solid 1px #ff3939;
 }

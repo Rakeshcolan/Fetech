@@ -5,31 +5,31 @@ import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
-import CssBaseline from "@mui/material/CssBaseline";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Collapse from "@mui/material/Collapse";
 import ListIcon from "@mui/icons-material/List";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet, useNavigate } from "react-router-dom";
 import {
   AdminMenuItems,
   UsermenuItems,
 } from "../../../utils/constants/menuItem";
 import "./rootLayoutStyle.css";
+import Logo from "../../../assests/images/connexLogo.png";
+import profileImg from "../../../assests/images/Ellipse 58.png";
+import { Avatar } from "@mui/material";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import PermIdentityIcon from "@mui/icons-material/PermIdentity";
+import LogoutIcon from "@mui/icons-material/Logout";
 
-const drawerWidth = 240;
+const drawerWidth = 280;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -100,6 +100,8 @@ export default function RootLayout() {
   const theme = useTheme();
   const [openDrawer, setOpenDrawer] = React.useState(true);
   const [layoutData, setLayoutData] = useState([]);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const navigate = useNavigate()
 
   //setting adming and user routes
   let sessionValue = sessionStorage.getItem("ur");
@@ -132,30 +134,48 @@ export default function RootLayout() {
           <ListIcon sx={{ marginRight: "8px" }} />
           <ListItemText primary={name} />
           {open ? (
-            <ExpandLessIcon className="listicon" />
+            <ExpandLessIcon
+              className="listicon"
+              sx={{ color: "white !important" }}
+            />
           ) : (
-            <ExpandMoreIcon className="listicon" />
+            <ExpandMoreIcon
+              className="listicon"
+              sx={{ color: "white !important" }}
+            />
           )}
         </ListItemButton>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             {menuItems.isNested.map((nestedItem, index) => {
-              const { name, path,icon } = nestedItem;
+              const { name, path, icon } = nestedItem;
               return (
-                <ListItemButton
-                  // component={Link}
-                  to={path}
-                  style={{ paddingLeft: 16,display:"flex" }}
-                  key={`${index}-item`}
-                  className="nested-list"
-                  onClick={() => {
-                    // highlightParent(path);
-                  }}
-                >
-                  {/* <img src={RightIcon} alt="right-icon" /> */}
-                  <span style={{margin:"9px"}}>{icon}</span>
-                  <ListItemText primary={name} />
-                </ListItemButton>
+                <>
+                  <ListItemButton
+                    // component={Link}
+                    to={path}
+                    style={{ paddingLeft: 16, display: "flex" }}
+                    key={`${index}-item`}
+                    className="nested-list"
+                    onClick={() => {
+                      // highlightParent(path);
+                    }}
+                    sx={{
+                      "&:hover": {
+                        color: "#00E785",
+                      },
+                      "&:active, &:focus": {
+                        backgroundColor: "#00E785 !important",
+                        color: "black !important",
+                        borderRadius: "10px",
+                        margin: "0px 20px",
+                      },
+                    }}
+                  >
+                    <span style={{ margin: "9px" }}>{icon}</span>
+                    <ListItemText primary={name} />
+                  </ListItemButton>
+                </>
               );
             })}
           </List>
@@ -164,10 +184,23 @@ export default function RootLayout() {
     );
   }
 
+  const handleProfileClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    navigate("/dashboard/editProfile")
+    setAnchorEl(null);
+  };
+
   return (
     <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      <AppBar position="fixed" open={openDrawer} sx={{backgroundColor:"white"}}>
+      {/* <CssBaseline /> */}
+      <AppBar
+        position="fixed"
+        open={openDrawer}
+        sx={{ backgroundColor: "white" }}
+      >
         <Toolbar>
           <IconButton
             color="white"
@@ -176,22 +209,60 @@ export default function RootLayout() {
             edge="start"
             sx={{
               marginRight: 5,
-              position:"relative",left:"250px",color:"yellow",
+              position: "relative",
+              left: "250px",
+              color: "black",
               ...(openDrawer && { display: "none" }),
             }}
           >
             <MenuIcon />
           </IconButton>
+          <Avatar
+            alt="Profile Logo"
+            src={profileImg} // Replace with the path to your profile logo image
+            sx={{
+              width: "60px",
+              height: "60px",
+              marginLeft: "auto",
+              cursor: "pointer",
+            }} // Adjust the margin as needed
+            onClick={handleProfileClick}
+          />
+          <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={handleMenuClose}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "right",
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+          >
+            <MenuItem onClick={handleMenuClose}>
+              {" "}
+              <PermIdentityIcon />
+              Edit Profile
+            </MenuItem>
+            <MenuItem onClick={handleMenuClose}>
+              <LogoutIcon />
+              Sign Out
+            </MenuItem>
+            {/* Add more menu items as needed */}
+          </Menu>
         </Toolbar>
       </AppBar>
-      <div >
+      <div>
         <Drawer variant="permanent" className="layoutlist" open={openDrawer}>
+          <img src={Logo} className="logo" style={{ width: "100%" }} />
           <DrawerHeader>
             <IconButton onClick={handleDrawerClose}>
               {theme.direction === "rtl" ? (
-                <ChevronRightIcon />
+                <ChevronRightIcon style={{ color: "white !important" }} />
               ) : (
-                <ChevronLeftIcon />
+                <ChevronLeftIcon style={{ color: "white !important" }} />
               )}
             </IconButton>
           </DrawerHeader>
@@ -207,7 +278,14 @@ export default function RootLayout() {
           </List>
         </Drawer>
       </div>
-      <span style={{ position: "relative", top: "77px", padding: "10px",width:"100%" }}>
+      <span
+        style={{
+          position: "relative",
+          top: "77px",
+          padding: "10px",
+          width: "100%",
+        }}
+      >
         <Outlet />
       </span>
     </Box>
