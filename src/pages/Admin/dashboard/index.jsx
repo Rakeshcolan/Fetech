@@ -2,7 +2,7 @@ import { Divider } from "@mui/material";
 import { useState } from "react";
 import { BarChart } from "../../../components/chart/barChart";
 import DashCard from "../../../components/common/card";
-import CustomizedTables from "../../../components/common/table";
+import CustomizedTables from "../../../components/common/commonTable";
 import { subAdminTableData, subAdminTableHead } from "../../../components/common/tableData";
 import ResponseList from "../../../components/responseList";
 import { CardItem } from "../../../utils/constants/cardItem";

@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Dashboard from "../../pages/Admin/dashboard";
 import MAangeChatbot from "../../pages/Admin/manageChatBot";
+import CreateChatBot from "../../pages/Admin/manageChatBot/createChatBot";
 import ManageClients from "../../pages/Admin/manageClient";
 import ManageCMS from "../../pages/Admin/manageCms";
 import ManageDemo from "../../pages/Admin/manageDemo";
@@ -24,6 +25,7 @@ const AdminRoutes = [
       { path: "/dashboard/roles", element: <ManageRoles /> },
       { path: "/dashboard/cms", element: <ManageCMS /> },
       { path: "/dashboard/demo", element: <ManageDemo /> },
+      {path:'/flowpage',element:<CreateChatBot/>}
     ],
   },
 ];

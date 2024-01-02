@@ -1,9 +1,11 @@
 import { BrowserRouter as Router, Routes, useRoutes } from "react-router-dom";
 import "../styles/App.css";
 import { getRoutes } from "../layout/routes/index";
-
+import { flowStore,persistor } from "../redux/flowStore";
 import LazyLoader from "../components/lazyLoader";
 import { Provider } from "react-redux";
+import { PersistGate } from 'redux-persist/integration/react';
+import { NodeContextProvider } from "../nodecontext/nodeContext";
 
 function App() {
   const userRole =typeof window !== "undefined" ? sessionStorage.getItem("ur") : null;
@@ -24,11 +26,15 @@ function App() {
 
   return (
     <>
-      {/* <Provider store={{}}> */}
         {/* <ActivityController> */}
+        <Provider store={flowStore}>
+        <PersistGate loading={null} persistor={persistor}>
+          <NodeContextProvider>
         <LazyLoader>{router}</LazyLoader>
+        </NodeContextProvider>
+      </PersistGate>
+    </Provider>
         {/* </ActivityController> */}
-      {/* </Provider> */}
     </>
   );
 }
