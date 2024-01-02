@@ -1,4 +1,3 @@
-import { Outlet } from "react-router-dom";
 import Dashboard from "../../pages/Admin/dashboard";
 import MAangeChatbot from "../../pages/Admin/manageChatBot";
 import CreateChatBot from "../../pages/Admin/manageChatBot/createChatBot";
