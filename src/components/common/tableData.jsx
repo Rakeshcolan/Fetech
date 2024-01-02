@@ -94,8 +94,42 @@ export const RolesAndPermissionsData = [
   { Roles: "Employee", Action: "checkbox" },
 ];
 
+export const RoleAuthoriZationHead = [
+  {
+    id: "Modules",
+    label: "Modules",
+  },
+  {
+    id: "View",
+    label: "View",
+  },
+  {
+    id: "Edit",
+    label: "Edit",
+  },
+  {
+    id: "Delete",
+    label: "Delete",
+  },
+];
 
-
-
-
-
+export const RoleAuthoriZationData = [
+  {
+    Modules: "Manage Sub Clients",
+    View: "checkbox",
+    Edit: "checkbox",
+    Delete: "checkbox",
+  },
+  {
+    Modules: "Manage Business Details",
+    View: "checkbox",
+    Edit: "checkbox",
+    Delete: "checkbox",
+  },
+  {
+    Modules: "Manage Data",
+    View: "checkbox",
+    Edit: "checkbox",
+    Delete: "checkbox",
+  },
+];

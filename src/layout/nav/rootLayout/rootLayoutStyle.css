@@ -1,5 +1,4 @@
 .layoutlist .MuiDrawer-paper {
-
     background-color: #030028 !important;
     color: #FFFFFF;
     font-family: Mazzard;
@@ -8,7 +7,15 @@
     line-height: 19px;
     letter-spacing: 0em;
     text-align: left;
-
-
-
 }
+/* 
+.nested-list:hover {
+    color: green;
+}
+
+.nested-list:active,
+.nested-list:focus {
+    background-color: green !important;
+    color: black;
+} */
+

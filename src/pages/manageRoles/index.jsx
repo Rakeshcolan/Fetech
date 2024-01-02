@@ -1,11 +1,16 @@
 import { useState } from "react";
-import AddButton from "../../components/common/Button/addButton";
-import CustomizedTables from "../../components/common/table";
-import { RolesAndPermissionsData, RolesAndPermissionsHead } from "../../components/common/tableData";
+import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import CustomizedTables from "../../components/common/commonTable";
+import {
+  RolesAndPermissionsData,
+  RolesAndPermissionsHead,
+} from "../../components/common/tableData";
 
 const ManageRoles = () => {
   const [size, setSize] = useState(0);
   const [page, setPage] = useState(5);
+  const navigate = useNavigate();
 
   const paginationRowsOptions = [5, 10, 20, 50, 100];
 
@@ -17,12 +22,19 @@ const ManageRoles = () => {
   const handlePageChange = async (event, newPage) => {
     setPage(newPage);
   };
-  
+
+  const handleRedirect = () => {
+    navigate("/dashboard/roles/addRole");
+  };
+
   return (
     <>
       <h1>Roles & permissions</h1>
       <div>
-        <AddButton />
+        {/* <AddButton /> */}
+        <Button className="addBtn" onClick={handleRedirect}>
+          +Add
+        </Button>
       </div>
       <div>
         <CustomizedTables
@@ -35,6 +47,9 @@ const ManageRoles = () => {
           handleChangePage={handlePageChange}
           handleChangeRowsPerPage={handlePerRowsChange}
         />
+        <div className="contentCenter">
+          <Button className="submitBtn">Submit</Button>
+        </div>
       </div>
     </>
   );
