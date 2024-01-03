@@ -5,41 +5,17 @@ import CenteredTextField from "../../../components/common/Field/CenteredTextFiel
 import CommonTextFields from "../../../components/common/Field/CommonTextFIelds";
 import logo from "../../../assests/images/connexLogo.png";
 
-const Login = () => {
+const Register = () => {
   const navigate = useNavigate();
 
-  const handleLogin = (auth) => {
-    if (auth == "User") {
-      sessionStorage.setItem("ur", 1);
-    } else {
-      sessionStorage.setItem("ur", 2);
-    }
-    navigate("/");
-  };
-
   const handleNavigate = () => {
-    navigate("/register")
+    navigate("/login")
   }
 
   return (
     <div>
-      This is Login page
-      <Button
-        onClick={() => {
-          handleLogin("User");
-        }}
-      >
-        please login to see User Routes
-      </Button>
-      <Button
-        onClick={() => {
-          handleLogin("Admin");
-        }}
-      >
-        please login to see Admin Routes
-      </Button>
       <img
-        src={logo} 
+        src={logo}
         alt="Logo"
         style={{
           position: "absolute",
@@ -51,12 +27,24 @@ const Login = () => {
       />
       <div className="loginCard">
         <div className="loginContainer">
-          <h4>Login</h4>
+          <h4>Register</h4>
           <br />
           <CenteredTextField
             label="Username"
             id="Username"
             placeholder="Username"
+          />
+          <br />
+          <CenteredTextField
+            label="Email"
+            id="Email"
+            placeholder="Email"
+          />{" "}
+          <br />
+          <CenteredTextField
+            label="Phone Number"
+            id="Phone Number"
+            placeholder="Phone Number"
           />
           <br />
           <CenteredTextField
@@ -67,16 +55,16 @@ const Login = () => {
           <br />
           <div className="form-options">
             <label>
-              <input type="checkbox" name="rememberMe" /> Remember Me
+              <input type="checkbox" name="rememberMe" /> I agree to all the{" "}
+              <span style={{color:"#0880E8"}}>Terms</span> and <span style={{color:"#0880E8"}}> privacy policy</span>
             </label>
-            <span className="forgot-password">Forgot Password?</span>
           </div>
-          <button className="loginBtn">Login</button>
+          <button className="loginBtn">Register</button>
           <br />
           <br />
           <div>
             <p>
-              Don't have an account? <b style={{cursor:"pointer"}} onClick={handleNavigate}>SignUp</b>{" "}
+              Already have an account? <b style={{cursor:"pointer"}} onClick={handleNavigate}>SignIn</b>{" "}
             </p>
           </div>
         </div>
@@ -85,4 +73,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

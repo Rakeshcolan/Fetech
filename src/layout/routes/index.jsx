@@ -1,10 +1,9 @@
-import React from "react";
 import AdminRoutes from "./adminRoutes";
-import guestRoutes from "./guestRoutes";
+import authRoutes from "./authRoutes";
 import UserRoutes from "./userRoutes";
 
 const ROLES_ROUTES = {
-  0: guestRoutes,
+  0: authRoutes,
   1: UserRoutes,
   2: AdminRoutes,
 };

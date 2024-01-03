@@ -4,6 +4,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import CommonTextFields from "../common/Field/CommonTextFIelds";
 import "../modal/modal.css";
+import CancelIcon from "@mui/icons-material/Cancel";
 
 export default function AddSubAdminModal(props) {
   const { openModal, setOpenModal } = props;
@@ -20,7 +21,19 @@ export default function AddSubAdminModal(props) {
         aria-describedby="alert-dialog-description"
       >
         <div className="dialogPad">
-          <DialogTitle id="alert-dialog-title">Add Sub Clients</DialogTitle>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div>
+              <DialogTitle
+                id="alert-dialog-title"
+                sx={{ paddingLeft: "0px !important" }}
+              >
+                Add Sub Clients
+              </DialogTitle>
+            </div>
+            <div>
+              <CancelIcon sx={{ cursor: "pointer", color: "red" }}  onClick={handleClose}  />
+            </div>
+          </div>
           <div>
             <CommonTextFields label="username" id="username" />
           </div>
