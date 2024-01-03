@@ -1,0 +1,31 @@
+.cmsupload p {
+    font-size: 22px;
+    font-weight: 600;
+}
+.cmsupload{
+    width: 100%;
+}
+
+.cmscontainer{
+
+    display: flex;
+    flex-direction: column;
+    /* align-items: self-end; */
+    justify-content: flex-start;
+    height: 60vh;
+    width: 70vw;
+    gap: 50px;
+    padding: 44px;
+    border: 1px solid grey;
+    border-radius: 10px;
+    margin: 15px;
+}
+
+.cmsbutton{
+    align-self: center;
+    padding:10px 25px;
+    background-color: #00e785 !important;
+    border: none;
+    border-radius: 7px;
+    font-weight: 600;
+}
