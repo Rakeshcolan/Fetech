@@ -7,6 +7,8 @@ import {
   ClientData,
 } from "../../../components/common/tableData";
 import AddSubAdminModal from "../../../components/modal/addSubAdminModal";
+import "../../../styles/App.css"
+
 
 const ManageClients = () => {
   const [size, setSize] = useState(0);
@@ -30,6 +32,9 @@ const ManageClients = () => {
 
   return (
     <>
+    <div className="commonbox">
+
+  
       <h2>Manage Clients</h2>
       {/* <AddButton /> */}
       <Button className="addBtn" onClick={handleModalOpen}>
@@ -46,6 +51,7 @@ const ManageClients = () => {
         handleChangeRowsPerPage={handlePerRowsChange}
       />
       <AddSubAdminModal openModal={modalOpen} setOpenModal={setModalOpen} />
+      </div>
     </>
   );
 };

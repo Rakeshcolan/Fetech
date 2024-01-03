@@ -29,22 +29,24 @@ const ManageSubAdmin = () => {
 
   return (
     <>
-      <h2>Manage SubAdmin</h2>
-      {/* <AddButton /> */}
-      <Button className="addBtn" onClick={handleModalOpen}>
-        +Add
-      </Button>
-      <CustomizedTables
-        columns={subAdminTableHead}
-        rows={subAdminTableData}
-        paginationStatus={true}
-        rowsPerPageOptions={paginationRowsOptions}
-        page={page}
-        size={size}
-        handleChangePage={handlePageChange}
-        handleChangeRowsPerPage={handlePerRowsChange}
-      />
-      <AddSubAdminModal openModal={modalOpen} setOpenModal={setModalOpen} />
+      <div className="commonbox">
+        <h2>Manage SubAdmin</h2>
+        {/* <AddButton /> */}
+        <Button className="addBtn" onClick={handleModalOpen}>
+          +Add
+        </Button>
+        <CustomizedTables
+          columns={subAdminTableHead}
+          rows={subAdminTableData}
+          paginationStatus={true}
+          rowsPerPageOptions={paginationRowsOptions}
+          page={page}
+          size={size}
+          handleChangePage={handlePageChange}
+          handleChangeRowsPerPage={handlePerRowsChange}
+        />
+        <AddSubAdminModal openModal={modalOpen} setOpenModal={setModalOpen} />
+      </div>
     </>
   );
 };

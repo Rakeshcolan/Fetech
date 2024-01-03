@@ -29,26 +29,28 @@ const ManageRoles = () => {
 
   return (
     <>
-      <h1>Roles & permissions</h1>
-      <div>
-        {/* <AddButton /> */}
-        <Button className="addBtn" onClick={handleRedirect}>
-          +Add
-        </Button>
-      </div>
-      <div>
-        <CustomizedTables
-          columns={RolesAndPermissionsHead}
-          rows={RolesAndPermissionsData}
-          paginationStatus={true}
-          rowsPerPageOptions={paginationRowsOptions}
-          page={page}
-          size={size}
-          handleChangePage={handlePageChange}
-          handleChangeRowsPerPage={handlePerRowsChange}
-        />
-        <div className="contentCenter">
-          <Button className="submitBtn">Submit</Button>
+      <div className="commonbox">
+        <h1>Roles & permissions</h1>
+        <div>
+          {/* <AddButton /> */}
+          <Button className="addBtn" onClick={handleRedirect}>
+            +Add
+          </Button>
+        </div>
+        <div>
+          <CustomizedTables
+            columns={RolesAndPermissionsHead}
+            rows={RolesAndPermissionsData}
+            paginationStatus={true}
+            rowsPerPageOptions={paginationRowsOptions}
+            page={page}
+            size={size}
+            handleChangePage={handlePageChange}
+            handleChangeRowsPerPage={handlePerRowsChange}
+          />
+          <div className="contentCenter">
+            <Button className="submitBtn">Submit</Button>
+          </div>
         </div>
       </div>
     </>
