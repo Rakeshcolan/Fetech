@@ -1,5 +1,7 @@
 import EditProfile from "../../components/EditProfile/editProfile";
 import AddRoles from "../../components/Roles&Permissions/addRoles";
+import Login from "../../pages/Auth/login";
+import Register from "../../pages/Auth/login/Register";
 import ManageRoles from "../../pages/manageRoles";
 import ManageSubAdmin from "../../pages/manageSubAdmin";
 import ManageData from "../../pages/User/manageData";
@@ -16,6 +18,14 @@ const UserRoutes = [
       { path: "/dashboard/roles/addRole", element: <AddRoles /> },
       { path: "/dashboard/editProfile", element: <EditProfile /> },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
   },
 ];
 

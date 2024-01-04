@@ -5,7 +5,6 @@ import CardMembershipIcon from '@mui/icons-material/CardMembership';
 import SettingsIcon from '@mui/icons-material/Settings';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 export const UsermenuItems = [
-    
      {
         path: "/",
         name: "Dashboard",

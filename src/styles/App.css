@@ -65,5 +65,54 @@
   padding: 51px;
   border-radius: 10px;
   margin: 18px;
+  
 
+}
+
+.loginCard{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #030028;
+}
+
+.loginContainer {
+  padding: 2rem 2rem 1rem 2rem ;
+  width: 400px;
+  margin: auto;
+  border: solid 1px white;
+  background-color: white;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  
+  margin-bottom: 16px;
+}
+
+.forgot-password {
+  color: black;
+  cursor: pointer;
+}
+
+.loginBtn {
+  background-color: #00E785 !important;
+  border: none !important;
+  outline: none !important;
+  color: black !important;
+  text-align: center !important;
+  width: 280px !important;
+  padding: 10px;
+  border-radius: 10px;
+
+}
+
+.custom-notched-outline {
+  border-color: transparent !important; /* Set border color to transparent */
 }
