@@ -101,7 +101,7 @@ export default function RootLayout() {
   const [openDrawer, setOpenDrawer] = React.useState(true);
   const [layoutData, setLayoutData] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   //setting adming and user routes
   let sessionValue = sessionStorage.getItem("ur");
@@ -132,7 +132,7 @@ export default function RootLayout() {
       <>
         <ListItemButton to={path} className="multi-list" onClick={handleClick}>
           <ListIcon sx={{ marginRight: "8px" }} />
-          <ListItemText primary={name} onClick={()=>navigate('/')} />
+          <ListItemText primary={name} onClick={() => navigate("/")} />
           {open ? (
             <ExpandLessIcon
               className="listicon"
@@ -189,9 +189,16 @@ export default function RootLayout() {
   };
 
   const handleMenuClose = () => {
-    navigate("/dashboard/editProfile")
     setAnchorEl(null);
   };
+
+  const handleRedirect = () => {
+    navigate("/dashboard/editProfile");
+  };
+
+  const handleLogOut = () => {
+    navigate("/login");
+  }
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -241,12 +248,12 @@ export default function RootLayout() {
               horizontal: "right",
             }}
           >
-            <MenuItem onClick={handleMenuClose}>
+            <MenuItem onClick={handleRedirect}>
               {" "}
               <PermIdentityIcon />
               Edit Profile
             </MenuItem>
-            <MenuItem onClick={handleMenuClose}>
+            <MenuItem onClick={handleLogOut}>
               <LogoutIcon />
               Sign Out
             </MenuItem>
