@@ -7,6 +7,7 @@ import ManageDemo from "../../pages/Admin/manageDemo";
 import ManageSubscription from "../../pages/Admin/manageSubscription";
 import ManageRoles from "../../pages/manageRoles";
 import ManageSubAdmin from "../../pages/manageSubAdmin";
+import Payment from "../../pages/payment";
 
 
 import RootLayout from "../nav/rootLayout";
@@ -26,7 +27,9 @@ const AdminRoutes = [
       { path: "/dashboard/demo", element: <ManageDemo /> },
       {path:'/flowpage',element:<CreateChatBot/>}
     ],
-  },
+  },{
+    path:'/payment',element:<Payment/>
+  }
 ];
 
 export default AdminRoutes;
