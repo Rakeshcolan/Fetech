@@ -7,7 +7,7 @@ const ManageCMS = ()=>{
         <>
         <div className="commonbox">
 
-        <h1>ManageCMS PAge</h1>
+        <h4>Manage CMS Page</h4>
         <div className="cmscontainer">
 
         <div className="cmsupload">

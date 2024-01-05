@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { Button } from "react-bootstrap";
-import "../../../styles/App.css"
+import "../../../styles/App.css";
 import CustomizedTables from "../../../components/common/commonTable";
 import {
-  
   ClientDataHead,
   ClientData,
 } from "../../../components/common/tableData";
@@ -31,25 +30,24 @@ const ManageDemo = () => {
 
   return (
     <>
-    <div className="commonbox">
-    <h2>Request For Demo</h2>
-      {/* <AddButton /> */}
-      {/* <Button className="addBtn" onClick={handleModalOpen}>
+      <div className="commonbox">
+        <h4>Request For Demo</h4>
+        {/* <AddButton /> */}
+        {/* <Button className="addBtn" onClick={handleModalOpen}>
         +Add
       </Button> */}
-      <CustomizedTables
-        columns={ClientDataHead}
-        rows={ClientData}
-        paginationStatus={true}
-        rowsPerPageOptions={paginationRowsOptions}
-        page={page}
-        size={size}
-        handleChangePage={handlePageChange}
-        handleChangeRowsPerPage={handlePerRowsChange}
-      />
-
-    </div>
-    
+        <br />
+        <CustomizedTables
+          columns={ClientDataHead}
+          rows={ClientData}
+          paginationStatus={true}
+          rowsPerPageOptions={paginationRowsOptions}
+          page={page}
+          size={size}
+          handleChangePage={handlePageChange}
+          handleChangeRowsPerPage={handlePerRowsChange}
+        />
+      </div>
     </>
   );
 };

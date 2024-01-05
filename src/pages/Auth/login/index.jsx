@@ -51,7 +51,7 @@ const Login = () => {
       />
       <div className="loginCard">
         <div className="loginContainer">
-          <h4>Login</h4>
+          <h2>LOGIN</h2>
           <br />
           <CenteredTextField
             label="Username"

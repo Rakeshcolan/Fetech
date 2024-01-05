@@ -31,7 +31,7 @@ const ManageSubscription = () => {
   return (
     <>
       <div className="commonbox">
-        <h2>Manage Subscription</h2>
+        <h4>Manage Subscription</h4>
         {/* <AddButton /> */}
         <Button className="addBtn" onClick={handleModalOpen}>
           +Add

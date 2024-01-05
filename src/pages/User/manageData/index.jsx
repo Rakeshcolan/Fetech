@@ -1,6 +1,5 @@
 import { Button } from "@mui/material";
 import { useState } from "react";
-import AddButton from "../../../components/common/Button/addButton";
 import CommonTextFields from "../../../components/common/Field/CommonTextFIelds";
 import CommonUpload from "../../../components/common/Field/CommonUpload";
 import CustomizedTables from "../../../components/common/commonTable";
@@ -27,36 +26,30 @@ const ManageData = () => {
 
   return (
     <>
-      <h2>ManageData</h2>
       <h4>Upload Data</h4>
       <CommonUpload />
-      <h4>Manual Upload Data</h4>
-      <div>
-        <AddButton />
-      </div>
       <br />
+      <h4>Manual Upload Data</h4>
+      <div className="contentEnd">
+        <Button className="addBtn">+Add</Button>
+      </div>
       <div className="row">
         <div className="col-lg-6">
           <CommonTextFields label="First Name" id="Name" />
+          <br />
+          <CommonTextFields label="PhoneNumber" id="PhoneNumber" />
+          <br />
+          <CommonTextFields label="Email" id="Email" />
         </div>
         <div className="col-lg-6">
           <CommonTextFields label="Last Name" id="Name" />
-        </div>
-
-        <div className="col-lg-6">
-          <CommonTextFields label="PhoneNumber" id="PhoneNumber" />
-        </div>
-        <div className="col-lg-6">
+          <br />
           <CommonTextFields label="Email" id="Email" />
-        </div>
-
-        <div className="col-lg-6">
-          <CommonTextFields label="Email" id="Email" />
-        </div>
-        <div className="col-lg-6">
+          <br />
           <DynamicField />
         </div>
       </div>
+      <br />
       <div>
         <CustomizedTables
           columns={manageDataTableHead}

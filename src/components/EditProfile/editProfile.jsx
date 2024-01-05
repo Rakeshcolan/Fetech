@@ -5,33 +5,31 @@ import CommonTextFields from "../common/Field/CommonTextFIelds";
 
 const EditProfile = () => {
   const navigate = useNavigate();
-  const handleRedirect = (test) => {
-    console.log("test",test)
+  const handleRedirect = () => {
+    // console.log("test", test);
     navigate("/dashboard/subadmin");
-  }
+  };
   return (
     <div>
       <h4>Edit Profile</h4>
+      <br />
       <div className="row">
         <div className="col-lg-6">
           <CommonTextFields label="UserName" id="UserName" />
-        </div>
-        <div className="col-lg-6">
-          <CommonTextFields label="Email" id="Email" />
-        </div>
-        <div className="col-lg-6">
+          <br />
           <CommonTextFields label="PhoneNumber" id="PhoneNumber" />
-        </div>
-        <div className="col-lg-6">
-          <CommonTextFields label="Address" id="Address" />
-        </div>
-        <div className="col-lg-6">
+          <br />
           <CommonTextFields label="Country" id="Country" />
         </div>
         <div className="col-lg-6">
+          <CommonTextFields label="Email" id="Email" />
+          <br />
+          <CommonTextFields label="Address" id="Address" />
+          <br />
           <CommonTextFields label="ZipCode" id="ZipCode" />
         </div>
       </div>
+      <br /><br />
       <div className="contentCenter">
         <Button className="cancelBtn" onClick={handleRedirect}>
           Cancel

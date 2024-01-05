@@ -12,9 +12,18 @@ import "./comp.css";
 export default function ResponseList() {
   return (
     <div className="responsecontainer">
-      <Typography style={{height:"7%",marginTop:"5px",fontWeight:"600",color:"#1E1B39"}}>Reason For Dropping Off </Typography>
+      <Typography
+        style={{
+          height: "7%",
+          margin: "10px 15px",
+          fontWeight: "600",
+          color: "#1E1B39",
+        }}
+      >
+        Reason For Dropping Off{" "}
+      </Typography>
       <Divider />
-      <List sx={{height:"92%", overflowY: "scroll"}}>
+      <List sx={{ height: "92%" }}>
         {ResponseCardItem.map((response) => {
           const { icon, name, comment } = response;
           return (
@@ -24,7 +33,7 @@ export default function ResponseList() {
                   <Avatar alt="Remy Sharp" src={icon} />
                 </ListItemAvatar>
                 <ListItemText
-                  primary={name}
+                  primary={<Typography sx={{fontWeight:"600"}}>{name}</Typography>}
                   secondary={
                     <React.Fragment>
                       <Typography
@@ -35,7 +44,6 @@ export default function ResponseList() {
                       >
                         {comment}
                       </Typography>
-                    
                     </React.Fragment>
                   }
                 />

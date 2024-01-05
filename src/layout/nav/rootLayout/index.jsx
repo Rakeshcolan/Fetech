@@ -194,11 +194,12 @@ export default function RootLayout() {
 
   const handleRedirect = () => {
     navigate("/dashboard/editProfile");
+    setAnchorEl(null)
   };
 
   const handleLogOut = () => {
     navigate("/login");
-  }
+  };
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -247,14 +248,20 @@ export default function RootLayout() {
               vertical: "top",
               horizontal: "right",
             }}
+            sx={{ borderRadius: "10px" }}
           >
-            <MenuItem onClick={handleRedirect}>
-              {" "}
-              <PermIdentityIcon />
+            <MenuItem
+              onClick={handleRedirect}
+              sx={{ "&:hover": { backgroundColor: "#c4cdd5",fontSize:"16px !important" } }}
+            >
+              <PermIdentityIcon sx={{marginRight:"10px",fontSize:"20px"}} />
               Edit Profile
             </MenuItem>
-            <MenuItem onClick={handleLogOut}>
-              <LogoutIcon />
+            <MenuItem
+              onClick={handleLogOut}
+              sx={{ "&:hover": { backgroundColor: "#c4cdd5",fontSize:"16px !important" } }}
+            >
+              <LogoutIcon sx={{fontSize:"20px",marginRight:"10px"}} />
               Sign Out
             </MenuItem>
             {/* Add more menu items as needed */}
@@ -264,7 +271,7 @@ export default function RootLayout() {
       <div>
         <Drawer variant="permanent" className="layoutlist" open={openDrawer}>
           <img src={Logo} className="logo" style={{ width: "100%" }} />
-          <DrawerHeader>
+          {/* <DrawerHeader>
             <IconButton onClick={handleDrawerClose}>
               {theme.direction === "rtl" ? (
                 <ChevronRightIcon style={{ color: "white !important" }} />
@@ -272,7 +279,7 @@ export default function RootLayout() {
                 <ChevronLeftIcon style={{ color: "white !important" }} />
               )}
             </IconButton>
-          </DrawerHeader>
+          </DrawerHeader> */}
           <List>
             {layoutData.map((items, index) => {
               return items.isNested ? (
