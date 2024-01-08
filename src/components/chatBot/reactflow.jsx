@@ -23,6 +23,8 @@ import "reactflow/dist/style.css";
 import { useSelector } from "react-redux";
 import AlertUser from "../modal/paymentModal";
 import { NodeContext } from "../../nodecontext/nodeContext";
+import { useDispatch } from "react-redux";
+import { addInstance } from "../../redux/flowAction";
 
 const FlowPage = forwardRef((props, ref) => {
   const {
@@ -55,8 +57,9 @@ const FlowPage = forwardRef((props, ref) => {
     (node) => node.id.split("_")[0] == "groupnode"
   );
 
+  let dispatch = useDispatch();
 
-  let id = oldNodeId.length;
+  let id = oldNodeId.length+1;
   const getId = () => `dndnode_${id++}`;
   let groupId = oldGroudNodeId.length;
   const getGroupId = () => `groupnode_${groupId++}`;
@@ -93,9 +96,8 @@ const FlowPage = forwardRef((props, ref) => {
       })
     );
   };
-// reactFlowInstance.addNodes(nodes)
-// reactFlowInstance.addEdges(edges)
-
+  // reactFlowInstance.addNodes(nodes)
+  // reactFlowInstance.addEdges(edges)
 
   const onDrop = useCallback(
     (event) => {
@@ -128,7 +130,7 @@ const FlowPage = forwardRef((props, ref) => {
           type: type,
           position: adjustedPosition,
           parentNode: parentGroupId,
-          data: { nodeId: nodeId ,nodeInstance:reactFlowInstance},
+          data: { nodeId: nodeId },
           // onChangeInput: updateTextUpdaterInput },
         };
       } else if (
@@ -143,7 +145,6 @@ const FlowPage = forwardRef((props, ref) => {
           data: {
             groupId: nodeID,
             nodeId: nodeID,
-            nodeInstance:reactFlowInstance,
             // onChangeInput: updateTextUpdaterInput,
           },
         };
@@ -153,7 +154,7 @@ const FlowPage = forwardRef((props, ref) => {
           id: nodeId,
           type: type,
           position,
-          data: { nodeId: nodeId,nodeInstance:reactFlowInstance },
+          data: { nodeId: nodeId },
           // , onChangeInput: updateTextUpdaterInput },
         };
       }
@@ -163,12 +164,13 @@ const FlowPage = forwardRef((props, ref) => {
   );
   useEffect(() => {
     setNodeNum(nodes.length);
+    dispatch(addInstance({ instance: reactFlowInstance }));
   }, [nodes]);
 
   const Payment = () => {
     setOpenModal(true);
   };
-console.log("onload",nodes);
+  console.log("onload", nodes);
   return (
     <>
       <ReactFlowProvider>

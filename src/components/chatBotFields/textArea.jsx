@@ -3,7 +3,7 @@ import "../../index.css";
 import DeleteIcon from "./deleteIcon/deleteIcon";
 import {InputHoc} from "../chatHoc/inputHoc";
 import "./chatBotFieldsStyle.css"
-const TextAreaUpdater = ({   data, isConnectable,handleDelete,handleChange,handleDrop,inputValue,dataone }) => {
+const TextAreaUpdater = ({   isConnectable,handleDelete,handleChange,handleDrop,inputValue,dataone }) => {
 
   return (
     <>
@@ -27,7 +27,7 @@ const TextAreaUpdater = ({   data, isConnectable,handleDelete,handleChange,handl
             onDrop={(e)=>handleDrop(e)}
           ></textarea>
         </div>
-        <DeleteIcon onDeleteInstance = {data.nodeInstance} deleteId={data.nodeId}/>
+        <DeleteIcon  deleteId={dataone.nodeId}/>
       </div>
     </>
   );
