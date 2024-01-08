@@ -30,7 +30,7 @@ const ManageRoles = () => {
   return (
     <>
       <div className="commonbox">
-        <h1>Roles & permissions</h1>
+        <h4>Roles & permissions</h4>
         <div>
           {/* <AddButton /> */}
           <Button className="addBtn" onClick={handleRedirect}>

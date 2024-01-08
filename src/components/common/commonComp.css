@@ -1,7 +1,7 @@
 .activeBtn {
-  color: black !important;
   border-radius: 5px !important;
-  /* padding: 10px 10px !important; */
+  border: none !important;
+  outline: none !important;
 }
 
 .edit-icon {
@@ -11,8 +11,8 @@
 .addBtn {
   background-color: #00e785 !important;
   color: black !important;
-  display: flex;
-  float: inline-end;
+  display: flex !important;
+  float: inline-end !important;
   margin: 10px 0px !important;
   border: none !important;
   outline: none !important;
@@ -32,7 +32,9 @@
   border: none !important;
   outline: none !important;
   /* width: 80px; */
+  padding: 8px 20px !important;
   border-radius: 10px;
+  min-width: 0px !important;
 }
 
 .contentCenter {
@@ -40,26 +42,32 @@
   justify-content: center !important;
 }
 
+.contentEnd {
+  display: flex !important;
+  justify-content: end !important;
+}
+
 .card {
   box-shadow: 0px 5px 15px 0px #00000040 !important;
-  border-radius: 5px;
-  height: 150px;
-  padding: 5px;
-  width: 300px;
-  margin: 10px;
+  border-radius: 10px !important;
+  height: 150px !important;
+  padding: 5px !important;
+  width: 300px !important;
+  margin: 10px !important;
 }
 
 .uppercontent {
   display: flex !important;
   justify-content: space-between;
   align-items: center;
+  padding: 16px 16px 0px 16px !important;
 }
 
 .cardText {
   font-size: 18px !important;
-  font-weight: 600 !important;
+  font-weight: 400 !important;
   color: #000000;
-  text-align: center;
+  /* text-align: center; */
   margin: 4px;
   padding: 0px;
   align-self: center;
@@ -85,9 +93,7 @@
   border: solid 1px #ff3939;
 }
 
-
-
-.paymentcardcontainer{
+.paymentcardcontainer {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -100,24 +106,30 @@
   font-weight: 600 !important;
 }
 
-
-.paymentcardpricing>p{
+.paymentcardpricing > p {
   font-size: 28px;
   margin: 0;
 }
 
-.paymentcardchecklist{
+.paymentcardchecklist {
   font-size: 16px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  gap:10px
+  gap: 10px;
 }
 
-.paymentbutton{
+.paymentbutton {
   border: none;
-  padding:10px 15px;
+  padding: 10px 15px;
   border-radius: 8px;
-  background: #00E785;
+  background: #00e785;
+}
 
+::-webkit-scrollbar {
+  width: 5px !important; /* Set the width of the scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(196 205 213); /* Set the color of the scrollbar thumb */
 }

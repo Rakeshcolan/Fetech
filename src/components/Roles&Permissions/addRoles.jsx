@@ -24,10 +24,14 @@ const AddRoles = () => {
   return (
     <div>
       <h4>Add Role</h4>
-      <div>
-        <CommonTextFields label="Role Name" id="RoleName" />
+      <div className="row">
+        <div className="col-lg-6">
+          <CommonTextFields label="Role Name" id="RoleName" />
+        </div>
       </div>
+      <br />
       <h4>Grant Authorizations</h4>
+      <br />
       <CustomizedTables
         columns={RoleAuthoriZationHead}
         rows={RoleAuthoriZationData}
@@ -38,9 +42,9 @@ const AddRoles = () => {
         handleChangePage={handlePageChange}
         handleChangeRowsPerPage={handlePerRowsChange}
       />
-        <div className="contentCenter">
-          <Button className="submitBtn">Confirm</Button>
-        </div>
+      <div className="contentCenter">
+        <Button className="submitBtn">Confirm</Button>
+      </div>
     </div>
   );
 };

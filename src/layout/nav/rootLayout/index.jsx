@@ -101,7 +101,7 @@ export default function RootLayout() {
   const [openDrawer, setOpenDrawer] = React.useState(true);
   const [layoutData, setLayoutData] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   //setting adming and user routes
   let sessionValue = sessionStorage.getItem("ur");
@@ -132,7 +132,7 @@ export default function RootLayout() {
       <>
         <ListItemButton to={path} className="multi-list" onClick={handleClick}>
           <ListIcon sx={{ marginRight: "8px" }} />
-          <ListItemText primary={name} onClick={()=>navigate('/')} />
+          <ListItemText primary={name} onClick={() => navigate("/")} />
           {open ? (
             <ExpandLessIcon
               className="listicon"
@@ -189,8 +189,16 @@ export default function RootLayout() {
   };
 
   const handleMenuClose = () => {
-    navigate("/dashboard/editProfile")
     setAnchorEl(null);
+  };
+
+  const handleRedirect = () => {
+    navigate("/dashboard/editProfile");
+    setAnchorEl(null)
+  };
+
+  const handleLogOut = () => {
+    navigate("/login");
   };
 
   return (
@@ -240,14 +248,20 @@ export default function RootLayout() {
               vertical: "top",
               horizontal: "right",
             }}
+            sx={{ borderRadius: "10px" }}
           >
-            <MenuItem onClick={handleMenuClose}>
-              {" "}
-              <PermIdentityIcon />
+            <MenuItem
+              onClick={handleRedirect}
+              sx={{ "&:hover": { backgroundColor: "#c4cdd5",fontSize:"16px !important" } }}
+            >
+              <PermIdentityIcon sx={{marginRight:"10px",fontSize:"20px"}} />
               Edit Profile
             </MenuItem>
-            <MenuItem onClick={handleMenuClose}>
-              <LogoutIcon />
+            <MenuItem
+              onClick={handleLogOut}
+              sx={{ "&:hover": { backgroundColor: "#c4cdd5",fontSize:"16px !important" } }}
+            >
+              <LogoutIcon sx={{fontSize:"20px",marginRight:"10px"}} />
               Sign Out
             </MenuItem>
             {/* Add more menu items as needed */}
@@ -257,7 +271,7 @@ export default function RootLayout() {
       <div>
         <Drawer variant="permanent" className="layoutlist" open={openDrawer}>
           <img src={Logo} className="logo" style={{ width: "100%" }} />
-          <DrawerHeader>
+          {/* <DrawerHeader>
             <IconButton onClick={handleDrawerClose}>
               {theme.direction === "rtl" ? (
                 <ChevronRightIcon style={{ color: "white !important" }} />
@@ -265,7 +279,7 @@ export default function RootLayout() {
                 <ChevronLeftIcon style={{ color: "white !important" }} />
               )}
             </IconButton>
-          </DrawerHeader>
+          </DrawerHeader> */}
           <List>
             {layoutData.map((items, index) => {
               return items.isNested ? (

@@ -107,6 +107,16 @@ function CustomizedTables(props) {
                                     row[column.id] === "Active"
                                       ? "#00E785"
                                       : "#FF3939",
+                                  color:
+                                    row[column.id] === "Active"
+                                      ? "black"
+                                      : "white",
+                                  "&:hover": {
+                                    backgroundColor:
+                                      row[column.id] === "Active"
+                                        ? "#00e785 !important"
+                                        : "#FF3939 !important",
+                                  },
                                 }}
                               >
                                 {row[column.id]}

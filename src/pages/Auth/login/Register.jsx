@@ -1,15 +1,13 @@
-import { Button } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import CenteredTextField from "../../../components/common/Field/CenteredTextField";
-import CommonTextFields from "../../../components/common/Field/CommonTextFIelds";
 import logo from "../../../assests/images/connexLogo.png";
 
 const Register = () => {
   const navigate = useNavigate();
 
   const handleNavigate = () => {
-    navigate("/login")
+    navigate("/")
   }
 
   return (
@@ -27,7 +25,7 @@ const Register = () => {
       />
       <div className="loginCard">
         <div className="loginContainer">
-          <h4>Register</h4>
+          <h2>REGISTER</h2>
           <br />
           <CenteredTextField
             label="Username"

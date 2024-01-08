@@ -30,7 +30,7 @@ const ManageSubAdmin = () => {
   return (
     <>
       <div className="commonbox">
-        <h2>Manage SubAdmin</h2>
+        <h4>Manage Sub Admin</h4>
         {/* <AddButton /> */}
         <Button className="addBtn" onClick={handleModalOpen}>
           +Add

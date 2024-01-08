@@ -2,6 +2,18 @@
   text-align: center;
 }
 
+h2{
+  font-family: Melete;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+h4{
+  font-family: Mazzard;
+  font-weight: 600;
+  font-size: 20px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -33,6 +45,7 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555; 
 }
+
 
 .App-header {
   background-color: #282c34;

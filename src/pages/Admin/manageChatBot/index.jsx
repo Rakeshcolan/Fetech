@@ -20,7 +20,7 @@ const ManageChatBot = () => {
     <>
         <div className="managebotContainer">
 
-      <h2>Manage Chatbot</h2>
+      <h4>Manage Chatbot</h4>
       <div className="manageDrop">
 
       <label>Select Client Name :</label>

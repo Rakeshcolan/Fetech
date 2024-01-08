@@ -16,8 +16,8 @@
     margin-bottom: 10px;
   }
   .MuiButtonBase-root{
-    justify-content: space-between !important;
-    max-width: 70% !important;
+    /* justify-content: space-between !important; */
+    /* max-width: 70% !important; */
   }
   
   .stackname{

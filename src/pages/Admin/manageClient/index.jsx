@@ -35,7 +35,7 @@ const ManageClients = () => {
     <div className="commonbox">
 
   
-      <h2>Manage Clients</h2>
+      <h4>Manage Clients</h4>
       {/* <AddButton /> */}
       <Button className="addBtn" onClick={handleModalOpen}>
         +Add
