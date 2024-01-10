@@ -34,7 +34,6 @@ const AdminRoutes = [
     path: "/payment",
     element: <Payment />,
   },
- 
 ];
 
 export default AdminRoutes;
