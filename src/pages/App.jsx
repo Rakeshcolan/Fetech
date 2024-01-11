@@ -6,6 +6,7 @@ import LazyLoader from "../components/lazyLoader";
 import { Provider } from "react-redux";
 import { PersistGate } from 'redux-persist/integration/react';
 import { NodeContextProvider } from "../nodecontext/nodeContext";
+import store from "../redux/store";
 
 function App() {
   const userRole =typeof window !== "undefined" ? sessionStorage.getItem("ur") : null;
@@ -27,12 +28,12 @@ function App() {
   return (
     <>
         {/* <ActivityController> */}
-        <Provider store={flowStore}>
-        <PersistGate loading={null} persistor={persistor}>
+        <Provider store={store}>
+        {/* <PersistGate loading={null} persistor={persistor}> */}
           <NodeContextProvider>
         <LazyLoader>{router}</LazyLoader>
         </NodeContextProvider>
-      </PersistGate>
+      {/* </PersistGate> */}
     </Provider>
         {/* </ActivityController> */}
     </>

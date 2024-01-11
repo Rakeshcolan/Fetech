@@ -9,7 +9,7 @@ export const InputHoc = (FlowComponents)=>{
         let dataNodeId = data.nodeId;
         // let dataInstance = data.nodeInstance;
       
-        let {value,changeId,changeValue,handleDelete } = contextdata;
+        let {changeValue } = contextdata;
         const [inputValue, setInputValue] = useState(data.inputValue || "");
      
       
@@ -37,7 +37,7 @@ export const InputHoc = (FlowComponents)=>{
           changeValue(prevValue,dataNodeId)
         }
 
-        return <FlowComponents handleChange={handleChange} handleDrop={handleDrop}  inputValue={inputValue} data={data} {...props}/>
+        return <FlowComponents handleChange={handleChange} handleDrop={handleDrop}  inputValue={inputValue} dataone = {data} {...props}/>
     }
     return UpdateInput;
 }

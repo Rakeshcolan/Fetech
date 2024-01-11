@@ -7,9 +7,12 @@ import "../modal/modal.css";
 import CancelIcon from "@mui/icons-material/Cancel";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import { useDispatch } from "react-redux";
+import { addSubAmdinsApi } from "../../redux/action/adminAction";
 
 export default function AddSubAdminModal(props) {
   const { openModal, setOpenModal } = props;
+  const dispatch = useDispatch();
   const handleClose = () => {
     setOpenModal(false);
   };
@@ -39,6 +42,10 @@ export default function AddSubAdminModal(props) {
       };
     },
   });
+
+  const handleSubadmins = ()=>{
+    dispatch(addSubAmdinsApi())
+  }
 
   return (
     <React.Fragment>

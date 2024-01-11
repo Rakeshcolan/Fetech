@@ -11,7 +11,7 @@ import { ChatBotTableDesc, chatBotTableTitle } from "../../utils/constants/table
 import Button from "@mui/material/Button";
 import "./chatBotStyle.css";
 import {useNavigate} from "react-router-dom"
-import { resetFormData } from "../../redux/flowAction";
+import { resetFormData } from "../../redux/slice/flowSlice";
 import { useDispatch } from "react-redux";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({

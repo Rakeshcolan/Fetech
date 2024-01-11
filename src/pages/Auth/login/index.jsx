@@ -11,8 +11,10 @@ const Login = () => {
   const handleLogin = (auth) => {
     if (auth == "User") {
       sessionStorage.setItem("ur", 1);
+      sessionStorage.setItem("roles","USER")
     } else {
       sessionStorage.setItem("ur", 2);
+      sessionStorage.setItem("roles","ADMIN")
     }
     navigate("/");
   };

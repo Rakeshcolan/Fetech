@@ -13,7 +13,7 @@ function TextUpdaterNode({ data, isConnectable }) {
     
 
     <div className="text-updater-node">
-      <Handle type="target" position={Position.Top} isConnectable={isConnectable} />
+      <Handle className='chathandle' type="target" position={Position.Top} isConnectable={isConnectable} />
     
       {/* <CKEditor
                     editor={ ClassicEditor }

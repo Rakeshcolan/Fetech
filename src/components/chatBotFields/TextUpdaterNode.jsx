@@ -1,7 +1,7 @@
 import { Handle, NodeResizeControl, NodeResizer, Position } from "reactflow";
 import DeleteIcon from "./deleteIcon/deleteIcon";
-import {InputHoc} from "../chatHoc/inputHoc";
-import "./chatBotFieldsStyle.css"
+import { InputHoc } from "../chatHoc/inputHoc";
+import "./chatBotFieldsStyle.css";
 function ResizeIcon() {
   return (
     <svg
@@ -26,8 +26,14 @@ function ResizeIcon() {
 }
 const handleStyle = { left: 10 };
 
-function TextUpdaterNode({ data, isConnectable,handleDelete,handleChange,handleDrop,inputValue}) {
-
+function TextUpdaterNode({
+  isConnectable,
+  handleDelete,
+  handleChange,
+  handleDrop,
+  inputValue,
+  dataone,
+}) {
   const controlStyle = {
     background: "transparent",
     border: "none",
@@ -41,33 +47,34 @@ function TextUpdaterNode({ data, isConnectable,handleDelete,handleChange,handleD
 
       <div
         className="text-updater-node groupnode groupnodediv"
-        style={{position:"relative"}}
-        id={data.groupId}
+        style={{ position: "relative" }}
+        id={dataone.groupId}
       >
-
         <Handle
           type="source"
+          className='chathandle'
           position={Position.Top}
           isConnectable={isConnectable}
         />
-        <div className="textareadiv quickdiv" >Quick Reply</div>
+        <div className="textareadiv quickdiv">Quick Reply</div>
         <label className="groupLabel">Message:</label>
         <br></br>
         <textarea
-        className="groupinput activeborder"
+          className="groupinput activeborder"
           rows="5"
           cols="20"
           // value={data.label}
           value={inputValue}
           onChange={(event) => handleChange(event)}
-          onDrop = {(e)=>handleDrop(e)}
+          onDrop={(e) => handleDrop(e)}
         ></textarea>
         <Handle
           type="target"
+          className='chathandle'
           position={Position.Left}
           isConnectable={isConnectable}
         />
-         <DeleteIcon onDeleteInstance = {data.nodeInstance} deleteId={data.nodeId}/>
+        <DeleteIcon deleteId={dataone.nodeId} />
       </div>
     </>
   );

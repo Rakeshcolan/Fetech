@@ -167,7 +167,8 @@
   .react-flow__handle{
     min-width: 1px !important;
     min-height: 1px !important;
-    background-color: grey;
+    background-color: grey !important;
+    border: 1px solid black !important;
     width: 2px !important;
     height: 2px !important;
   }
@@ -188,4 +189,8 @@
   
   textarea{
     resize: none;
+  }
+
+  .chathandle{
+    background-color: #1a192b !important;
   }

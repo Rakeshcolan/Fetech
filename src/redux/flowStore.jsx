@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import flowReducer from "./flowAction";
+import flowReducer from "./slice/flowSlice";
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 // import { getDefaultMiddleware } from '@reduxjs/toolkit';

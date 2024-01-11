@@ -7,7 +7,7 @@ import FlowPage from "../../../../components/chatBot/reactflow";
 import "../manageChatbot.css";
 import Switch from "@mui/material/Switch";
 import { useDispatch } from "react-redux";
-import { getFlow } from "../../../../redux/flowAction";
+import { getFlow } from "../../../../redux/slice/flowSlice";
 import { useSelector } from "react-redux";
 
 const label = { inputProps: { "aria-label": "Switch demo" } };
@@ -169,7 +169,6 @@ const CreateChat = () => {
 
   useEffect(() => {
     if (nodeObject && action == "Edit") {
-      console.log("nodeObject", nodeObject, reactFlowInstance);
       let savedNodeObject = [...nodeObject[arrayIndex].flowElements.nodes];
       let savedEdges = [...nodeObject[arrayIndex].flowElements.edges];
       setNodes(savedNodeObject);

@@ -23,6 +23,8 @@ import "reactflow/dist/style.css";
 import { useSelector } from "react-redux";
 import AlertUser from "../modal/paymentModal";
 import { NodeContext } from "../../nodecontext/nodeContext";
+import { useDispatch } from "react-redux";
+import { addInstance } from "../../redux/slice/flowSlice";
 
 const FlowPage = forwardRef((props, ref) => {
   const {
@@ -49,19 +51,30 @@ const FlowPage = forwardRef((props, ref) => {
     buttonNode: ButtonNode,
     textAreaUpdater: TextAreaUpdater,
   });
+  let dispatch = useDispatch();
 
-  let oldNodeId = nodes?.filter((node) => node.id.split("_")[0] == "dndnode");
-  let oldGroudNodeId = nodes?.filter(
-    (node) => node.id.split("_")[0] == "groupnode"
-  );
+  console.log("removingnodes",nodes);
+const nodesRef = useRef(nodes);
 
+useEffect(() => {
+  nodesRef.current = nodes;
+}, [nodes]);
 
-  let id = oldNodeId.length;
-  const getId = () => `dndnode_${id++}`;
-  let groupId = oldGroudNodeId.length;
-  const getGroupId = () => `groupnode_${groupId++}`;
+  const getId = () => {
+    let oldNodeId = nodesRef.current?.filter((node) => node.id.includes("dndnode"));
+    let  nodeId = oldNodeId[oldNodeId.length-1]?.id?.split('_')[1];
+    let id = nodeId?parseInt(nodeId)+1 :  0 ;
+    return `dndnode_${id++}`;
+  };
+  const getGroupId = () => {
+    let oldGroudNodeId = nodesRef.current?.filter(
+      (node) =>  node.id.includes("groupnode")
+    );
+    let groupId = parseInt(oldGroudNodeId[oldGroudNodeId.length-1]?.id?.split('_')[1]) + 1 || 0 ;
+    return `groupnode_${groupId++}`;
+  }
 
-  const { payPrice } = useSelector((state) => state);
+  const { payPrice } = useSelector((state) => state.flow);
 
   const onConnect = (params) =>
     setEdges((eds) => {
@@ -93,9 +106,8 @@ const FlowPage = forwardRef((props, ref) => {
       })
     );
   };
-// reactFlowInstance.addNodes(nodes)
-// reactFlowInstance.addEdges(edges)
-
+  // reactFlowInstance.addNodes(nodes)
+  // reactFlowInstance.addEdges(edges)
 
   const onDrop = useCallback(
     (event) => {
@@ -128,7 +140,7 @@ const FlowPage = forwardRef((props, ref) => {
           type: type,
           position: adjustedPosition,
           parentNode: parentGroupId,
-          data: { nodeId: nodeId ,nodeInstance:reactFlowInstance},
+          data: { nodeId: nodeId },
           // onChangeInput: updateTextUpdaterInput },
         };
       } else if (
@@ -143,7 +155,6 @@ const FlowPage = forwardRef((props, ref) => {
           data: {
             groupId: nodeID,
             nodeId: nodeID,
-            nodeInstance:reactFlowInstance,
             // onChangeInput: updateTextUpdaterInput,
           },
         };
@@ -153,7 +164,7 @@ const FlowPage = forwardRef((props, ref) => {
           id: nodeId,
           type: type,
           position,
-          data: { nodeId: nodeId,nodeInstance:reactFlowInstance },
+          data: { nodeId: nodeId },
           // , onChangeInput: updateTextUpdaterInput },
         };
       }
@@ -163,12 +174,13 @@ const FlowPage = forwardRef((props, ref) => {
   );
   useEffect(() => {
     setNodeNum(nodes.length);
+    dispatch(addInstance({ instance: reactFlowInstance }));
   }, [nodes]);
 
   const Payment = () => {
     setOpenModal(true);
   };
-console.log("onload",nodes);
+  console.log("onload", nodes);
   return (
     <>
       <ReactFlowProvider>

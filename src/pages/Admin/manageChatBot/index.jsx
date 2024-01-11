@@ -14,7 +14,7 @@ const ManageChatBot = () => {
       setAge(event.target.value);
     };
 
-    let {flowData} = useSelector((state)=>state) 
+    let {flowData} = useSelector((state)=>state.flow) 
     console.log("mangaflow",flowData);
   return (
     <>

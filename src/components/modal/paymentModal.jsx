@@ -6,7 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useDispatch } from 'react-redux';
-import { addPayment } from '../../redux/flowAction';
+import { addPayment } from '../../redux/slice/flowSlice';
 
 export default function AlertUser({open,setOpenModal}) {
 //   const [open, setOpen] = React.useState(false);

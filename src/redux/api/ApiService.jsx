@@ -1,21 +1,19 @@
 import axios from "axios";
 import { USER_BASE_URL, ADMIN_BASE_URL } from "./configURL";
-import { errorMessage } from "@/components/commonToaster";
-import router from "next/router";
 
 export const APIService = async (method, url, body, params) => {
+ 
   const roles =
     typeof window !== "undefined" ? sessionStorage.getItem("roles") : null;
   const accessToken =
     typeof window !== "undefined" ? sessionStorage.getItem("act") : "";
-
   const obj = {
     ADMIN: ADMIN_BASE_URL,
     USER: USER_BASE_URL,
   };
-
   function baseUrl(roles) {
     return obj[roles];
+
   }
 
   if (window.navigator.onLine) {
@@ -24,7 +22,7 @@ export const APIService = async (method, url, body, params) => {
       baseURL: baseUrl(roles),
       url: url,
       headers: {
-        Authorization: accessToken,
+        // Authorization: accessToken,
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
       },
@@ -33,7 +31,7 @@ export const APIService = async (method, url, body, params) => {
     })
       .then((e) => {
         if (roles === null || undefined || "") {
-          router.push("/auth/login");
+          // navigate("/auth/login");
         } else if (e.status === 200) {
           return {
             status: "success",
@@ -49,7 +47,7 @@ export const APIService = async (method, url, body, params) => {
       .catch((e) => {
         console.log("ERROR OCCURED", e);
         if (e.message === "Network Error") {
-          router.push("/common/networkIssue");
+          // navigate("/common/networkIssue");
         } else if (e.response.status === 401 || e.response.status === 403) {
           // UNCOMMENT THIS CODE WHEN API IS READY
           // const refreshToken =
@@ -71,16 +69,16 @@ export const APIService = async (method, url, body, params) => {
           // }
 
           // REMOVE THIS CODE WHEN API IS READY
-          errorMessage(e?.response?.data?.httpStatus);
-          router.push("/auth/login");
+          // errorMessage(e?.response?.data?.httpStatus);
+          // navigate("/auth/login");
           sessionStorage.clear();
           localStorage.clear();
         }
         if (roles === null || undefined || "") {
-          router.push("/auth/login");
+          // navigate("/auth/login");
         }
       });
   } else {
-    router.push("/common/internetIssue");
+    // navigate("/common/internetIssue");
   }
 };
