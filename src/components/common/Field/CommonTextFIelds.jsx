@@ -2,7 +2,16 @@ import React from "react";
 import TextField from "@mui/material/TextField";
 import { Stack } from "@mui/system";
 
-const CommonTextFields = ({ label, placeholder, ...props }) => {
+const CommonTextFields = ({
+  id,
+  label,
+  formik,
+  customStyles,
+  disabled,
+  placeholder,
+  required,
+  ...props
+}) => {
   return (
     <>
       <Stack
@@ -12,7 +21,7 @@ const CommonTextFields = ({ label, placeholder, ...props }) => {
         spacing={2}
       >
         <label>{label}</label>
-        <TextField
+        {/* <TextField
           margin="normal"
           fullWidth
           type="text"
@@ -22,6 +31,30 @@ const CommonTextFields = ({ label, placeholder, ...props }) => {
           sx={{
             width: "50%",
           }}
+        /> */}
+         <TextField
+          fullWidth
+          id={id}
+          margin="normal"
+          disabled={disabled}
+          type="text"
+          placeholder={placeholder}
+    
+          // onChange={formik.handleChange}
+          value={formik.values[id]}
+          error={Boolean(formik.touched[id] && formik.errors[id])}
+          helperText={<>{formik.touched[id] && formik.errors[id]}</>}
+          variant="outlined"
+          sx={{
+            "& legend": { display: "none" },
+            "& fieldset": { top: 0 },
+            width: "50%",
+            mt: 0,
+            mb: 0,
+            borderRadius: "10px",
+            "& .MuiOutlinedInput-input": customStyles?.OutlinedInput,
+          }}
+          {...props}
         />
       </Stack>
     </>
