@@ -6,6 +6,7 @@ import {
   ClientDataHead,
   ClientData,
 } from "../../../components/common/tableData";
+import AddClientModal from "../../../components/modal/addClientModal";
 import AddSubAdminModal from "../../../components/modal/addSubAdminModal";
 import "../../../styles/App.css"
 
@@ -50,7 +51,8 @@ const ManageClients = () => {
         handleChangePage={handlePageChange}
         handleChangeRowsPerPage={handlePerRowsChange}
       />
-      <AddSubAdminModal openModal={modalOpen} setOpenModal={setModalOpen} />
+      {/* <addClientModal openModal={modalOpen} setOpenModal={setModalOpen} /> */}
+      <AddClientModal openModal={modalOpen} setOpenModal={setModalOpen} />
       </div>
     </>
   );

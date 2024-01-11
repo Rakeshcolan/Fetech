@@ -12,6 +12,10 @@ const CommonTextFields = ({
   required,
   ...props
 }) => {
+  const handleChange = (e) => {
+    formik.handleChange(e);
+  };
+
   return (
     <>
       <Stack
@@ -21,29 +25,18 @@ const CommonTextFields = ({
         spacing={2}
       >
         <label>{label}</label>
-        {/* <TextField
-          margin="normal"
-          fullWidth
-          type="text"
-          variant="outlined"
-          placeholder={placeholder}
-          {...props}
-          sx={{
-            width: "50%",
-          }}
-        /> */}
-         <TextField
+        <TextField
           fullWidth
           id={id}
           margin="normal"
           disabled={disabled}
           type="text"
           placeholder={placeholder}
-    
-          // onChange={formik.handleChange}
+          onChange={handleChange}  // Add onChange handler
           value={formik.values[id]}
           error={Boolean(formik.touched[id] && formik.errors[id])}
           helperText={<>{formik.touched[id] && formik.errors[id]}</>}
+          onBlur={formik.handleBlur}  
           variant="outlined"
           sx={{
             "& legend": { display: "none" },
