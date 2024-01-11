@@ -26,6 +26,7 @@ export const flowSlice = createSlice({
         },
 
         addPayment:(state,{payload})=>{
+            console.log("addingpay");
             state.payPrice=state.payPrice+5;
         },
         addInstance:(state,{payload})=>{

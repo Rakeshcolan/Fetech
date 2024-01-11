@@ -61,14 +61,7 @@
     background-color: azure;
     width: 2px;
   }
-  
-  .react-flow__handle{
-    min-width: 1px !important;
-    min-height: 1px !important;
-    background-color: grey;
-    width: 2px !important;
-    height: 2px !important;
-  }
+
   
   
   textarea{

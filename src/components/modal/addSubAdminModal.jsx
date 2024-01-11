@@ -5,12 +5,19 @@ import DialogTitle from "@mui/material/DialogTitle";
 import CommonTextFields from "../common/Field/CommonTextFIelds";
 import "../modal/modal.css";
 import CancelIcon from "@mui/icons-material/Cancel";
+import { useDispatch } from "react-redux";
+import { addSubAmdinsApi } from "../../redux/action/adminAction";
 
 export default function AddSubAdminModal(props) {
   const { openModal, setOpenModal } = props;
+  const dispatch = useDispatch();
   const handleClose = () => {
     setOpenModal(false);
   };
+
+  const handleSubadmins = ()=>{
+    dispatch(addSubAmdinsApi())
+  }
 
   return (
     <React.Fragment>
@@ -51,7 +58,7 @@ export default function AddSubAdminModal(props) {
           </div>
           <br />
           <div className="contentCenter">
-            <Button className="submitBtn">Save</Button>
+            <Button className="submitBtn" onClick={handleSubadmins}>Save</Button>
           </div>
         </div>
       </Dialog>

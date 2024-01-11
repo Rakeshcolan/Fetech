@@ -2,7 +2,7 @@ import "./deleteIcon.css";
 import ClearIcon from '@mui/icons-material/Clear';
 import { useSelector } from "react-redux";
 const DeleteIcon = ({onDeleteInstance,deleteId})=>{
-    let deleteNodeInstance = useSelector((state)=>state.instanceNode);
+    let deleteNodeInstance = useSelector((state)=>state.flow.instanceNode);
     
     const onDeleteNode = () => {
         // console.log("ondeleteinstance",onDeleteInstance.getNodes());

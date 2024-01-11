@@ -7,8 +7,8 @@ const TextAreaUpdater = ({   isConnectable,handleDelete,handleChange,handleDrop,
 
   return (
     <>
-      <Handle type="target" position={Position.Left} />
-      <Handle type="source" position={Position.Right} />
+      <Handle  className='chathandle' type="target" position={Position.Left} />
+      <Handle className='chathandle' type="source" position={Position.Right} />
       <div className="textareacontainer" style={{position:"relative"}}>
         <div
           className="textareadiv quickdiv"

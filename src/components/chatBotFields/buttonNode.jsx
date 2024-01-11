@@ -17,12 +17,14 @@ function ButtonNode(props) {
     <>
       <Handle
         type="source"
+        className='chathandle'
         position={Position.Right}
         isConnectable={isConnectable}
         style={{ borderColor: "black !important" }}
       />
       <Handle
         type="target"
+        className='chathandle'
         position={Position.Left}
         isConnectable={isConnectable}
         style={{ borderColor: "black !important" }}

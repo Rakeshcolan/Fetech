@@ -52,6 +52,7 @@ function TextUpdaterNode({
       >
         <Handle
           type="source"
+          className='chathandle'
           position={Position.Top}
           isConnectable={isConnectable}
         />
@@ -69,6 +70,7 @@ function TextUpdaterNode({
         ></textarea>
         <Handle
           type="target"
+          className='chathandle'
           position={Position.Left}
           isConnectable={isConnectable}
         />
