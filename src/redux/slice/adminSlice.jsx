@@ -5,8 +5,8 @@ const adminSlice = createSlice({
   initialState: {
     adminDetail: [],
     adminDataLoading: false,
-    subAdminDetail:[],
-    
+    addsubAdminDetail:[],
+    getallSubAdminDetail:[]
   },
   reducers: {
     getMyAdminDetailReducer: (state, { payload }) => {
@@ -15,14 +15,19 @@ const adminSlice = createSlice({
     },
     addSubAmdinsReducer:(state,{payload})=>{
       const {subAdminDetail,isLoading} = payload;
-      console.log("subAm",subAdminDetail);
-      state.subAdminDetail = subAdminDetail;
+      state.addsubAdminDetail = subAdminDetail;
+      state.adminDataLoading = isLoading;
+    },
+    getSubAdminReducer:(state,{payload})=>{
+      const {subAdminData,isLoading} = payload;
+      state.getallSubAdminDetail =subAdminData
       state.adminDataLoading = isLoading;
     }
+
   },
 });
 
-export const { getMyAdminDetailReducer,addSubAmdinsReducer } = adminSlice.actions;
+export const { getMyAdminDetailReducer,addSubAmdinsReducer,getSubAdminReducer } = adminSlice.actions;
 
-export const adminSelector = (state) => state.admin;
+export const adminSelector = (state) =>state.admin;
 export const adminReducer = adminSlice.reducer;

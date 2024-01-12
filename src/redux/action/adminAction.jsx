@@ -1,6 +1,8 @@
+import { dispatch } from "d3-dispatch";
+import { async } from "q";
 import { APIService } from "../api/ApiService";
 // import { router } from "next/router";
-import { addSubAmdinsReducer, getMyAdminDetailReducer } from "../slice/adminSlice";
+import { addSubAmdinsReducer, getMyAdminDetailReducer, getSubAdminReducer } from "../slice/adminSlice";
 
 export function getMyAdminDetailsApi() {
   return async (dispatch) => {
@@ -22,17 +24,10 @@ export function getMyAdminDetailsApi() {
 }
 
 
-export function addSubAmdinsApi(){
+export function addSubAmdinsApi(data){
   return async (dispatch)=>{
     dispatch(addSubAmdinsReducer({ isLoading: true }));
-    let data = {
-      "first_name" : "Johne",
-      "last_name" : "Davidwd",
-      "email_id" : "john@johnes1.com",
-      "mobile_no" : "9488556698",
-      "status" : true,
-      "designation" : 1
-  }
+   console.log("dataaa",data);
     APIService("POST",'/managedata/',data)
     .then((e)=>{
       console.log("admindata",e);
@@ -47,5 +42,21 @@ export function addSubAmdinsApi(){
       console.log(e);
       dispatch(addSubAmdinsReducer({ isLoading: false }));
 })
+  }
+}
+
+export function getSubAdminsApi(){
+  return async (dispatch)=>{
+    dispatch(getSubAdminReducer({isLoading:true}));
+    APIService("GET",'/managedata/')
+    .then((e)=>{
+      dispatch(getSubAdminReducer(
+        {subAdminData:e.data,
+        isLoading:false}
+    ))
+    })
+    .catch((e)=>{
+      dispatch(getSubAdminReducer({isLoading:false}))
+    })
   }
 }

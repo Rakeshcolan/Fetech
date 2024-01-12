@@ -32,6 +32,12 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
+let roleObj = {
+  "1":"Employee",
+  "2":"Accountant",
+  "3":"Manager"
+}
+
 function CustomizedTables(props) {
   const {
     rows,
@@ -87,28 +93,28 @@ function CustomizedTables(props) {
                   <StyledTableRow hover role="checkbox" tabIndex={-1} key={i}>
                     {columns?.map((column) => {
                       const value =
-                        column.id === "Action" ||
-                        column.id === "Status" ||
+                        column.id === "Action"||
+                        column.id === "status" ||
                         column.id === "checkbox" ||
+                        column.id === "designation" ||
                         column.id === "Delete"
                           ? column.id
                           : row[column.id];
-                      console.log(value, "value");
                       return (
                         <Fragment key={column.id}>
                           <StyledTableCell>
                             {value === "Action" ? (
                               <DriveFileRenameOutlineIcon className="edit-icon" />
-                            ) : value === "Status" ? (
+                            ) : value === "status" ? (
                               <Button
                                 className="activeBtn"
                                 sx={{
                                   backgroundColor:
-                                    row[column.id] === "Active"
+                                    row[column.id]
                                       ? "#00E785"
                                       : "#FF3939",
                                   color:
-                                    row[column.id] === "Active"
+                                    row[column.id] 
                                       ? "black"
                                       : "white",
                                   "&:hover": {
@@ -119,12 +125,15 @@ function CustomizedTables(props) {
                                   },
                                 }}
                               >
-                                {row[column.id]}
+                                {row[column.id]?"Active":"InActive"}
                               </Button>
                             ) : value === "checkbox" ? (
                               <Checkbox />
                             ) : value === "Delete" ? (
                               <Checkbox />
+                            ) : 
+                             value === "designation" ? (
+                              roleObj[row["designation"]]
                             ) : (
                               value
                             )}
