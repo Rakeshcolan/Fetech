@@ -136,99 +136,122 @@ export const RoleAuthoriZationData = [
 
 export const ClientDataHead = [
   {
-    id: "#",
-    label: "#",
-  },
-  {
-    id: "Name",
+    id: "name",
     label: "Name",
   },
   {
-    id: "Email_ID",
+    id: "email_id",
     label: "Email ID",
   },
   {
-    id: "Mobile_Number",
+    id: "mobile_no",
     label: "Mobile Number",
   },
   {
-    id: "Subscription_Plan",
+    id: "subscription_plan",
     label: "Subscription Plan",
   },
   {
-    id: "Billing",
+    id: "billing",
     label: "Billing",
   },
   {
     id: "Received_Data",
     label: "Received Data",
   },
-]
+];
+
 export const ClientData = [
   {
-    "#":1,
+    "#": 1,
     Name: "Sandeep",
     Email_ID: "Sharma",
     Mobile_Number: "Sandeep@gmail.com",
     Subscription_Plan: "Manager",
     Billing: "Active",
-    Received_Data:"None"
+    Received_Data: "None",
   },
   {
-    "#":2,
+    "#": 2,
     Name: "Sandeep",
     Email_ID: "Sharma",
     Mobile_Number: "Sandeep@gmail.com",
     Subscription_Plan: "Manager",
     Billing: "Active",
-    Received_Data:"None"
-  },{
-    "#":3,
-    Name: "Sandeep",
-    Email_ID: "Sharma",
-    Mobile_Number: "Sandeep@gmail.com",
-    Subscription_Plan: "Manager",
-    Billing: "Active",
-    Received_Data:"None"
-  },{
-    "#":4,
-    Name: "Sandeep",
-    Email_ID: "Sharma",
-    Mobile_Number: "Sandeep@gmail.com",
-    Subscription_Plan: "Manager",
-    Billing: "Active",
-    Received_Data:"None"
-  },{
-    "#":5,
-    Name: "Sandeep",
-    Email_ID: "Sharma",
-    Mobile_Number: "Sandeep@gmail.com",
-    Subscription_Plan: "Manager",
-    Billing: "Active",
-    Received_Data:"None"
-  },{
-    "#":6,
-    Name: "Sandeep",
-    Email_ID: "Sharma",
-    Mobile_Number: "Sandeep@gmail.com",
-    Subscription_Plan: "Manager",
-    Billing: "Active",
-    Received_Data:"None"
-  },{
-    "#":7,
-    Name: "Sandeep",
-    Email_ID: "Sharma",
-    Mobile_Number: "Sandeep@gmail.com",
-    Subscription_Plan: "Manager",
-    Billing: "Active",
-    Received_Data:"None"
-  },{
-    "#":8,
-    Name: "Sandeep",
-    Email_ID: "Sharma",
-    Mobile_Number: "Sandeep@gmail.com",
-    Subscription_Plan: "Manager",
-    Billing: "Active",
-    Received_Data:"None"
+    Received_Data: "None",
   },
-]
+  {
+    "#": 3,
+    Name: "Sandeep",
+    Email_ID: "Sharma",
+    Mobile_Number: "Sandeep@gmail.com",
+    Subscription_Plan: "Manager",
+    Billing: "Active",
+    Received_Data: "None",
+  },
+  {
+    "#": 4,
+    Name: "Sandeep",
+    Email_ID: "Sharma",
+    Mobile_Number: "Sandeep@gmail.com",
+    Subscription_Plan: "Manager",
+    Billing: "Active",
+    Received_Data: "None",
+  },
+  {
+    "#": 5,
+    Name: "Sandeep",
+    Email_ID: "Sharma",
+    Mobile_Number: "Sandeep@gmail.com",
+    Subscription_Plan: "Manager",
+    Billing: "Active",
+    Received_Data: "None",
+  },
+  {
+    "#": 6,
+    Name: "Sandeep",
+    Email_ID: "Sharma",
+    Mobile_Number: "Sandeep@gmail.com",
+    Subscription_Plan: "Manager",
+    Billing: "Active",
+    Received_Data: "None",
+  },
+  {
+    "#": 7,
+    Name: "Sandeep",
+    Email_ID: "Sharma",
+    Mobile_Number: "Sandeep@gmail.com",
+    Subscription_Plan: "Manager",
+    Billing: "Active",
+    Received_Data: "None",
+  },
+  {
+    "#": 8,
+    Name: "Sandeep",
+    Email_ID: "Sharma",
+    Mobile_Number: "Sandeep@gmail.com",
+    Subscription_Plan: "Manager",
+    Billing: "Active",
+    Received_Data: "None",
+  },
+];
+
+export const SubscriptionDataHead = [
+  {
+    id: "subscription_id",
+    label: "Title",
+  },
+
+  {
+    id: "subscription_amount",
+    label: "Subscription Plan",
+  },
+  {
+    id: "description",
+    label: "Description",
+  },
+  {
+    id: "status",
+    label: "Status",
+  },
+];
