@@ -9,10 +9,12 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import { addSubAmdinsApi } from "../../redux/action/adminAction";
+import { useNavigate } from "react-router";
 
 export default function AddSubAdminModal(props) {
   const { openModal, setOpenModal } = props;
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const handleClose = () => {
     setOpenModal(false);
   };
@@ -40,12 +42,10 @@ export default function AddSubAdminModal(props) {
         mobile_no: values.mobile_no,
         designation: values.designation,
       };
+      dispatch(addSubAmdinsApi(val))
+      handleClose()
     },
   });
-
-  const handleSubadmins = ()=>{
-    dispatch(addSubAmdinsApi())
-  }
 
   return (
     <React.Fragment>

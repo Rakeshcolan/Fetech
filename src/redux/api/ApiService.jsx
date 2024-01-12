@@ -7,13 +7,13 @@ export const APIService = async (method, url, body, params) => {
     typeof window !== "undefined" ? sessionStorage.getItem("roles") : null;
   const accessToken =
     typeof window !== "undefined" ? sessionStorage.getItem("act") : "";
+    
   const obj = {
     ADMIN: ADMIN_BASE_URL,
     USER: USER_BASE_URL,
   };
   function baseUrl(roles) {
     return obj[roles];
-
   }
 
   if (window.navigator.onLine) {
@@ -32,7 +32,7 @@ export const APIService = async (method, url, body, params) => {
       .then((e) => {
         if (roles === null || undefined || "") {
           // navigate("/auth/login");
-        } else if (e.status === 200) {
+        } else if (e.status === 200 || e.status === 201) {
           return {
             status: "success",
             data: e.data,

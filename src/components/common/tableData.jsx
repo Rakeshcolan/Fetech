@@ -1,22 +1,22 @@
 export const subAdminTableHead = [
   {
-    id: "FirstName",
+    id: "first_name",
     label: "FirstName",
   },
   {
-    id: "LastName",
+    id: "last_name",
     label: "LastName",
   },
   {
-    id: "EmailID",
+    id: "email_id",
     label: "Email ID",
   },
   {
-    id: "Designation",
+    id: "designation",
     label: "Designation",
   },
   {
-    id: "Status",
+    id: "status",
     label: "Status",
   },
   {

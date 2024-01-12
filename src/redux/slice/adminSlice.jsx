@@ -46,6 +46,6 @@ export const {
   addSubscriptionApiReducer,
   getSubscriptionApiReducer
 } = adminSlice.actions;
-
-export const adminSelector = (state) => state.admin;
+  
+export const adminSelector = (state) =>state.admin;
 export const adminReducer = adminSlice.reducer;
