@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import CenteredTextField from "../../../components/common/Field/CenteredTextField";
 import CommonTextFields from "../../../components/common/Field/CommonTextFIelds";
 import logo from "../../../assests/images/connexLogo.png";
+import { showToast } from "../../../components/commonToast/toastService";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -12,9 +13,11 @@ const Login = () => {
     if (auth == "User") {
       sessionStorage.setItem("ur", 1);
       sessionStorage.setItem("roles","USER")
+      showToast("Welcome Admin","success")
     } else {
       sessionStorage.setItem("ur", 2);
       sessionStorage.setItem("roles","ADMIN")
+      showToast("Welcome Admin","success")
     }
     navigate("/");
   };
