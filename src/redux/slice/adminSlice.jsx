@@ -8,6 +8,7 @@ const adminSlice = createSlice({
     clientDetailisLoading: false,
     getClientDetail: [],
     getClientDetailisLoading: false,
+    getallSubAdminDetail: [],
     subscriptionDetail: [],
     subscriptionDetailisLoading: false,
     getSubscriptionDetail: [],
@@ -19,6 +20,12 @@ const adminSlice = createSlice({
       state.subAdminDetail = subAdminDetail;
       state.adminDataLoading = isLoading;
     },
+    getSubAdminReducer: (state, { payload }) => {
+      const { subAdminData, isLoading } = payload;
+      state.getallSubAdminDetail = subAdminData;
+      state.adminDataLoading = isLoading;
+    },
+
     addClientApiReducer: (state, { payload }) => {
       state.clientDetail = payload.ClientDetail;
       state.clientDetailisLoading = payload.clientDetailisLoading;
@@ -33,7 +40,8 @@ const adminSlice = createSlice({
     },
     getSubscriptionApiReducer: (state, { payload }) => {
       state.getSubscriptionDetail = payload.getSubscriptionDetail;
-      state.getSubscriptionDetailisLoading = payload.getSubscriptionDetailisLoading;
+      state.getSubscriptionDetailisLoading =
+        payload.getSubscriptionDetailisLoading;
     },
   },
 });
@@ -44,8 +52,9 @@ export const {
   addClientApiReducer,
   getClientApiReducer,
   addSubscriptionApiReducer,
-  getSubscriptionApiReducer
+  getSubscriptionApiReducer,
+  getSubAdminReducer,
 } = adminSlice.actions;
-  
-export const adminSelector = (state) =>state.admin;
+
+export const adminSelector = (state) => state.admin;
 export const adminReducer = adminSlice.reducer;
