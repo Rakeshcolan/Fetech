@@ -12,12 +12,16 @@ import { addClientApi } from "../../redux/action/adminAction";
 import { useNavigate } from "react-router-dom";
 
 export default function AddClientModal(props) {
+
   const { openModal, setOpenModal } = props;
+
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
   const handleClose = () => {
     setOpenModal(false);
   };
+
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
@@ -28,9 +32,15 @@ export default function AddClientModal(props) {
       subscription_plan: "",
     },
     validationSchema: Yup.object({
-      name: Yup.string().required("FirstName is required"),
-      email_id: Yup.string().required("Email is required"),
-      mobile_no: Yup.string().required("PhoneNumber is required"),
+      name: Yup.string()
+        .required("Name is required")
+        .matches(/^[a-zA-Z\s]+$/, "Name can only contain alphabet characters"),
+      email_id: Yup.string()
+        .required("Email is required")
+        .email("Invalid email format"),
+      mobile_no: Yup.string()
+        .matches(/^[0-9]{10}$/, "Invalid phone number") // Check for 10-digit numeric phone number
+        .required("PhoneNumber is required"),
       billing: Yup.string().required("Billing is required"),
       subscription_plan: Yup.string().required("subscription plan is required"),
     }),
@@ -43,12 +53,10 @@ export default function AddClientModal(props) {
         subscription_plan: values.subscription_plan,
       };
       dispatch(addClientApi(val));
-      navigate('/dashboard/client')
+      navigate("/dashboard/client");
       setOpenModal(false);
     },
   });
-
-  
 
   return (
     <React.Fragment>
@@ -65,7 +73,7 @@ export default function AddClientModal(props) {
                 id="alert-dialog-title"
                 sx={{ paddingLeft: "0px !important" }}
               >
-                Add Sub Clients
+                Add Clients
               </DialogTitle>
             </div>
             <div>
@@ -104,8 +112,8 @@ export default function AddClientModal(props) {
           <br />
           <div>
             <CommonTextFields
-              label="Billing"
-              id="billing"
+              label="Subscriptions Plan"
+              id="subscription_plan"
               formik={formik}
               placeholder=""
             />
@@ -113,12 +121,13 @@ export default function AddClientModal(props) {
           <br />
           <div>
             <CommonTextFields
-              label="Subscriptions Plan"
-              id="subscription_plan"
+              label="Billing"
+              id="billing"
               formik={formik}
               placeholder=""
             />
           </div>
+
           <br />
           <div className="contentCenter">
             <Button className="submitBtn" onClick={formik.handleSubmit}>

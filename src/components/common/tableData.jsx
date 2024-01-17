@@ -239,12 +239,12 @@ export const ClientData = [
 export const SubscriptionDataHead = [
   {
     id: "subscription_id",
-    label: "Title",
+    label: "Tier",
   },
 
   {
     id: "subscription_amount",
-    label: "Subscription Plan",
+    label: "Subscription Amount",
   },
   {
     id: "description",
