@@ -8,7 +8,9 @@ import ManageCMS from "../../pages/Admin/manageCms";
 import ManageDemo from "../../pages/Admin/manageDemo";
 import ManageSubscription from "../../pages/Admin/manageSubscription";
 import ManageRoles from "../../pages/manageRoles";
+import EditRoles from "../../pages/manageRoles/editRoles";
 import ManageSubAdmin from "../../pages/manageSubAdmin";
+import EditSubAdmin from "../../pages/manageSubAdmin/editSubAdmin";
 import Payment from "../../pages/payment";
 import RootLayout from "../nav/rootLayout";
 
@@ -27,7 +29,9 @@ const AdminRoutes = [
       { path: "/dashboard/demo", element: <ManageDemo /> },
       { path: "/flowpage", element: <CreateChatBot /> },
       { path: "/dashboard/roles/addRole", element: <AddRoles /> },
+      { path: "/dashboard/editroles", element: <EditRoles /> },
       { path: "/dashboard/editProfile", element: <EditProfile /> },
+      { path: "/dashboard/editsubadmin", element: <EditSubAdmin /> },
     ],
   },
   {

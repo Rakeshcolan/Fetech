@@ -3,7 +3,7 @@ import { useState } from "react";
 import { BarChart } from "../../../components/chart/barChart";
 import DashCard from "../../../components/common/card";
 import CustomizedTables from "../../../components/common/commonTable";
-import { subAdminTableData, subAdminTableHead } from "../../../components/common/tableData";
+import { dashboardTableData, dashboardTableHead, subAdminTableData, subAdminTableHead } from "../../../components/common/tableData";
 import ResponseList from "../../../components/responseList";
 import { CardItem } from "../../../utils/constants/cardItem";
 import "./dashboardStyle.css";
@@ -41,8 +41,8 @@ const Dashboard = () => {
         </div>
       </div>
       <CustomizedTables
-        columns={subAdminTableHead}
-        rows={subAdminTableData}
+        columns={dashboardTableHead}
+        rows={dashboardTableData}
         paginationStatus={true}
         rowsPerPageOptions={paginationRowsOptions}
         page={page}

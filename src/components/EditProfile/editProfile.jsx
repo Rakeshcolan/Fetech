@@ -6,7 +6,6 @@ import CommonTextFields from "../common/Field/CommonTextFIelds";
 const EditProfile = () => {
   const navigate = useNavigate();
   const handleRedirect = () => {
-    // console.log("test", test);
     navigate("/dashboard/subadmin");
   };
   return (

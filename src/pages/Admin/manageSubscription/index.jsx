@@ -1,17 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import CustomizedTables from "../../../components/common/commonTable";
 import {
-  ClientDataHead,
-  ClientData,
+  SubscriptionDataHead,
 } from "../../../components/common/tableData";
-import AddSubAdminModal from "../../../components/modal/addSubAdminModal";
+import AddSubscriptionModal from "../../../components/modal/addSubscriptionModal";
+import { getSubscriptionApi } from "../../../redux/action/adminAction";
+import { adminSelector } from "../../../redux/slice/adminSlice";
 import "../../../styles/App.css";
 
 const ManageSubscription = () => {
   const [size, setSize] = useState(0);
   const [page, setPage] = useState(5);
   const [modalOpen, setModalOpen] = useState();
+  const dispatch = useDispatch();
+  const { getSubscriptionDetail, subscriptionDetail } = useSelector(adminSelector);
 
   const paginationRowsOptions = [5, 10, 20, 50, 100];
 
@@ -28,6 +32,10 @@ const ManageSubscription = () => {
     setModalOpen(true);
   };
 
+  useEffect(() => {
+    dispatch(getSubscriptionApi());
+  }, [subscriptionDetail]);
+
   return (
     <>
       <div className="commonbox">
@@ -37,8 +45,8 @@ const ManageSubscription = () => {
           +Add
         </Button>
         <CustomizedTables
-          columns={ClientDataHead}
-          rows={ClientData}
+          columns={SubscriptionDataHead}
+          rows={getSubscriptionDetail}
           paginationStatus={true}
           rowsPerPageOptions={paginationRowsOptions}
           page={page}
@@ -46,7 +54,10 @@ const ManageSubscription = () => {
           handleChangePage={handlePageChange}
           handleChangeRowsPerPage={handlePerRowsChange}
         />
-        <AddSubAdminModal openModal={modalOpen} setOpenModal={setModalOpen} />
+        <AddSubscriptionModal
+          openModal={modalOpen}
+          setOpenModal={setModalOpen}
+        />
       </div>
     </>
   );

@@ -4,7 +4,6 @@ import { NodeContext } from "../../nodecontext/nodeContext";
 
 export const InputHoc = (FlowComponents)=>{
     const UpdateInput = ({data,...props})=>{
-      console.log("dataaaaaaaaaaaaaaaa",data.nodeInstance?.getNodes);
         let contextdata = useContext(NodeContext);
         let dataNodeId = data.nodeId;
         // let dataInstance = data.nodeInstance;

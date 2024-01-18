@@ -5,7 +5,6 @@ const DeleteIcon = ({onDeleteInstance,deleteId})=>{
     let deleteNodeInstance = useSelector((state)=>state.flow.instanceNode);
     
     const onDeleteNode = () => {
-        // console.log("ondeleteinstance",onDeleteInstance.getNodes());
         let deleteNode = deleteNodeInstance?.getNodes()
           .filter((element) => element.id === deleteId);
           deleteNodeInstance.deleteElements({ nodes: deleteNode });

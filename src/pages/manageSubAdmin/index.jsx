@@ -18,8 +18,7 @@ const ManageSubAdmin = () => {
 
   const paginationRowsOptions = [5, 10, 20, 50, 100];
   const {getallSubAdminDetail,addsubAdminDetail  } = useSelector(adminSelector);
-  console.log("addsubAdminDetail",addsubAdminDetail)
-  const handlePerRowsChange = async (event) => {
+   const handlePerRowsChange = async (event) => {
     setPage(+event.target.value);
     setSize(0);
   };

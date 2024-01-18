@@ -11,6 +11,7 @@ import { Button, Checkbox, TablePagination } from "@mui/material";
 import { Fragment } from "react";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import "./commonComp.css";
+import { useLocation, useNavigate } from "react-router";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -42,14 +43,17 @@ function CustomizedTables(props) {
   const {
     rows,
     columns,
-    page,
-    size,
-    rowsPerPageOptions,
-    handleChangePage,
-    handleChangeRowsPerPage,
-    paginationStatus,
+    page =5,
+    size =0,
+    rowsPerPageOptions=5,
+    handleChangePage=5,
+    handleChangeRowsPerPage=5,
+    paginationStatus=5,
   } = props;
-
+  const navigate = useNavigate();
+  const location = useLocation();
+  
+  let pathname = location.pathname.split('/')[2];
   const prevCountRef = React.useRef();
 
   React.useEffect(() => {
@@ -59,7 +63,10 @@ function CustomizedTables(props) {
   const startIndex = size * page + 1;
   const endIndex = (size * (page + 1), rows?.length);
   const totalEntries = rows?.length;
-
+  
+  const handleEdit = (data)=>{
+    navigate(`/dashboard/edit${pathname}`,{state:{data}})
+  }
   return (
     <Paper elevation={0}>
       <TableContainer component={Paper}>
@@ -95,16 +102,18 @@ function CustomizedTables(props) {
                       const value =
                         column.id === "Action"||
                         column.id === "status" ||
-                        column.id === "checkbox" ||
+                        column.id === "View" ||
+                        column.id === "Edit" ||
                         column.id === "designation" ||
                         column.id === "Delete"
                           ? column.id
                           : row[column.id];
+                          
                       return (
                         <Fragment key={column.id}>
                           <StyledTableCell>
                             {value === "Action" ? (
-                              <DriveFileRenameOutlineIcon className="edit-icon" />
+                              <DriveFileRenameOutlineIcon onClick={()=>handleEdit(row)} className="edit-icon" />
                             ) : value === "status" ? (
                               <Button
                                 className="activeBtn"
@@ -127,7 +136,7 @@ function CustomizedTables(props) {
                               >
                                 {row[column.id]?"Active":"InActive"}
                               </Button>
-                            ) : value === "checkbox" ? (
+                            ) : value === "Edit" || value === "View" ? (
                               <Checkbox />
                             ) : value === "Delete" ? (
                               <Checkbox />

@@ -8,47 +8,44 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
-import { addClientApi } from "../../redux/action/adminAction";
-import { useNavigate } from "react-router-dom";
+import {  subscriptionApi } from "../../redux/action/adminAction";
 
-export default function AddClientModal(props) {
+export default function AddSubscriptionModal(props) {
   const { openModal, setOpenModal } = props;
   const dispatch = useDispatch();
-  const navigate = useNavigate()
   const handleClose = () => {
     setOpenModal(false);
   };
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      name: "",
-      email_id: "",
-      mobile_no: "",
-      billing: "",
-      subscription_plan: "",
+      plan: "",
+      subscription_amount: "",
+      description: "",
+      status: "",
     },
     validationSchema: Yup.object({
-      name: Yup.string().required("FirstName is required"),
-      email_id: Yup.string().required("Email is required"),
-      mobile_no: Yup.string().required("PhoneNumber is required"),
-      billing: Yup.string().required("Billing is required"),
-      subscription_plan: Yup.string().required("subscription plan is required"),
+      plan: Yup.string().required("Plan is required"),
+      subscription_amount: Yup.string().required(
+        "subscription amount is required"
+      ),
+      description: Yup.string().required("Description is required"),
+      status: Yup.string().required("status plan is required"),
     }),
     onSubmit: (values) => {
       let val = {
-        name: values.name,
-        email_id: values.email_id,
-        mobile_no: values.mobile_no,
-        billing: values.billing,
-        subscription_plan: values.subscription_plan,
+        plan: values.plan,
+        subscription_amount: values.subscription_amount,
+        description: values.description,
+        status: values.status,
       };
-      dispatch(addClientApi(val));
-      navigate('/dashboard/client')
+      dispatch(subscriptionApi(val));
       setOpenModal(false);
     },
   });
 
-  
+  //   const handleSubadmins = () => {
+  //   };
 
   return (
     <React.Fragment>
@@ -65,7 +62,7 @@ export default function AddClientModal(props) {
                 id="alert-dialog-title"
                 sx={{ paddingLeft: "0px !important" }}
               >
-                Add Sub Clients
+                Add Subscription
               </DialogTitle>
             </div>
             <div>
@@ -77,8 +74,8 @@ export default function AddClientModal(props) {
           </div>
           <div>
             <CommonTextFields
-              label="Username"
-              id="name"
+              label="Title"
+              id="plan"
               formik={formik}
               placeholder=""
             />
@@ -86,8 +83,8 @@ export default function AddClientModal(props) {
           <br />
           <div>
             <CommonTextFields
-              label="Email"
-              id="email_id"
+              label="subscription Amount"
+              id="subscription_amount"
               formik={formik}
               placeholder=""
             />
@@ -95,8 +92,8 @@ export default function AddClientModal(props) {
           <br />
           <div>
             <CommonTextFields
-              label="PhoneNumber"
-              id="mobile_no"
+              label="Description"
+              id="description"
               formik={formik}
               placeholder=""
             />
@@ -104,22 +101,14 @@ export default function AddClientModal(props) {
           <br />
           <div>
             <CommonTextFields
-              label="Billing"
-              id="billing"
+              label="Status"
+              id="status"
               formik={formik}
               placeholder=""
             />
           </div>
           <br />
-          <div>
-            <CommonTextFields
-              label="Subscriptions Plan"
-              id="subscription_plan"
-              formik={formik}
-              placeholder=""
-            />
-          </div>
-          <br />
+
           <div className="contentCenter">
             <Button className="submitBtn" onClick={formik.handleSubmit}>
               Save

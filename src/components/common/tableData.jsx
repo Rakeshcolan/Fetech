@@ -56,6 +56,61 @@ export const subAdminTableData = [
   },
 ];
 
+
+
+export const dashboardTableHead = [
+  {
+    id: "#",
+    label: "#",
+  },
+  {
+    id: "chatbot",
+    label: "Chatbot",
+  },
+  {
+    id: "currentpledge",
+    label: "Current Pledge",
+  },
+  {
+    id: "lifetimesupport",
+    label: "Lifetime Support",
+  },
+  {
+    id: "status",
+    label: "Status",
+  }
+];
+
+
+export const dashboardTableData = [
+  {
+    "#":1,
+    chatbot: "BetBot ",
+    currentpledge: "80.00",
+    lifetimesupport: "250.00",
+    status: "Active",
+  },
+  {
+    "#":2,
+    chatbot: "chatBot ",
+    currentpledge: "80.00",
+    lifetimesupport: "250.00",
+  },
+  {
+    "#":3,
+    chatbot: "CartBot ",
+    currentpledge: "80.00",
+    lifetimesupport: "250.00",
+    status: "Active",
+  },
+  {
+    "#":4,
+    chatbot: "TextBot ",
+    currentpledge: "80.00",
+    lifetimesupport: "250.00",
+  },
+]
+
 export const manageDataTableHead = [
   {
     id: "Name",
@@ -96,6 +151,10 @@ export const RolesAndPermissionsData = [
 
 export const RoleAuthoriZationHead = [
   {
+    id:"#",
+    label:"#"
+  },
+  {
     id: "Modules",
     label: "Modules",
   },
@@ -115,18 +174,28 @@ export const RoleAuthoriZationHead = [
 
 export const RoleAuthoriZationData = [
   {
+    "#":1,
     Modules: "Manage Sub Clients",
     View: "checkbox",
     Edit: "checkbox",
     Delete: "checkbox",
   },
   {
+    "#":2,
     Modules: "Manage Business Details",
     View: "checkbox",
     Edit: "checkbox",
     Delete: "checkbox",
   },
   {
+    "#":3,
+    Modules: "Manage  Details",
+    View: "checkbox",
+    Edit: "checkbox",
+    Delete: "checkbox",
+  },
+  {
+    "#":4,
     Modules: "Manage Data",
     View: "checkbox",
     Edit: "checkbox",
@@ -136,99 +205,148 @@ export const RoleAuthoriZationData = [
 
 export const ClientDataHead = [
   {
-    id: "#",
-    label: "#",
-  },
-  {
-    id: "Name",
+    id: "name",
     label: "Name",
   },
   {
-    id: "Email_ID",
+    id: "email_id",
     label: "Email ID",
   },
   {
-    id: "Mobile_Number",
+    id: "mobile_no",
     label: "Mobile Number",
   },
   {
-    id: "Subscription_Plan",
+    id: "subscription_plan",
     label: "Subscription Plan",
   },
   {
-    id: "Billing",
+    id: "billing",
     label: "Billing",
   },
   {
     id: "Received_Data",
     label: "Received Data",
   },
-]
+];
+
 export const ClientData = [
   {
-    "#":1,
+    "#": 1,
     Name: "Sandeep",
     Email_ID: "Sharma",
     Mobile_Number: "Sandeep@gmail.com",
     Subscription_Plan: "Manager",
     Billing: "Active",
-    Received_Data:"None"
+    Received_Data: "None",
   },
   {
-    "#":2,
+    "#": 2,
     Name: "Sandeep",
     Email_ID: "Sharma",
     Mobile_Number: "Sandeep@gmail.com",
     Subscription_Plan: "Manager",
     Billing: "Active",
-    Received_Data:"None"
-  },{
-    "#":3,
+    Received_Data: "None",
+  },
+  {
+    "#": 3,
     Name: "Sandeep",
     Email_ID: "Sharma",
     Mobile_Number: "Sandeep@gmail.com",
     Subscription_Plan: "Manager",
     Billing: "Active",
-    Received_Data:"None"
-  },{
-    "#":4,
+    Received_Data: "None",
+  },
+  {
+    "#": 4,
     Name: "Sandeep",
     Email_ID: "Sharma",
     Mobile_Number: "Sandeep@gmail.com",
     Subscription_Plan: "Manager",
     Billing: "Active",
-    Received_Data:"None"
-  },{
-    "#":5,
+    Received_Data: "None",
+  },
+  {
+    "#": 5,
     Name: "Sandeep",
     Email_ID: "Sharma",
     Mobile_Number: "Sandeep@gmail.com",
     Subscription_Plan: "Manager",
     Billing: "Active",
-    Received_Data:"None"
-  },{
-    "#":6,
+    Received_Data: "None",
+  },
+  {
+    "#": 6,
     Name: "Sandeep",
     Email_ID: "Sharma",
     Mobile_Number: "Sandeep@gmail.com",
     Subscription_Plan: "Manager",
     Billing: "Active",
-    Received_Data:"None"
-  },{
-    "#":7,
+    Received_Data: "None",
+  },
+  {
+    "#": 7,
     Name: "Sandeep",
     Email_ID: "Sharma",
     Mobile_Number: "Sandeep@gmail.com",
     Subscription_Plan: "Manager",
     Billing: "Active",
-    Received_Data:"None"
-  },{
-    "#":8,
+    Received_Data: "None",
+  },
+  {
+    "#": 8,
     Name: "Sandeep",
     Email_ID: "Sharma",
     Mobile_Number: "Sandeep@gmail.com",
     Subscription_Plan: "Manager",
     Billing: "Active",
-    Received_Data:"None"
+    Received_Data: "None",
+  },
+];
+
+export const SubscriptionDataHead = [
+  {
+    id: "subscription_id",
+    label: "Title",
+  },
+
+  {
+    id: "subscription_amount",
+    label: "Subscription Plan",
+  },
+  {
+    id: "description",
+    label: "Description",
+  },
+  {
+    id: "status",
+    label: "Status",
+  },
+];
+
+
+export const EditRole = [
+  {
+    id:"role_id",
+    label:"#"
+  },
+  {
+    id:"modules",
+    label:"Modules"
+  },
+  {
+    id:"checkbox",
+    label:"View"
+  },
+  {
+    id:"checkbox",
+    label:"Edit"
+  },
+  {
+    id:"checkbox",
+    label:"Delete"
   },
 ]
+
+

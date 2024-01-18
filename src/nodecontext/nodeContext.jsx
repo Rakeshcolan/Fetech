@@ -11,14 +11,7 @@ export const NodeContextProvider = ({children})=>{
         setInputValue(val);
         setChangeId(id)
     }
-   
-        // const onDeleteNode = (id,instance) => {
-        //     console.log("this is contesxt delete");
-        //     let deleteNode = instance
-        //       .getNodes()
-        //       .filter((element) => element.id === id);
-        //       instance.deleteElements({ nodes: deleteNode });
-        //   };
+
     
 
     return<NodeContext.Provider value={{value:inputvalue,changeId,changeValue:UpdateInput}}>{children}</NodeContext.Provider>

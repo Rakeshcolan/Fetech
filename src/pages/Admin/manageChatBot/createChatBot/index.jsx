@@ -30,7 +30,6 @@ const CreateChat = () => {
   let { action = "", arrayIndex = "" } = location?.state || {};
   let dispatch = useDispatch();
   let nodeObject = useSelector((state) => state.flowData);
-  console.log("locationissue", action);
   const [chatbotData, setChatbotData] = useState({
     clientName: "",
     chatbotName: "",
@@ -44,16 +43,13 @@ const CreateChat = () => {
 
   let oldId;
   function buildJSON(nodes, edges, nodeId, oldid) {
-    // console.log("nodeiddd",nodeId);
     const node = nodes.find((n) => n.id === nodeId);
     if (!node) {
       return null;
     }
-    // console.log("datalabel",node.data.label,"nodeId",nodeId,"oldId",oldId);
     const result = {
       message: node.data.label || node.data.response,
     };
-    // console.log("resulstttt",result);
     if (nodeId.split("_")[0] == "groupnode") {
       const buttonnodeId = nodes.filter((n) => n.parentNode === nodeId);
       const outgoingEdges = buttonnodeId.map((node) => {
@@ -67,7 +63,6 @@ const CreateChat = () => {
         }
       });
       // const outgoingEdges = edges.filter((edge) => edge.source === nodeId);
-      console.log("outgoingedges", buttonnodeId);
       if (outgoingEdges.length > 0) {
         result.options = outgoingEdges.map((edge) => {
           if (edge?.source) {
@@ -175,7 +170,6 @@ const CreateChat = () => {
       setEdges(nodeObject[arrayIndex].flowElements.edges);
       // reactFlowInstance.addNodes({nodes:savedNodeObject})
       // reactFlowInstance.addEgdes({edges:savedEdges})
-      // console.log("getnodes",reactFlowInstance.getNodes());
     }
   }, []);
 
