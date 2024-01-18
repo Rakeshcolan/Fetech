@@ -14,7 +14,6 @@ import { useNavigate } from "react-router-dom";
 export default function AddClientModal(props) {
 
   const { openModal, setOpenModal } = props;
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -127,7 +126,6 @@ export default function AddClientModal(props) {
               placeholder=""
             />
           </div>
-
           <br />
           <div className="contentCenter">
             <Button className="submitBtn" onClick={formik.handleSubmit}>

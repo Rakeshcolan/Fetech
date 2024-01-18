@@ -2,19 +2,16 @@ import React from "react";
 import { useState } from "react";
 import "../commonComp.css";
 
-const CommonUpload = ({ label }) => {
+const CommonUpload = ({ label, onFileChange }) => {
   const [images, setImages] = useState([]);
 
   const handleImageChange = (e) => {
     const files = e.target.files;
-
     if (files.length > 0) {
-      const imageArray = Array.from(files).map((file) =>
-        URL.createObjectURL(file)
-      );
-      setImages((prevImages) => [...prevImages, ...imageArray]);
+      onFileChange(files);
     }
   };
+  
   return (
     <div className="row">
       <div className="col-lg-4">
@@ -36,26 +33,13 @@ const CommonUpload = ({ label }) => {
                 Choose files
               </label>
             </div>
-            <div className="input-group-append">
-              <button className="uploadBtn" type="button">
+            {/* Uncomment this button if you want to add an upload button */}
+            {/* <div className="input-group-append">
+              <button className="uploadBtn" type="button" onClick={handleUploadButtonClick}>
                 Upload
               </button>
-            </div>
+            </div> */}
           </div>
-
-          {images.length > 0 && (
-            <div>
-              <h2>Uploaded Images</h2>
-              {images.map((image, index) => (
-                <img
-                  key={index}
-                  src={image}
-                  alt={`Uploaded ${index + 1}`}
-                  style={{ width: "300px" }}
-                />
-              ))}
-            </div>
-          )}
         </div>
       </div>
     </div>
