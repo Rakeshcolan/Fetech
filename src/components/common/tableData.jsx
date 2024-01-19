@@ -204,6 +204,7 @@ export const RoleAuthoriZationData = [
 ];
 
 export const ClientDataHead = [
+  {id:"#",label:"#"},
   {
     id: "name",
     label: "Name",
@@ -233,87 +234,52 @@ export const ClientDataHead = [
 export const ClientData = [
   {
     "#": 1,
-    Name: "Sandeep",
-    Email_ID: "Sharma",
-    Mobile_Number: "Sandeep@gmail.com",
-    Subscription_Plan: "Manager",
-    Billing: "Active",
+    name: "Sandeep",
+    email_id: "Sharma",
+    mobile_no: "Sandeep@gmail.com",
+    subscription_plan: "Manager",
+    billing: "Active",
     Received_Data: "None",
   },
   {
     "#": 2,
-    Name: "Sandeep",
-    Email_ID: "Sharma",
-    Mobile_Number: "Sandeep@gmail.com",
-    Subscription_Plan: "Manager",
-    Billing: "Active",
+    name: "Sandeep",
+    email_id: "Sharma",
+    mobile_no: "Sandeep@gmail.com",
+    subscription_plan: "Manager",
+    billing: "Active",
     Received_Data: "None",
   },
   {
     "#": 3,
-    Name: "Sandeep",
-    Email_ID: "Sharma",
-    Mobile_Number: "Sandeep@gmail.com",
-    Subscription_Plan: "Manager",
-    Billing: "Active",
+    name: "Sandeep",
+    email_id: "Sharma",
+    mobile_no: "Sandeep@gmail.com",
+    subscription_plan: "Manager",
+    billing: "Active",
     Received_Data: "None",
   },
   {
     "#": 4,
-    Name: "Sandeep",
-    Email_ID: "Sharma",
-    Mobile_Number: "Sandeep@gmail.com",
-    Subscription_Plan: "Manager",
-    Billing: "Active",
+    name: "Sandeep",
+    email_id: "Sharma",
+    mobile_no: "Sandeep@gmail.com",
+    subscription_plan: "Manager",
+    billing: "Active",
     Received_Data: "None",
   },
-  {
-    "#": 5,
-    Name: "Sandeep",
-    Email_ID: "Sharma",
-    Mobile_Number: "Sandeep@gmail.com",
-    Subscription_Plan: "Manager",
-    Billing: "Active",
-    Received_Data: "None",
-  },
-  {
-    "#": 6,
-    Name: "Sandeep",
-    Email_ID: "Sharma",
-    Mobile_Number: "Sandeep@gmail.com",
-    Subscription_Plan: "Manager",
-    Billing: "Active",
-    Received_Data: "None",
-  },
-  {
-    "#": 7,
-    Name: "Sandeep",
-    Email_ID: "Sharma",
-    Mobile_Number: "Sandeep@gmail.com",
-    Subscription_Plan: "Manager",
-    Billing: "Active",
-    Received_Data: "None",
-  },
-  {
-    "#": 8,
-    Name: "Sandeep",
-    Email_ID: "Sharma",
-    Mobile_Number: "Sandeep@gmail.com",
-    Subscription_Plan: "Manager",
-    Billing: "Active",
-    Received_Data: "None",
-  },
+ 
 ];
 
 export const SubscriptionDataHead = [
   {
     id: "subscription_id",
-    label: "Title",
+    label: "Tier",
   },
 
   {
     id: "subscription_amount",
-    label: "Subscription Plan",
+    label: "Subscription Amount",
   },
   {
     id: "description",

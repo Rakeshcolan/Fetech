@@ -23,14 +23,14 @@ const UserRoutes = [
       { path: "/dashboard/editProfile", element: <EditProfile /> },
     ],
   },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
-  },
+  // {
+  //   path: "/login",
+  //   element: <Login />,
+  // },
+  // {
+  //   path: "/register",
+  //   element: <Register />,
+  // },
 ];
 
 export default UserRoutes;

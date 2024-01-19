@@ -198,7 +198,9 @@ export default function RootLayout() {
   };
 
   const handleLogOut = () => {
-    navigate("/login");
+    sessionStorage.clear("ur")
+    sessionStorage.clear("roles")
+    navigate("/")
   };
 
   return (

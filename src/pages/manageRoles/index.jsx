@@ -23,9 +23,9 @@ const ManageRoles = () => {
     setPage(newPage);
   };
 
-  const handleRedirect = () => {
-    navigate("/dashboard/roles/addRole");
-  };
+  // const handleRedirect = () => {
+  //   navigate("/dashboard/roles/addRole");
+  // };
 
   return (
     <>
@@ -33,7 +33,7 @@ const ManageRoles = () => {
         <h4>Roles & permissions</h4>
         <div>
           {/* <AddButton /> */}
-          <Button className="addBtn" onClick={handleRedirect}>
+          <Button className="addBtn" >
             +Add
           </Button>
         </div>

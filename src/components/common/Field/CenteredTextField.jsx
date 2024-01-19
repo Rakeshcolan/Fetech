@@ -30,6 +30,7 @@ const CenteredTextField = ({ label, placeholder, ...props }) => {
           },
           style: { color: "black " },
           sx: {
+            borderRadius: "10px",
             "& input::placeholder": {
               color: "black !important", // Change placeholder color
             },

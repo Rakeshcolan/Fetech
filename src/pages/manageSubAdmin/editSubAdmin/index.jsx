@@ -51,7 +51,7 @@ const formik = useFormik({
   });
 
   return (
-    <div>
+    <div className="commonbox">
       <h4>Edit SubAdmin</h4>
       <br />
       <div className="row">

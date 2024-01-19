@@ -29,17 +29,14 @@ useEffect(()=>{
 
 
   return (
-    <div>
+    <div className="commonbox">
       <h4>Edit Roles</h4>
       <CustomizedTables
         columns={RoleAuthoriZationHead}
         rows={RoleAuthoriZationData}
       />
       <div className="contentCenter">
-        <Button className="cancelBtn"  onClick={handleRedirect}>
-          Cancel
-        </Button>
-        <Button className="submitBtn">Save</Button>
+        <Button className="submitBtn">Confirm</Button>
       </div>
     </div>
   );
