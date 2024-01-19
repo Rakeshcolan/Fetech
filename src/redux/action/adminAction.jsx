@@ -22,7 +22,7 @@ export function apiHelper(apiReducer, method, apiURL, data="") {
     APIService(method, apiURL,data)
     .then((e) => { 
         dispatch(apiReducer({ apiData: e.data, isLoading: false }));
-        // showToast("Fetched", "success");
+        method === "POST" && showToast("Added Data", "success");
       })
       .catch((e) => {
         dispatch(apiReducer({ isLoading: false }));
@@ -65,7 +65,7 @@ export function addCMSApi(body) {
     FileAPIService("POST", "/managecms/",body)
     .then((e) => { 
         dispatch(addCMSApiReducer({ apiData: e.data, isLoading: false }));
-        // showToast("Fetched", "success");
+        showToast("Files Added Successfully", "success");
       })
       .catch((e) => {
         dispatch(addCMSApiReducer({ isLoading: false }));

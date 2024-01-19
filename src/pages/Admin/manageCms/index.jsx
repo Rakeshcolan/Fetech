@@ -19,6 +19,7 @@ const ManageCMS = () => {
   };
 
   const handleTermsAndConditionsFileChange = (file) => {
+    console.log("filessssssssssss",file);
     const files =file;
     if (files && files.length > 0) {
       setTermsAndConditionsFiles(Array.from(files));
@@ -27,16 +28,22 @@ const ManageCMS = () => {
 
 
   const handleUploadDocuments = () => {
-    const formData = new FormData();
-    formData.append(`about`, aboutUsFiles[0]);
-    formData.append(`terms_condition`, termsAndConditionsFiles[0]);
-    //  aboutUsFiles.forEach((file, index) => {
-    //   formData.append(`about`, file);
-    // });
-    //  termsAndConditionsFiles.forEach((file, index) => {
-      
-    // });
-    dispatch(addCMSApi(formData));
+    console.log("termscondition",termsAndConditionsFiles);
+    try{
+      const formData = new FormData();
+      formData.append(`about`, aboutUsFiles[0]);
+      formData.append(`terms_condition`, termsAndConditionsFiles[0]);
+      //  aboutUsFiles.forEach((file, index) => {
+      //   formData.append(`about`, file);
+      // });
+      //  termsAndConditionsFiles.forEach((file, index) => {
+        
+      // });
+      dispatch(addCMSApi(formData));
+    }
+    catch(err){
+      alert(err)
+    }
   };
 
  
