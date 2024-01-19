@@ -7,6 +7,7 @@ import { showToast } from "../../../components/commonToast/toastService";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
+import { addLoginApi } from "../../../redux/action/authAction";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -56,7 +57,7 @@ const Login = () => {
         mobile_no: values.mobile_no,
         password: values.password,
       };
-      //  dispatch(addClientApi(val));
+       dispatch(addLoginApi(val));
       // navigate("/dashboard/client");
       // setOpenModal(false);
     },
