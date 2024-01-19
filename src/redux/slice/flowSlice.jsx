@@ -15,19 +15,16 @@ export const flowSlice = createSlice({
     name:'createflow',
     reducers:{
         getFlow:(state,{payload})=>{
-            console.log("payloadd",payload.savedElements);
             state.flowData = [...state.flowData,payload.savedElements]
             
         },
         resetFormData:(state,{payload})=>{
-            console.log("working ");
-            state.flowData = []
+             state.flowData = []
             state.payPrice = 2
         },
 
         addPayment:(state,{payload})=>{
-            console.log("addingpay");
-            state.payPrice=state.payPrice+5;
+             state.payPrice=state.payPrice+5;
         },
         addInstance:(state,{payload})=>{
                         state.instanceNode = payload.instance

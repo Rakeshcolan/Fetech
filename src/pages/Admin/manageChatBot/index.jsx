@@ -15,7 +15,6 @@ const ManageChatBot = () => {
     };
 
     let {flowData} = useSelector((state)=>state.flow) 
-    console.log("mangaflow",flowData);
   return (
     <>
         <div className="managebotContainer">

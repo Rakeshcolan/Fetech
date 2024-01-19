@@ -24,11 +24,11 @@ export default function ResponseList() {
       </Typography>
       <Divider />
       <List sx={{ height: "92%" }}>
-        {ResponseCardItem.map((response) => {
+        {ResponseCardItem.map((response,i) => {
           const { icon, name, comment } = response;
           return (
             <>
-              <ListItem alignItems="flex-start">
+              <ListItem key={i} alignItems="flex-start">
                 <ListItemAvatar>
                   <Avatar alt="Remy Sharp" src={icon} />
                 </ListItemAvatar>

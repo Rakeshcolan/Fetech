@@ -33,10 +33,10 @@ const CommonTextFields = ({
           type="text"
           placeholder={placeholder}
           onChange={handleChange}  // Add onChange handler
-          value={formik.values[id]}
-          error={Boolean(formik.touched[id] && formik.errors[id])}
-          helperText={<>{formik.touched[id] && formik.errors[id]}</>}
-          onBlur={formik.handleBlur}  
+          value={formik?.values[id]}
+          error={Boolean(formik?.touched[id] && formik?.errors[id])}
+          helperText={<>{formik?.touched[id] && formik?.errors[id]}</>}
+          onBlur={formik?.handleBlur}  
           variant="outlined"
           sx={{
             "& legend": { display: "none" },

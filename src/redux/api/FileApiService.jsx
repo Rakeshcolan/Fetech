@@ -1,29 +1,18 @@
 import axios from "axios";
-import { USER_BASE_URL, ADMIN_BASE_URL } from "./configURL";
+import { ADMIN_BASE_URL } from "./configURL";
 
-export const APIService = async (method, url, body, params) => {
+
+export const FileAPIService = async (method, url, body, params) => {
+
+    let roles = "ADMIN"
  
-  const roles =
-    typeof window !== "undefined" ? sessionStorage.getItem("roles") : null;
-  const accessToken =
-    typeof window !== "undefined" ? sessionStorage.getItem("act") : "";
-    
-  const obj = {
-    ADMIN: ADMIN_BASE_URL,
-    USER: USER_BASE_URL,
-  };
-   function baseUrl(roles) {
-    return obj[roles];
-  }
-console.log("bodyyyyy",body);
-  if (window.navigator.onLine) {
     return await axios({
       method: method,
-      baseURL: baseUrl(roles),
+      baseURL:ADMIN_BASE_URL,
       url: url,
       headers: {
         // Authorization: accessToken,
-        "Content-Type": "application/json",
+        "Content-Type": "multipart/form-data",
         "Access-Control-Allow-Origin": "*",
       },
       data: body,
@@ -74,11 +63,8 @@ console.log("bodyyyyy",body);
           sessionStorage.clear();
           localStorage.clear();
         }
-        if (roles === null || undefined || "") {
-          // navigate("/auth/login");
-        }
+        // if (roles === null || undefined || "") {
+        //   // navigate("/auth/login");
+        // }
       });
-  } else {
-    // navigate("/common/internetIssue");
-  }
 };

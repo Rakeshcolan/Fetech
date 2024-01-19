@@ -12,8 +12,8 @@ const PaymentCard = ({data}) => {
 
         </div>
         <div className="paymentcardchecklist">
-            {checkList.map((name)=>(
-          <div>
+            {checkList.map((name,i)=>(
+          <div key={i}>
             <CheckBoxIcon sx={{ color: "#00E785" }} />
             <span>{name}</span>
           </div>

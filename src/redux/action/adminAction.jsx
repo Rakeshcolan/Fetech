@@ -1,12 +1,16 @@
 
+import axios from "axios";
 import { showToast } from "../../components/commonToast/toastService";
 import { APIService } from "../api/ApiService";
+import { ADMIN_BASE_URL } from "../api/configURL";
+import { FileAPIService } from "../api/FileApiService";
 // import { router } from "next/router";
 import {
   addClientApiReducer,
   addSubAmdinsReducer,
   addSubscriptionApiReducer,
   getClientApiReducer,
+  getMyAdminDetailReducer,
   getSubAdminReducer,
   getSubscriptionApiReducer,
   addCMSApiReducer
@@ -16,9 +20,9 @@ export function apiHelper(apiReducer, method, apiURL, data="") {
   return async (dispatch) => {
     dispatch(apiReducer({ isLoading: true }));
     APIService(method, apiURL,data)
-    .then((e) => {
+    .then((e) => { 
         dispatch(apiReducer({ apiData: e.data, isLoading: false }));
-        showToast("Fetched", "success");
+        // showToast("Fetched", "success");
       })
       .catch((e) => {
         dispatch(apiReducer({ isLoading: false }));
@@ -27,42 +31,14 @@ export function apiHelper(apiReducer, method, apiURL, data="") {
   };
 }
 
+
 export function addSubAmdinsApi(data) {
   return apiHelper(addSubAmdinsReducer,"POST", "/managedata/",data)
-  // return async (dispatch) => {
-  //   dispatch(addSubAmdinsReducer({ isLoading: true }));
-  //   console.log("dataaa", data);
-  //   APIService("POST", "/managedata/", data)
-  //     .then((e) => {
-  //       console.log("admindata", e);
-  //       dispatch(
-  //         addSubAmdinsReducer({
-  //           subAdminDetail: e.data,
-  //           isLoading: false,
-  //         })
-  //       );
-  //     })
-  //     .catch((e) => {
-  //       console.log(e);
-  //       dispatch(addSubAmdinsReducer({ isLoading: false }));
-  //     });
-  // };
 }
 
 export function getSubAdminsApi() {
   return apiHelper(getSubAdminReducer,"GET", "/managedata/")
-  // return async (dispatch) => {
-  //   dispatch(getSubAdminReducer({ isLoading: true }));
-  //   APIService("GET", "/managedata/")
-  //     .then((e) => {
-  //       dispatch(
-  //         getSubAdminReducer({ subAdminData: e.data, isLoading: false })
-  //       );
-  //     })
-  //     .catch((e) => {
-  //       dispatch(getSubAdminReducer({ isLoading: false }));
-  //     });
-  // };
+
 }
 
 export function addClientApi(body) {
@@ -82,7 +58,20 @@ export function getSubscriptionApi() {
 }
 
 export function addCMSApi(body) {
-  return apiHelper(addCMSApiReducer,"POST", "/managecms/",body)
+  // return apiHelper(addCMSApiReducer,"POST", "/managecms/",body)
+
+  return async (dispatch) => {
+    dispatch(addCMSApiReducer({ isLoading: true }));
+    FileAPIService("POST", "/managecms/",body)
+    .then((e) => { 
+        dispatch(addCMSApiReducer({ apiData: e.data, isLoading: false }));
+        // showToast("Fetched", "success");
+      })
+      .catch((e) => {
+        dispatch(addCMSApiReducer({ isLoading: false }));
+        showToast("Error", "error");
+      });
+  };
 }
 
 

@@ -53,7 +53,6 @@ const FlowPage = forwardRef((props, ref) => {
   });
   let dispatch = useDispatch();
 
-  console.log("removingnodes",nodes);
 const nodesRef = useRef(nodes);
 
 useEffect(() => {
@@ -180,7 +179,6 @@ useEffect(() => {
   const Payment = () => {
     setOpenModal(true);
   };
-  console.log("onload", nodes);
   return (
     <>
       <ReactFlowProvider>
@@ -189,7 +187,7 @@ useEffect(() => {
           id="flowpaper"
           ref={reactFlowWrapper}
         >
-          <AlertUser open={openModal} setOpenModal={setOpenModal} />
+          <AlertUser open={openModal||""} setOpenModal={setOpenModal} />
 
           <ReactFlow
             nodes={nodes}

@@ -6,6 +6,7 @@
 
 .edit-icon {
   color: #5686e1 !important;
+  cursor: pointer;
 }
 
 .addBtn {

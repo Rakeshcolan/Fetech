@@ -47,8 +47,8 @@ const Payment = () => {
             width: "100%",
           }}
         >
-          {SubscriptionData.map((subscription) => (
-            <PaymentCard data={subscription} />
+          {SubscriptionData.map((subscription,i) => (
+            <PaymentCard key={i} data={subscription} />
           ))}
         </div>
       </div>
