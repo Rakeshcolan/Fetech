@@ -4,6 +4,7 @@ import "../../../styles/App.css";
 import { useDispatch } from "react-redux";
 import { addCMSApi } from "../../../redux/action/adminAction";
 import { useState } from "react";
+import { async } from "q";
 
 const ManageCMS = () => {
   const dispatch = useDispatch();
@@ -11,7 +12,6 @@ const ManageCMS = () => {
   const [termsAndConditionsFiles, setTermsAndConditionsFiles] = useState([]);
 
   const handleAboutUsFileChange = (file) => {
-    console.log("handleabout",file);
     const files = file;
     if (files && files.length > 0) {
       setAboutUsFiles(Array.from(files));
@@ -27,19 +27,15 @@ const ManageCMS = () => {
 
 
   const handleUploadDocuments = () => {
-  
     const formData = new FormData();
-
-    aboutUsFiles.forEach((file, index) => {
-      console.log("aboutsfile",file);
-      formData.append(`about[${index}]`, file);
-    });
-
-    termsAndConditionsFiles.forEach((file, index) => {
-      formData.append(`terms_condition[${index}]`, file);
-    });
-
-    console.log(formData, "formData");
+    formData.append(`about`, aboutUsFiles[0]);
+    formData.append(`terms_condition`, termsAndConditionsFiles[0]);
+    //  aboutUsFiles.forEach((file, index) => {
+    //   formData.append(`about`, file);
+    // });
+    //  termsAndConditionsFiles.forEach((file, index) => {
+      
+    // });
     dispatch(addCMSApi(formData));
   };
 

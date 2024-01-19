@@ -1,6 +1,9 @@
 
+import axios from "axios";
 import { showToast } from "../../components/commonToast/toastService";
 import { APIService } from "../api/ApiService";
+import { ADMIN_BASE_URL } from "../api/configURL";
+import { FileAPIService } from "../api/FileApiService";
 // import { router } from "next/router";
 import {
   addClientApiReducer,
@@ -55,7 +58,20 @@ export function getSubscriptionApi() {
 }
 
 export function addCMSApi(body) {
-  return apiHelper(addCMSApiReducer,"POST", "/managecms/",body)
+  // return apiHelper(addCMSApiReducer,"POST", "/managecms/",body)
+
+  return async (dispatch) => {
+    dispatch(addCMSApiReducer({ isLoading: true }));
+    FileAPIService("POST", "/managecms/",body)
+    .then((e) => { 
+        dispatch(addCMSApiReducer({ apiData: e.data, isLoading: false }));
+        // showToast("Fetched", "success");
+      })
+      .catch((e) => {
+        dispatch(addCMSApiReducer({ isLoading: false }));
+        showToast("Error", "error");
+      });
+  };
 }
 
 
