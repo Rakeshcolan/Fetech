@@ -129,8 +129,8 @@ function CustomizedTables(props) {
                                   "&:hover": {
                                     backgroundColor:
                                       row[column.id] === "Active"
-                                        ? "#00e785 !important"
-                                        : "#FF3939 !important",
+                                        ? "#FF3939 !important"
+                                        : "#00e785 !important",
                                   },
                                 }}
                               >
