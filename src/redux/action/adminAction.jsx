@@ -16,17 +16,18 @@ import {
   addCMSApiReducer
 } from "../slice/adminSlice";
 
-export function apiHelper(apiReducer, method, apiURL, data="") {
+export function 
+apiHelper(apiReducer, method, apiURL, data="") {
   return async (dispatch) => {
     dispatch(apiReducer({ isLoading: true }));
     APIService(method, apiURL,data)
     .then((e) => { 
-        dispatch(apiReducer({ apiData: e.data, isLoading: false }));
+        dispatch(apiReducer({ apiData: e?.data, isLoading: false }));
         method === "POST" && showToast("Added Data", "success");
       })
       .catch((e) => {
         dispatch(apiReducer({ isLoading: false }));
-        showToast("Error", "error");
+        showToast(e?.message, "error");
       });
   };
 }

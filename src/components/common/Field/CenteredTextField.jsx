@@ -2,7 +2,10 @@ import React from "react";
 import TextField from "@mui/material/TextField";
 import { Stack } from "@mui/system";
 
-const CenteredTextField = ({ label, placeholder, ...props }) => {
+const CenteredTextField = ({ label, placeholder,id,formik, ...props }) => {
+  const handleChange = (e) => {
+    formik.handleChange(e);
+  };
   return (
     // <TextField id="outlined-basic" label="Outlined" variant="outlined" />
     <Stack
@@ -13,13 +16,17 @@ const CenteredTextField = ({ label, placeholder, ...props }) => {
     >
       {/* <label>{label}</label> */}
       <TextField
-        id="outlined-basic"
-        // label={label}
+        id={id}
         margin="normal"
         fullWidth
         type="text"
         variant="outlined"
         placeholder={placeholder}
+        onChange={handleChange} // Add onChange handler
+        value={formik?.values[id]}
+        error={Boolean(formik?.touched[id] && formik?.errors[id])}
+        helperText={<>{formik?.touched[id] && formik?.errors[id]}</>}
+        onBlur={formik?.handleBlur}
         {...props}
         InputLabelProps={{
           shrink: false, // Stop label animation on click

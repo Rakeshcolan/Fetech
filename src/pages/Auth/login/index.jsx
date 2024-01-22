@@ -13,19 +13,6 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleLogin = (auth) => {
-    if (auth == "User") {
-      sessionStorage.setItem("ur", 1);
-      sessionStorage.setItem("roles", "USER");
-      showToast("Welcome Admin", "success");
-    } else {
-      sessionStorage.setItem("ur", 2);
-      sessionStorage.setItem("roles", "ADMIN");
-      showToast("Welcome Admin", "success");
-    }
-    navigate("/");
-  };
-
   const handleNavigate = () => {
     navigate("/register");
   };
@@ -33,31 +20,23 @@ const Login = () => {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      username: "User",
-      email_id: "",
-      mobile_no: "7896523415",
+      username: "",
       password: "",
     },
     validationSchema: Yup.object({
       username: Yup.string()
         .required("Name is required")
         .matches(/^[a-zA-Z\s]+$/, "Name can only contain alphabet characters"),
-      email_id: Yup.string()
-        .required("Email is required")
-        .email("Invalid email format"),
-      mobile_no: Yup.string()
-        .matches(/^[0-9]{10}$/, "Invalid phone number") // Check for 10-digit numeric phone number
-        .required("PhoneNumber is required"),
       password: Yup.string().required("password is required"),
     }),
     onSubmit: (values) => {
       let val = {
-        username: values.name,
-        email_id: values.email_id,
-        mobile_no: values.mobile_no,
+        username: values.username,
         password: values.password,
       };
-       dispatch(addLoginApi(val));
+
+        dispatch(addLoginApi(val,navigate));
+
       // navigate("/dashboard/client");
       // setOpenModal(false);
     },
@@ -65,21 +44,7 @@ const Login = () => {
 
   return (
     <div>
-      This is Login page
-      <Button
-        onClick={() => {
-          handleLogin("User");
-        }}
-      >
-        please login to see User Routes
-      </Button>
-      <Button
-        onClick={() => {
-          handleLogin("Admin");
-        }}
-      >
-        please login to see Admin Routes
-      </Button>
+
       <img
         src={logo}
         alt="Logo"
@@ -97,7 +62,7 @@ const Login = () => {
           <br />
           <CenteredTextField
             label="Username"
-            id="email_id"
+            id="username"
             placeholder="Username"
             formik={formik}
           />
