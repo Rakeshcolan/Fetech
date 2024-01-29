@@ -97,7 +97,7 @@ const Login = () => {
           <br />
           <CenteredTextField
             label="Username"
-            id="email_id"
+            id="username"
             placeholder="Username"
             formik={formik}
           />

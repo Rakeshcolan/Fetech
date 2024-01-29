@@ -9,14 +9,13 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import { addSubAmdinsApi } from "../../redux/action/adminAction";
-import { useNavigate } from "react-router";
 import CommonDropDown from "../common/Field/CommonDropDown";
 
 export default function AddSubAdminModal(props) {
   const { openModal, setOpenModal } = props;
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  
 
   const handleClose = () => {
     setOpenModal(false);
