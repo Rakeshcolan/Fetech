@@ -25,7 +25,7 @@ const ManageData = () => {
   };
 
   return (
-    <>
+    <div className="commonbox">
       <h4>Upload Data</h4>
       <CommonUpload />
       <br />
@@ -65,7 +65,7 @@ const ManageData = () => {
       <div className="contentCenter">
         <Button className="submitBtn">Submit</Button>
       </div>
-    </>
+    </div>
   );
 };
 

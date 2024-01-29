@@ -186,7 +186,7 @@ const CreateChat = () => {
       reactFlowInstance.toObject().edges,
       startingNodeId
     );
-    console.log(resultJSON);
+    console.log("Added Result JSON",resultJSON);
   };
 
   const updateName = (e) => {
