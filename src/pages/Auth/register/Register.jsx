@@ -68,11 +68,13 @@ const Register = () => {
       password: Yup.string().required("password is required"),
     }),
     onSubmit: (values) => {
+      let userroles = values.username === "fetechadmin";
       let val = {
         username: values.username,
         email_id: values.email_id,
         mobile_no: values.mobile_no,
         password: values.password,
+        is_superuser:userroles
       };
         dispatch(addRegisterApi(val,navigate));
         formik.resetForm();

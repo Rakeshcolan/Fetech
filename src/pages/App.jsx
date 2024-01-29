@@ -29,11 +29,9 @@ function App() {
     <>
       {/* <ActivityController> */}
       <Provider store={store}>
-        {/* <PersistGate loading={null} persistor={persistor}> */}
         <NodeContextProvider>
           <LazyLoader>{router}</LazyLoader>
         </NodeContextProvider>
-        {/* </PersistGate> */}
       </Provider>
       {/* </ActivityController> */}
     </>
