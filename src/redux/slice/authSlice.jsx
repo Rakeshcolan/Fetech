@@ -10,8 +10,12 @@ const authSlice = createSlice({
   },
   reducers: {
     loginApiReducer: (state, { payload }) => {
-      state.loginDetail = payload.loginDetail;
-      state.loginDetailisLoading = payload.loginDetailisLoading;
+      state.loginDetail = payload.apiData;
+      state.loginDetailisLoading = payload.isLoading;
+    },
+    registerApiReducer: (state, { payload }) => {
+      state.registerDetail = payload.loginDetail;
+      state.registerDetailisLoading = payload.loginDetailisLoading;
     },
     registerApiReducer: (state, { payload }) => {
       state.registerDetail = payload.registerDetail;

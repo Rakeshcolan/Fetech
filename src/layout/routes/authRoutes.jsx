@@ -1,6 +1,6 @@
 import { lazy } from "react";
 import { Outlet } from "react-router-dom";
-import Register from "../../pages/Auth/login/Register";
+import Register from "../../pages/Auth/register/Register";
 
 const Login = lazy(() => import("../../pages/Auth/login"));
 

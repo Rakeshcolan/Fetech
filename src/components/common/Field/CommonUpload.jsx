@@ -7,10 +7,9 @@ const CommonUpload = ({ label, onFileChange }) => {
 
   const handleImageChange = (e) => {
     const files = e.target.files;
-    console.log("newfles",files.length);
-    if (files.length>0) {
-      onFileChange(files);
-    }
+    // if (files.length>0) {
+      onFileChange(e.target.files);
+    // }
   };
   
   return (

@@ -1,13 +1,13 @@
 import axios from "axios";
+import { useNavigate } from "react-router";
+import { showToast } from "../../components/commonToast/toastService";
 import { USER_BASE_URL, ADMIN_BASE_URL } from "./configURL";
 
 export const APIService = async (method, url, body, params) => {
- 
   const roles =
-    typeof window !== "undefined" ? sessionStorage.getItem("roles") : null;
+  typeof window !== "undefined" ? sessionStorage.getItem("roles") : "" ;
   const accessToken =
-    typeof window !== "undefined" ? sessionStorage.getItem("act") : "";
-    
+  typeof window !== "undefined" ? sessionStorage.getItem("act") : "";
   const obj = {
     ADMIN: ADMIN_BASE_URL,
     USER: USER_BASE_URL,
@@ -15,11 +15,10 @@ export const APIService = async (method, url, body, params) => {
    function baseUrl(roles) {
     return obj[roles];
   }
-console.log("bodyyyyy",body);
   if (window.navigator.onLine) {
     return await axios({
       method: method,
-      baseURL: baseUrl(roles),
+      baseURL: baseUrl(roles) ,
       url: url,
       headers: {
         // Authorization: accessToken,
@@ -31,11 +30,12 @@ console.log("bodyyyyy",body);
     })
       .then((e) => {
         if (roles === null || undefined || "") {
-          // navigate("/auth/login");
+          sessionStorage.clear()
+          // navigate('/')
         } else if (e.status === 200 || e.status === 201) {
           return {
             status: "success",
-            data: e.data,
+            data: e?.data,
           };
         } else {
           return {
@@ -48,7 +48,14 @@ console.log("bodyyyyy",body);
         console.log("ERROR OCCURED", e);
         if (e.message === "Network Error") {
           // navigate("/common/networkIssue");
-        } else if (e.response.status === 401 || e.response.status === 403) {
+          showToast(e.message,"error")
+        } 
+        else if(e?.response?.status === 400){
+          // showToast(e?.response?.data,"error")
+          showToast("please check the credentials","error")
+        }
+        
+        else if (e.response.status === 401 || e.response.status === 403) {
           // UNCOMMENT THIS CODE WHEN API IS READY
           // const refreshToken =
           //   typeof window !== "undefined"

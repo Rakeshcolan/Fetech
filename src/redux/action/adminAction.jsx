@@ -16,17 +16,18 @@ import {
   addCMSApiReducer
 } from "../slice/adminSlice";
 
-export function apiHelper(apiReducer, method, apiURL, data="") {
+export function 
+apiHelper(apiReducer, method, apiURL, data="") {
   return async (dispatch) => {
     dispatch(apiReducer({ isLoading: true }));
     APIService(method, apiURL,data)
     .then((e) => { 
-        dispatch(apiReducer({ apiData: e.data, isLoading: false }));
-        // showToast("Fetched", "success");
+        dispatch(apiReducer({ apiData: e?.data, isLoading: false }));
+        method === "POST" && showToast("Added Data", "success");
       })
       .catch((e) => {
         dispatch(apiReducer({ isLoading: false }));
-        showToast("Error", "error");
+        showToast(e?.message, "error");
       });
   };
 }
@@ -65,7 +66,7 @@ export function addCMSApi(body) {
     FileAPIService("POST", "/managecms/",body)
     .then((e) => { 
         dispatch(addCMSApiReducer({ apiData: e.data, isLoading: false }));
-        // showToast("Fetched", "success");
+        showToast("Files Added Successfully", "success");
       })
       .catch((e) => {
         dispatch(addCMSApiReducer({ isLoading: false }));
