@@ -1,9 +1,7 @@
 import axios from "axios";
 import { showToast } from "../../components/commonToast/toastService";
-import { APIService } from "../api/ApiService";
 import { AUTH_BASE_URL } from "../api/configURL";
 import { loginApiReducer, registerApiReducer } from "../slice/authSlice";
-import { apiHelper } from "./adminAction";
 
 export function addLoginApi(body, navigate) {
   return async (dispatch) => {
@@ -19,11 +17,12 @@ export function addLoginApi(body, navigate) {
       })
       .catch((e) => {
         dispatch(loginApiReducer({ isLoading: false }));
-        showToast("Error in Login", "error");
+        showToast(e.response.data.detail,"error");
       });
   };
   // return apiHelper(loginApiReducer, "POST", "/login/", body);
 }
+
 export function addRegisterApi(body, navigate) {
   // return apiHelper(registerApiReducer, "POST", "/register/", body);
   return async (dispatch) => {
@@ -36,12 +35,12 @@ export function addRegisterApi(body, navigate) {
           navigate("/");
           showToast("Registration Success", "success");
         } else {
-          showToast(e?.message, "error");
+          showToast(e.response.data.username[0],"error");
         }
       })
       .catch((e) => {
         dispatch(registerApiReducer({ isLoading: false }));
-        showToast(e.message, "error");
+        showToast(e.response.data.username[0],"error");
       });
   };
 }

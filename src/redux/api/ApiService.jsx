@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useNavigate } from "react-router";
 import { showToast } from "../../components/commonToast/toastService";
 import { USER_BASE_URL, ADMIN_BASE_URL } from "./configURL";
 

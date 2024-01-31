@@ -12,10 +12,9 @@ import { addSubAmdinsApi } from "../../redux/action/adminAction";
 import CommonDropDown from "../common/Field/CommonDropDown";
 
 export default function AddSubAdminModal(props) {
-  const { openModal, setOpenModal } = props;
 
+  const { openModal, setOpenModal } = props;
   const dispatch = useDispatch();
-  
 
   const handleClose = () => {
     setOpenModal(false);
@@ -38,7 +37,6 @@ export default function AddSubAdminModal(props) {
           /^[a-zA-Z\s]+$/,
           "FirstName can only contain alphabet characters"
         ),
-
       last_name: Yup.string()
         .required("LastName is required")
         .matches(
@@ -48,13 +46,10 @@ export default function AddSubAdminModal(props) {
       email_id: Yup.string()
         .required("Email is required")
         .email("Invalid email format"),
-
       mobile_no: Yup.string()
         .matches(/^[0-9]{10}$/, "Invalid phone number") // Check for 10-digit numeric phone number
         .required("PhoneNumber is required"),
-
       status: Yup.string().required("Status is required"),
-
       designation: Yup.string().required("Designation is required"),
     }),
     onSubmit: (values) => {
@@ -168,5 +163,5 @@ export default function AddSubAdminModal(props) {
         </div>
       </Dialog>
     </React.Fragment>
-  );
+  )
 }
