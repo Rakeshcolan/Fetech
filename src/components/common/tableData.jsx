@@ -1,5 +1,9 @@
 export const subAdminTableHead = [
   {
+    id: "managedata_id",
+    label: "#",
+  },
+  {
     id: "first_name",
     label: "FirstName",
   },
@@ -204,6 +208,34 @@ export const RoleAuthoriZationData = [
 ];
 
 export const ClientDataHead = [
+  {id:"manageclient_id",label:"#"},
+  {
+    id: "name",
+    label: "Name",
+  },
+  {
+    id: "email_id",
+    label: "Email ID",
+  },
+  {
+    id: "mobile_no",
+    label: "Mobile Number",
+  },
+  {
+    id: "subscription_plan",
+    label: "Subscription Plan",
+  },
+  {
+    id: "billing",
+    label: "Billing",
+  },
+  {
+    id: "Received_Data",
+    label: "Received Data",
+  },
+];
+
+export const DemoaHeadData = [
   {id:"#",label:"#"},
   {
     id: "name",

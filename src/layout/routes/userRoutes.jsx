@@ -7,6 +7,7 @@ import EditRoles from "../../pages/manageRoles/editRoles";
 import ManageSubAdmin from "../../pages/manageSubAdmin";
 import EditSubAdmin from "../../pages/manageSubAdmin/editSubAdmin";
 import ManageData from "../../pages/User/manageData";
+import StripePayment from "../../pages/User/stripePayment";
 import RootLayout from "../nav/rootLayout";
 
 const UserRoutes = [
@@ -21,6 +22,7 @@ const UserRoutes = [
       { path: "/dashboard/editroles", element: <EditRoles /> },
       { path: "/dashboard/roles/addRole", element: <AddRoles /> },
       { path: "/dashboard/editProfile", element: <EditProfile /> },
+      { path: "/dashboard/stripepayment", element: <StripePayment /> },
     ],
   },
   // {

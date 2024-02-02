@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-let flowArray = localStorage.getItem('object')
+// let flowArray = localStorage.getItem('object')
 
 let initialState = {
     flowData:[],

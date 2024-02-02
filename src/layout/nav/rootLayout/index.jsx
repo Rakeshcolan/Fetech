@@ -15,7 +15,7 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Collapse from "@mui/material/Collapse";
 import ListIcon from "@mui/icons-material/List";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import {
   AdminMenuItems,
   UsermenuItems,
@@ -102,6 +102,7 @@ export default function RootLayout() {
   const [layoutData, setLayoutData] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
 
   //setting adming and user routes
   let sessionValue = sessionStorage.getItem("ur");
@@ -130,8 +131,21 @@ export default function RootLayout() {
     };
     return (
       <>
-        <ListItemButton to={path} className="multi-list" onClick={handleClick}>
-          <ListIcon sx={{ marginRight: "8px" }} />
+        <ListItemButton
+          to={path}
+          className="multi-list"
+          onClick={handleClick}
+          sx={{
+            "&:hover": {
+              color: "#00E785",
+            },
+          }}
+        >
+          <ListIcon
+            sx={{
+              marginRight: "8px",
+            }}
+          />
           <ListItemText primary={name} onClick={() => navigate("/")} />
           {open ? (
             <ExpandLessIcon
@@ -149,13 +163,22 @@ export default function RootLayout() {
           <List component="div" disablePadding>
             {menuItems.isNested.map((nestedItem, index) => {
               const { name, path, icon } = nestedItem;
+             let isActive = location.pathname === path;
               return (
-                <>
+                <div key={index}>
                   <ListItemButton
                     // component={Link}
+                  
                     to={path}
-                    style={{ paddingLeft: 16, display: "flex" }}
-                    key={`${index}-item`}
+                    style={{
+                      backgroundColor: isActive ? "#00E785" : "",
+                      color: isActive ? "black" : "",
+                      margin: isActive ? "0px 20px" : "",
+                      borderRadius: isActive ? "10px" : "",
+                      paddingLeft: 16,
+                      display: "flex",
+                    }}
+                    // key={`${index}-item`}
                     className="nested-list"
                     onClick={() => {
                       // highlightParent(path);
@@ -164,18 +187,18 @@ export default function RootLayout() {
                       "&:hover": {
                         color: "#00E785",
                       },
-                      "&:active, &:focus": {
-                        backgroundColor: "#00E785 !important",
-                        color: "black !important",
-                        borderRadius: "10px",
-                        margin: "0px 20px",
-                      },
+                      //   "&:active, &:focus": {
+                      //     backgroundColor: "#00E785 !important",
+                      //     color: "black !important",
+                      //     borderRadius: "10px",
+                      //     margin: "0px 20px",
+                      //   },
                     }}
                   >
                     <span style={{ margin: "9px" }}>{icon}</span>
                     <ListItemText primary={name} />
                   </ListItemButton>
-                </>
+                </div>
               );
             })}
           </List>
@@ -194,13 +217,13 @@ export default function RootLayout() {
 
   const handleRedirect = () => {
     navigate("/dashboard/editProfile");
-    setAnchorEl(null)
+    setAnchorEl(null);
   };
 
   const handleLogOut = () => {
-    sessionStorage.clear("ur")
-    sessionStorage.clear("roles")
-    navigate("/")
+    sessionStorage.clear("ur");
+    sessionStorage.clear("roles");
+    navigate("/");
   };
 
   return (
@@ -254,16 +277,28 @@ export default function RootLayout() {
           >
             <MenuItem
               onClick={handleRedirect}
-              sx={{ "&:hover": { backgroundColor: "#c4cdd5",fontSize:"16px !important" } }}
+              sx={{
+                "&:hover": {
+                  backgroundColor: "#c4cdd5",
+                  fontSize: "16px !important",
+                },
+              }}
             >
-              <PermIdentityIcon sx={{marginRight:"10px",fontSize:"20px"}} />
+              <PermIdentityIcon
+                sx={{ marginRight: "10px", fontSize: "20px" }}
+              />
               Edit Profile
             </MenuItem>
             <MenuItem
               onClick={handleLogOut}
-              sx={{ "&:hover": { backgroundColor: "#c4cdd5",fontSize:"16px !important" } }}
+              sx={{
+                "&:hover": {
+                  backgroundColor: "#c4cdd5",
+                  fontSize: "16px !important",
+                },
+              }}
             >
-              <LogoutIcon sx={{fontSize:"20px",marginRight:"10px"}} />
+              <LogoutIcon sx={{ fontSize: "20px", marginRight: "10px" }} />
               Sign Out
             </MenuItem>
             {/* Add more menu items as needed */}
@@ -285,7 +320,7 @@ export default function RootLayout() {
           <List>
             {layoutData.map((items, index) => {
               return items.isNested ? (
-                <MultipleList menuItems={items} key={index} />
+                <MultipleList   menuItems={items} key={index} />
               ) : (
                 //   <SingleList menuItems={items} key={index} />
                 <></>

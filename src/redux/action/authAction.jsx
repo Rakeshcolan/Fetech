@@ -33,7 +33,7 @@ export function addRegisterApi(body, navigate) {
       .then((e) => {
         if (e?.status === 200 || e?.status === 201 || e?.status === "success") {
           dispatch(registerApiReducer({ apiData: e.data, isLoading: false }));
-          navigate("/");
+          navigate("/payment");
           showToast("Registration Success", "success");
         } else {
           showToast(e?.message, "error");

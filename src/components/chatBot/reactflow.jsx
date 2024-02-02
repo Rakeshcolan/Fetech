@@ -65,6 +65,7 @@ useEffect(() => {
     let id = nodeId?parseInt(nodeId)+1 :  0 ;
     return `dndnode_${id++}`;
   };
+  
   const getGroupId = () => {
     let oldGroudNodeId = nodesRef.current?.filter(
       (node) =>  node.id.includes("groupnode")

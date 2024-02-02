@@ -34,26 +34,26 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 let roleObj = {
-  "1":"Employee",
-  "2":"Accountant",
-  "3":"Manager"
-}
+  1: "Employee",
+  2: "Accountant",
+  3: "Manager",
+};
 
 function CustomizedTables(props) {
   const {
     rows,
     columns,
-    page =5,
-    size =0,
-    rowsPerPageOptions=5,
-    handleChangePage=5,
-    handleChangeRowsPerPage=5,
-    paginationStatus=5,
+    page = 5,
+    size = 0,
+    rowsPerPageOptions = 5,
+    handleChangePage = 5,
+    handleChangeRowsPerPage = 5,
+    paginationStatus = 5,
   } = props;
   const navigate = useNavigate();
   const location = useLocation();
-  
-  let pathname = location.pathname.split('/')[2];
+
+  let pathname = location.pathname.split("/")[2];
   const prevCountRef = React.useRef();
 
   React.useEffect(() => {
@@ -63,10 +63,10 @@ function CustomizedTables(props) {
   const startIndex = size * page + 1;
   const endIndex = (size * (page + 1), rows?.length);
   const totalEntries = rows?.length;
-  
-  const handleEdit = (data)=>{
-    navigate(`/dashboard/edit${pathname}`,{state:{data}})
-  }
+
+  const handleEdit = (data) => {
+    navigate(`/dashboard/edit${pathname}`, { state: { data } });
+  };
   return (
     <Paper elevation={0}>
       <TableContainer component={Paper}>
@@ -100,7 +100,7 @@ function CustomizedTables(props) {
                   <StyledTableRow hover role="checkbox" tabIndex={-1} key={i}>
                     {columns?.map((column) => {
                       const value =
-                        column.id === "Action"||
+                        column.id === "Action" ||
                         column.id === "status" ||
                         column.id === "View" ||
                         column.id === "Edit" ||
@@ -108,24 +108,23 @@ function CustomizedTables(props) {
                         column.id === "Delete"
                           ? column.id
                           : row[column.id];
-                          
+
                       return (
                         <Fragment key={column.id}>
                           <StyledTableCell>
                             {value === "Action" ? (
-                              <DriveFileRenameOutlineIcon onClick={()=>handleEdit(row)} className="edit-icon" />
+                              <DriveFileRenameOutlineIcon
+                                onClick={() => handleEdit(row)}
+                                className="edit-icon"
+                              />
                             ) : value === "status" ? (
                               <Button
                                 className="activeBtn"
                                 sx={{
-                                  backgroundColor:
-                                    row[column.id]
-                                      ? "#00E785"
-                                      : "#FF3939",
-                                  color:
-                                    row[column.id] 
-                                      ? "black"
-                                      : "white",
+                                  backgroundColor: row[column.id]
+                                    ? "#00E785"
+                                    : "#FF3939",
+                                  color: row[column.id] ? "black" : "white",
                                   "&:hover": {
                                     backgroundColor:
                                       row[column.id] === "Active"
@@ -134,14 +133,13 @@ function CustomizedTables(props) {
                                   },
                                 }}
                               >
-                                {row[column.id]?"Active":"InActive"}
+                                {row[column.id] ? "Active" : "InActive"}
                               </Button>
                             ) : value === "Edit" || value === "View" ? (
                               <Checkbox />
                             ) : value === "Delete" ? (
                               <Checkbox />
-                            ) : 
-                             value === "designation" ? (
+                            ) : value === "designation" ? (
                               roleObj[row["designation"]]
                             ) : (
                               value
