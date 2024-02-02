@@ -2,52 +2,70 @@ import React from "react";
 import TextField from "@mui/material/TextField";
 import { Stack } from "@mui/system";
 
-const CenteredTextField = ({ label, placeholder,id,formik, ...props }) => {
+const CenteredTextField = ({
+  id,
+  label,
+  formik,
+  customStyles,
+  disabled,
+  placeholder,
+  required,
+  ...props
+}) => {
   const handleChange = (e) => {
     formik.handleChange(e);
   };
   return (
-    // <TextField id="outlined-basic" label="Outlined" variant="outlined" />
     <Stack
       direction="column"
       justifyContent="center"
       alignItems="center"
       spacing={2}
     >
-      {/* <label>{label}</label> */}
       <TextField
+        fullWidth
         id={id}
         margin="normal"
-        fullWidth
         type="text"
         variant="outlined"
+        disabled={disabled}
         placeholder={placeholder}
-        onChange={handleChange} // Add onChange handler
+        onChange={handleChange}
         value={formik?.values[id]}
         error={Boolean(formik?.touched[id] && formik?.errors[id])}
         helperText={<>{formik?.touched[id] && formik?.errors[id]}</>}
         onBlur={formik?.handleBlur}
-        {...props}
         InputLabelProps={{
-          shrink: false, // Stop label animation on click
-        }}
-        InputProps={{
-          classes: {
-            notchedOutline: "custom-notched-outline", // Use a custom class
-          },
-          style: { color: "black " },
-          sx: {
-            borderRadius: "10px",
-            "& input::placeholder": {
-              color: "black !important", // Change placeholder color
-            },
-          },
+          shrink: false,
         }}
         sx={{
-          //   width: "250px",
-          backgroundColor: "#D9D9D9",
+          "& legend": { display: "none" },
+          "& fieldset": { top: 0 },
+          width: "100%",
+          mt: 0,
+          mb: 0,
           borderRadius: "10px",
+          // backgroundColor: "#D9D9D9",
+          
+          "& .MuiOutlinedInput-input": customStyles?.OutlinedInput,
         }}
+        // InputProps={{
+        //   classes: {
+        //     notchedOutline: "custom-notched-outline",
+        //   },
+        //   style: { color: "black" },
+        //   sx: {
+        //     borderRadius: "10px",
+        //     "& input::placeholder": {
+        //       color: "black !important",
+        //     },
+        //   },
+        // }}
+        // sx={{
+        //   backgroundColor: "#D9D9D9",
+        //   borderRadius: "10px",
+        // }}
+        {...props}
       />
     </Stack>
   );

@@ -40,6 +40,7 @@ let roleObj = {
 };
 
 function CustomizedTables(props) {
+
   const {
     rows,
     columns,
@@ -50,6 +51,10 @@ function CustomizedTables(props) {
     handleChangeRowsPerPage = 5,
     paginationStatus = 5,
   } = props;
+
+  console.log(rows, "rows");
+  console.log(columns, "columns");
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -67,6 +72,7 @@ function CustomizedTables(props) {
   const handleEdit = (data) => {
     navigate(`/dashboard/edit${pathname}`, { state: { data } });
   };
+  
   return (
     <Paper elevation={0}>
       <TableContainer component={Paper}>
@@ -99,6 +105,7 @@ function CustomizedTables(props) {
                 return (
                   <StyledTableRow hover role="checkbox" tabIndex={-1} key={i}>
                     {columns?.map((column) => {
+                      console.log("column",column)
                       const value =
                         column.id === "Action" ||
                         column.id === "status" ||

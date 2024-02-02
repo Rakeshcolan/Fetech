@@ -1,9 +1,7 @@
-import { Button } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import CenteredTextField from "../../../components/common/Field/CenteredTextField";
 import logo from "../../../assests/images/connexLogo.png";
-import { showToast } from "../../../components/commonToast/toastService";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
@@ -25,9 +23,9 @@ const Login = () => {
     },
     validationSchema: Yup.object({
       username: Yup.string()
-        .required("Name is required")
-        .matches(/^[a-zA-Z\s]+$/, "Name can only contain alphabet characters"),
-      password: Yup.string().required("password is required"),
+        .required("Username is required")
+        .matches(/^[a-zA-Z\s]+$/, "Username can only contain alphabet characters"),
+      password: Yup.string().required("Password is required"),
     }),
     onSubmit: (values) => {
       let val = {

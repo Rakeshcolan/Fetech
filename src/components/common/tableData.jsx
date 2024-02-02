@@ -27,11 +27,11 @@ export const subAdminTableHead = [
     id: "Action",
     label: "Action",
   },
-];
+]
 
 export const subAdminTableData = [
   {
-    FirstName: "Jhon ",
+    FirstName: "Jhon",
     LastName: "Doe",
     EmailID: "Johndoe@gmail.com",
     Designation: "Employer",
@@ -58,62 +58,31 @@ export const subAdminTableData = [
     Designation: "Manager",
     Status: "Active",
   },
-];
-
-
+]
 
 export const dashboardTableHead = [
   {
-    id: "#",
-    label: "#",
+    id: "earnings_id",
+    label: "ID",
   },
   {
     id: "chatbot",
     label: "Chatbot",
   },
   {
-    id: "currentpledge",
+    id: "current_pledge",
     label: "Current Pledge",
   },
   {
-    id: "lifetimesupport",
+    id: "lifetime_support",
     label: "Lifetime Support",
   },
   {
     id: "status",
     label: "Status",
   }
-];
-
-
-export const dashboardTableData = [
-  {
-    "#":1,
-    chatbot: "BetBot ",
-    currentpledge: "80.00",
-    lifetimesupport: "250.00",
-    status: "Active",
-  },
-  {
-    "#":2,
-    chatbot: "chatBot ",
-    currentpledge: "80.00",
-    lifetimesupport: "250.00",
-  },
-  {
-    "#":3,
-    chatbot: "CartBot ",
-    currentpledge: "80.00",
-    lifetimesupport: "250.00",
-    status: "Active",
-  },
-  {
-    "#":4,
-    chatbot: "TextBot ",
-    currentpledge: "80.00",
-    lifetimesupport: "250.00",
-  },
 ]
+
 
 export const manageDataTableHead = [
   {
@@ -128,13 +97,13 @@ export const manageDataTableHead = [
     id: "PhoneNumber",
     label: "Phone Number",
   },
-];
+]
 
 export const manageDataTableData = [
   { Name: "John Doe", Email: "Johndoe@gmail.com", PhoneNumber: "8934575439" },
   { Name: "David", Email: "david@gmail.com", PhoneNumber: "893457539" },
   { Name: "Sandeep", Email: "Sandeep@gmail.com", PhoneNumber: "8934675439" },
-];
+]
 
 export const RolesAndPermissionsHead = [
   {
@@ -145,13 +114,13 @@ export const RolesAndPermissionsHead = [
     id: "Action",
     label: "Action",
   },
-];
+]
 
 export const RolesAndPermissionsData = [
   { Roles: "Accountant", Action: "checkbox" },
   { Roles: "Manager", Action: "checkbox" },
   { Roles: "Employee", Action: "checkbox" },
-];
+]
 
 export const RoleAuthoriZationHead = [
   {
@@ -174,7 +143,7 @@ export const RoleAuthoriZationHead = [
     id: "Delete",
     label: "Delete",
   },
-];
+]
 
 export const RoleAuthoriZationData = [
   {
@@ -205,7 +174,7 @@ export const RoleAuthoriZationData = [
     Edit: "checkbox",
     Delete: "checkbox",
   },
-];
+]
 
 export const ClientDataHead = [
   {id:"manageclient_id",label:"#"},
@@ -261,7 +230,7 @@ export const DemoaHeadData = [
     id: "Received_Data",
     label: "Received Data",
   },
-];
+]
 
 export const ClientData = [
   {
@@ -300,8 +269,7 @@ export const ClientData = [
     billing: "Active",
     Received_Data: "None",
   },
- 
-];
+]
 
 export const SubscriptionDataHead = [
   {
@@ -321,8 +289,7 @@ export const SubscriptionDataHead = [
     id: "status",
     label: "Status",
   },
-];
-
+]
 
 export const EditRole = [
   {

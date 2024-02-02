@@ -1,8 +1,5 @@
-
-import axios from "axios";
 import { showToast } from "../../components/commonToast/toastService";
 import { APIService } from "../api/ApiService";
-import { ADMIN_BASE_URL } from "../api/configURL";
 import { FileAPIService } from "../api/FileApiService";
 // import { router } from "next/router";
 import {
@@ -10,18 +7,17 @@ import {
   addSubAmdinsReducer,
   addSubscriptionApiReducer,
   getClientApiReducer,
-  getMyAdminDetailReducer,
   getSubAdminReducer,
   getSubscriptionApiReducer,
-  addCMSApiReducer
+  addCMSApiReducer,
+  getEarningsReducer,
 } from "../slice/adminSlice";
 
-export function 
-apiHelper(apiReducer, method, apiURL, data="") {
+export function apiHelper(apiReducer, method, apiURL, data = "") {
   return async (dispatch) => {
     dispatch(apiReducer({ isLoading: true }));
-    APIService(method, apiURL,data)
-    .then((e) => { 
+    APIService(method, apiURL, data)
+      .then((e) => {
         dispatch(apiReducer({ apiData: e?.data, isLoading: false }));
         method === "POST" && showToast("Added Data", "success");
       })
@@ -32,39 +28,41 @@ apiHelper(apiReducer, method, apiURL, data="") {
   };
 }
 
-
 export function addSubAmdinsApi(data) {
-  return apiHelper(addSubAmdinsReducer,"POST", "/managedata/",data)
+  return apiHelper(addSubAmdinsReducer, "POST", "/managedata/", data);
 }
 
 export function getSubAdminsApi() {
-  return apiHelper(getSubAdminReducer,"GET", "/managedata/")
-
+  return apiHelper(getSubAdminReducer, "GET", "/managedata/");
 }
 
 export function addClientApi(body) {
-  return apiHelper(addClientApiReducer,"POST", "/manageclients/",body)
+  return apiHelper(addClientApiReducer, "POST", "/manageclients/", body);
 }
 
 export function getClientApi() {
-  return apiHelper(getClientApiReducer,"GET", "/manageclients/")
+  return apiHelper(getClientApiReducer, "GET", "/manageclients/");
 }
 
 export function subscriptionApi(body) {
-  return apiHelper(addSubscriptionApiReducer,"POST", "/managesubscription/",body)
+  return apiHelper(
+    addSubscriptionApiReducer,
+    "POST",
+    "/managesubscription/",
+    body
+  );
 }
 
 export function getSubscriptionApi() {
-  return apiHelper(getSubscriptionApiReducer,"GET", "/managesubscription/")
+  return apiHelper(getSubscriptionApiReducer, "GET", "/managesubscription/");
 }
 
 export function addCMSApi(body) {
   // return apiHelper(addCMSApiReducer,"POST", "/managecms/",body)
-
   return async (dispatch) => {
     dispatch(addCMSApiReducer({ isLoading: true }));
-    FileAPIService("POST", "/managecms/",body)
-    .then((e) => { 
+    FileAPIService("POST", "/managecms/", body)
+      .then((e) => {
         dispatch(addCMSApiReducer({ apiData: e.data, isLoading: false }));
         showToast("Files Added Successfully", "success");
       })
@@ -75,5 +73,6 @@ export function addCMSApi(body) {
   };
 }
 
-
-
+export function getEarningsApi() {
+  return apiHelper(getEarningsReducer, "GET", "/earnings/");
+}
