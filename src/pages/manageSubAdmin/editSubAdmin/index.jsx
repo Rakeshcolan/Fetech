@@ -7,30 +7,28 @@ import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 
 const EditSubAdmin = () => {
-    const [editData,setEditData] = useState({})
-const location = useLocation();
+  const [editData, setEditData] = useState({});
+  const location = useLocation();
   const navigate = useNavigate();
   const handleRedirect = () => {
     navigate("/dashboard/subadmin");
   };
 
-useEffect(()=>{
-   setEditData( location.state?.data)
-   return ()=>{
-    location.state ="";
-    setEditData({})
-   }
-},[])
+  useEffect(() => {
+    setEditData(location.state?.data);
+    return () => {
+      location.state = "";
+      setEditData({});
+    };
+  }, []);
 
-
-const formik = useFormik({
+  const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
       firstname: editData?.first_name,
       email_id: editData?.email_id,
       lastname: editData?.last_name,
       designation: editData?.designation,
-    
     },
     validationSchema: Yup.object({
       firstname: Yup.string().required("FirstName is required"),
@@ -45,8 +43,8 @@ const formik = useFormik({
         lastname: values.lastname,
         designation: values.designation,
       };
-      
-      navigate('/dashboard/subadmin')
+
+      navigate("/dashboard/subadmin");
     },
   });
 
@@ -56,21 +54,24 @@ const formik = useFormik({
       <br />
       <div className="row">
         <div className="col-lg-6">
-          <CommonTextFields label="First Name" id="firstname" formik={formik}/>
+          <CommonTextFields label="First Name" id="firstname" formik={formik} />
           <br />
-          <CommonTextFields label="Email" id="email_id" formik={formik}/>
-         
+          <CommonTextFields label="Email" id="email_id" formik={formik} />
         </div>
         <div className="col-lg-6">
-          <CommonTextFields label="Last Name" id="lastname" formik={formik}/>
+          <CommonTextFields label="Last Name" id="lastname" formik={formik} />
           <br />
-          <CommonTextFields label="Designation" id="designation" formik={formik}/>
-        
+          <CommonTextFields
+            label="Designation"
+            id="designation"
+            formik={formik}
+          />
         </div>
       </div>
-      <br /><br />
+      <br />
+      <br />
       <div className="contentCenter">
-        <Button className="cancelBtn"  onClick={handleRedirect}>
+        <Button className="cancelBtn" onClick={handleRedirect}>
           Cancel
         </Button>
         <Button className="submitBtn">Save</Button>

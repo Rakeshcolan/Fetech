@@ -12,6 +12,7 @@ import { Fragment } from "react";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import "./commonComp.css";
 import { useLocation, useNavigate } from "react-router";
+import { useState } from "react";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -40,20 +41,34 @@ let roleObj = {
 };
 
 function CustomizedTables(props) {
+  //Moved pagination to the component up to avoid reusing. if needed we can send it in props in future. Moved the state up
+  const [size, setSize] = useState(0);
+  const [page, setPage] = useState(5);
+  const paginationRowsOptions = [5, 10, 20, 50, 100];
+
+  // const { getallSubAdminDetail, subAdminDetail } = useSelector(adminSelector);
+  const handlePerRowsChange = async (event) => {
+    setPage(+event.target.value);
+    setSize(0);
+  };
+
+  const handlePageChange = async (event, newPage) => {
+    setSize(newPage)
+  };
 
   const {
     rows,
     columns,
-    page = 5,
-    size = 0,
-    rowsPerPageOptions = 5,
-    handleChangePage = 5,
-    handleChangeRowsPerPage = 5,
-    paginationStatus = 5,
+    // page = 5,
+    // size = 0,
+    // rowsPerPageOptions = 5,
+    // handleChangePage = 5,
+    // handleChangeRowsPerPage = 5,
+    paginationStatus,
   } = props;
 
-  console.log(rows, "rows");
-  console.log(columns, "columns");
+  // console.log(rows, "rows");
+  // console.log(columns, "columns");
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -105,7 +120,6 @@ function CustomizedTables(props) {
                 return (
                   <StyledTableRow hover role="checkbox" tabIndex={-1} key={i}>
                     {columns?.map((column) => {
-                      console.log("column",column)
                       const value =
                         column.id === "Action" ||
                         column.id === "status" ||
@@ -175,13 +189,13 @@ function CustomizedTables(props) {
           </div>
           <div>
             <TablePagination
-              rowsPerPageOptions={rowsPerPageOptions}
+              rowsPerPageOptions={paginationRowsOptions}
               component="div"
               count={rows?.length || 0}
               rowsPerPage={page}
               page={size}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
+              onPageChange={handlePageChange}
+              onRowsPerPageChange={handlePerRowsChange}
               className="pagination-text"
             />
           </div>

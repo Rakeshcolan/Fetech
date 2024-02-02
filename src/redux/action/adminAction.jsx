@@ -18,8 +18,9 @@ export function apiHelper(apiReducer, method, apiURL, data = "") {
     dispatch(apiReducer({ isLoading: true }));
     APIService(method, apiURL, data)
       .then((e) => {
-        dispatch(apiReducer({ apiData: e?.data, isLoading: false }));
-        method === "POST" && showToast("Added Data", "success");
+        
+            dispatch(apiReducer({ apiData: e?.data, isLoading: false }));
+          method === "POST" && showToast("Added Data", "success");
       })
       .catch((e) => {
         dispatch(apiReducer({ isLoading: false }));

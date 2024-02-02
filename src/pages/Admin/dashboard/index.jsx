@@ -20,7 +20,6 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const { EarningsDetail } = useSelector(adminSelector);
 
-  console.log("EarningsDetail", EarningsDetail);
   const paginationRowsOptions = [5, 10, 20, 50, 100];
 
   const handlePerRowsChange = async (event) => {
