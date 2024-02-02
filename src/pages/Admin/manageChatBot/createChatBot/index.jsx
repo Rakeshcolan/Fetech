@@ -29,7 +29,8 @@ const CreateChat = () => {
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   let { action = "", arrayIndex = "" } = location?.state || {};
   let dispatch = useDispatch();
-  let nodeObject = useSelector((state) => state.flowData);
+  let nodeObject = useSelector((state) => state.flow.flowData);
+  console.log("nodeeeeobjecttt",nodeObject);
   const [chatbotData, setChatbotData] = useState({
     clientName: "",
     chatbotName: "",
@@ -163,11 +164,11 @@ const CreateChat = () => {
   }
 
   useEffect(() => {
-    if (nodeObject && action == "Edit") {
-      let savedNodeObject = [...nodeObject[arrayIndex].flowElements.nodes];
-      let savedEdges = [...nodeObject[arrayIndex].flowElements.edges];
+    if (nodeObject.length>0 && action == "Edit") {
+      let savedNodeObject = [...nodeObject[arrayIndex]?.flowElements.nodes];
+      let savedEdges = [...nodeObject[arrayIndex]?.flowElements.edges];
       setNodes(savedNodeObject);
-      setEdges(nodeObject[arrayIndex].flowElements.edges);
+      setEdges(nodeObject[arrayIndex]?.flowElements.edges);
       // reactFlowInstance.addNodes({nodes:savedNodeObject})
       // reactFlowInstance.addEgdes({edges:savedEdges})
     }

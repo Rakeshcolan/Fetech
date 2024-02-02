@@ -5,6 +5,7 @@ import CustomizedTables from "../../../components/common/commonTable";
 import {
   ClientDataHead,
   ClientData,
+  DemoaHeadData,
 } from "../../../components/common/tableData";
 import AddSubAdminModal from "../../../components/modal/addSubAdminModal";
 
@@ -38,7 +39,7 @@ const ManageDemo = () => {
       </Button> */}
         <br />
         <CustomizedTables
-          columns={ClientDataHead}
+          columns={DemoaHeadData}
           rows={ClientData}
           paginationStatus={true}
           rowsPerPageOptions={paginationRowsOptions}

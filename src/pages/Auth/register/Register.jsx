@@ -137,12 +137,12 @@ const Register = () => {
           <button type="button" className="loginBtn" onClick={formik.handleSubmit}>Register</button>
           <br />
           <br />
-          <div>
+          {/* <div>
             <p>
               Already have an account? <b style={{cursor:"pointer"}} onClick={handleNavigate}>SignIn</b>{" "}
             </p>
-          </div>
-          </div>
+          </div> */}
+        </div>
         </form>
       </div>
     </div>

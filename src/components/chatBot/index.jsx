@@ -22,7 +22,6 @@ const ChatBot = () => {
     useEffect(()=>{
       let nodeObject =   localStorage.getItem('object');
       let nodeObjectJson  =JSON.parse(nodeObject);
-
       setNodes(nodeObjectJson.flowElements.nodes);
       setEdges(nodeObjectJson.flowElements.edges);
     },[])
