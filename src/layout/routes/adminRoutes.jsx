@@ -7,6 +7,7 @@ import ManageClients from "../../pages/Admin/manageClient";
 import ManageCMS from "../../pages/Admin/manageCms";
 import ManageDemo from "../../pages/Admin/manageDemo";
 import ManageSubscription from "../../pages/Admin/manageSubscription";
+import EditSubscription from "../../pages/Admin/manageSubscription/editSubscription";
 import ManageRoles from "../../pages/manageRoles";
 import EditRoles from "../../pages/manageRoles/editRoles";
 import ManageSubAdmin from "../../pages/manageSubAdmin";
@@ -32,6 +33,7 @@ const AdminRoutes = [
       { path: "/dashboard/editroles", element: <EditRoles /> },
       { path: "/dashboard/editProfile", element: <EditProfile /> },
       { path: "/dashboard/editsubadmin", element: <EditSubAdmin /> },
+      { path: "/dashboard/editsubscription", element: <EditSubscription /> },
     ],
   },
   {

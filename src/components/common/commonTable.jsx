@@ -7,11 +7,13 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Button, Checkbox, TablePagination } from "@mui/material";
+import { Button, TablePagination } from "@mui/material";
 import { Fragment } from "react";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import "./commonComp.css";
 import { useLocation, useNavigate } from "react-router";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -40,10 +42,10 @@ let roleObj = {
 };
 
 function CustomizedTables(props) {
-
   const {
-    rows,
+    rows = [],
     columns,
+    // loading = false, // add loading as a prop
     page = 5,
     size = 0,
     rowsPerPageOptions = 5,
@@ -52,13 +54,25 @@ function CustomizedTables(props) {
     paginationStatus = 5,
   } = props;
 
-  console.log(rows, "rows");
-  console.log(columns, "columns");
-
   const navigate = useNavigate();
   const location = useLocation();
 
+  // if (!Array.isArray(rows)) {
+  //   console.error('Invalid data structure for "rows". Expected an array.');
+  //   return null; // or handle the error in a way that fits your application
+  // }
+
+  // if (loading) {
+  //   return <p>Loading...</p>; // or your preferred loading indicator
+  // }
+
+  console.log("Type of rows:", rows);
+
+  console.log(rows, "rows");
+  console.log(columns, "columns");
+
   let pathname = location.pathname.split("/")[2];
+
   const prevCountRef = React.useRef();
 
   React.useEffect(() => {
@@ -66,13 +80,13 @@ function CustomizedTables(props) {
   }, []);
 
   const startIndex = size * page + 1;
-  const endIndex = (size * (page + 1), rows?.length);
+  const endIndex = Math.min((size + 1) * page, rows?.length);
   const totalEntries = rows?.length;
 
   const handleEdit = (data) => {
     navigate(`/dashboard/edit${pathname}`, { state: { data } });
   };
-  
+
   return (
     <Paper elevation={0}>
       <TableContainer component={Paper}>
@@ -105,17 +119,17 @@ function CustomizedTables(props) {
                 return (
                   <StyledTableRow hover role="checkbox" tabIndex={-1} key={i}>
                     {columns?.map((column) => {
-                      console.log("column",column)
                       const value =
                         column.id === "Action" ||
                         column.id === "status" ||
                         column.id === "View" ||
-                        column.id === "Edit" ||
                         column.id === "designation" ||
                         column.id === "Delete"
                           ? column.id
                           : row[column.id];
-                          
+
+                      console.log(row[column.id], "row[column.id]");
+
                       return (
                         <Fragment key={column.id}>
                           <StyledTableCell>
@@ -134,18 +148,20 @@ function CustomizedTables(props) {
                                   color: row[column.id] ? "black" : "white",
                                   "&:hover": {
                                     backgroundColor:
-                                      row[column.id] === "Active"
+                                      row[column.id] === false
                                         ? "#FF3939 !important"
                                         : "#00e785 !important",
                                   },
                                 }}
                               >
-                                {row[column.id] ? "Active" : "InActive"}
+                                {row[column.id] === true
+                                  ? "Active"
+                                  : "InActive"}
                               </Button>
-                            ) : value === "Edit" || value === "View" ? (
-                              <Checkbox />
+                            ) : value === "View" ? (
+                              <VisibilityIcon />
                             ) : value === "Delete" ? (
-                              <Checkbox />
+                              <DeleteIcon />
                             ) : value === "designation" ? (
                               roleObj[row["designation"]]
                             ) : (

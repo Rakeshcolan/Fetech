@@ -2,9 +2,7 @@ import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import CustomizedTables from "../../../components/common/commonTable";
-import {
-  SubscriptionDataHead,
-} from "../../../components/common/tableData";
+import { SubscriptionDataHead } from "../../../components/common/tableData";
 import AddSubscriptionModal from "../../../components/modal/addSubscriptionModal";
 import { getSubscriptionApi } from "../../../redux/action/adminAction";
 import { adminSelector } from "../../../redux/slice/adminSlice";
@@ -15,7 +13,9 @@ const ManageSubscription = () => {
   const [page, setPage] = useState(5);
   const [modalOpen, setModalOpen] = useState();
   const dispatch = useDispatch();
-  const { getSubscriptionDetail, subscriptionDetail } = useSelector(adminSelector);
+  const { getSubscriptionDetail, subscriptionDetail } =
+    useSelector(adminSelector);
+  console.log(getSubscriptionDetail, "getSubscriptionDetail");
 
   const paginationRowsOptions = [5, 10, 20, 50, 100];
 
@@ -33,6 +33,7 @@ const ManageSubscription = () => {
   };
 
   useEffect(() => {
+    console.log("callinggg dataaaa");
     dispatch(getSubscriptionApi());
   }, [subscriptionDetail]);
 

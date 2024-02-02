@@ -11,6 +11,7 @@ import {
   getSubscriptionApiReducer,
   addCMSApiReducer,
   getEarningsReducer,
+  editSubscriptionApiReducer,
 } from "../slice/adminSlice";
 
 export function apiHelper(apiReducer, method, apiURL, data = "") {
@@ -55,6 +56,15 @@ export function subscriptionApi(body) {
 
 export function getSubscriptionApi() {
   return apiHelper(getSubscriptionApiReducer, "GET", "/managesubscription/");
+}
+
+export function editSubscriptionApi(data, id) {
+  return apiHelper(
+    editSubscriptionApiReducer,
+    "PUT",
+    `/managesubscription/${id}/`,
+    data
+  );
 }
 
 export function addCMSApi(body) {

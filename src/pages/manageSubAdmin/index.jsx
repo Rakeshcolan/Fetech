@@ -2,14 +2,10 @@ import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import CustomizedTables from "../../components/common/commonTable";
-import {
-  subAdminTableHead,
-} from "../../components/common/tableData";
+import { subAdminTableHead } from "../../components/common/tableData";
 import AddSubAdminModal from "../../components/modal/addSubAdminModal";
 import { getSubAdminsApi } from "../../redux/action/adminAction";
-import {
-  adminSelector,
-} from "../../redux/slice/adminSlice";
+import { adminSelector } from "../../redux/slice/adminSlice";
 
 const ManageSubAdmin = () => {
   const [size, setSize] = useState(0);
@@ -21,6 +17,7 @@ const ManageSubAdmin = () => {
 
   const { getallSubAdminDetail, addsubAdminDetail } =
     useSelector(adminSelector);
+    
   const handlePerRowsChange = async (event) => {
     setPage(+event.target.value);
     setSize(0);
@@ -35,7 +32,7 @@ const ManageSubAdmin = () => {
   };
 
   useEffect(() => {
-    dispatch(getSubAdminsApi())
+    dispatch(getSubAdminsApi());
   }, [addsubAdminDetail]);
 
   return (

@@ -10,6 +10,7 @@ import { adminSelector } from "../../../redux/slice/adminSlice";
 import "../../../styles/App.css";
 
 const ManageClients = () => {
+
   const [size, setSize] = useState(0);
   const [page, setPage] = useState(5);
   const [modalOpen, setModalOpen] = useState();
@@ -41,6 +42,7 @@ const ManageClients = () => {
   return (
     <>
       <div className="commonbox">
+
         <h4>Manage Clients</h4>
         <Button className="addBtn" onClick={handleModalOpen}>
           +Add
@@ -58,7 +60,9 @@ const ManageClients = () => {
         />
         {/* )} */}
         <AddClientModal openModal={modalOpen} setOpenModal={handleModalClose} />
+     
       </div>
+
     </>
   );
 };
