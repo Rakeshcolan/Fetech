@@ -21,6 +21,25 @@ function CommonDropDown({
   useEffect(() => {
     setSelectedValue(formik.values[id] || defaultValue || value);
   }, [defaultValue, formik.values, id, value]);
+
+  const showOption = (option)=>{
+    let optiontext;
+    switch (label) {
+      case "Subscriptions Plan":
+       optiontext =  `Tier${option?.subscription_id}`
+        break;
+      case "Billing":
+        optiontext = `Tier${option?.subscription_id} -${option?.subscription_amount}`
+        break;
+    
+      default:
+        optiontext = option?.value
+        break;
+    }
+    return  optiontext;
+  }
+
+
   return (
     <div className="formik-select-wrapper">
       <div
@@ -90,13 +109,13 @@ function CommonDropDown({
             </MenuItem>
           )}
           {options?.map((option) => (
-            <MenuItem key={option.id} value={option.value}>
+            <MenuItem key={option.id} value={option.value||option.subscription_id}>
               {statusChecker && (
                 <div
                   className={option.active ? "active-dot" : "non-active-dot"}
                 ></div>
               )}
-              {option.label}
+              {showOption(option)}
             </MenuItem>
           ))}
         </TextField>

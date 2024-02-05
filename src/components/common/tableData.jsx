@@ -107,6 +107,11 @@ export const manageDataTableData = [
 
 export const RolesAndPermissionsHead = [
   {
+    id:"#",
+    label:"#"
+  },
+
+  {
     id: "Roles",
     label: "Roles",
   },
@@ -115,11 +120,10 @@ export const RolesAndPermissionsHead = [
     label: "Action",
   },
 ]
-
 export const RolesAndPermissionsData = [
-  { Roles: "Accountant", Action: "checkbox" },
-  { Roles: "Manager", Action: "checkbox" },
-  { Roles: "Employee", Action: "checkbox" },
+  { "#":"1",Roles: "Accountant", Action: "checkbox" },
+  { "#":"2",Roles: "Manager", Action: "checkbox" },
+  { "#":"3",Roles: "Employee", Action: "checkbox" },
 ]
 
 export const RoleAuthoriZationHead = [

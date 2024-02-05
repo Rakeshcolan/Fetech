@@ -7,19 +7,31 @@ import "../modal/modal.css";
 import CancelIcon from "@mui/icons-material/Cancel";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
-import { addClientApi } from "../../redux/action/adminAction";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addClientApi,
+  getSubscriptionApi,
+} from "../../redux/action/adminAction";
 import { useNavigate } from "react-router-dom";
+import CommonDropDown from "../common/Field/CommonDropDown";
+import { adminSelector } from "../../redux/slice/adminSlice";
+import { useEffect } from "react";
 
 export default function AddClientModal(props) {
-
   const { openModal, setOpenModal } = props;
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { getSubscriptionDetail, subscriptionDetail } =
+    useSelector(adminSelector);
+  console.log("getclientdetail", getSubscriptionDetail);
 
   const handleClose = () => {
     setOpenModal(false);
   };
+
+  useEffect(() => {
+    dispatch(getSubscriptionApi());
+  }, [subscriptionDetail]);
 
   const formik = useFormik({
     enableReinitialize: true,
@@ -43,7 +55,7 @@ export default function AddClientModal(props) {
       billing: Yup.string().required("Billing is required"),
       subscription_plan: Yup.string().required("subscription plan is required"),
     }),
-    onSubmit: (values) => {
+    onSubmit: async (values, { resetForm }) => {
       let val = {
         name: values.name,
         email_id: values.email_id,
@@ -52,7 +64,7 @@ export default function AddClientModal(props) {
         subscription_plan: values.subscription_plan,
       };
       dispatch(addClientApi(val));
-      navigate("/dashboard/client");
+      resetForm();
       setOpenModal(false);
     },
   });
@@ -110,20 +122,27 @@ export default function AddClientModal(props) {
           </div>
           <br />
           <div>
-            <CommonTextFields
+            {/* <CommonTextFields
               label="Subscriptions Plan"
               id="subscription_plan"
               formik={formik}
               placeholder=""
+            /> */}
+
+            <CommonDropDown
+              id="subscription_plan"
+              label="Subscriptions Plan"
+              formik={formik}
+              options={getSubscriptionDetail}
             />
           </div>
           <br />
           <div>
-            <CommonTextFields
+            <CommonDropDown
               label="Billing"
               id="billing"
               formik={formik}
-              placeholder=""
+              options={getSubscriptionDetail}
             />
           </div>
           <br />

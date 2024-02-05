@@ -48,9 +48,9 @@ const ManageRoles = () => {
             handleChangePage={handlePageChange}
             handleChangeRowsPerPage={handlePerRowsChange}
           />
-          <div className="contentCenter">
+          {/* <div className="contentCenter">
             <Button className="submitBtn">Submit</Button>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

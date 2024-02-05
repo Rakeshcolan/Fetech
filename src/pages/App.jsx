@@ -9,7 +9,7 @@ import store from "../redux/store";
 function App() {
   const userRole =
   typeof window !== "undefined" ? sessionStorage.getItem("ur") : null;
-
+  console.log("userrole",userRole);
   const routeType = userRole !== null ? userRole : 0;
   const router = useRoutes(getRoutes(routeType));
   // Need to delete this code after API Integration

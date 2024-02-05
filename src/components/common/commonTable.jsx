@@ -95,7 +95,7 @@ function CustomizedTables(props) {
           <TableHead>
             <TableRow>
               {columns.map((column, i) => (
-                <StyledTableCell key={i} align={column.align}>
+                <StyledTableCell sx={{textAlign:"center",margin:"auto"}} key={i} align={column.align}>
                   {" "}
                   {column.label}
                 </StyledTableCell>
@@ -118,7 +118,7 @@ function CustomizedTables(props) {
             <TableBody>
               {rows?.slice(size * page, size * page + page).map((row, i) => {
                 return (
-                  <StyledTableRow hover role="checkbox" tabIndex={-1} key={i}>
+                  <StyledTableRow  hover role="checkbox" tabIndex={-1} key={i}>
                     {columns?.map((column) => {
                       const value =
                         column.id === "Action" ||
@@ -132,7 +132,7 @@ function CustomizedTables(props) {
 
                       return (
                         <Fragment key={column.id}>
-                          <StyledTableCell>
+                          <StyledTableCell sx={{textAlign:"center",margin:"auto"}}>
                             {value === "Action" ? (
                               <DriveFileRenameOutlineIcon
                                 onClick={() => handleEdit(row)}
