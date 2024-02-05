@@ -19,6 +19,8 @@ const adminSlice = createSlice({
     CMSDetailisLoading: false,
     EarningsDetail: [],
     EarningsDetailisLoading: false,
+    ManageDataDetail: [],
+    ManageDataisLoading: false,
   },
   reducers: {
     addSubAmdinsReducer: (state, { payload }) => {
@@ -60,6 +62,10 @@ const adminSlice = createSlice({
       state.EarningsDetail = payload.apiData;
       state.EarningsDetailisLoading = payload.isLoading;
     },
+    addManageDataReducer: (state, { payload }) => {
+      state.ManageDataDetail = payload.apiData;
+      state.ManageDataisLoading = payload.isLoading;
+    },
   },
 });
 
@@ -73,7 +79,8 @@ export const {
   editSubscriptionApiReducer,
   getSubAdminReducer,
   addCMSApiReducer,
-  getEarningsReducer
+  getEarningsReducer,
+  addManageDataReducer
 } = adminSlice.actions;
 
 export const adminSelector = (state) => state.admin;

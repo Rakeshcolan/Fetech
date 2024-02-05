@@ -16,8 +16,9 @@ export function addLoginApi(body, navigate) {
         showToast("Login Success", "success");
       })
       .catch((e) => {
+        let err = e?.response?.data?.detail || e?.message
         dispatch(loginApiReducer({ isLoading: false }));
-        showToast(e.response.data.detail,"error");
+        showToast(err,"error");
       });
   };
   // return apiHelper(loginApiReducer, "POST", "/login/", body);
