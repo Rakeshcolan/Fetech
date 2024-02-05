@@ -15,7 +15,7 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Collapse from "@mui/material/Collapse";
 import ListIcon from "@mui/icons-material/List";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate,useLocation } from "react-router-dom";
 import {
   AdminMenuItems,
   UsermenuItems,
@@ -131,21 +131,8 @@ export default function RootLayout() {
     };
     return (
       <>
-        <ListItemButton
-          to={path}
-          className="multi-list"
-          onClick={handleClick}
-          sx={{
-            "&:hover": {
-              color: "#00E785",
-            },
-          }}
-        >
-          <ListIcon
-            sx={{
-              marginRight: "8px",
-            }}
-          />
+        <ListItemButton  component={Link} to={path} className="multi-list" onClick={handleClick}>
+          <ListIcon sx={{ marginRight: "8px" }} />
           <ListItemText primary={name} onClick={() => navigate("/")} />
           {open ? (
             <ExpandLessIcon
@@ -167,8 +154,7 @@ export default function RootLayout() {
               return (
                 <div key={index}>
                   <ListItemButton
-                    // component={Link}
-                  
+                    component={Link}
                     to={path}
                     style={{
                       backgroundColor: isActive ? "#00E785" : "",

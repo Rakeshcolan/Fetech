@@ -41,6 +41,7 @@ const ManageClients = () => {
   return (
     <>
       <div className="commonbox">
+
         <h4>Manage Clients</h4>
         <Button className="addBtn" onClick={handleModalOpen}>
           +Add
@@ -58,7 +59,9 @@ const ManageClients = () => {
         />
         {/* )} */}
         <AddClientModal openModal={modalOpen} setOpenModal={handleModalClose} />
+     
       </div>
+
     </>
   );
 };

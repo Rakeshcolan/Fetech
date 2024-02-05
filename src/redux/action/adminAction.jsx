@@ -11,6 +11,8 @@ import {
   getSubscriptionApiReducer,
   addCMSApiReducer,
   getEarningsReducer,
+  editSubscriptionApiReducer,
+  addManageDataReducer,
 } from "../slice/adminSlice";
 
 export function apiHelper(apiReducer, method, apiURL, data = "") {
@@ -29,11 +31,11 @@ export function apiHelper(apiReducer, method, apiURL, data = "") {
 }
 
 export function addSubAmdinsApi(data) {
-  return apiHelper(addSubAmdinsReducer, "POST", "/managedata/", data);
+  return apiHelper(addSubAmdinsReducer, "POST", "/managesubadmin/", data);
 }
 
 export function getSubAdminsApi() {
-  return apiHelper(getSubAdminReducer, "GET", "/managedata/");
+  return apiHelper(getSubAdminReducer, "GET", "/managesubadmin/");
 }
 
 export function addClientApi(body) {
@@ -57,6 +59,15 @@ export function getSubscriptionApi() {
   return apiHelper(getSubscriptionApiReducer, "GET", "/managesubscription/");
 }
 
+export function editSubscriptionApi(data, id) {
+  return apiHelper(
+    editSubscriptionApiReducer,
+    "PUT",
+    `/managesubscription/${id}/`,
+    data
+  );
+}
+
 export function addCMSApi(body) {
   // return apiHelper(addCMSApiReducer,"POST", "/managecms/",body)
   return async (dispatch) => {
@@ -75,4 +86,8 @@ export function addCMSApi(body) {
 
 export function getEarningsApi() {
   return apiHelper(getEarningsReducer, "GET", "/earnings/");
+}
+
+export function addManageDataApi() {
+  return apiHelper(addManageDataReducer, "GET", "/managedata/");
 }

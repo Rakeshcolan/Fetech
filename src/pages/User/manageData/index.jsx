@@ -8,10 +8,15 @@ import {
   manageDataTableHead,
 } from "../../../components/common/tableData";
 import DynamicField from "../../../components/common/Field/DynamicField";
+import * as Yup from "yup";
+import { useFormik } from "formik";
+import { useDispatch } from "react-redux";
+import { addManageDataApi } from "../../../redux/action/adminAction";
 
 const ManageData = () => {
   const [size, setSize] = useState(0);
   const [page, setPage] = useState(5);
+  const dispatch = useDispatch();
 
   const paginationRowsOptions = [5, 10, 20, 50, 100];
 
@@ -24,6 +29,35 @@ const ManageData = () => {
     setPage(newPage);
   };
 
+  const formik = useFormik({
+    enableReinitialize: true,
+    initialValues: {
+      first_name: "",
+      last_name: "",
+      email_id: "",
+      mobile_no: "",
+      product_name: "",
+    },
+    validationSchema: Yup.object({
+      first_name: Yup.string().required("FirstName is required"),
+      last_name: Yup.string().required("LastName is required"),
+      email_id: Yup.string().required("Email is required"),
+      mobile_no: Yup.string().required("Mobile Number is required"),
+      product_name: Yup.string().required("product Name is required"),
+    }),
+    onSubmit: (values) => {
+      let val = {
+        first_name: values.first_name,
+        last_name: values.last_name,
+        email_id: values.email_id,
+        mobile_no: values.mobile_no,
+        product_name: values.product_name,
+      };
+      dispatch(addManageDataApi(val));
+      // navigate("/dashboard/subadmin");
+    },
+  });
+
   return (
     <div className="commonbox">
       <h4>Upload Data</h4>
@@ -31,20 +65,34 @@ const ManageData = () => {
       <br />
       <h4>Manual Upload Data</h4>
       <div className="contentEnd">
-        <Button className="addBtn">+Add</Button>
+        <Button className="addBtn" onClick={formik.handleSubmit}>
+          +Add
+        </Button>
       </div>
       <div className="row">
         <div className="col-lg-6">
-          <CommonTextFields label="First Name" id="Name" />
+          <CommonTextFields
+            label="First Name"
+            id="first_name"
+            formik={formik}
+          />
           <br />
-          <CommonTextFields label="PhoneNumber" id="PhoneNumber" />
+          <CommonTextFields
+            label="PhoneNumber"
+            id="mobile_no"
+            formik={formik}
+          />
           <br />
-          <CommonTextFields label="Email" id="Email" />
+          <CommonTextFields
+            label="Product Name"
+            id="product_name"
+            formik={formik}
+          />
         </div>
         <div className="col-lg-6">
-          <CommonTextFields label="Last Name" id="Name" />
+          <CommonTextFields label="Last Name" id="last_name" formik={formik} />
           <br />
-          <CommonTextFields label="Email" id="Email" />
+          <CommonTextFields label="Email" id="email_id" formik={formik} />
           <br />
           <DynamicField />
         </div>

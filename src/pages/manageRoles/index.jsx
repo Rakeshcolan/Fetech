@@ -27,13 +27,17 @@ const ManageRoles = () => {
   //   navigate("/dashboard/roles/addRole");
   // };
 
+  const handleAddRoles = () => {
+    navigate("/dashboard/addrole");
+  };
+
   return (
     <>
       <div className="commonbox">
-        <h4>Roles & permissions</h4>
+        <h4>Manage Roles & permissions</h4>
         <div>
           {/* <AddButton /> */}
-          <Button className="addBtn" >
+          <Button className="addBtn" onClick={handleAddRoles}>
             +Add
           </Button>
         </div>

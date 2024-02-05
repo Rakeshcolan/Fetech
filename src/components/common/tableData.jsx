@@ -1,6 +1,6 @@
 export const subAdminTableHead = [
   {
-    id: "managedata_id",
+    id: "managesubadmin_id",
     label: "#",
   },
   {
@@ -27,7 +27,7 @@ export const subAdminTableHead = [
     id: "Action",
     label: "Action",
   },
-]
+];
 
 export const subAdminTableData = [
   {
@@ -58,7 +58,7 @@ export const subAdminTableData = [
     Designation: "Manager",
     Status: "Active",
   },
-]
+];
 
 export const dashboardTableHead = [
   {
@@ -80,9 +80,8 @@ export const dashboardTableHead = [
   {
     id: "status",
     label: "Status",
-  }
-]
-
+  },
+];
 
 export const manageDataTableHead = [
   {
@@ -97,13 +96,13 @@ export const manageDataTableHead = [
     id: "PhoneNumber",
     label: "Phone Number",
   },
-]
+];
 
 export const manageDataTableData = [
   { Name: "John Doe", Email: "Johndoe@gmail.com", PhoneNumber: "8934575439" },
   { Name: "David", Email: "david@gmail.com", PhoneNumber: "893457539" },
   { Name: "Sandeep", Email: "Sandeep@gmail.com", PhoneNumber: "8934675439" },
-]
+];
 
 export const RolesAndPermissionsHead = [
   {
@@ -128,8 +127,8 @@ export const RolesAndPermissionsData = [
 
 export const RoleAuthoriZationHead = [
   {
-    id:"#",
-    label:"#"
+    id: "#",
+    label: "#",
   },
   {
     id: "Modules",
@@ -147,38 +146,38 @@ export const RoleAuthoriZationHead = [
     id: "Delete",
     label: "Delete",
   },
-]
+];
 
 export const RoleAuthoriZationData = [
   {
-    "#":1,
+    "#": 1,
     Modules: "Manage Sub Clients",
     View: "checkbox",
     Edit: "checkbox",
     Delete: "checkbox",
   },
   {
-    "#":2,
+    "#": 2,
     Modules: "Manage Business Details",
     View: "checkbox",
     Edit: "checkbox",
     Delete: "checkbox",
   },
   {
-    "#":3,
+    "#": 3,
     Modules: "Manage  Details",
     View: "checkbox",
     Edit: "checkbox",
     Delete: "checkbox",
   },
   {
-    "#":4,
+    "#": 4,
     Modules: "Manage Data",
     View: "checkbox",
     Edit: "checkbox",
     Delete: "checkbox",
   },
-]
+];
 
 export const ClientDataHead = [
   {id:"manageclient_id",label:"#"},
@@ -202,10 +201,10 @@ export const ClientDataHead = [
     id: "billing",
     label: "Billing",
   },
-  {
-    id: "Received_Data",
-    label: "Received Data",
-  },
+  // {
+  //   id: "Received_Data",
+  //   label: "Received Data",
+  // },
 ];
 
 export const DemoaHeadData = [
@@ -230,11 +229,11 @@ export const DemoaHeadData = [
     id: "billing",
     label: "Billing",
   },
-  {
-    id: "Received_Data",
-    label: "Received Data",
-  },
-]
+  // {
+  //   id: "Received_Data",
+  //   label: "Received Data",
+  // },
+];
 
 export const ClientData = [
   {
@@ -273,14 +272,17 @@ export const ClientData = [
     billing: "Active",
     Received_Data: "None",
   },
-]
+];
 
 export const SubscriptionDataHead = [
   {
     id: "subscription_id",
+    label: "Id",
+  },
+  {
+    id: "plan",
     label: "Tier",
   },
-
   {
     id: "subscription_amount",
     label: "Subscription Amount",
@@ -293,29 +295,31 @@ export const SubscriptionDataHead = [
     id: "status",
     label: "Status",
   },
-]
+  {
+    id: "Action",
+    label: "Edit",
+  },
+];
 
 export const EditRole = [
   {
-    id:"role_id",
-    label:"#"
+    id: "role_id",
+    label: "#",
   },
   {
-    id:"modules",
-    label:"Modules"
+    id: "modules",
+    label: "Modules",
   },
   {
-    id:"checkbox",
-    label:"View"
+    id: "checkbox",
+    label: "View",
   },
   {
-    id:"checkbox",
-    label:"Edit"
+    id: "checkbox",
+    label: "Edit",
   },
   {
-    id:"checkbox",
-    label:"Delete"
+    id: "checkbox",
+    label: "Delete",
   },
-]
-
-
+];

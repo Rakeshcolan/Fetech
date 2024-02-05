@@ -13,23 +13,28 @@ const adminSlice = createSlice({
     subscriptionDetailisLoading: false,
     getSubscriptionDetail: [],
     getSubscriptionDetailisLoading: false,
+    editSubscriptionDetail: [],
+    editSubscriptionDetailisLoading: false,
     CMSDetail: [],
     CMSDetailisLoading: false,
     EarningsDetail: [],
     EarningsDetailisLoading: false,
+    ManageDataDetail: [],
+    ManageDataisLoading: false,
   },
   reducers: {
     addSubAmdinsReducer: (state, { payload }) => {
       const { apiData, isLoading } = payload;
+      console.log("apidata",apiData);
       state.subAdminDetail = apiData;
       state.adminDataLoading = isLoading;
     },
     getSubAdminReducer: (state, { payload }) => {
       const { apiData, isLoading } = payload;
+      console.log("apidata",apiData);
       state.getallSubAdminDetail = apiData;
       state.adminDataLoading = isLoading;
     },
-
     addClientApiReducer: (state, { payload }) => {
       state.clientDetail = payload.apiData;
       state.clientDetailisLoading = payload.isLoading;
@@ -43,8 +48,13 @@ const adminSlice = createSlice({
       state.subscriptionDetailisLoading = payload.isLoading;
     },
     getSubscriptionApiReducer: (state, { payload }) => {
+      console.log("payloaddinggg",payload);
       state.getSubscriptionDetail = payload.apiData;
       state.getSubscriptionDetailisLoading = payload.isLoading;
+    },
+    editSubscriptionApiReducer: (state, { payload }) => {
+      state.editSubscriptionDetail = payload.apiData;
+      state.editSubscriptionDetailisLoading = payload.isLoading;
     },
     addCMSApiReducer: (state, { payload }) => {
       state.CMSDetail = payload.apiData;
@@ -53,6 +63,10 @@ const adminSlice = createSlice({
     getEarningsReducer: (state, { payload }) => {
       state.EarningsDetail = payload.apiData;
       state.EarningsDetailisLoading = payload.isLoading;
+    },
+    addManageDataReducer: (state, { payload }) => {
+      state.ManageDataDetail = payload.apiData;
+      state.ManageDataisLoading = payload.isLoading;
     },
   },
 });
@@ -64,9 +78,11 @@ export const {
   getClientApiReducer,
   addSubscriptionApiReducer,
   getSubscriptionApiReducer,
+  editSubscriptionApiReducer,
   getSubAdminReducer,
   addCMSApiReducer,
-  getEarningsReducer
+  getEarningsReducer,
+  addManageDataReducer
 } = adminSlice.actions;
 
 export const adminSelector = (state) => state.admin;

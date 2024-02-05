@@ -19,13 +19,13 @@ export default function AddSubscriptionModal(props) {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      Tier: "",
+      plan: "",
       subscription_amount: "",
       description: "",
       status: "",
     },
     validationSchema: Yup.object({
-      Tier: Yup.string().required("Tier is required"),
+      plan: Yup.string().required("Tier is required"),
       subscription_amount: Yup.string().required(
         "subscription amount is required"
       ),
@@ -34,7 +34,7 @@ export default function AddSubscriptionModal(props) {
     }),
     onSubmit: (values) => {
       let val = {
-        Tier: values.Tier,
+        plan: values.plan,
         subscription_amount: values.subscription_amount,
         description: values.description,
         status: values.status,
@@ -75,7 +75,7 @@ export default function AddSubscriptionModal(props) {
           <div>
             <CommonTextFields
               label="Tier"
-              id="Tier"
+              id="plan"
               formik={formik}
               placeholder=""
             />

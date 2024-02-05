@@ -10,6 +10,7 @@ const EditSubAdmin = () => {
   const [editData, setEditData] = useState({});
   const location = useLocation();
   const navigate = useNavigate();
+  
   const handleRedirect = () => {
     navigate("/dashboard/subadmin");
   };

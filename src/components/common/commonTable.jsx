@@ -12,6 +12,8 @@ import { Fragment } from "react";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import "./commonComp.css";
 import { useLocation, useNavigate } from "react-router";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { useState } from "react";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -57,7 +59,7 @@ function CustomizedTables(props) {
   };
 
   const {
-    rows,
+    rows = [],
     columns,
     // page = 5,
     // size = 0,
@@ -73,7 +75,22 @@ function CustomizedTables(props) {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // if (!Array.isArray(rows)) {
+  //   console.error('Invalid data structure for "rows". Expected an array.');
+  //   return null; // or handle the error in a way that fits your application
+  // }
+
+  // if (loading) {
+  //   return <p>Loading...</p>; // or your preferred loading indicator
+  // }
+
+  console.log("Type of rows:", rows);
+
+  console.log(rows, "rows");
+  console.log(columns, "columns");
+
   let pathname = location.pathname.split("/")[2];
+
   const prevCountRef = React.useRef();
 
   React.useEffect(() => {
@@ -81,13 +98,13 @@ function CustomizedTables(props) {
   }, []);
 
   const startIndex = size * page + 1;
-  const endIndex = (size * (page + 1), rows?.length);
+  const endIndex = Math.min((size + 1) * page, rows?.length);
   const totalEntries = rows?.length;
 
   const handleEdit = (data) => {
     navigate(`/dashboard/edit${pathname}`, { state: { data } });
   };
-  
+
   return (
     <Paper elevation={0}>
       <TableContainer component={Paper}>
@@ -124,11 +141,13 @@ function CustomizedTables(props) {
                         column.id === "Action" ||
                         column.id === "status" ||
                         column.id === "View" ||
-                        column.id === "Edit" ||
                         column.id === "designation" ||
-                        column.id === "Delete"
+                        column.id === "Delete" ||
+                        column.id === "Edit" 
                           ? column.id
                           : row[column.id];
+
+                      // console.log(row[column.id], "row[column.id]");
 
                       return (
                         <Fragment key={column.id}>
@@ -148,17 +167,24 @@ function CustomizedTables(props) {
                                   color: row[column.id] ? "black" : "white",
                                   "&:hover": {
                                     backgroundColor:
-                                      row[column.id] === "Active"
+                                      row[column.id] === false
                                         ? "#FF3939 !important"
                                         : "#00e785 !important",
                                   },
                                 }}
                               >
-                                {row[column.id] ? "Active" : "InActive"}
+                                {row[column.id] === true
+                                  ? "Active"
+                                  : "InActive"}
                               </Button>
-                            ) : value === "Edit" || value === "View" ? (
+                            ) : value === "View" ? (
+                              // <VisibilityIcon />
                               <Checkbox />
                             ) : value === "Delete" ? (
+                              // <DeleteIcon />
+                              <Checkbox />
+                            ) : value === "Edit" ? (
+                              // <DeleteIcon />
                               <Checkbox />
                             ) : value === "designation" ? (
                               roleObj[row["designation"]]
