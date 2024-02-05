@@ -22,7 +22,7 @@ const ManageChatBot = () => {
       <h4>Manage Chatbot</h4>
       <div className="manageDrop">
 
-      <label>Select Client Name :</label>
+      {/* <label>Select Client Name :</label>
       <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
         <InputLabel id="demo-select-small-label">Age</InputLabel>
         <Select
@@ -39,7 +39,7 @@ const ManageChatBot = () => {
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
-      </FormControl>
+      </FormControl> */}
       </div>
       <DataTable flowData = {flowData}/>
         </div>

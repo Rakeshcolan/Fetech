@@ -9,7 +9,6 @@ import { useFormik } from "formik";
 const EditSubAdmin = () => {
   const [editData, setEditData] = useState({});
   const location = useLocation();
-  console.log("location",location);
   const navigate = useNavigate();
   
   const handleRedirect = () => {

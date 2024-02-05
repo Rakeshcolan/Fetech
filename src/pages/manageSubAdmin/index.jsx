@@ -15,16 +15,14 @@ const ManageSubAdmin = () => {
 
   const paginationRowsOptions = [5, 10, 20, 50, 100];
 
-  const { getallSubAdminDetail, addsubAdminDetail } =
-    useSelector(adminSelector);
-    
+  const { getallSubAdminDetail, subAdminDetail } = useSelector(adminSelector);
   const handlePerRowsChange = async (event) => {
     setPage(+event.target.value);
     setSize(0);
   };
 
   const handlePageChange = async (event, newPage) => {
-    setPage(newPage);
+    setSize(newPage)
   };
 
   const handleModalOpen = () => {
@@ -33,7 +31,7 @@ const ManageSubAdmin = () => {
 
   useEffect(() => {
     dispatch(getSubAdminsApi());
-  }, [addsubAdminDetail]);
+  }, [subAdminDetail]);
 
   return (
     <>

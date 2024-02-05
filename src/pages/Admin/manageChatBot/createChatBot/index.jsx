@@ -30,7 +30,6 @@ const CreateChat = () => {
   let { action = "", arrayIndex = "" } = location?.state || {};
   let dispatch = useDispatch();
   let nodeObject = useSelector((state) => state.flow.flowData);
-  console.log("nodeeeeobjecttt",nodeObject);
   const [chatbotData, setChatbotData] = useState({
     clientName: "",
     chatbotName: "",

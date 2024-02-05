@@ -44,45 +44,48 @@ export const APIService = async (method, url, body, params) => {
         }
       })
       .catch((e) => {
-        console.log("ERROR OCCURED", e);
+        // console.log("ERROR OCCURED", e);
         if (e.message === "Network Error") {
           // navigate("/common/networkIssue");
           showToast(e.message,"error")
+          //adding this to avoid propogation of error to the redux action
+          return Promise.reject();
         } 
         else if(e?.response?.status === 400){
-          // showToast(e?.response?.data,"error")
-          showToast("please check the credentials","error")
+          showToast("please check the credentioals","error")
+          return Promise.reject();
         }
         
-        else if (e.response.status === 401 || e.response.status === 403) {
-          // UNCOMMENT THIS CODE WHEN API IS READY
-          // const refreshToken =
-          //   typeof window !== "undefined"
-          //     ? sessionStorage.getItem("refreshToken")
-          //     : "";
-          // if (e.response.status === 401) {
-          //   axios
-          //     .post(`${AUTH_BASE_URL}/refreshtoken/${refreshToken}`)
-          //     .then((token) => {
-          //       const { data } = token;
-          //       sessionStorage.setItem(
-          //         "accessToken",
-          //         "Bearer " + data.accessToken
-          //       );
-          //       sessionStorage.setItem("refreshToken", data.refreshToken);
-          //       router.reload(window.location.pathname);
-          //     });
-          // }
+        // else if (e.response.status === 401 || e.response.status === 403) {
+        //   // UNCOMMENT THIS CODE WHEN API IS READY
+        //   // const refreshToken =
+        //   //   typeof window !== "undefined"
+        //   //     ? sessionStorage.getItem("refreshToken")
+        //   //     : "";
+        //   // if (e.response.status === 401) {
+        //   //   axios
+        //   //     .post(`${AUTH_BASE_URL}/refreshtoken/${refreshToken}`)
+        //   //     .then((token) => {
+        //   //       const { data } = token;
+        //   //       sessionStorage.setItem(
+        //   //         "accessToken",
+        //   //         "Bearer " + data.accessToken
+        //   //       );
+        //   //       sessionStorage.setItem("refreshToken", data.refreshToken);
+        //   //       router.reload(window.location.pathname);
+        //   //     });
+        //   // }
 
-          // REMOVE THIS CODE WHEN API IS READY
-          // errorMessage(e?.response?.data?.httpStatus);
-          // navigate("/auth/login");
-          sessionStorage.clear();
-          localStorage.clear();
-        }
-        if (roles === null || undefined || "") {
-          // navigate("/auth/login");
-        }
+        //   // REMOVE THIS CODE WHEN API IS READY
+        //   // errorMessage(e?.response?.data?.httpStatus);
+        //   // navigate("/auth/login");
+        //   sessionStorage.clear();
+        //   localStorage.clear();
+        // }
+        // if (roles === null || undefined || "") {
+        //   // navigate("/auth/login");
+        // }
+        return Promise.reject(e);
       });
   } else {
     // navigate("/common/internetIssue");

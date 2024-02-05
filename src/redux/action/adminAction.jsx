@@ -20,8 +20,9 @@ export function apiHelper(apiReducer, method, apiURL, data = "") {
     dispatch(apiReducer({ isLoading: true }));
     APIService(method, apiURL, data)
       .then((e) => {
-        dispatch(apiReducer({ apiData: e?.data, isLoading: false }));
-        method === "POST" && showToast("Added Data", "success");
+        
+            dispatch(apiReducer({ apiData: e?.data, isLoading: false }));
+          method === "POST" && showToast("Added Data", "success");
       })
       .catch((e) => {
         dispatch(apiReducer({ isLoading: false }));
@@ -31,11 +32,11 @@ export function apiHelper(apiReducer, method, apiURL, data = "") {
 }
 
 export function addSubAmdinsApi(data) {
-  return apiHelper(addSubAmdinsReducer, "POST", "/managedata/", data);
+  return apiHelper(addSubAmdinsReducer, "POST", "/managesubadmin/", data);
 }
 
 export function getSubAdminsApi() {
-  return apiHelper(getSubAdminReducer, "GET", "/managedata/");
+  return apiHelper(getSubAdminReducer, "GET", "/managesubadmin/");
 }
 
 export function addClientApi(body) {

@@ -134,3 +134,6 @@
 ::-webkit-scrollbar-thumb {
   background-color: rgb(196 205 213); /* Set the color of the scrollbar thumb */
 }
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  height: 0.4375em !important;
+}

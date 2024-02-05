@@ -1,6 +1,6 @@
 export const subAdminTableHead = [
   {
-    id: "managedata_id",
+    id: "managesubadmin_id",
     label: "#",
   },
   {
@@ -106,6 +106,10 @@ export const manageDataTableData = [
 
 export const RolesAndPermissionsHead = [
   {
+    id: "#",
+    label: "#",
+  },
+  {
     id: "Roles",
     label: "Roles",
   },
@@ -116,9 +120,10 @@ export const RolesAndPermissionsHead = [
 ];
 
 export const RolesAndPermissionsData = [
-  { Roles: "Accountant", Action: "checkbox" },
-  { Roles: "Manager", Action: "checkbox" },
-  { Roles: "Employee", Action: "checkbox" },
+
+  {"#":1, Roles: "Accountant", Action: "checkbox" },
+  {"#":2, Roles: "Manager", Action: "checkbox" },
+  {"#":3, Roles: "Employee", Action: "checkbox" },
 ];
 
 export const RoleAuthoriZationHead = [
@@ -197,10 +202,10 @@ export const ClientDataHead = [
     id: "billing",
     label: "Billing",
   },
-  {
-    id: "Received_Data",
-    label: "Received Data",
-  },
+  // {
+  //   id: "Received_Data",
+  //   label: "Received Data",
+  // },
 ];
 
 export const DemoaHeadData = [

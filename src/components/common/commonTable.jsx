@@ -7,13 +7,14 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Button, TablePagination } from "@mui/material";
+import { Button, Checkbox, TablePagination } from "@mui/material";
 import { Fragment } from "react";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import "./commonComp.css";
 import { useLocation, useNavigate } from "react-router";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useState } from "react";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -42,17 +43,34 @@ let roleObj = {
 };
 
 function CustomizedTables(props) {
+  //Moved pagination to the component up to avoid reusing. if needed we can send it in props in future. Moved the state up
+  const [size, setSize] = useState(0);
+  const [page, setPage] = useState(5);
+  const paginationRowsOptions = [5, 10, 20, 50, 100];
+
+  // const { getallSubAdminDetail, subAdminDetail } = useSelector(adminSelector);
+  const handlePerRowsChange = async (event) => {
+    setPage(+event.target.value);
+    setSize(0);
+  };
+
+  const handlePageChange = async (event, newPage) => {
+    setSize(newPage);
+  };
+
   const {
     rows = [],
     columns,
-    // loading = false, // add loading as a prop
-    page = 5,
-    size = 0,
-    rowsPerPageOptions = 5,
-    handleChangePage = 5,
-    handleChangeRowsPerPage = 5,
-    paginationStatus = 5,
+    // page = 5,
+    // size = 0,
+    // rowsPerPageOptions = 5,
+    // handleChangePage = 5,
+    // handleChangeRowsPerPage = 5,
+    paginationStatus,
   } = props;
+
+  // console.log(rows, "rows");
+  // console.log(columns, "columns");
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -124,11 +142,12 @@ function CustomizedTables(props) {
                         column.id === "status" ||
                         column.id === "View" ||
                         column.id === "designation" ||
-                        column.id === "Delete"
+                        column.id === "Delete" ||
+                        column.id === "Edit" 
                           ? column.id
                           : row[column.id];
 
-                      console.log(row[column.id], "row[column.id]");
+                      // console.log(row[column.id], "row[column.id]");
 
                       return (
                         <Fragment key={column.id}>
@@ -159,9 +178,14 @@ function CustomizedTables(props) {
                                   : "InActive"}
                               </Button>
                             ) : value === "View" ? (
-                              <VisibilityIcon />
+                              // <VisibilityIcon />
+                              <Checkbox />
                             ) : value === "Delete" ? (
-                              <DeleteIcon />
+                              // <DeleteIcon />
+                              <Checkbox />
+                            ) : value === "Edit" ? (
+                              // <DeleteIcon />
+                              <Checkbox />
                             ) : value === "designation" ? (
                               roleObj[row["designation"]]
                             ) : (
@@ -191,13 +215,13 @@ function CustomizedTables(props) {
           </div>
           <div>
             <TablePagination
-              rowsPerPageOptions={rowsPerPageOptions}
+              rowsPerPageOptions={paginationRowsOptions}
               component="div"
               count={rows?.length || 0}
               rowsPerPage={page}
               page={size}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
+              onPageChange={handlePageChange}
+              onRowsPerPageChange={handlePerRowsChange}
               className="pagination-text"
             />
           </div>
