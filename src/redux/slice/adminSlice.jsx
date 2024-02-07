@@ -27,7 +27,8 @@ const adminSlice = createSlice({
     getchatBotDataisLoading:false,
     getChatBotDataByIdisLoading:false,
     getAllChatbotData:[],
-    getAllchatBotDataisLoading:false
+    getAllchatBotDataisLoading:false,
+    designationData:[]
   },
   reducers: {
     addSubAmdinsReducer: (state, { payload }) => {
@@ -100,12 +101,18 @@ const adminSlice = createSlice({
     editChatBotByIdReducer:(state,{payload})=>{
       state.editChatBotById = payload.apiData;
       state.editChatBotByIdisLoading = payload.isLoading
+    },
+    getRolesReducer:(state,{payload})=>{
+      const { apiData, isLoading } = payload;
+      state.designationData = apiData;
+      
     }
   },
 });
 
 export const {
   addChatbotReducer,
+  getRolesReducer,
   editChatBotByIdReducer,
   getChatbotReducer,
   getAllChatbotReducer,

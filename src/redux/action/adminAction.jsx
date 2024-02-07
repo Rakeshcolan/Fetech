@@ -19,6 +19,7 @@ import {
   getAllChatbotReducer,
   getChatbotByIdReducer,
   editChatBotByIdReducer,
+  getRolesReducer,
 } from "../slice/adminSlice";
 
 export function apiHelper(apiReducer, method, apiURL, data = "") {
@@ -122,4 +123,8 @@ export function getChatBotByIdApi(id){
 
 export function editChatByIdApi(id,data){
   return apiHelper(editChatBotByIdReducer,"PUT",`/managechatbot/${id}/`,data)
+}
+
+export function getRolesApi(){
+  return apiHelper(getRolesReducer,'GET','/designation/')
 }

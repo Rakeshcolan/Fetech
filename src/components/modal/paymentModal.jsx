@@ -7,6 +7,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useDispatch } from 'react-redux';
 import { addPayment } from '../../redux/slice/flowSlice';
+import { Formik } from 'formik';
 
 export default function AlertUser({open,setOpenModal}) {
 //   const [open, setOpen] = React.useState(false);
@@ -20,6 +21,7 @@ const handleAgree = ()=>{
 }
   const handleClose = () => {
     setOpenModal(false)
+    
   };
 
   return (

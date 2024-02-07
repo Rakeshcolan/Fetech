@@ -7,17 +7,19 @@ import "../modal/modal.css";
 import CancelIcon from "@mui/icons-material/Cancel";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
-import { addSubAmdinsApi } from "../../redux/action/adminAction";
+import { useDispatch, useSelector } from "react-redux";
+import { addSubAmdinsApi, getRolesApi } from "../../redux/action/adminAction";
 import CommonDropDown from "../common/Field/CommonDropDown";
+import { adminSelector } from "../../redux/slice/adminSlice";
+import { useEffect } from "react";
 
 export default function AddSubAdminModal(props) {
-
   const { openModal, setOpenModal } = props;
   const dispatch = useDispatch();
-
+  const {designationData} = useSelector(adminSelector)
   const handleClose = () => {
     setOpenModal(false);
+    formik.resetForm();
   };
 
   const formik = useFormik({
@@ -32,25 +34,25 @@ export default function AddSubAdminModal(props) {
     },
     validationSchema: Yup.object({
       first_name: Yup.string()
-        .required("FirstName is required")
+        .required("FirstName Is Required")
         .matches(
           /^[a-zA-Z\s]+$/,
-          "FirstName can only contain alphabet characters"
+          "FirstName Can Only Contain Alphabet Characters"
         ),
       last_name: Yup.string()
         .required("LastName is required")
         .matches(
           /^[a-zA-Z\s]+$/,
-          "LastName can only contain alphabet characters"
+          "LastName Can Only Contain Alphabet Characters"
         ),
       email_id: Yup.string()
-        .required("Email is required")
-        .email("Invalid email format"),
+        .required("Email Is Required")
+        .email("Invalid Email Format"),
       mobile_no: Yup.string()
-        .matches(/^[0-9]{10}$/, "Invalid phone number") // Check for 10-digit numeric phone number
-        .required("PhoneNumber is required"),
-      status: Yup.string().required("Status is required"),
-      designation: Yup.string().required("Designation is required"),
+        .matches(/^[0-9]{10}$/, "Invalid Phone Number") // Check for 10-digit numeric phone number
+        .required("PhoneNumber Is Required"),
+      status: Yup.string().required("Status Is Required"),
+      designation: Yup.string().required("Designation Is Required"),
     }),
     onSubmit: (values) => {
       let val = {
@@ -67,6 +69,10 @@ export default function AddSubAdminModal(props) {
     },
   });
 
+  useEffect(()=>{
+    dispatch(getRolesApi())
+  },[])
+
   return (
     <React.Fragment>
       <Dialog
@@ -82,7 +88,7 @@ export default function AddSubAdminModal(props) {
                 id="alert-dialog-title"
                 sx={{ paddingLeft: "0px !important" }}
               >
-                Add Sub Admins
+                Add SubAdmins
               </DialogTitle>
             </div>
             <div>
@@ -147,11 +153,7 @@ export default function AddSubAdminModal(props) {
               label="Designation"
               placeholder="Select an Designation"
               formik={formik}
-              options={[
-                { value: "1", label: "Employer" },
-                { value: "2", label: "Manager" },
-                { value: "3", label: "Accountant" },
-              ]}
+              options={designationData}
             />
           </div>
           <br />
@@ -163,5 +165,5 @@ export default function AddSubAdminModal(props) {
         </div>
       </Dialog>
     </React.Fragment>
-  )
+  );
 }

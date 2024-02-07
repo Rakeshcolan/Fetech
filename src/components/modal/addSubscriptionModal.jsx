@@ -15,6 +15,7 @@ export default function AddSubscriptionModal(props) {
   const dispatch = useDispatch();
   const handleClose = () => {
     setOpenModal(false);
+    formik.resetForm()
   };
   const formik = useFormik({
     enableReinitialize: true,

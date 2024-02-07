@@ -27,6 +27,7 @@ export default function AddClientModal(props) {
 
   const handleClose = () => {
     setOpenModal(false);
+    formik.resetForm()
   };
 
   useEffect(() => {
