@@ -25,6 +25,7 @@ import AlertUser from "../modal/paymentModal";
 import { NodeContext } from "../../nodecontext/nodeContext";
 import { useDispatch } from "react-redux";
 import { addInstance } from "../../redux/slice/flowSlice";
+import { adminSelector } from "../../redux/slice/adminSlice";
 
 const FlowPage = forwardRef((props, ref) => {
   const {
@@ -40,6 +41,9 @@ const FlowPage = forwardRef((props, ref) => {
     onStop,
     setEdges,
   } = props;
+
+  console.log("flowpageee",nodes);
+  const{getChatBotDataById} = useSelector(adminSelector)
 
   const reactFlowWrapper = useRef(null);
   let contextdata = useContext(NodeContext);
@@ -57,7 +61,7 @@ const nodesRef = useRef(nodes);
 
 useEffect(() => {
   nodesRef.current = nodes;
-}, [nodes]);
+}, [nodes,setNodes]);
 
   const getId = () => {
     let oldNodeId = nodesRef.current?.filter((node) => node.id.includes("dndnode"));
@@ -91,7 +95,8 @@ useEffect(() => {
   //updating node from context value
   useEffect(() => {
     updateNode(changeId, value);
-  }, [value]);
+ 
+  }, [value,setNodes]);
 
   const updateNode = (id, value) => {
     setNodes((nds) =>
@@ -174,8 +179,8 @@ useEffect(() => {
   );
   useEffect(() => {
     setNodeNum(nodes.length);
-    dispatch(addInstance({ instance: reactFlowInstance }));
-  }, [nodes]);
+    // dispatch(addInstance({ instance: reactFlowInstance }));
+  }, [nodes,dispatch,setNodes, getChatBotDataById]);
 
   const Payment = () => {
     setOpenModal(true);
@@ -210,4 +215,4 @@ useEffect(() => {
     </>
   );
 });
-export default memo(FlowPage);
+export default FlowPage;

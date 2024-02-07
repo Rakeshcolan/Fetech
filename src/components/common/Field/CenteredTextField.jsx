@@ -1,6 +1,9 @@
 import React from "react";
 import TextField from "@mui/material/TextField";
 import { Stack } from "@mui/system";
+import { Typography } from "@mui/material";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 const CenteredTextField = ({
   id,
@@ -10,6 +13,8 @@ const CenteredTextField = ({
   disabled,
   placeholder,
   required,
+  type ="text",
+  handleShowPassword,
   ...props
 }) => {
   const handleChange = (e) => {
@@ -21,12 +26,14 @@ const CenteredTextField = ({
       justifyContent="center"
       alignItems="center"
       spacing={2}
+      position = "relative"
     >
       <TextField
+
         fullWidth
         id={id}
         margin="normal"
-        type="text"
+        type={type}
         variant="outlined"
         disabled={disabled}
         placeholder={placeholder}
@@ -46,7 +53,7 @@ const CenteredTextField = ({
           mb: 0,
           borderRadius: "10px",
           // backgroundColor: "#D9D9D9",
-          
+         
           "& .MuiOutlinedInput-input": customStyles?.OutlinedInput,
         }}
         // InputProps={{
@@ -67,6 +74,9 @@ const CenteredTextField = ({
         // }}
         {...props}
       />
+      { id==="password" && <VisibilityIcon sx={{position:"absolute",right:"5px",bottom:"10px",fontWeight:"400px"}} onClick={()=>handleShowPassword()}></VisibilityIcon>}
+      
+      
     </Stack>
   );
 };

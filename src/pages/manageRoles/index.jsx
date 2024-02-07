@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CustomizedTables from "../../components/common/commonTable";
 import {
@@ -11,7 +12,7 @@ const ManageRoles = () => {
   const [size, setSize] = useState(0);
   const [page, setPage] = useState(5);
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const paginationRowsOptions = [5, 10, 20, 50, 100];
 
   const handlePerRowsChange = async (event) => {
@@ -30,6 +31,10 @@ const ManageRoles = () => {
   const handleAddRoles = () => {
     navigate("/dashboard/addrole");
   };
+
+  const handleDelete = ()=>{
+    
+  }
 
   return (
     <>
@@ -51,6 +56,7 @@ const ManageRoles = () => {
             size={size}
             handleChangePage={handlePageChange}
             handleChangeRowsPerPage={handlePerRowsChange}
+            onDelete = {handleDelete}
           />
           {/* <div className="contentCenter">
             <Button className="submitBtn">Submit</Button>

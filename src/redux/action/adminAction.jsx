@@ -13,6 +13,12 @@ import {
   getEarningsReducer,
   editSubscriptionApiReducer,
   addManageDataReducer,
+  deleteClientReducer,
+  addChatbotReducer,
+  getChatbotReducer,
+  getAllChatbotReducer,
+  getChatbotByIdReducer,
+  editChatBotByIdReducer,
 } from "../slice/adminSlice";
 
 export function apiHelper(apiReducer, method, apiURL, data = "") {
@@ -20,6 +26,7 @@ export function apiHelper(apiReducer, method, apiURL, data = "") {
     dispatch(apiReducer({ isLoading: true }));
     APIService(method, apiURL, data)
       .then((e) => {
+        console.log("chatbotdata",e);
           dispatch(apiReducer({ apiData: e?.data, isLoading: false }));
           method === "POST" && showToast("Added Data", "success");
       })
@@ -90,4 +97,29 @@ export function getEarningsApi() {
 
 export function addManageDataApi() {
   return apiHelper(addManageDataReducer, "GET", "/managedata/");
+}
+
+export function addChatBotApi(data){
+  console.log("chatbotdataneeeee",data);
+  return apiHelper(addChatbotReducer,"POST",'/managechatbot/',data)
+}
+
+export function getChatBotApi(id){
+  return apiHelper(getChatbotReducer,"GET",`/managechatbot/${id}`)
+}
+export function getallChatBotApi(){
+  return apiHelper(getAllChatbotReducer,"GET",`/managechatbot/`)
+}
+
+
+export function deleteClientApi(id){
+  return apiHelper(deleteClientReducer,'DELETE',`/manageclients/${id}`)
+}
+
+export function getChatBotByIdApi(id){
+  return apiHelper(getChatbotByIdReducer,'GET',`/managechatbot/${id}/`)
+}
+
+export function editChatByIdApi(id,data){
+  return apiHelper(editChatBotByIdReducer,"PUT",`/managechatbot/${id}/`,data)
 }

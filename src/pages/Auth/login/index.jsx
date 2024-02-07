@@ -6,20 +6,27 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { addLoginApi } from "../../../redux/action/authAction";
+import { useRef } from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const Login = () => {
+  let remembercheck = useRef(null)
+  const[rememberstatus,setRememberstatus] = useState(localStorage.getItem('remember')||false);
+  const[rememberme,setRememberme] = useState(localStorage.getItem('remember')||'')
+  const [showpassword,setShowPassword] = useState(false)
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const handleNavigate = () => {
     navigate("/register");
   };
+  
 
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      username: "",
-      password: "",
+      username: localStorage.getItem('fetechApp-username')||"",
+      password: localStorage.getItem('fetechApp-password')|| "",
     },
     validationSchema: Yup.object({
       username: Yup.string()
@@ -32,6 +39,16 @@ const Login = () => {
         username: values.username,
         password: values.password,
       };
+      if(rememberstatus){
+        localStorage.setItem('fetechApp-username',formik.values.username)
+        localStorage.setItem('fetechApp-password',formik.values.password)
+        
+      }
+      else {
+        localStorage.setItem('fetechApp-username','')
+        localStorage.setItem('fetechApp-password','')
+        localStorage.setItem('remember','')
+      }
 
         dispatch(addLoginApi(val,navigate));
 
@@ -39,7 +56,30 @@ const Login = () => {
       // setOpenModal(false);
     },
   });
+  console.log("rembebrrr",remembercheck?.current?.checked);
+  
+  useEffect(()=>{
+   
+    if(rememberme == 'true'){
+      remembercheck.current.checked = true
+      // handleRemember();
+    }
+  },[rememberme])
 
+  const handleRemember = ()=>{
+    setRememberstatus(remembercheck?.current?.checked)
+    if(rememberme == 'true'){
+      localStorage.setItem('remember','')
+    }
+    else{
+      localStorage.setItem('remember','true')
+    }
+
+  }
+
+  const handleShowPassword = ()=>{
+    setShowPassword(!showpassword)
+  }
   return (
     <div>
 
@@ -68,13 +108,16 @@ const Login = () => {
           <CenteredTextField
             label="Password"
             id="password"
+            type={showpassword?"text":"password"}
+            handleShowPassword ={handleShowPassword}
             placeholder="Password"
             formik={formik}
           />
           <br />
           <div className="form-options">
             <label>
-              <input type="checkbox" name="rememberMe" /> Remember Me
+
+              <input type="checkbox" name="rememberMe" ref={remembercheck} onChange={handleRemember}/> Remember Me
             </label>
             <span className="forgot-password">Forgot Password?</span>
           </div>

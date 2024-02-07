@@ -33,6 +33,10 @@ const ManageSubAdmin = () => {
     dispatch(getSubAdminsApi());
   }, [subAdminDetail]);
 
+  const handleDelete=()=>{
+    
+  }
+
   return (
     <>
       <div className="commonbox">
@@ -50,6 +54,7 @@ const ManageSubAdmin = () => {
           size={size}
           handleChangePage={handlePageChange}
           handleChangeRowsPerPage={handlePerRowsChange}
+          onDelete = {handleDelete}
         />
         <AddSubAdminModal openModal={modalOpen} setOpenModal={setModalOpen} />
       </div>

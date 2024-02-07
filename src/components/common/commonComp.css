@@ -137,3 +137,10 @@
 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
   height: 0.4375em !important;
 }
+
+.css-pdct74-MuiTablePagination-selectLabel {
+  padding-top: 10px !important;
+}
+.css-levciy-MuiTablePagination-displayedRows {
+  padding-top: 12px !important;
+}

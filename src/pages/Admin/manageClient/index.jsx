@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CustomizedTables from "../../../components/common/commonTable";
 import { ClientDataHead } from "../../../components/common/tableData";
 import AddClientModal from "../../../components/modal/addClientModal";
-import { getClientApi } from "../../../redux/action/adminAction";
+import { deleteClientApi, getClientApi } from "../../../redux/action/adminAction";
 import { adminSelector } from "../../../redux/slice/adminSlice";
 import "../../../styles/App.css";
 
@@ -33,6 +33,11 @@ const ManageClients = () => {
   const handleModalClose = () => {
     setModalOpen(false);
   };
+  const handleDelete = (id)=>{
+    alert('deleting')
+    // deleteClientApi(id)
+  }
+
 
   useEffect(() => {
     dispatch(getClientApi());
@@ -52,6 +57,7 @@ const ManageClients = () => {
           rows={getClientDetail}
           paginationStatus={true}
           rowsPerPageOptions={paginationRowsOptions}
+          onDelete = {handleDelete}
           // page={page}
           // size={size}
           // handleChangePage={handlePageChange}

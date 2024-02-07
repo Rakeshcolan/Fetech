@@ -15,37 +15,7 @@ const Register = () => {
     navigate("/");
   };
 
-  // const formik = useFormik({
-  //   initialValues: {
-  //     username: "",
-  //     email_id: "",
-  //     mobile_no: "",
-  //     password: "",
-  //   },
-  //   validationSchema: Yup.object({
-  //     username: Yup.string()
-  //       .required("Name is required")
-  //       .matches(/^[a-zA-Z\s]+$/, "Name can only contain alphabet characters"),
-  //     email_id: Yup.string()
-  //       .required("Email is required")
-  //       .email("Invalid email format"),
-  //     mobile_no: Yup.string()
-  //       .matches(/^[0-9]{10}$/, "Invalid phone number (should be 10 digits)")
-  //       .required("Phone number is required"),
-  //     password: Yup.string().required("Password is required"),
-  //   }),
-  //   onSubmit: async (values) => {
-  //     let val = {
-  //       username: values.username,
-  //       last_name: values.last_name,
-  //       email_id: values.email_id,
-  //       mobile_no: values.mobile_no,
-  //       password: values.password,
-  //       is_superuser: true,
-  //     };
-  //     dispatch(registerApi(val,navigate));
-  //   },
-  // });
+  
 
   const formik = useFormik({
     enableReinitialize: true,
@@ -117,6 +87,7 @@ const Register = () => {
           <CenteredTextField
             label="Phone Number"
             id="mobile_no"
+            type="number"
             placeholder="Phone Number"
             formik={formik}
           />

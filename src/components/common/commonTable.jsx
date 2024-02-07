@@ -66,6 +66,7 @@ function CustomizedTables(props) {
     // rowsPerPageOptions = 5,
     // handleChangePage = 5,
     // handleChangeRowsPerPage = 5,
+    onDelete,
     paginationStatus,
   } = props;
 
@@ -84,10 +85,6 @@ function CustomizedTables(props) {
   //   return <p>Loading...</p>; // or your preferred loading indicator
   // }
 
-  console.log("Type of rows:", rows);
-
-  console.log(rows, "rows");
-  console.log(columns, "columns");
 
   let pathname = location.pathname.split("/")[2];
 
@@ -153,10 +150,13 @@ function CustomizedTables(props) {
                         <Fragment key={column.id}>
                           <StyledTableCell sx={{textAlign:"center",margin:"auto"}}>
                             {value === "Action" ? (
+                              <>
                               <DriveFileRenameOutlineIcon
                                 onClick={() => handleEdit(row)}
                                 className="edit-icon"
                               />
+                              <DeleteIcon className="edit-icon" onClick={()=>onDelete()}/>
+                              </>
                             ) : value === "status" ? (
                               <Button
                                 className="activeBtn"

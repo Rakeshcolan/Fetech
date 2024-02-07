@@ -45,7 +45,6 @@ export default function DataTable(props) {
     }
 
 
-
   return (
     <div
       style={{
@@ -61,10 +60,10 @@ export default function DataTable(props) {
         <Button color="success" variant="contained"  onClick={()=>handleRoute("Add","/flowpage")}>
           Add
         </Button>
-        <span>||</span>
-        <Button color="success" variant="contained" onClick={()=>dispatch(resetFormData({value:[]}))}>
+        {/* <span>||</span> */}
+        {/* <Button color="success" variant="contained" onClick={()=>dispatch(resetFormData({value:[]}))}>
           Reset
-        </Button>
+        </Button> */}
         </div>
       </div>
 
@@ -79,9 +78,10 @@ export default function DataTable(props) {
           </TableHead>
           <TableBody>
             {flowData.map((row,i) => (
+             
               <StyledTableRow key={i}>
-                <StyledTableCell>{row.flowName.clientName}</StyledTableCell>
-                <StyledTableCell>{row.flowName.chatbotName}</StyledTableCell>
+                <StyledTableCell>{row?.Chatbot_name}</StyledTableCell>
+                <StyledTableCell>{row?.Chatbot_name}</StyledTableCell>
                 <StyledTableCell>Are you Human?</StyledTableCell>
                 <StyledTableCell>
                   <Button
@@ -97,7 +97,7 @@ export default function DataTable(props) {
                   </Button>
                 </StyledTableCell>
                 <StyledTableCell>
-                  <Button onClick={()=>handleRoute("Edit","/flowpage",i)}>Edit</Button>
+                  <Button onClick={()=>handleRoute("Edit","/flowpage",row?.chatbot_id)}>Edit</Button>
                 </StyledTableCell>
               </StyledTableRow>
             ))}

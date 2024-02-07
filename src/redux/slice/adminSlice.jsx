@@ -21,6 +21,13 @@ const adminSlice = createSlice({
     EarningsDetailisLoading: false,
     ManageDataDetail: [],
     ManageDataisLoading: false,
+    chatBotDataisLoading:false,
+    chatBotData:[],
+    getchatBotData:[],
+    getchatBotDataisLoading:false,
+    getChatBotDataByIdisLoading:false,
+    getAllChatbotData:[],
+    getAllchatBotDataisLoading:false
   },
   reducers: {
     addSubAmdinsReducer: (state, { payload }) => {
@@ -48,7 +55,6 @@ const adminSlice = createSlice({
       state.subscriptionDetailisLoading = payload.isLoading;
     },
     getSubscriptionApiReducer: (state, { payload }) => {
-      console.log("payloaddinggg",payload);
       state.getSubscriptionDetail = payload.apiData;
       state.getSubscriptionDetailisLoading = payload.isLoading;
     },
@@ -68,10 +74,42 @@ const adminSlice = createSlice({
       state.ManageDataDetail = payload.apiData;
       state.ManageDataisLoading = payload.isLoading;
     },
+    addChatbotReducer:(state,{payload})=>{
+      state.chatBotData = payload.apiData;
+      state.chatBotDataisLoading = payload.isLoading
+    },
+  
+    getChatbotReducer:(state,{payload})=>{
+      state.getchatBotData = payload.apiData;
+      state.getchatBotDataisLoading = payload.isLoading
+    },
+    getAllChatbotReducer:(state,{payload})=>{
+     
+      state.getAllChatbotData = payload.apiData;
+      state.getAllchatBotDataisLoading = payload.isLoading
+    },
+    deleteClientReducer:(state,{payload})=>{
+       const { apiData, isLoading } = payload;
+       state.clientDetail = apiData;
+      state.clientDetailisLoading = isLoading;
+    },
+    getChatbotByIdReducer:(state,{payload})=>{
+      state.getChatBotDataById = payload.apiData;
+      state.getChatBotDataByIdisLoading = payload.isLoading
+    },
+    editChatBotByIdReducer:(state,{payload})=>{
+      state.editChatBotById = payload.apiData;
+      state.editChatBotByIdisLoading = payload.isLoading
+    }
   },
 });
 
 export const {
+  addChatbotReducer,
+  editChatBotByIdReducer,
+  getChatbotReducer,
+  getAllChatbotReducer,
+  getChatbotByIdReducer,
   getMyAdminDetailReducer,
   addSubAmdinsReducer,
   addClientApiReducer,
@@ -82,7 +120,8 @@ export const {
   getSubAdminReducer,
   addCMSApiReducer,
   getEarningsReducer,
-  addManageDataReducer
+  addManageDataReducer,
+  deleteClientReducer
 } = adminSlice.actions;
 
 export const adminSelector = (state) => state.admin;
