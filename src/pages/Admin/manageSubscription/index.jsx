@@ -38,11 +38,12 @@ const ManageSubscription = () => {
   return (
     <>
       <div className="commonbox">
+        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
         <h4>Manage Subscription</h4>
-        {/* <AddButton /> */}
         <Button className="addBtn" onClick={handleModalOpen}>
-          +Add
+          + Add
         </Button>
+        </div>
         <CustomizedTables
           columns={SubscriptionDataHead}
           rows={getSubscriptionDetail}

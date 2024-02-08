@@ -40,11 +40,12 @@ const ManageSubAdmin = () => {
   return (
     <>
       <div className="commonbox">
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
         <h4>Manage Sub Admin</h4>
-        {/* <AddButton /> */}
         <Button className="addBtn" onClick={handleModalOpen}>
-          +Add
+          + Add
         </Button>
+        </div>
         <CustomizedTables
           columns={subAdminTableHead}
           rows={getallSubAdminDetail}
