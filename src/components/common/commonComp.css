@@ -14,9 +14,12 @@
   color: black !important;
   display: flex !important;
   float: inline-end !important;
-  margin: 10px 0px !important;
+  margin: 8px 0px !important;
   border: none !important;
   outline: none !important;
+  padding: 12px;
+  padding: 8px 16px;
+  font-weight: 600;
 }
 
 .uploadBtn {

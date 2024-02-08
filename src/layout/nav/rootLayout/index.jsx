@@ -133,7 +133,7 @@ export default function RootLayout() {
       <>
         <ListItemButton  component={Link} to={path} className="multi-list" onClick={handleClick}>
           <ListIcon sx={{ marginRight: "8px" }} />
-          <ListItemText primary={name} onClick={() => navigate("/")} />
+          <ListItemText  primary={name} onClick={() => navigate("/")} />
           {open ? (
             <ExpandLessIcon
               className="listicon"
@@ -159,9 +159,8 @@ export default function RootLayout() {
                     style={{
                       backgroundColor: isActive ? "#00E785" : "",
                       color: isActive ? "black" : "",
-                      margin: isActive ? "0px 20px" : "",
+                      margin: isActive ? "0px 18px 0px 0px" : "",
                       borderRadius: isActive ? "10px" : "",
-                      paddingLeft: 16,
                       display: "flex",
                     }}
                     // key={`${index}-item`}
@@ -182,7 +181,13 @@ export default function RootLayout() {
                     }}
                   >
                     <span style={{ margin: "9px" }}>{icon}</span>
-                    <ListItemText primary={name} />
+                    <ListItemText primary={name} className="check"
+                     sx={{
+                      '& .css-10hburv-MuiTypography-root':{
+                        fontWeight:isActive?"800":""
+                      }
+                     }} 
+                      />
                   </ListItemButton>
                 </div>
               );
