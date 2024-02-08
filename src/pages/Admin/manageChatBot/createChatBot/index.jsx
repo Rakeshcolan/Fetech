@@ -9,7 +9,11 @@ import Switch from "@mui/material/Switch";
 import { useDispatch } from "react-redux";
 import { getFlow } from "../../../../redux/slice/flowSlice";
 import { useSelector } from "react-redux";
-import {addChatBotApi, editChatByIdApi, getChatBotByIdApi} from "../../../../redux/action/adminAction"
+import {
+  addChatBotApi,
+  editChatByIdApi,
+  getChatBotByIdApi,
+} from "../../../../redux/action/adminAction";
 import { adminSelector } from "../../../../redux/slice/adminSlice";
 const label = { inputProps: { "aria-label": "Switch demo" } };
 
@@ -31,8 +35,8 @@ const CreateChat = () => {
   let { action = "", arrayIndex = "" } = location?.state || {};
   let dispatch = useDispatch();
   let nodeObject = useSelector(adminSelector);
-  const { getChatBotDataByIdisLoading,getChatBotDataById } = useSelector(adminSelector);
- console.log(getChatBotDataById,"getChatBotDataById");
+  const { getChatBotDataByIdisLoading, getChatBotDataById } =
+    useSelector(adminSelector);
 
   const [chatbotData, setChatbotData] = useState({
     clientName: "",
@@ -166,30 +170,26 @@ const CreateChat = () => {
     return result;
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     if (getChatBotDataById?.flow_data && action == "Edit") {
       let nodeObject = getChatBotDataById?.flow_data;
       let savedNodeObject = nodeObject?.nodes;
       // let savedNodeObject = [...nodeObject[arrayIndex]?.flowElements.nodes];
       // let savedEdges = [...nodeObject[arrayIndex]?.flowElements.edges];
-      setChatbotData({ clientName:"TEST", chatbotName:"WHAT"});
-      setNodes( nodeObject?.nodes);
+      setChatbotData({ clientName: getChatBotDataById?.Chatbot_name, chatbotName: getChatBotDataById?.Chatbot_name });
+      setNodes(nodeObject?.nodes);
       setEdges(nodeObject?.edges);
-      
+    } else {
+      setNodes(initialNodes);
     }
-    else {
-      setNodes(initialNodes)
-    }
+  }, [getChatBotDataById, action, setNodes, setEdges]);
 
-  },[getChatBotDataById,action,setNodes,setEdges])
-  
-  useEffect(()=>{
-    if(arrayIndex>0){
-      dispatch(getChatBotByIdApi(arrayIndex))
+  useEffect(() => {
+    if (arrayIndex > 0) {
+      dispatch(getChatBotByIdApi(arrayIndex));
     }
-  },[arrayIndex,dispatch,setNodes,setEdges])
+  }, [arrayIndex, dispatch, setNodes, setEdges]);
 
-  console.log("nodesssss",nodes);
 
   // useEffect(() => {
   //   if (nodeObject.length>0 && action == "Edit") {
@@ -212,22 +212,20 @@ const CreateChat = () => {
     let savedElements = {
       flow_data: reactFlowInstance.toObject(),
       Chatbot_name: chatbotData.clientName,
-      status:true,
-      json_content:resultJSON
+      status: true,
+      json_content: resultJSON,
     };
-    if(action == "Edit"){
-      dispatch(editChatByIdApi(arrayIndex,savedElements));
-    }
-    else{
+    if (action == "Edit") {
+      dispatch(editChatByIdApi(arrayIndex, savedElements));
+    } else {
       dispatch(addChatBotApi(savedElements));
     }
     navigate("/dashboard/chatbot");
-    // console.log("Added Result JSON",resultJSON);
   };
 
   const updateName = (e) => {
     e.preventDefault();
-    let {name,value} = e?.target
+    let { name, value } = e?.target;
     setChatbotData({ ...chatbotData, [name]: value });
   };
 

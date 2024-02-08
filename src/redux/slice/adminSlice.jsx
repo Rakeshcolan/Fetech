@@ -33,13 +33,11 @@ const adminSlice = createSlice({
   reducers: {
     addSubAmdinsReducer: (state, { payload }) => {
       const { apiData, isLoading } = payload;
-      console.log("apidata",apiData);
       state.subAdminDetail = apiData;
       state.adminDataLoading = isLoading;
     },
     getSubAdminReducer: (state, { payload }) => {
       const { apiData, isLoading } = payload;
-      console.log("apidata",apiData);
       state.getallSubAdminDetail = apiData;
       state.adminDataLoading = isLoading;
     },

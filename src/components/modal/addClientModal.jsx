@@ -23,7 +23,6 @@ export default function AddClientModal(props) {
   const navigate = useNavigate();
   const { getSubscriptionDetail, subscriptionDetail } =
     useSelector(adminSelector);
-  console.log("getclientdetail", getSubscriptionDetail);
 
   const handleClose = () => {
     setOpenModal(false);

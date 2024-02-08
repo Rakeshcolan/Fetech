@@ -28,7 +28,7 @@ const AdminRoutes = [
       { path: "/dashboard/roles", element: <ManageRoles /> },
       { path: "/dashboard/cms", element: <ManageCMS /> },
       { path: "/dashboard/demo", element: <ManageDemo /> },
-      { path: "/flowpage", element: <CreateChatBot /> },
+      { path: "/dashboard/flowpage", element: <CreateChatBot /> },
       { path: "/dashboard/addrole", element: <AddRoles /> },
       { path: "/dashboard/editroles", element: <EditRoles /> },
       { path: "/dashboard/editProfile", element: <EditProfile /> },

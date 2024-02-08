@@ -56,7 +56,6 @@ const Login = () => {
       // setOpenModal(false);
     },
   });
-  console.log("rembebrrr",remembercheck?.current?.checked);
   
   useEffect(()=>{
    

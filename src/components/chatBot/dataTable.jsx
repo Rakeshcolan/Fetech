@@ -39,7 +39,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 export default function DataTable(props) {
     let {flowData=[]} = props;
     const navigate = useNavigate();
-    const dispatch = useDispatch();
     const handleRoute = (val,path,index)=>{
         navigate(`${path}`,{state:{action:val,arrayIndex:index}})
     }

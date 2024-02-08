@@ -323,3 +323,12 @@ export const EditRole = [
     label: "Delete",
   },
 ];
+
+export const chatBotTableTitle=[
+    
+  {id:"chatbot_id",label:"#"},
+  {id:"Chatbot_name",label:"Chatbot Name"},
+  {id:"question",label:"Question"},
+  {id:"status",label:"Status"},
+  {id:"Action",label:"Action"},
+]

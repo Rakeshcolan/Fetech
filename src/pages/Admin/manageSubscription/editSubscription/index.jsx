@@ -10,7 +10,6 @@ import { useDispatch } from "react-redux";
 
 const EditSubscription = () => {
   const [editData, setEditData] = useState({});
-  console.log(editData, "editData");
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -44,7 +43,6 @@ const EditSubscription = () => {
     //   status: Yup.string().required("status is required"),
     // }),
     onSubmit: (values) => {
-      console.log("Edited Values:", values);
       let val = {
         plan: values.plan,
         subscription_amount: values.subscription_amount,

@@ -27,7 +27,6 @@ export function apiHelper(apiReducer, method, apiURL, data = "") {
     dispatch(apiReducer({ isLoading: true }));
     APIService(method, apiURL, data)
       .then((e) => {
-        console.log("chatbotdata",e);
           dispatch(apiReducer({ apiData: e?.data, isLoading: false }));
           method === "POST" && showToast("Added Data", "success");
       })
@@ -101,7 +100,6 @@ export function addManageDataApi() {
 }
 
 export function addChatBotApi(data){
-  console.log("chatbotdataneeeee",data);
   return apiHelper(addChatbotReducer,"POST",'/managechatbot/',data)
 }
 

@@ -42,7 +42,6 @@ const FlowPage = forwardRef((props, ref) => {
     setEdges,
   } = props;
 
-  console.log("flowpageee",nodes);
   const{getChatBotDataById} = useSelector(adminSelector)
 
   const reactFlowWrapper = useRef(null);

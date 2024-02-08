@@ -15,7 +15,6 @@ const ManageSubscription = () => {
   const dispatch = useDispatch();
   const { getSubscriptionDetail, subscriptionDetail } =
     useSelector(adminSelector);
-  console.log(getSubscriptionDetail, "getSubscriptionDetail");
 
   const paginationRowsOptions = [5, 10, 20, 50, 100];
 
@@ -33,7 +32,6 @@ const ManageSubscription = () => {
   };
 
   useEffect(() => {
-    console.log("callinggg dataaaa");
     dispatch(getSubscriptionApi());
   }, [subscriptionDetail]);
 

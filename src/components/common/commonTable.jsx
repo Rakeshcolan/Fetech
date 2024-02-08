@@ -55,7 +55,7 @@ function CustomizedTables(props) {
   };
 
   const handlePageChange = async (event, newPage) => {
-    setSize(newPage)
+    setSize(newPage);
   };
 
   const {
@@ -67,11 +67,11 @@ function CustomizedTables(props) {
     // handleChangePage = 5,
     // handleChangeRowsPerPage = 5,
     onDelete,
+    navigatepath,
     paginationStatus,
   } = props;
 
-  // console.log(rows, "rows");
-  // console.log(columns, "columns");
+
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -84,7 +84,6 @@ function CustomizedTables(props) {
   // if (loading) {
   //   return <p>Loading...</p>; // or your preferred loading indicator
   // }
-
 
   let pathname = location.pathname.split("/")[2];
 
@@ -99,7 +98,14 @@ function CustomizedTables(props) {
   const totalEntries = rows?.length;
 
   const handleEdit = (data) => {
-    navigate(`/dashboard/edit${pathname}`, { state: { data } });
+    if (navigatepath) {
+      let id = data.chatbot_id;
+      navigate(`/dashboard/${navigatepath}`, {
+        state: { action: "Edit", arrayIndex: id },
+      });
+    } else {
+      navigate(`/dashboard/edit${pathname}`, { state: { data } });
+    }
   };
 
   return (
@@ -109,7 +115,11 @@ function CustomizedTables(props) {
           <TableHead>
             <TableRow>
               {columns.map((column, i) => (
-                <StyledTableCell sx={{textAlign:"center",margin:"auto"}} key={i} align={column.align}>
+                <StyledTableCell
+                  sx={{ textAlign: "center", margin: "auto" }}
+                  key={i}
+                  align={column.align}
+                >
                   {" "}
                   {column.label}
                 </StyledTableCell>
@@ -132,7 +142,7 @@ function CustomizedTables(props) {
             <TableBody>
               {rows?.slice(size * page, size * page + page).map((row, i) => {
                 return (
-                  <StyledTableRow  hover role="checkbox" tabIndex={-1} key={i}>
+                  <StyledTableRow hover role="checkbox" tabIndex={-1} key={i}>
                     {columns?.map((column) => {
                       const value =
                         column.id === "Action" ||
@@ -140,22 +150,26 @@ function CustomizedTables(props) {
                         column.id === "View" ||
                         column.id === "designation" ||
                         column.id === "Delete" ||
-                        column.id === "Edit" 
+                        column.id === "Edit"
                           ? column.id
                           : row[column.id];
 
-                      // console.log(row[column.id], "row[column.id]");
 
                       return (
                         <Fragment key={column.id}>
-                          <StyledTableCell sx={{textAlign:"center",margin:"auto"}}>
+                          <StyledTableCell
+                            sx={{ textAlign: "center", margin: "auto" }}
+                          >
                             {value === "Action" ? (
                               <>
-                              <DriveFileRenameOutlineIcon
-                                onClick={() => handleEdit(row)}
-                                className="edit-icon"
-                              />
-                              <DeleteIcon className="edit-icon" onClick={()=>onDelete()}/>
+                                <DriveFileRenameOutlineIcon
+                                  onClick={() => handleEdit(row)}
+                                  className="edit-icon"
+                                />
+                                <DeleteIcon
+                                  className="edit-icon"
+                                  onClick={() => onDelete()}
+                                />
                               </>
                             ) : value === "status" ? (
                               <Button
