@@ -19,7 +19,6 @@ const EditSubAdmin = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("locationo",location.state);
     setEditData(location.state?.data);
     return () => {
       location.state = "";

@@ -38,8 +38,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 let roleObj = {
   1: "Employee",
-  2: "Accountant",
-  3: "Manager",
+  2: "Manager",
+  3: "Accountant",
 };
 
 function CustomizedTables(props) {
@@ -61,13 +61,9 @@ function CustomizedTables(props) {
   const {
     rows = [],
     columns,
-    // page = 5,
-    // size = 0,
-    // rowsPerPageOptions = 5,
-    // handleChangePage = 5,
-    // handleChangeRowsPerPage = 5,
     onDelete,
     navigatepath,
+    dataLoading = false,
     paginationStatus,
   } = props;
 
@@ -76,14 +72,6 @@ function CustomizedTables(props) {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // if (!Array.isArray(rows)) {
-  //   console.error('Invalid data structure for "rows". Expected an array.');
-  //   return null; // or handle the error in a way that fits your application
-  // }
-
-  // if (loading) {
-  //   return <p>Loading...</p>; // or your preferred loading indicator
-  // }
 
   let pathname = location.pathname.split("/")[2];
 
@@ -108,6 +96,15 @@ function CustomizedTables(props) {
     }
   };
 
+
+
+    const renderedRows = [...Array(columns.length)].map((e, i) => (
+    <div>
+     <div className="skeleton"></div>
+     <div className="skeleton"></div>
+     <div className="skeleton"></div>
+    </div>
+  ));
   return (
     <Paper elevation={0}>
       <TableContainer component={Paper}>
@@ -134,13 +131,13 @@ function CustomizedTables(props) {
             <TableBody>
               <TableRow>
                 <TableCell colSpan={columns?.length}>
-                  There are no records to display
+                 {dataLoading ? <div className="skeleton"></div>: " There are no records to display"}
                 </TableCell>
               </TableRow>
             </TableBody>
           ) : (
             <TableBody>
-              {rows?.slice(size * page, size * page + page).map((row, i) => {
+             {rows?.slice(size * page, size * page + page).map((row, i) => {
                 return (
                   <StyledTableRow hover role="checkbox" tabIndex={-1} key={i}>
                     {columns?.map((column) => {

@@ -65,7 +65,6 @@ const CommonSwitch = ({ label, id, formik }) => {
       }),
     },
   }));
-  console.log("formik?.values[id]",formik?.values[id]);
   return (
     <div style={{ display: "flex" }}>
       <FlexContainer>

@@ -15,7 +15,7 @@ const ManageSubAdmin = () => {
 
   const paginationRowsOptions = [5, 10, 20, 50, 100];
 
-  const { getallSubAdminDetail, subAdminDetail } = useSelector(adminSelector);
+  const { getallSubAdminDetail, subAdminDetail,adminDataLoading} = useSelector(adminSelector);
   const handlePerRowsChange = async (event) => {
     setPage(+event.target.value);
     setSize(0);
@@ -56,6 +56,7 @@ const ManageSubAdmin = () => {
           handleChangePage={handlePageChange}
           handleChangeRowsPerPage={handlePerRowsChange}
           onDelete = {handleDelete}
+          dataLoading = {adminDataLoading}
         />
         <AddSubAdminModal openModal={modalOpen} setOpenModal={setModalOpen} />
       </div>

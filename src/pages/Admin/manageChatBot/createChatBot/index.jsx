@@ -6,15 +6,14 @@ import "reactflow/dist/style.css";
 import FlowPage from "../../../../components/chatBot/reactflow";
 import "../manageChatbot.css";
 import Switch from "@mui/material/Switch";
-import { useDispatch } from "react-redux";
-import { getFlow } from "../../../../redux/slice/flowSlice";
-import { useSelector } from "react-redux";
+import { useDispatch ,useSelector} from "react-redux";
 import {
   addChatBotApi,
   editChatByIdApi,
   getChatBotByIdApi,
 } from "../../../../redux/action/adminAction";
 import { adminSelector } from "../../../../redux/slice/adminSlice";
+import useBuildJson from "../../../../hooks/useBuildJson";
 const label = { inputProps: { "aria-label": "Switch demo" } };
 
 const initialNodes = [
@@ -27,6 +26,8 @@ const initialNodes = [
 ];
 const CreateChat = () => {
   const reactFlowWrapper = useRef(null);
+  //added custom hook with teh buildjson function to create the json
+  const {buildJSON} = useBuildJson();
   const location = useLocation();
   const navigate = useNavigate();
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
@@ -34,7 +35,6 @@ const CreateChat = () => {
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   let { action = "", arrayIndex = "" } = location?.state || {};
   let dispatch = useDispatch();
-  let nodeObject = useSelector(adminSelector);
   const { getChatBotDataByIdisLoading, getChatBotDataById } =
     useSelector(adminSelector);
 
@@ -48,127 +48,8 @@ const CreateChat = () => {
     event.preventDefault();
     event.dataTransfer.dropEffect = "move";
   }, []);
-  let oldId;
+ 
 
-  function buildJSON(nodes, edges, nodeId, oldid) {
-    const node = nodes.find((n) => n.id === nodeId);
-    if (!node) {
-      return null;
-    }
-    const result = {
-      message: node.data.label || node.data.response,
-    };
-    if (nodeId.split("_")[0] == "groupnode") {
-      const buttonnodeId = nodes.filter((n) => n.parentNode === nodeId);
-      const outgoingEdges = buttonnodeId.map((node) => {
-        let availableoutgoing = edges.filter(
-          (edge) => edge.source === node.id
-        )[0];
-        if (availableoutgoing) {
-          return availableoutgoing;
-        } else {
-          return node;
-        }
-      });
-      // const outgoingEdges = edges.filter((edge) => edge.source === nodeId);
-      if (outgoingEdges.length > 0) {
-        result.options = outgoingEdges.map((edge) => {
-          if (edge?.source) {
-            const currentNode = nodes.find((n) => n.id === edge?.source);
-            const followUpNode = nodes.find((n) => n.id === edge?.target);
-
-            if (currentNode?.parentNode) {
-              if (followUpNode) {
-                oldId = followUpNode.id;
-                return {
-                  response: currentNode.data.label,
-                  follow_up: buildJSON(
-                    nodes,
-                    edges,
-                    followUpNode.id,
-                    currentNode.id
-                  ),
-                };
-              }
-            } else {
-              oldId = followUpNode?.id;
-              return {
-                message: currentNode?.data.label,
-                follow_up: buildJSON(
-                  nodes,
-                  edges,
-                  followUpNode?.id,
-                  currentNode?.id
-                ),
-              };
-            }
-          } else {
-            return {
-              response: edge.data.label,
-            };
-          }
-        });
-      }
-    } else {
-      const outgoingEdges = edges.filter((edge) => edge.source === nodeId);
-      if (outgoingEdges.length > 0) {
-        result.options = outgoingEdges.map((edge) => {
-          const currentNode = nodes.find((n) => n.id === edge.source);
-
-          const followUpNode = nodes.find((n) => n.id === edge.target);
-          if (oldId == currentNode.id) {
-            oldId = followUpNode.id;
-            let lastEdge = edges.find((n) => n.source == currentNode.id);
-            let lastNode = nodes.find((n) => n.id == lastEdge.target);
-            return {
-              // response: lastNode.data.label,
-              follow_up: buildJSON(
-                nodes,
-                edges,
-                followUpNode.id,
-                currentNode.id
-              ),
-            };
-          } else if (oldId !== currentNode.id) {
-            oldId = followUpNode.id;
-            return {
-              message: currentNode.data.label,
-              follow_up: buildJSON(
-                nodes,
-                edges,
-                followUpNode.id,
-                currentNode.id
-              ),
-            };
-          }
-
-          if (currentNode.parentNode) {
-            oldId = currentNode.id;
-            return {
-              response: currentNode.data.label,
-              follow_up: buildJSON(
-                nodes,
-                edges,
-                followUpNode.id,
-                currentNode.id
-              ),
-            };
-          } else {
-            return {
-              follow_up: buildJSON(
-                nodes,
-                edges,
-                followUpNode.id,
-                currentNode.id
-              ),
-            };
-          }
-        });
-      }
-    }
-
-    return result;
-  }
 
   useEffect(() => {
     if (getChatBotDataById?.flow_data && action == "Edit") {
@@ -190,17 +71,6 @@ const CreateChat = () => {
     }
   }, [arrayIndex, dispatch, setNodes, setEdges]);
 
-
-  // useEffect(() => {
-  //   if (nodeObject.length>0 && action == "Edit") {
-  //     let savedNodeObject = [...nodeObject[arrayIndex]?.flowElements.nodes];
-  //     let savedEdges = [...nodeObject[arrayIndex]?.flowElements.edges];
-  //     setNodes(savedNodeObject);
-  //     setEdges(nodeObject[arrayIndex]?.flowElements.edges);
-  //     // reactFlowInstance.addNodes({nodes:savedNodeObject})
-  //     // reactFlowInstance.addEgdes({edges:savedEdges})
-  //   }
-  // }, []);
 
   const saveElements = () => {
     const startingNodeId = "1";

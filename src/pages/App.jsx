@@ -43,8 +43,8 @@ function App() {
     <>
       <Provider store={store}>
         <NodeContextProvider>
-          {router}
-          {/* <LazyLoader>{router}</LazyLoader> */}
+          {/* {router} */}
+          <LazyLoader>{router}</LazyLoader>
         </NodeContextProvider>
       </Provider>
     </>

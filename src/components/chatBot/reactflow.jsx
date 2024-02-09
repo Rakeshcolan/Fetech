@@ -80,6 +80,7 @@ useEffect(() => {
   const { payPrice } = useSelector((state) => state.flow);
 
   const onConnect = (params) =>
+
     setEdges((eds) => {
       params.markerEnd = {
         type: MarkerType.ArrowClosed,

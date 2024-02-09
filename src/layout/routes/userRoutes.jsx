@@ -12,17 +12,17 @@ import RootLayout from "../nav/rootLayout";
 
 const UserRoutes = [
   {
-    path: "/",
+    path: "/dashboard",
     element: <RootLayout />,
     children: [
-      { path: "/dashboard/subadmin", element: <ManageSubAdmin /> },
-      { path: "/dashboard/editsubadmin", element: <EditSubAdmin /> },
-      { path: "/dashboard/data", element: <ManageData /> },
-      { path: "/dashboard/roles", element: <ManageRoles /> },
-      { path: "/dashboard/editroles", element: <EditRoles /> },
-      { path: "/dashboard/roles/addRole", element: <AddRoles /> },
-      { path: "/dashboard/editProfile", element: <EditProfile /> },
-      { path: "/dashboard/stripepayment", element: <StripePayment /> },
+      { index:true, element: <ManageSubAdmin /> },
+      { path: "editsubadmin", element: <EditSubAdmin /> },
+      { path: "data", element: <ManageData /> },
+      { path: "roles", element: <ManageRoles /> },
+      { path: "editroles", element: <EditRoles /> },
+      { path: "addRole", element: <AddRoles /> },
+      { path: "editProfile", element: <EditProfile /> },
+      { path: "stripepayment", element: <StripePayment /> },
     ],
   },
   // {
