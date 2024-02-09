@@ -17,29 +17,33 @@ import RootLayout from "../nav/rootLayout";
 
 const AdminRoutes = [
   {
-    path: "/",
+    path: "/dashboard",
     element: <RootLayout />,
     children: [
-      { path: "", element: <Dashboard /> },
-      { path: "/dashboard/subadmin", element: <ManageSubAdmin /> },
-      { path: "/dashboard/client", element: <ManageClients /> },
-      { path: "/dashboard/chatbot", element: <MAangeChatbot /> },
-      { path: "/dashboard/subscription", element: <ManageSubscription /> },
-      { path: "/dashboard/roles", element: <ManageRoles /> },
-      { path: "/dashboard/cms", element: <ManageCMS /> },
-      { path: "/dashboard/demo", element: <ManageDemo /> },
-      { path: "/dashboard/flowpage", element: <CreateChatBot /> },
-      { path: "/dashboard/addrole", element: <AddRoles /> },
-      { path: "/dashboard/editroles", element: <EditRoles /> },
-      { path: "/dashboard/editProfile", element: <EditProfile /> },
-      { path: "/dashboard/editsubadmin", element: <EditSubAdmin /> },
-      { path: "/dashboard/editsubscription", element: <EditSubscription /> },
+      {index:true, element: <Dashboard /> },
+      { path: "subadmin", element: <ManageSubAdmin /> },
+      { path: "client", element: <ManageClients /> },
+      { path: "chatbot", element: <MAangeChatbot /> },
+      { path: "subscription", element: <ManageSubscription /> },
+      { path: "roles", element: <ManageRoles /> },
+      { path: "cms", element: <ManageCMS /> },
+      { path: "demo", element: <ManageDemo /> },
+      { path: "flowpage", element: <CreateChatBot /> },
+      { path: "addrole", element: <AddRoles /> },
+      { path: "editroles", element: <EditRoles /> },
+      { path: "editProfile", element: <EditProfile /> },
+      { path: "editsubadmin", element: <EditSubAdmin /> },
+      { path: "editsubscription", element: <EditSubscription /> },
     ],
   },
   {
     path: "/payment",
     element: <Payment />,
   },
+  {
+    path:'/*',
+    element:<h1>Page Not Found</h1>
+  }
 ];
 
 export default AdminRoutes;

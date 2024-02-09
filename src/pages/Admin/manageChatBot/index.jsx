@@ -23,9 +23,11 @@ const ManageChatBot = () => {
   }, [chatBotData, editChatBotById]);
   return (
     <>
-      <div className="managebotContainer">
+      <div className="managebotContainer commonbox">
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
         <h4>Manage Chatbot</h4>
         <AddButton buttonText={"Add"} handleClick={handleRoute} />
+        </div>
         <CustomizedTables
           columns={chatBotTableTitle}
           rows={getAllChatbotData}

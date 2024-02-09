@@ -52,14 +52,14 @@ const closedMixin = (theme) => ({
   },
 });
 
-const DrawerHeader = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "flex-end",
-  padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-}));
+// const DrawerHeader = styled("div")(({ theme }) => ({
+//   display: "flex",
+//   alignItems: "center",
+//   justifyContent: "flex-end",
+//   padding: theme.spacing(0, 1),
+//   // necessary for content to be below app bar
+//   ...theme.mixins.toolbar,
+// }));
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -97,7 +97,6 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export default function RootLayout() {
-  const theme = useTheme();
   const [openDrawer, setOpenDrawer] = React.useState(true);
   const [layoutData, setLayoutData] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -133,7 +132,7 @@ export default function RootLayout() {
       <>
         <ListItemButton  component={Link} to={path} className="multi-list" onClick={handleClick}>
           <ListIcon sx={{ marginRight: "8px" }} />
-          <ListItemText  primary={name} onClick={() => navigate("/")} />
+          <ListItemText  primary={name} onClick={() => navigate("/dashboard")} />
           {open ? (
             <ExpandLessIcon
               className="listicon"
@@ -299,21 +298,11 @@ export default function RootLayout() {
       <div>
         <Drawer variant="permanent" className="layoutlist" open={openDrawer}>
           <img src={Logo} className="logo" style={{ width: "100%" }} />
-          {/* <DrawerHeader>
-            <IconButton onClick={handleDrawerClose}>
-              {theme.direction === "rtl" ? (
-                <ChevronRightIcon style={{ color: "white !important" }} />
-              ) : (
-                <ChevronLeftIcon style={{ color: "white !important" }} />
-              )}
-            </IconButton>
-          </DrawerHeader> */}
           <List>
             {layoutData.map((items, index) => {
               return items.isNested ? (
                 <MultipleList   menuItems={items} key={index} />
               ) : (
-                //   <SingleList menuItems={items} key={index} />
                 <></>
               );
             })}

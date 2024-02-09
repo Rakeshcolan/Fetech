@@ -65,6 +65,7 @@ const CommonSwitch = ({ label, id, formik }) => {
       }),
     },
   }));
+  console.log("formik?.values[id]",formik?.values[id]);
   return (
     <div style={{ display: "flex" }}>
       <FlexContainer>
@@ -79,8 +80,8 @@ const CommonSwitch = ({ label, id, formik }) => {
             <IOSSwitch
               sx={{ marginLeft: 3 }}
               defaultChecked
-              checked={formik.values[id]}
-              onChange={formik.handleChange}
+              checked={formik?.values[id]}
+              onChange={formik?.handleChange}
               name={id}
             />
           }

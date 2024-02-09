@@ -20,6 +20,7 @@ import {
   getChatbotByIdReducer,
   editChatBotByIdReducer,
   getRolesReducer,
+  editSubAdminReducer,
 } from "../slice/adminSlice";
 
 export function apiHelper(apiReducer, method, apiURL, data = "") {
@@ -27,8 +28,11 @@ export function apiHelper(apiReducer, method, apiURL, data = "") {
     dispatch(apiReducer({ isLoading: true }));
     APIService(method, apiURL, data)
       .then((e) => {
-          dispatch(apiReducer({ apiData: e?.data, isLoading: false }));
-          method === "POST" && showToast("Added Data", "success");
+        dispatch(apiReducer({ apiData: e?.data, isLoading: false }));
+        if (method === "POST") showToast("Added Data", "success");
+        else if (method === "PUT") {
+          showToast("Updated Data", "success");
+        }
       })
       .catch((e) => {
         dispatch(apiReducer({ isLoading: false }));
@@ -45,6 +49,13 @@ export function getSubAdminsApi() {
   return apiHelper(getSubAdminReducer, "GET", "/managesubadmin/");
 }
 
+export function editSubAdminApi(id, data) {
+  return apiHelper(editSubAdminReducer, "PUT", `/managesubadmin/${id}/`, data);
+}
+//use it for later
+// export function deleteSubAdminApi(){
+//   return apiHelper(deleteSubAdminReducer, "GET", "/managesubadmin/");
+// }
 export function addClientApi(body) {
   return apiHelper(addClientApiReducer, "POST", "/manageclients/", body);
 }
@@ -99,30 +110,34 @@ export function addManageDataApi() {
   return apiHelper(addManageDataReducer, "GET", "/managedata/");
 }
 
-export function addChatBotApi(data){
-  return apiHelper(addChatbotReducer,"POST",'/managechatbot/',data)
+export function addChatBotApi(data) {
+  return apiHelper(addChatbotReducer, "POST", "/managechatbot/", data);
 }
 
-export function getChatBotApi(id){
-  return apiHelper(getChatbotReducer,"GET",`/managechatbot/${id}`)
+export function getChatBotApi(id) {
+  return apiHelper(getChatbotReducer, "GET", `/managechatbot/${id}`);
 }
-export function getallChatBotApi(){
-  return apiHelper(getAllChatbotReducer,"GET",`/managechatbot/`)
-}
-
-
-export function deleteClientApi(id){
-  return apiHelper(deleteClientReducer,'DELETE',`/manageclients/${id}`)
+export function getallChatBotApi() {
+  return apiHelper(getAllChatbotReducer, "GET", `/managechatbot/`);
 }
 
-export function getChatBotByIdApi(id){
-  return apiHelper(getChatbotByIdReducer,'GET',`/managechatbot/${id}/`)
+export function deleteClientApi(id) {
+  return apiHelper(deleteClientReducer, "DELETE", `/manageclients/${id}`);
 }
 
-export function editChatByIdApi(id,data){
-  return apiHelper(editChatBotByIdReducer,"PUT",`/managechatbot/${id}/`,data)
+export function getChatBotByIdApi(id) {
+  return apiHelper(getChatbotByIdReducer, "GET", `/managechatbot/${id}/`);
 }
 
-export function getRolesApi(){
-  return apiHelper(getRolesReducer,'GET','/designation/')
+export function editChatByIdApi(id, data) {
+  return apiHelper(
+    editChatBotByIdReducer,
+    "PUT",
+    `/managechatbot/${id}/`,
+    data
+  );
+}
+
+export function getRolesApi() {
+  return apiHelper(getRolesReducer, "GET", "/designation/");
 }

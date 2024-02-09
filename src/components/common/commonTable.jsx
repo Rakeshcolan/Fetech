@@ -179,6 +179,8 @@ function CustomizedTables(props) {
                                     ? "#00E785"
                                     : "#FF3939",
                                   color: row[column.id] ? "black" : "white",
+                                  fontSize:"12px",
+                                  width:"80px",
                                   "&:hover": {
                                     backgroundColor:
                                       row[column.id] === false

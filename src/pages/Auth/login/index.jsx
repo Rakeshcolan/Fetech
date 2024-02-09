@@ -14,9 +14,9 @@ const Login = () => {
   let remembercheck = useRef(null)
   const[rememberstatus,setRememberstatus] = useState(localStorage.getItem('remember')||false);
   const[rememberme,setRememberme] = useState(localStorage.getItem('remember')||'')
-  const [showpassword,setShowPassword] = useState(false)
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const handleNavigate = () => {
     navigate("/register");
   };
@@ -52,8 +52,6 @@ const Login = () => {
 
         dispatch(addLoginApi(val,navigate));
 
-      // navigate("/dashboard/client");
-      // setOpenModal(false);
     },
   });
   
@@ -61,7 +59,6 @@ const Login = () => {
    
     if(rememberme == 'true'){
       remembercheck.current.checked = true
-      // handleRemember();
     }
   },[rememberme])
 
@@ -74,10 +71,6 @@ const Login = () => {
       localStorage.setItem('remember','true')
     }
 
-  }
-
-  const handleShowPassword = ()=>{
-    setShowPassword(!showpassword)
   }
   return (
     <div>
@@ -107,8 +100,7 @@ const Login = () => {
           <CenteredTextField
             label="Password"
             id="password"
-            type={showpassword?"text":"password"}
-            handleShowPassword ={handleShowPassword}
+            type={"password"}
             placeholder="Password"
             formik={formik}
           />

@@ -2,8 +2,10 @@ import React from "react";
 import TextField from "@mui/material/TextField";
 import { Stack } from "@mui/system";
 import { Typography } from "@mui/material";
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
+import { useState } from "react";
 
 const CenteredTextField = ({
   id,
@@ -13,27 +15,60 @@ const CenteredTextField = ({
   disabled,
   placeholder,
   required,
-  type ="text",
+  type = "text",
   handleShowPassword,
   ...props
 }) => {
   const handleChange = (e) => {
     formik.handleChange(e);
   };
+  const [showpassword, setShowPassword] = useState(false);
+
+  const handleclick = () => {
+    setShowPassword(!showpassword);
+  };
+
+  const elemnetChange = () => {
+    if (showpassword) {
+      return (
+        <VisibilityOffOutlinedIcon
+          sx={{
+            position: "absolute",
+            right: "5px",
+            bottom: "10px",
+            fontWeight: "400px",
+          }}
+          onClick={() => handleclick()}
+        />
+      );
+    } else {
+      return (
+        < VisibilityOutlinedIcon
+          sx={{
+            position: "absolute",
+            right: "5px",
+            bottom: "10px",
+            fontWeight: "400px",
+          }}
+          onClick={() => handleclick()}
+        />
+      );
+    }
+  };
+
   return (
     <Stack
       direction="column"
       justifyContent="center"
       alignItems="center"
       spacing={2}
-      position = "relative"
+      position="relative"
     >
       <TextField
-
         fullWidth
         id={id}
         margin="normal"
-        type={type}
+        type={showpassword?"text":type}
         variant="outlined"
         disabled={disabled}
         placeholder={placeholder}
@@ -53,7 +88,7 @@ const CenteredTextField = ({
           mb: 0,
           borderRadius: "10px",
           // backgroundColor: "#D9D9D9",
-         
+
           "& .MuiOutlinedInput-input": customStyles?.OutlinedInput,
         }}
         // InputProps={{
@@ -74,9 +109,7 @@ const CenteredTextField = ({
         // }}
         {...props}
       />
-      { id==="password" && <VisibilityIcon sx={{position:"absolute",right:"5px",bottom:"10px",fontWeight:"400px"}} onClick={()=>handleShowPassword()}></VisibilityIcon>}
-      
-      
+      {type === "password" && elemnetChange()}
     </Stack>
   );
 };

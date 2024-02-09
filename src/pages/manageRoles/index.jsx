@@ -39,13 +39,13 @@ const ManageRoles = () => {
   return (
     <>
       <div className="commonbox">
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+
         <h4>Manage Roles & permissions</h4>
-        <div>
-          {/* <AddButton /> */}
           <Button className="addBtn" onClick={handleAddRoles}>
             +Add
           </Button>
-        </div>
+          </div>
         <div>
           <CustomizedTables
             columns={RolesAndPermissionsHead}

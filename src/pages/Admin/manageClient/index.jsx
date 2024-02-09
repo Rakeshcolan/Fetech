@@ -46,24 +46,21 @@ const ManageClients = () => {
   return (
     <>
       <div className="commonbox">
-
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
         <h4>Manage Clients</h4>
         <Button className="addBtn" onClick={handleModalOpen}>
           +Add
         </Button>
-        {/* {getClientDetail?.status === "success" && ( */}
+        </div>
+       
         <CustomizedTables
           columns={ClientDataHead}
           rows={getClientDetail}
           paginationStatus={true}
           rowsPerPageOptions={paginationRowsOptions}
           onDelete = {handleDelete}
-          // page={page}
-          // size={size}
-          // handleChangePage={handlePageChange}
-          // handleChangeRowsPerPage={handlePerRowsChange}
+          
         />
-        {/* )} */}
         <AddClientModal openModal={modalOpen} setOpenModal={handleModalClose} />
      
       </div>

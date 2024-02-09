@@ -51,6 +51,9 @@ const Dashboard = () => {
           <ResponseList />
         </div>
       </div>
+      <div className="commonbox">
+       <h2>Earnings</h2>
+       <br/>
       <CustomizedTables
         columns={dashboardTableHead}
         rows={EarningsDetail}
@@ -61,6 +64,7 @@ const Dashboard = () => {
         handleChangePage={handlePageChange}
         handleChangeRowsPerPage={handlePerRowsChange}
       />
+      </div>
     </div>
   );
 };

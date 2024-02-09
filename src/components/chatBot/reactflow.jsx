@@ -178,7 +178,7 @@ useEffect(() => {
   );
   useEffect(() => {
     setNodeNum(nodes.length);
-    // dispatch(addInstance({ instance: reactFlowInstance }));
+    dispatch(addInstance({ instance: reactFlowInstance }));
   }, [nodes,dispatch,setNodes, getChatBotDataById]);
 
   const Payment = () => {

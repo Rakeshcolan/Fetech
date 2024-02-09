@@ -1,10 +1,12 @@
 import CommonTextFields from "../../../components/common/Field/CommonTextFIelds";
 import * as Yup from "yup";
-
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
+import CommonSwitch from "../../../components/common/switch/commonswitch";
+import { editSubAdminApi } from "../../../redux/action/adminAction";
+import { useDispatch } from "react-redux";
 
 const EditSubAdmin = () => {
   const [editData, setEditData] = useState({});
@@ -14,8 +16,10 @@ const EditSubAdmin = () => {
   const handleRedirect = () => {
     navigate("/dashboard/subadmin");
   };
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log("locationo",location.state);
     setEditData(location.state?.data);
     return () => {
       location.state = "";
@@ -30,20 +34,24 @@ const EditSubAdmin = () => {
       email_id: editData?.email_id,
       lastname: editData?.last_name,
       designation: editData?.designation,
+      status:editData?.status
     },
     validationSchema: Yup.object({
       firstname: Yup.string().required("FirstName is required"),
       email_id: Yup.string().required("Email is required"),
       lastname: Yup.string().required("PhoneNumber is required"),
       designation: Yup.string().required("designation is required"),
+      
     }),
     onSubmit: (values) => {
       let val = {
-        firstname: values.firstname,
+        first_name: values.firstname,
         email_id: values.email_id,
-        lastname: values.lastname,
+        last_name: values.lastname,
         designation: values.designation,
+        status:values.status
       };
+      dispatch(editSubAdminApi(editData?.managesubadmin_id,val))
 
       navigate("/dashboard/subadmin");
     },
@@ -68,6 +76,10 @@ const EditSubAdmin = () => {
             formik={formik}
           />
         </div>
+        
+        <div className="col-lg-6" >
+          <CommonSwitch label="Status" id="status" formik={formik}/>
+        </div>
       </div>
       <br />
       <br />
@@ -75,7 +87,7 @@ const EditSubAdmin = () => {
         <Button className="cancelBtn" onClick={handleRedirect}>
           Cancel
         </Button>
-        <Button className="submitBtn">Save</Button>
+        <Button className="submitBtn" onClick={formik.handleSubmit}>Save</Button>
       </div>
     </div>
   );

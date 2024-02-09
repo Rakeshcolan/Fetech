@@ -41,6 +41,13 @@ const adminSlice = createSlice({
       state.getallSubAdminDetail = apiData;
       state.adminDataLoading = isLoading;
     },
+
+    editSubAdminReducer:(state,{payload})=>{
+      const { apiData, isLoading } = payload;
+      state.subAdminDetail = apiData;
+      state.adminDataLoading = isLoading;
+    },
+
     addClientApiReducer: (state, { payload }) => {
       state.clientDetail = payload.apiData;
       state.clientDetailisLoading = payload.isLoading;
@@ -58,7 +65,7 @@ const adminSlice = createSlice({
       state.getSubscriptionDetailisLoading = payload.isLoading;
     },
     editSubscriptionApiReducer: (state, { payload }) => {
-      state.editSubscriptionDetail = payload.apiData;
+      state.subscriptionDetail = payload.apiData;
       state.editSubscriptionDetailisLoading = payload.isLoading;
     },
     addCMSApiReducer: (state, { payload }) => {
@@ -104,12 +111,15 @@ const adminSlice = createSlice({
       const { apiData, isLoading } = payload;
       state.designationData = apiData;
       
-    }
+    },
+
+
   },
 });
 
 export const {
   addChatbotReducer,
+  editSubAdminReducer,
   getRolesReducer,
   editChatBotByIdReducer,
   getChatbotReducer,
