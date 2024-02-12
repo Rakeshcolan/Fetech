@@ -1,19 +1,68 @@
-import EditProfile from "../../components/EditProfile/editProfile";
-import AddRoles from "../../components/Roles&Permissions/addRoles";
-import Dashboard from "../../pages/Admin/dashboard";
-import MAangeChatbot from "../../pages/Admin/manageChatBot";
-import CreateChatBot from "../../pages/Admin/manageChatBot/createChatBot";
-import ManageClients from "../../pages/Admin/manageClient";
-import ManageCMS from "../../pages/Admin/manageCms";
-import ManageDemo from "../../pages/Admin/manageDemo";
-import ManageSubscription from "../../pages/Admin/manageSubscription";
-import EditSubscription from "../../pages/Admin/manageSubscription/editSubscription";
-import ManageRoles from "../../pages/manageRoles";
-import EditRoles from "../../pages/manageRoles/editRoles";
-import ManageSubAdmin from "../../pages/manageSubAdmin";
-import EditSubAdmin from "../../pages/manageSubAdmin/editSubAdmin";
-import Payment from "../../pages/payment";
-import RootLayout from "../nav/rootLayout";
+// import EditProfile from "../../components/EditProfile/editProfile";
+// import AddRoles from "../../components/Roles&Permissions/addRoles";
+// import Dashboard from "../../pages/Admin/dashboard";
+// import MAangeChatbot from "../../pages/Admin/manageChatBot";
+// import CreateChatBot from "../../pages/Admin/manageChatBot/createChatBot";
+// import ManageClients from "../../pages/Admin/manageClient";
+// import ManageCMS from "../../pages/Admin/manageCms";
+// import ManageDemo from "../../pages/Admin/manageDemo";
+// import ManageSubscription from "../../pages/Admin/manageSubscription";
+// import EditSubscription from "../../pages/Admin/manageSubscription/editSubscription";
+// import ManageRoles from "../../pages/manageRoles";
+// import EditRoles from "../../pages/manageRoles/editRoles";
+// import ManageSubAdmin from "../../pages/manageSubAdmin";
+// import EditSubAdmin from "../../pages/manageSubAdmin/editSubAdmin";
+// import Payment from "../../pages/payment";
+// import RootLayout from "../nav/rootLayout";
+
+import { lazy } from "react";
+
+const RootLayout = lazy(()=>import ('../nav/rootLayout'))
+const Dashboard = lazy(() =>
+  import("../../pages/Admin/dashboard")
+);
+const ManageSubAdmin = lazy(() =>
+  import("../../pages/manageSubAdmin")
+);
+const ManageClients = lazy(() =>
+  import("../../pages/Admin/manageClient")
+);
+const MAangeChatbot = lazy(() =>
+  import("../../pages/Admin/manageChatBot")
+);
+const ManageSubscription = lazy(() =>
+  import("../../pages/Admin/manageSubscription")
+);
+const ManageRoles = lazy(() =>
+  import("../../pages/manageRoles")
+);
+const ManageCMS = lazy(() =>
+  import("../../pages/Admin/manageCms")
+);
+const ManageDemo = lazy(() =>
+  import("../../pages/Admin/manageDemo")
+);
+const CreateChatBot = lazy(() =>
+  import("../../pages/Admin/manageChatBot/createChatBot")
+);
+const AddRoles = lazy(() =>
+  import("../../components/Roles&Permissions/addRoles")
+);
+const EditProfile = lazy(() =>
+  import("../../components/EditProfile/editProfile")
+);
+const EditRoles = lazy(() =>
+  import("../../pages/manageRoles/editRoles")
+);
+const EditSubAdmin = lazy(() =>
+  import("../../pages/manageSubAdmin/editSubAdmin")
+);
+const EditSubscription = lazy(() =>
+  import("../../pages/Admin//manageSubscription/editSubscription")
+);
+const Payment = lazy(() =>
+  import("../../pages/payment")
+);
 
 const AdminRoutes = [
   {
