@@ -9,6 +9,5 @@ const ROLES_ROUTES = {
 };
 
 export const getRoutes = (role) => {
-  console.log("rolesss",role);
   return ROLES_ROUTES[role];
 };

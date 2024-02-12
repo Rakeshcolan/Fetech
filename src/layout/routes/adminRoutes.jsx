@@ -16,6 +16,7 @@
 // import RootLayout from "../nav/rootLayout";
 
 import { lazy } from "react";
+import ChatBotPreview from "../../components/chatbotpreview";
 
 const RootLayout = lazy(()=>import ('../nav/rootLayout'))
 const Dashboard = lazy(() =>
@@ -89,6 +90,7 @@ const AdminRoutes = [
     path: "/payment",
     element: <Payment />,
   },
+  {path:'/chatbotpreview',element:<ChatBotPreview/>},
   {
     path:'/*',
     element:<h1>Page Not Found</h1>

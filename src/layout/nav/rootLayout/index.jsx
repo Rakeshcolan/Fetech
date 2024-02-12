@@ -1,67 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { styled, useTheme } from "@mui/material/styles";
+import React, { useState } from "react";
+import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Collapse from "@mui/material/Collapse";
-import ListIcon from "@mui/icons-material/List";
-import { Link, Outlet, useNavigate,useLocation } from "react-router-dom";
-import {
-  AdminIconMenuItems,
-  AdminMenuItems,
-  UsermenuItems,
-} from "../../../utils/constants/menuItem";
+
+import { Outlet, useNavigate } from "react-router-dom";
+
 import "./rootLayoutStyle.css";
-import Logo from "../../../assests/images/connexLogo.png";
 import profileImg from "../../../assests/images/Ellipse 58.png";
-import { Avatar, ListItemIcon } from "@mui/material";
+import { Avatar } from "@mui/material";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { ArrowBack } from "@mui/icons-material";
-
-const drawerWidth = 280;
-
-const openedMixin = (theme) => ({
-  width: drawerWidth,
-  transition: theme.transitions.create("width", {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.enteringScreen,
-  }),
-  overflowX: "hidden",
-});
-
-const closedMixin = (theme) => ({
-  transition: theme.transitions.create("width", {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  overflowX: "hidden",
-  width: `calc(${theme.spacing(7)} + 1px)`,
-  [theme.breakpoints.up("sm")]: {
-    width: `calc(${theme.spacing(8)} + 1px)`,
-  },
-});
-
-// const DrawerHeader = styled("div")(({ theme }) => ({
-//   display: "flex",
-//   alignItems: "center",
-//   justifyContent: "flex-end",
-//   padding: theme.spacing(0, 1),
-//   // necessary for content to be below app bar
-//   ...theme.mixins.toolbar,
-// }));
+import { Layout } from "./layout";
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -81,39 +36,14 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-const Drawer = styled(MuiDrawer, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
-  width: drawerWidth,
-  flexShrink: 0,
-  whiteSpace: "nowrap",
-  boxSizing: "border-box",
-  ...(open && {
-    ...openedMixin(theme),
-    "& .MuiDrawer-paper": openedMixin(theme),
-  }),
-  ...(!open && {
-    ...closedMixin(theme),
-    "& .MuiDrawer-paper": closedMixin(theme),
-  }),
-}));
+const drawerWidth = 280;
 
 export default function RootLayout() {
-  const [openDrawer, setOpenDrawer] = React.useState(true);
-  const [layoutData, setLayoutData] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
-  const location = useLocation();
-
   //setting adming and user routes
-  let sessionValue = sessionStorage.getItem("ur");
-  useEffect(() => {
-    if (sessionValue == 1) {
-      setLayoutData(UsermenuItems);
-    } else {
-      setLayoutData(openDrawer?AdminMenuItems:AdminIconMenuItems);
-    }
-  }, [openDrawer, sessionValue]);
+
+  const [openDrawer, setOpenDrawer] = React.useState(true);
 
   const handleDrawerOpen = () => {
     setOpenDrawer(!openDrawer);
@@ -123,83 +53,6 @@ export default function RootLayout() {
     setOpenDrawer(false);
   };
   //to show dropdown lists
-  function MultipleList({ menuItems }) {
-    const { name, path } = menuItems;
-    const [open, setOpen] = useState(true);
-    const handleClick = (e) => {
-      e.preventDefault();
-      setOpen((prev) => !prev);
-    };
-    return (
-      <>
-        <ListItemButton  component={Link} to={path} className="multi-list" onClick={handleClick}>
-          <ListIcon sx={{ marginRight: "8px" }} />
-          <ListItemText  primary={name} onClick={() => navigate("/dashboard")} />
-          {open ? (
-            <ExpandLessIcon
-              className="listicon"
-              sx={{ color: "white !important" }}
-            />
-          ) : (
-            <ExpandMoreIcon
-              className="listicon"
-              sx={{ color: "white !important" }}
-            />
-          )}
-        </ListItemButton>
-        <Collapse in={open} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            {menuItems.isNested.map((nestedItem, index) => {
-              const { name, path, icon } = nestedItem;
-             let isActive = location.pathname === path;
-              return (
-                <div key={index}>
-                  <ListItemButton
-                    component={Link}
-                    to={path}
-                    style={{
-                      backgroundColor: isActive ? "#00E785" : "",
-                      color: isActive ? "black" : "",
-                      margin: isActive ? "0px 18px 0px 0px" : "",
-                      borderRadius: isActive ? "10px" : "",
-                      display: "flex",
-                    }}
-                    // key={`${index}-item`}
-                    className="nested-list"
-                    onClick={() => {
-                      // highlightParent(path);
-                    }}
-                    sx={{
-                      "&:hover": {
-                        color: "#00E785",
-                      },
-                      //   "&:active, &:focus": {
-                      //     backgroundColor: "#00E785 !important",
-                      //     color: "black !important",
-                      //     borderRadius: "10px",
-                      //     margin: "0px 20px",
-                      //   },
-                    }}
-                  >
-                    <span style={{ margin: "9px" }}>{icon}</span>
-                    <ListItemText primary={name} className="check"
-                     sx={{
-                      '& .css-10hburv-MuiTypography-root':{
-                        fontWeight:isActive?"800":""
-                      }
-                     }} 
-                      />
-                  </ListItemButton>
-                </div>
-              );
-            })}
-          </List>
-        </Collapse>
-      </>
-    );
-  }
-
-
 
   const handleProfileClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -240,7 +93,11 @@ export default function RootLayout() {
               color: "black",
             }}
           >
-           {openDrawer ? <MenuIcon  style={{color:"black"}}/>:<ArrowBack style={{color:"black"}}/>}
+            {openDrawer ? (
+              <MenuIcon style={{ color: "black" }} />
+            ) : (
+              <ArrowBack style={{ color: "black" }} />
+            )}
           </IconButton>
           <Avatar
             alt="Profile Logo"
@@ -297,20 +154,7 @@ export default function RootLayout() {
           </Menu>
         </Toolbar>
       </AppBar>
-      <div>
-        <Drawer variant="permanent" className="layoutlist" open={openDrawer}>
-          <img src={Logo} className="logo" style={{ width: "100%" }} />
-          <List>
-            {layoutData.map((items, index) => {
-              return items.isNested ? (
-                <MultipleList   menuItems={items} key={index} />
-              ) : (
-                <></>
-              );
-            })}
-          </List>
-        </Drawer>
-      </div>
+      <Layout openDrawer={openDrawer} />
       <span
         style={{
           position: "relative",

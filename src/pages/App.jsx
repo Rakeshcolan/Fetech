@@ -9,15 +9,11 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 function App() {
-  console.log("typee",typeof window);
   // const[routerType,setRouterType] = useState(0)
   const userRole =
   typeof window !== "undefined" ? sessionStorage.getItem("ur") : null;
-  console.log("userrole",userRole);
   const routeType =userRole !== null ? userRole : 0
-  // console.log("routertype",routerType);
   const router = useRoutes(getRoutes(routeType));
-  console.log("routerrr",router);
   // Need to delete this code after API Integration
   // const { userInfo = {} } = useSelector(authSelector);
   // const dispatch = useDispatch();
