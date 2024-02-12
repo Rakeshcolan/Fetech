@@ -123,6 +123,7 @@ export default function RootLayout() {
   //to show dropdown lists
   function MultipleList({ menuItems }) {
     const { name, path } = menuItems;
+    let isActive = location.pathname === path;
     const [open, setOpen] = useState(true);
     const handleClick = (e) => {
       e.preventDefault();
@@ -130,9 +131,20 @@ export default function RootLayout() {
     };
     return (
       <>
-        <ListItemButton  component={Link} to={path} className="multi-list" onClick={handleClick}>
+        <ListItemButton    style={{
+                      backgroundColor: isActive ? "#00E785" : "",
+                      color: isActive ? "black" : "",
+                      margin: isActive ? "0px 18px 0px 0px" : "",
+                      borderRadius: isActive ? "10px" : "",
+                      fontWeight: isActive ? "800 !important" : "",
+                      display: "flex",
+
+                    }} component={Link} to={path} className="multi-list" onClick={handleClick}>
+          
           <ListIcon sx={{ marginRight: "8px" }} />
-          <ListItemText  primary={name} onClick={() => navigate("/dashboard")} />
+
+          <ListItemText primary={name} onClick={() => navigate("/dashboard")} />
+{/*           
           {open ? (
             <ExpandLessIcon
               className="listicon"
@@ -143,9 +155,9 @@ export default function RootLayout() {
               className="listicon"
               sx={{ color: "white !important" }}
             />
-          )}
+          )} */}
         </ListItemButton>
-        <Collapse in={open} timeout="auto" unmountOnExit>
+        <Collapse in={true} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             {menuItems.isNested.map((nestedItem, index) => {
               const { name, path, icon } = nestedItem;
