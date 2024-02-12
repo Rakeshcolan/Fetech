@@ -17,17 +17,19 @@ import Collapse from "@mui/material/Collapse";
 import ListIcon from "@mui/icons-material/List";
 import { Link, Outlet, useNavigate,useLocation } from "react-router-dom";
 import {
+  AdminIconMenuItems,
   AdminMenuItems,
   UsermenuItems,
 } from "../../../utils/constants/menuItem";
 import "./rootLayoutStyle.css";
 import Logo from "../../../assests/images/connexLogo.png";
 import profileImg from "../../../assests/images/Ellipse 58.png";
-import { Avatar } from "@mui/material";
+import { Avatar, ListItemIcon } from "@mui/material";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import LogoutIcon from "@mui/icons-material/Logout";
+import { ArrowBack } from "@mui/icons-material";
 
 const drawerWidth = 280;
 
@@ -109,12 +111,12 @@ export default function RootLayout() {
     if (sessionValue == 1) {
       setLayoutData(UsermenuItems);
     } else {
-      setLayoutData(AdminMenuItems);
+      setLayoutData(openDrawer?AdminMenuItems:AdminIconMenuItems);
     }
-  }, [sessionValue]);
+  }, [openDrawer, sessionValue]);
 
   const handleDrawerOpen = () => {
-    setOpenDrawer(true);
+    setOpenDrawer(!openDrawer);
   };
 
   const handleDrawerClose = () => {
@@ -197,6 +199,8 @@ export default function RootLayout() {
     );
   }
 
+
+
   const handleProfileClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -226,19 +230,17 @@ export default function RootLayout() {
       >
         <Toolbar>
           <IconButton
-            color="white"
+            color="black"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
             sx={{
               marginRight: 5,
               position: "relative",
-              left: "250px",
               color: "black",
-              ...(openDrawer && { display: "none" }),
             }}
           >
-            <MenuIcon />
+           {openDrawer ? <MenuIcon  style={{color:"black"}}/>:<ArrowBack style={{color:"black"}}/>}
           </IconButton>
           <Avatar
             alt="Profile Logo"
