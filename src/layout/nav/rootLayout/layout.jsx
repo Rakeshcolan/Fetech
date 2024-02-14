@@ -72,8 +72,10 @@ const Drawer = styled(MuiDrawer, {
       <>
         <ListItemButton  component={Link} to={path} className="multi-list" onClick={handleClick}>
           <ListIcon sx={{ marginRight: "8px" }} />
-          <ListItemText  primary={name} onClick={() => navigate("/dashboard")} />
-          {open ? (
+          <ListItemText  primary={name} 
+          onClick={() => navigate("/dashboard")} 
+          />
+          {/* {open ? (
             <ExpandLessIcon
               className="listicon"
               sx={{ color: "white !important" }}
@@ -83,9 +85,9 @@ const Drawer = styled(MuiDrawer, {
               className="listicon"
               sx={{ color: "white !important" }}
             />
-          )}
+          )} */}
         </ListItemButton>
-        <Collapse in={open} timeout="auto" unmountOnExit>
+        {/* <Collapse in={open} timeout="auto" unmountOnExit> */}
           <List component="div" disablePadding>
             {menuItems.isNested.map((nestedItem, index) => {
               const { name, path, icon } = nestedItem;
@@ -102,29 +104,26 @@ const Drawer = styled(MuiDrawer, {
                       borderRadius: isActive ? "10px" : "",
                       display: "flex",
                     }}
-                    // key={`${index}-item`}
+                    key={`${index}-item`}
                     className="nested-list"
-                    onClick={() => {
-                      // highlightParent(path);
-                    }}
+                  
                     sx={{
                       "&:hover": {
                         color: "#00E785",
                       },
-                      //   "&:active, &:focus": {
-                      //     backgroundColor: "#00E785 !important",
-                      //     color: "black !important",
-                      //     borderRadius: "10px",
-                      //     margin: "0px 20px",
-                      //   },
+                
                     }}
                   >
                     <span style={{ margin: "9px" }}>{icon}</span>
                     <ListItemText primary={name} className="check"
+                      // style={{whiteSpace:"nowrap"}}
                      sx={{
                       '& .css-10hburv-MuiTypography-root':{
-                        fontWeight:isActive?"800":""
+                        fontWeight:isActive? "800 !important":"",
+                        whiteSpace:"normal"
                       }
+
+
                      }} 
                       />
                   </ListItemButton>
@@ -132,7 +131,7 @@ const Drawer = styled(MuiDrawer, {
               );
             })}
           </List>
-        </Collapse>
+        {/* </Collapse> */}
       </>
     );
   }

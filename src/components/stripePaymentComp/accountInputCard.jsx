@@ -1,13 +1,16 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import cards from "../../assests/images/creditCardBrands .png";
 import AddButton from "../common/Button/addButton";
 import "./stripepaymentcomp.css";
 
 export const AccountInputCard = ({ cardInput ,buttonText}) => {
+  const [checknum,setChecknum] = useState('')
   const navigate = useNavigate()
   const handleStripepay = ()=>{
     navigate('/')
   }
+
   return (
     <div
       style={{
@@ -26,6 +29,7 @@ export const AccountInputCard = ({ cardInput ,buttonText}) => {
             <label>{label}</label>
             <div className="cardinputimage">
               <input
+                value={checknum}
                 className="carddatainput"
                 placeholder={placeholderText}
                 style={{ width: "100%" }}

@@ -34,13 +34,13 @@ export default function AddSubAdminModal(props) {
     },
     validationSchema: Yup.object({
       first_name: Yup.string()
-        .required("FirstName Is Required")
+        .required("First Name Is Required")
         .matches(
           /^[a-zA-Z\s]+$/,
           "FirstName Can Only Contain Alphabet Characters"
         ),
       last_name: Yup.string()
-        .required("LastName is required")
+        .required("Last Name is required")
         .matches(
           /^[a-zA-Z\s]+$/,
           "LastName Can Only Contain Alphabet Characters"
@@ -50,7 +50,7 @@ export default function AddSubAdminModal(props) {
         .email("Invalid Email Format"),
       mobile_no: Yup.string()
         .matches(/^[0-9]{10}$/, "Invalid Phone Number") // Check for 10-digit numeric phone number
-        .required("PhoneNumber Is Required"),
+        .required("Phone Number Is Required"),
       status: Yup.string().required("Status Is Required"),
       designation: Yup.string().required("Designation Is Required"),
     }),
@@ -88,7 +88,7 @@ export default function AddSubAdminModal(props) {
                 id="alert-dialog-title"
                 sx={{ paddingLeft: "0px !important" }}
               >
-                Add SubAdmins
+                Add Sub Admin
               </DialogTitle>
             </div>
             <div>
@@ -100,7 +100,7 @@ export default function AddSubAdminModal(props) {
           </div>
           <div>
             <CommonTextFields
-              label="FirstName"
+              label="First Name"
               id="first_name"
               formik={formik}
               placeholder=""
@@ -109,7 +109,7 @@ export default function AddSubAdminModal(props) {
           <br />
           <div>
             <CommonTextFields
-              label="LastName"
+              label="Last Name"
               id="last_name"
               formik={formik}
               placeholder=""
@@ -127,7 +127,7 @@ export default function AddSubAdminModal(props) {
           <br />
           <div>
             <CommonTextFields
-              label="PhoneNumber"
+              label="Phone Number"
               id="mobile_no"
               formik={formik}
               placeholder=""

@@ -57,6 +57,7 @@ const ManageSubAdmin = () => {
           handleChangeRowsPerPage={handlePerRowsChange}
           onDelete = {handleDelete}
           dataLoading = {adminDataLoading}
+          navigatepath ='editsubadmin'
         />
         <AddSubAdminModal openModal={modalOpen} setOpenModal={setModalOpen} />
       </div>

@@ -7,6 +7,7 @@ import {
 } from "../../../utils/constants/cardItem";
 import { useState } from "react";
 import { AccountInputCard } from "../../../components/stripePaymentComp/accountInputCard";
+import { useFormik } from "formik";
 
 const AccountCard = (props) => {
     const [higlightcard,setHighlightCard]= useState('')
@@ -36,6 +37,39 @@ const AccountCard = (props) => {
 
 const StripePayment = () => {
   const [showcard, setShowcard] = useState("");
+
+
+  // const formik = useFormik({
+  //   enableReinitialize: true,
+  //   initialValues: {
+  //     firstname: editData?.first_name,
+  //     email_id: editData?.email_id,
+  //     lastname: editData?.last_name,
+  //     designation: editData?.designation,
+  //     status:editData?.status
+  //   },
+  //   // validationSchema: Yup.object({
+  //   //   firstname: Yup.string().required("FirstName is required"),
+  //   //   email_id: Yup.string().required("Email is required"),
+  //   //   lastname: Yup.string().required("PhoneNumber is required"),
+  //   //   designation: Yup.string().required("designation is required"),
+  //   // }),
+  //   onSubmit: (values) => {
+  //     let val = {
+  //       first_name: values.firstname,
+  //       email_id: values.email_id,
+  //       last_name: values.lastname,
+  //       designation: values.designation,
+  //       status:values.status
+  //     };
+
+  //   },
+  // });
+
+
+  
+
+
 
   const inputDetails = (method) => {
     switch (method) {

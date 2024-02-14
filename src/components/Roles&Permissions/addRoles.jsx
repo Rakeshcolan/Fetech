@@ -6,11 +6,12 @@ import {
   RoleAuthoriZationHead,
 } from "../common/tableData";
 import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const AddRoles = () => {
   const [size, setSize] = useState(0);
   const [page, setPage] = useState(5);
-
+  const navigate = useNavigate();
   const paginationRowsOptions = [5, 10, 20, 50, 100];
 
   const handlePerRowsChange = async (event) => {
@@ -22,7 +23,7 @@ const AddRoles = () => {
     setPage(newPage);
   };
   return (
-    <div>
+    <div className="commonbox">
       <h4>Add Role</h4>
       <div className="row">
         <div className="col-lg-6">
@@ -43,7 +44,7 @@ const AddRoles = () => {
         handleChangeRowsPerPage={handlePerRowsChange}
       />
       <div className="contentCenter">
-        <Button className="submitBtn">Confirm</Button>
+        <Button className="submitBtn" onClick={()=>navigate('/dashboard/roles')}>Confirm</Button>
       </div>
     </div>
   );

@@ -12,8 +12,8 @@ export const UsermenuItems = [
 
     isNested: [
       {
-        path: "/dashboard",
-        name: "Manage SubAdmin",
+        path: "/dashboard/subadmin",
+        name: "Manage Sub Admin",
         icon: <ManageAccountsIcon />,
       },
       {
@@ -39,7 +39,7 @@ export const AdminMenuItems=[
 
             {
                 path: "/dashboard/subadmin",
-                name: "Manage SubAdmin",
+                name: "Manage Sub Admin",
                 icon:<ManageAccountsIcon/> ,
               },
               {

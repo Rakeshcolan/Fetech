@@ -5,11 +5,11 @@ export const subAdminTableHead = [
   },
   {
     id: "first_name",
-    label: "FirstName",
+    label: "First Name",
   },
   {
     id: "last_name",
-    label: "LastName",
+    label: "Last Name",
   },
   {
     id: "email_id",

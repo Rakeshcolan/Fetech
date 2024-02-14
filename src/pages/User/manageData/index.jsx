@@ -39,11 +39,11 @@ const ManageData = () => {
       product_name: "",
     },
     validationSchema: Yup.object({
-      first_name: Yup.string().required("FirstName is required"),
-      last_name: Yup.string().required("LastName is required"),
+      first_name: Yup.string().required("First Name is required"),
+      last_name: Yup.string().required("Last Name is required"),
       email_id: Yup.string().required("Email is required"),
       mobile_no: Yup.string().required("Mobile Number is required"),
-      product_name: Yup.string().required("product Name is required"),
+      product_name: Yup.string().required("Product Name is required"),
     }),
     onSubmit: (values) => {
       let val = {
@@ -63,8 +63,8 @@ const ManageData = () => {
       <h4>Upload Data</h4>
       <CommonUpload />
       <br />
-      <h4>Manual Upload Data</h4>
       <div className="contentEnd">
+      <h4>Manual Upload Data</h4>
         <Button className="addBtn" onClick={formik.handleSubmit}>
           +Add
         </Button>
@@ -78,7 +78,7 @@ const ManageData = () => {
           />
           <br />
           <CommonTextFields
-            label="PhoneNumber"
+            label="Phone Number"
             id="mobile_no"
             formik={formik}
           />

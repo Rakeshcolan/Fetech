@@ -58,7 +58,7 @@ const EditSubAdmin = () => {
 
   return (
     <div className="commonbox">
-      <h4>Edit SubAdmin</h4>
+      <h4>Edit Sub Admin</h4>
       <br />
       <div className="row">
         <div className="col-lg-6">
@@ -76,7 +76,8 @@ const EditSubAdmin = () => {
           />
         </div>
         
-        <div className="col-lg-6" >
+        <div className="col-lg-6" style={{justifyContent:"space-between"}}>
+          <br/>
           <CommonSwitch label="Status" id="status" formik={formik}/>
         </div>
       </div>

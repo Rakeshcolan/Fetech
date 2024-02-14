@@ -29,11 +29,19 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(even)": {
     backgroundColor: "#C4CDD5",
+   
   },
   // hide last border
   "&:last-child td, &:last-child th": {
     border: 0,
   },
+
+  "&:.css-1affrt6-MuiTableCell-root.MuiTableCell-body":{
+    width:"50px !important"
+  },
+"&: ..css-1h7km8s":{
+  maxWidth:"50px !important"
+}
 }));
 
 let roleObj = {
@@ -89,7 +97,7 @@ function CustomizedTables(props) {
     if (navigatepath) {
       let id = data.chatbot_id;
       navigate(`/dashboard/${navigatepath}`, {
-        state: { action: "Edit", arrayIndex: id },
+        state: { action: "Edit", arrayIndex: id ,data }
       });
     } else {
       navigate(`/dashboard/edit${pathname}`, { state: { data } });
@@ -137,9 +145,10 @@ function CustomizedTables(props) {
             </TableBody>
           ) : (
             <TableBody>
+             
              {rows?.slice(size * page, size * page + page).map((row, i) => {
                 return (
-                  <StyledTableRow hover role="checkbox" tabIndex={-1} key={i}>
+                  <StyledTableRow  hover role="checkbox" tabIndex={-1} key={i}>
                     {columns?.map((column) => {
                       const value =
                         column.id === "Action" ||
@@ -155,6 +164,7 @@ function CustomizedTables(props) {
                       return (
                         <Fragment key={column.id}>
                           <StyledTableCell
+                          className="tablecontainer"
                             sx={{ textAlign: "center", margin: "auto" }}
                           >
                             {value === "Action" ? (
@@ -208,9 +218,11 @@ function CustomizedTables(props) {
                         </Fragment>
                       );
                     })}
+
                   </StyledTableRow>
                 );
               })}
+              
             </TableBody>
           )}
         </Table>
@@ -218,7 +230,7 @@ function CustomizedTables(props) {
       {/* ## For Pagination ## */}
       {paginationStatus && (
         <div
-          style={{ display: "flex", justifyContent: "space-between" }}
+          style={{ display: "flex", justifyContent: "space-between" ,alignItems:"center"}}
           className="pagination-info"
         >
           <div>
@@ -226,7 +238,7 @@ function CustomizedTables(props) {
               Showing {startIndex} to {endIndex} of {totalEntries} entries
             </p>
           </div>
-          <div>
+         
             <TablePagination
               rowsPerPageOptions={paginationRowsOptions}
               component="div"
@@ -236,8 +248,9 @@ function CustomizedTables(props) {
               onPageChange={handlePageChange}
               onRowsPerPageChange={handlePerRowsChange}
               className="pagination-text"
+              style={{padding:"0px !important",margin:"0px !important"}}
             />
-          </div>
+          
         </div>
       )}
     </Paper>

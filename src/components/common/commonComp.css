@@ -48,7 +48,8 @@
 
 .contentEnd {
   display: flex !important;
-  justify-content: end !important;
+  justify-content: space-between !important;
+  align-items: center;
 }
 
 .card {
@@ -141,11 +142,40 @@
   height: 0.4375em !important;
 }
 
-.css-pdct74-MuiTablePagination-selectLabel {
+.pagination-text{
+  margin: 0px !important;
+  padding:0px !important;
+}
+
+/* .css-pdct74-MuiTablePagination-selectLabel {
   padding-top: 10px !important;
 }
+
 .css-levciy-MuiTablePagination-displayedRows {
   padding-top: 12px !important;
+} */
+
+.tablecontainer{
+  max-width: 30px !important;
+  overflow: hidden;
+}
+
+.tablecontainer:hover{
+  overflow:visible;
+  word-wrap:break-word ;
+}
+
+.tooltip{
+  display: none; 
+  position: absolute;  
+  z-index: 100; 
+  border: 1px; 
+  background-color: white; 
+  border: 1px solid green; 
+  padding: 3px; 
+  color: green;  
+  top: 20px;  
+  left: 20px; 
 }
 
 .skeleton {

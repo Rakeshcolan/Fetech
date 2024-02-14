@@ -52,7 +52,7 @@ export const APIService = async (method, url, body, params) => {
           return Promise.reject();
         } 
         else if(e?.response?.status === 400){
-          showToast("please check the credentioals","error")
+          showToast("Please Check the Credentials","error")
           return Promise.reject();
         }
         

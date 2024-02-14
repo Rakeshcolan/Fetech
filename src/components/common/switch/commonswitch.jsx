@@ -8,6 +8,7 @@ const CommonSwitch = ({ label, id, formik }) => {
   const FlexContainer = styled("div")({
     display: "flex",
     alignItems: "center",
+    justifyContent:"space-around"
   });
   const IOSSwitch = styled((SwitchProps) => (
     <Switch
@@ -20,6 +21,7 @@ const CommonSwitch = ({ label, id, formik }) => {
     height: 26,
     padding: 0,
     display: "flex",
+    justifyContent:"space-between",
     "& .MuiSwitch-switchBase": {
       padding: 0,
       margin: 2,
@@ -66,13 +68,13 @@ const CommonSwitch = ({ label, id, formik }) => {
     },
   }));
   return (
-    <div style={{ display: "flex" }}>
       <FlexContainer>
         {" "}
         <label style={{ fontSize: "16px", marginRight: "70px" }}>
           {label}
           {/* {required && <span className="field-required">*</span>} */}
         </label>
+        <div style={{display:"flex",alignItems:"center"}}>
         <Typography>Inactive</Typography>
         <FormControlLabel
           control={
@@ -86,8 +88,9 @@ const CommonSwitch = ({ label, id, formik }) => {
           }
         />
         <Typography>Active</Typography>
+        </div>
+     
       </FlexContainer>
-    </div>
   );
 };
 
