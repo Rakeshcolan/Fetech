@@ -55,6 +55,7 @@ const ManageRoles = () => {
             page={page}
             size={size}
             handleChangePage={handlePageChange}
+            // dataLoading = {adminDataLoading}
             handleChangeRowsPerPage={handlePerRowsChange}
             onDelete = {handleDelete}
           />

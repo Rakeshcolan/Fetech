@@ -16,11 +16,13 @@ import { useNavigate } from "react-router-dom";
 import CommonDropDown from "../common/Field/CommonDropDown";
 import { adminSelector } from "../../redux/slice/adminSlice";
 import { useEffect } from "react";
+import { usePassword } from "../../hooks/usePassword";
 
 export default function AddClientModal(props) {
   const { openModal, setOpenModal } = props;
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const generatePassword = usePassword();
+
   const { getSubscriptionDetail, subscriptionDetail } =
     useSelector(adminSelector);
 
@@ -28,6 +30,7 @@ export default function AddClientModal(props) {
     setOpenModal(false);
     formik.resetForm()
   };
+
 
   useEffect(() => {
     dispatch(getSubscriptionApi());
@@ -56,12 +59,15 @@ export default function AddClientModal(props) {
       subscription_plan: Yup.string().required("subscription plan is required"),
     }),
     onSubmit: async (values, { resetForm }) => {
+      console.log("getallvaluess",values);
       let val = {
-        name: values.name,
+        // name: values.name,
         email_id: values.email_id,
         mobile_no: values.mobile_no,
         billing: values.billing,
-        subscription_plan: values.subscription_plan,
+        plan: values.subscription_plan,
+        password:generatePassword(values.name,values.mobile_no),
+        username:values.name,
       };
       dispatch(addClientApi(val));
       resetForm();

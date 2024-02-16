@@ -3,9 +3,12 @@ import {
   AccountCardHead,
   AccountCardInputData,
   BankAccountCardData,
+  bankAccountValidationSchema,
+  cardValidationSchema,
   GpayCardData,
+  upiValidationSchema,
 } from "../../../utils/constants/cardItem";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AccountInputCard } from "../../../components/stripePaymentComp/accountInputCard";
 import { useFormik } from "formik";
 
@@ -38,6 +41,7 @@ const AccountCard = (props) => {
 const StripePayment = () => {
   const [showcard, setShowcard] = useState("");
 
+  const [formikConfig, setFormikConfig] = useState(null);
 
   // const formik = useFormik({
   //   enableReinitialize: true,
@@ -68,21 +72,76 @@ const StripePayment = () => {
 
 
   
+  const handleCardSubmit = (values) => {
+    // Handle card submission
+  };
 
+  const handleUPISubmit = (values) => {
+    // Handle UPI submission
+  };
+
+  const handleBankAccountSubmit = (values) => {
+    // Handle bank account submission
+  };
+
+  const formik = useFormik(formikConfig || {
+    enableReinitialize: true,
+    initialValues: {},
+    validationSchema: {},
+    onSubmit: () => {},
+  });
+
+  useEffect(()=>{
+    switch (showcard) {
+      case "Card":
+        setFormikConfig({
+          enableReinitialize: true,
+          initialValues: { cardNumber: "", expirationDate: "", cvv: "" ,country:""},
+          validationSchema: cardValidationSchema,
+          onSubmit: handleCardSubmit,
+        });
+        break
+
+      case "UPI":
+        setFormikConfig({
+          enableReinitialize: true,
+          initialValues: { upiId: "" },
+          validationSchema: upiValidationSchema,
+          onSubmit: handleUPISubmit,
+        });
+        break
+      case "Bank Account":
+        setFormikConfig({
+          enableReinitialize: true,
+          initialValues: { accountNumber: "" ,ifsc:""},
+          validationSchema: bankAccountValidationSchema,
+          onSubmit: handleUPISubmit,
+        });
+        break
+
+      default:
+        break
+      
+    }
+  },[showcard])
 
 
   const inputDetails = (method) => {
     switch (method) {
       case "Card":
-        return <AccountInputCard cardInput={AccountCardInputData} buttonText={"Paynow"}/>;
+      
+        return <AccountInputCard formik={formik} cardInput={AccountCardInputData} buttonText={"Paynow"}/>;
 
       case "UPI":
-        return <AccountInputCard cardInput={GpayCardData} buttonText={"verify"}/>;
+      
+        return <AccountInputCard formik={formik}  cardInput={GpayCardData} buttonText={"verify"}/>;
 
       case "Bank Account":
-        return <AccountInputCard cardInput={BankAccountCardData} buttonText={"Paynow"} />;
+
+        return <AccountInputCard  formik={formik} cardInput={BankAccountCardData} buttonText={"Paynow"} />;
 
       default:
+
         return <AccountInputCard cardInput={AccountCardInputData} buttonText={"Paynow"}/>;
     }
   };
@@ -94,7 +153,7 @@ const StripePayment = () => {
         <div className="accountcard">
           <AccountCard showCard={setShowcard}  />
         </div>
-        {inputDetails(showcard)}
+        { inputDetails(showcard)}
       </div>
     </div>
   );

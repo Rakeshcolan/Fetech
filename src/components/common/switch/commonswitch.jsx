@@ -70,11 +70,11 @@ const CommonSwitch = ({ label, id, formik }) => {
   return (
       <FlexContainer>
         {" "}
-        <label style={{ fontSize: "16px", marginRight: "70px" }}>
+        <label style={{ fontSize: "16px", width:"100%" }}>
           {label}
           {/* {required && <span className="field-required">*</span>} */}
         </label>
-        <div style={{display:"flex",alignItems:"center"}}>
+        <div style={{display:"flex",alignItems:"center",width:"100%"}}>
         <Typography>Inactive</Typography>
         <FormControlLabel
           control={

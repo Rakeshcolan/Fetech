@@ -115,16 +115,16 @@ const Drawer = styled(MuiDrawer, {
                     }}
                   >
                     <span style={{ margin: "9px" }}>{icon}</span>
-                    <ListItemText primary={name} className="check"
+                    <ListItemText primary={name} className={isActive?"menuname":"menunameIsActive"}
                       // style={{whiteSpace:"nowrap"}}
-                     sx={{
-                      '& .css-10hburv-MuiTypography-root':{
-                        fontWeight:isActive? "800 !important":"",
-                        whiteSpace:"normal"
-                      }
+                    //  sx={{
+                    //   '& .css-10hburv-MuiTypography-root':{
+                    //     fontWeight:isActive? "800 !important":"",
+                    //     whiteSpace:"normal"
+                    //   }
 
 
-                     }} 
+                    //  }} 
                       />
                   </ListItemButton>
                 </div>

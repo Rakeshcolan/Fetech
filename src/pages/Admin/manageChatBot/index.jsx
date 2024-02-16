@@ -13,7 +13,7 @@ const ManageChatBot = () => {
 
   const navigate = useNavigate();
 
-  const { getAllChatbotData, chatBotData, editChatBotById } =
+  const { getAllChatbotData, chatBotData, editChatBotById ,getAllchatBotDataisLoading} =
     useSelector(adminSelector);
   const handleRoute = () => {
     navigate(`/dashboard/flowpage`, { state: { action: "Add" } });
@@ -31,6 +31,7 @@ const ManageChatBot = () => {
         <CustomizedTables
           columns={chatBotTableTitle}
           rows={getAllChatbotData}
+          dataLoading = {getAllchatBotDataisLoading}
           paginationStatus={true}
           navigatepath={"flowpage"}
         />

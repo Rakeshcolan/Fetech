@@ -11,12 +11,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { addSubAmdinsApi, getRolesApi } from "../../redux/action/adminAction";
 import CommonDropDown from "../common/Field/CommonDropDown";
 import { adminSelector } from "../../redux/slice/adminSlice";
+import { authSelector } from "../../redux/slice/authSlice";
 import { useEffect } from "react";
+import { usePassword } from "../../hooks/usePassword";
 
 export default function AddSubAdminModal(props) {
-  const { openModal, setOpenModal } = props;
+  const { openModal, setOpenModal,userId="" } = props;
   const dispatch = useDispatch();
-  const {designationData} = useSelector(adminSelector)
+  const generatePassword = usePassword();
+  // const {designationData} = useSelector(adminSelector)
   const handleClose = () => {
     setOpenModal(false);
     formik.resetForm();
@@ -54,8 +57,12 @@ export default function AddSubAdminModal(props) {
       status: Yup.string().required("Status Is Required"),
       designation: Yup.string().required("Designation Is Required"),
     }),
+
     onSubmit: (values) => {
       let val = {
+        user_client:userId,
+        password:generatePassword(values.first_name,values.mobile_no),
+        username:values.first_name,
         first_name: values.first_name,
         last_name: values.last_name,
         email_id: values.email_id,
@@ -69,8 +76,16 @@ export default function AddSubAdminModal(props) {
     },
   });
 
+
+  // const generatePassword = (name,phno)=>{
+  //   let newname = name.split('').slice(0,5).join('')
+  //   let newnum = phno.split('').slice(0,5).join('')
+  //   let newpassword = newname+newnum;
+  //   return newpassword;
+  // }
+
   useEffect(()=>{
-    dispatch(getRolesApi())
+    // dispatch(getRolesApi())
   },[])
 
   return (
@@ -141,8 +156,8 @@ export default function AddSubAdminModal(props) {
               placeholder="Select an status"
               formik={formik}
               options={[
-                { value: "True", label: "Active" },
-                { value: "False", label: "InActive" },
+                { value:1, label: "Active" },
+                { value: 2, label: "InActive" },
               ]}
             />
           </div>
@@ -153,7 +168,12 @@ export default function AddSubAdminModal(props) {
               label="Designation"
               placeholder="Select an Designation"
               formik={formik}
-              options={designationData}
+              // options={designationData}
+              options={[
+                { value: 3, label: "Accountant" },
+                { value: 2, label: "Manager" },
+                { value: 1, label: "Employee" },
+              ]}
             />
           </div>
           <br />

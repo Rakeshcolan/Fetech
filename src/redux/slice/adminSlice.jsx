@@ -28,13 +28,21 @@ const adminSlice = createSlice({
     getChatBotDataByIdisLoading:false,
     getAllChatbotData:[],
     getAllchatBotDataisLoading:false,
-    designationData:[]
+    designationData:[],
+    deleteData :"",
+    deleteDataIsLoading :""
   },
   reducers: {
     addSubAmdinsReducer: (state, { payload }) => {
+      console.log("payloadee",payload);
       const { apiData, isLoading } = payload;
-      state.subAdminDetail = apiData;
+      state.subAdminDetail = apiData ;
       state.adminDataLoading = isLoading;
+    },
+    deleteReducer: (state, { payload }) => {
+      const { apiData, isLoading } = payload;
+      state.deleteData =[ "Deleted"];
+      state.deleteDataIsLoading = isLoading;
     },
     getSubAdminReducer: (state, { payload }) => {
       const { apiData, isLoading } = payload;
@@ -119,6 +127,7 @@ const adminSlice = createSlice({
 
 export const {
   addChatbotReducer,
+  deleteReducer,
   editSubAdminReducer,
   getRolesReducer,
   editChatBotByIdReducer,

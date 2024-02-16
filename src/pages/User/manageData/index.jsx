@@ -104,6 +104,7 @@ const ManageData = () => {
           rows={manageDataTableData}
           paginationStatus={true}
           rowsPerPageOptions={paginationRowsOptions}
+          // dataLoading = {adminDataLoading}
           page={page}
           size={size}
           handleChangePage={handlePageChange}

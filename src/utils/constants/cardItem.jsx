@@ -7,6 +7,7 @@ import mail from "../../assests/images/mail.png";
 import card from "../../assests/images/card.png"
 import gpay from "../../assests/images/gpay.png"
 import bank from "../../assests/images/bank.png"
+import * as Yup from 'yup';
 
 export const CardItem = [
   {
@@ -54,10 +55,10 @@ export const ResponseCardItem = [
 ];
 
 export const SubscriptionData = [
-  { name: "Tier 1", value: "$7.80", checkList: ["50 Imnage Generation","50 Imnage Generation","50 Imnage Generation","50 Imnage Generation","50 Imnage Generation","50 Imnage Generation","50 Imnage Generation",] },
-  { name: "Tier 2", value: "$8.80", checkList: ["50 Imnage Generation","50 Imnage Generation","50 Imnage Generation","50 Imnage Generation","50 Imnage Generation","50 Imnage Generation","50 Imnage Generation",] },
-  { name: "Tier 3", value: "$9.80", checkList: ["50 Imnage Generation","50 Imnage Generation","50 Imnage Generation","50 Imnage Generation","50 Imnage Generation","50 Imnage Generation","50 Imnage Generation",] },
-  { name: "For More Details", value: "Contact the sales person by using the button below", checkList: ["50 Imnage Generation","50 Imnage Generation","50 Imnage Generation","50 Imnage Generation","50 Imnage Generation","50 Imnage Generation","50 Imnage Generation",] },
+  { name: "Tier 1", value: "$7.80", checkList: ["50 Imnage Generation","500 credits","Monthly 100 credits free","Customer Support","Dedicated Server","Priority Generation"] },
+  { name: "Tier 2", value: "$8.80", checkList: ["50 Imnage Generation","500 credits","Monthly 100 credits free","Customer Support","Dedicated Server","Priority Generation"] },
+  { name: "Tier 3", value: "$9.80", checkList: ["50 Imnage Generation","500 credits","Monthly 100 credits free","Customer Support","Dedicated Server","Priority Generation"] },
+  { name: "For More Details", textvalue: "Contact the sales person by using the button below",description:"orem Ipsum is simply dummy text of the printing and typesetting industry. orem Ipsum is simply dummy text of the printing and typesetting industry.orem Ipsum is simply dummy text of the printing and typesetting industry.psum is simply dummy text of the printing and typesetting industry. orem Ipsum is simply dummy text of the printing and typesetting industry.orem Ipsum is simply dummy text of the printing and typesetting industry" },
 ];
 
 
@@ -73,25 +74,29 @@ export const AccountCardInputData=[
     label:"Card Number",
     includeImg:"true",
     fullwidth:"true",
-    placeholderText:"1234 1234 1234 1234 "
+    placeholderText:"1234 1234 1234 1234 ",
+    id:"cardNumber"
   },
   {
     label:"Expiration",
     includeImg:"false",
     fullwidth:"false",
-    placeholderText:"MM/YY"
+    placeholderText:"MM/YY",
+    id:"expirationDate"
   },
   {
     label:"CCV",
     includeImg:"false",
     fullwidth:"false",
-    placeholderText:"***"
+    placeholderText:"***",
+    id:"cvv"
   },
   {
     label:"Country",
     includeImg:"false",
     fullwidth:"true",
-    placeholderText:"Select"
+    placeholderText:"Select",
+    id:"country"
   },
 ]
 
@@ -100,7 +105,8 @@ export const GpayCardData = [
     label:"Enter your UPI id",
     includeImg:"false",
     fullwidth:"true",
-    placeholderText:"Enter upi id"
+    placeholderText:"Enter upi id",
+    id:"upiId"
   }
 ]
 
@@ -109,12 +115,44 @@ export const BankAccountCardData=[
     label:"Account Number",
     includeImg:"false",
     fullwidth:"true",
-    placeholderText:"Enter Account number"
+    placeholderText:"Enter Account number",
+    id:"accountNumber"
   },
   {
     label:"IFSC",
     includeImg:"false",
     fullwidth:"true",
-    placeholderText:"Enter IFSC Code"
+    placeholderText:"Enter IFSC Code",
+    id:"ifsc"
   }
 ]
+
+
+export const bankAccountValidationSchema = Yup.object().shape({
+  accountNumber: Yup.string()
+    .required('Account number is required')
+    .matches(/^\d{10,}$/, 'Invalid account number'),
+    ifsc: Yup.string()
+    .required('IFSC is required')
+   
+});
+
+export const upiValidationSchema = Yup.object().shape({
+  upiId: Yup.string()
+    .required('UPI ID is required')
+    .matches(/^[\w.-]+@\w+$/, 'Invalid UPI ID'),
+});
+ 
+
+export const cardValidationSchema = Yup.object().shape({
+  cardNumber: Yup.string()
+    .required('Card Number is Required')
+    .matches(/^\d{16}$/, 'Invalid card number'),
+  expirationDate: Yup.string()
+    .required('Expiration Date is Required')
+    .matches(/^(0[1-9]|1[0-2])\/\d{2}$/, 'Invalid expiration date'),
+  cvv: Yup.string()
+    .required('CVV is Required')
+    .matches(/^\d{3}$/, 'Invalid CVV'),
+});
+

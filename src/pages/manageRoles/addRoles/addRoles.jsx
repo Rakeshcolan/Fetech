@@ -39,6 +39,7 @@ const AddRoles = () => {
         rowsPerPageOptions={paginationRowsOptions}
         page={page}
         size={size}
+        // dataLoading = {adminDataLoading}
         handleChangePage={handlePageChange}
         handleChangeRowsPerPage={handlePerRowsChange}
       />

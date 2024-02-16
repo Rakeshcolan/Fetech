@@ -47,6 +47,7 @@ const ManageDemo = () => {
           size={size}
           handleChangePage={handlePageChange}
           handleChangeRowsPerPage={handlePerRowsChange}
+          // dataLoading = {adminDataLoading}
         />
       </div>
     </>

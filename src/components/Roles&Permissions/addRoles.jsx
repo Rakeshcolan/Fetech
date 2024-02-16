@@ -9,8 +9,12 @@ import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const AddRoles = () => {
+
   const [size, setSize] = useState(0);
   const [page, setPage] = useState(5);
+  // const [roles,setRoles] = useState({
+
+  // })
   const navigate = useNavigate();
   const paginationRowsOptions = [5, 10, 20, 50, 100];
 
@@ -22,6 +26,12 @@ const AddRoles = () => {
   const handlePageChange = async (event, newPage) => {
     setPage(newPage);
   };
+
+  const changeRoles = (e,data)=>{
+    console.log("Dataaaaaaaaaa",data.Modules,e.target.name);
+  }
+
+
   return (
     <div className="commonbox">
       <h4>Add Role</h4>
@@ -40,6 +50,9 @@ const AddRoles = () => {
         rowsPerPageOptions={paginationRowsOptions}
         page={page}
         size={size}
+        handleChange = {changeRoles}
+        //for loader component
+        // dataLoading = {adminDataLoading}
         handleChangePage={handlePageChange}
         handleChangeRowsPerPage={handlePerRowsChange}
       />
