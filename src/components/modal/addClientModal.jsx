@@ -19,7 +19,7 @@ import { useEffect } from "react";
 import { usePassword } from "../../hooks/usePassword";
 
 export default function AddClientModal(props) {
-  const { openModal, setOpenModal } = props;
+  const { openModal=false, setOpenModal } = props;
   const dispatch = useDispatch();
   const generatePassword = usePassword();
 

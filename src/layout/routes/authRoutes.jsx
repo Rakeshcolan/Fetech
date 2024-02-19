@@ -1,5 +1,6 @@
 import { lazy } from "react";
 import { Outlet } from "react-router-dom";
+import ForgotPassword from "../../pages/Auth/forgotPassword";
 import Register from "../../pages/Auth/register/Register";
 import Payment from "../../pages/payment";
 import StripePayment from "../../pages/User/stripePayment";
@@ -26,6 +27,10 @@ const authRoutes = [
       {
         path: "/payment",
         element: <Payment />,
+      },
+      {
+        path: "/forgot",
+        element: <ForgotPassword />,
       },
       { path: "/stripepayment", element: <StripePayment /> },
       {

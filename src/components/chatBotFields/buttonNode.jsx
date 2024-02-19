@@ -15,13 +15,17 @@ function ButtonNode(props) {
   };
   return (
     <>
+      <div style={{ position: "relative" }}>
+       
+
       <Handle
         type="source"
-        className='chathandle'
+        className='chathandleright chathandle'
         position={Position.Right}
         isConnectable={isConnectable}
         style={{ borderColor: "black !important" }}
       />
+        
       <Handle
         type="target"
         className='chathandle'
@@ -29,14 +33,17 @@ function ButtonNode(props) {
         isConnectable={isConnectable}
         style={{ borderColor: "black !important" }}
       />
-      <div style={{ position: "relative" }}>
+      
         <input
           type="text"
           value={inputValue}
-          className="activeborder"
+          className="activeborder "
           style={buttonStyle}
           onChange={(e) => handleChange(e)}
         />
+        <span className="customhandle">
+
+        </span>
         <DeleteIcon deleteId={dataone.nodeId} />
       </div>
     </>

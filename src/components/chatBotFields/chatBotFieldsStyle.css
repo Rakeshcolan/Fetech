@@ -171,6 +171,13 @@
     border: 1px solid black !important;
     width: 2px !important;
     height: 2px !important;
+    
+
+  }
+
+  .react-flow__handle:hover{
+    cursor: crosshair !important;
+    pointer-events: all;
   }
   
   .activeborder:focus-visible{
@@ -193,4 +200,24 @@
 
   .chathandle{
     background-color: #1a192b !important;
+    /* visibility: hidden; */
+  }
+
+  .coverhandle {
+    opacity: 2;
+    
+  }
+
+  .chathandleright{
+    height: 100% !important;
+    opacity: 0 !important;
+    width: 7px !important;
+  }
+
+  .customhandle{
+    width:2px;
+    height:2px;
+    background-color:black;
+    display:inline-block;
+    border-radius:20%
   }

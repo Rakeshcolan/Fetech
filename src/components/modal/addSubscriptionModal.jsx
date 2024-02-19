@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 import {  subscriptionApi } from "../../redux/action/adminAction";
 
 export default function AddSubscriptionModal(props) {
-  const { openModal, setOpenModal } = props;
+  const { openModal=false, setOpenModal } = props;
   const dispatch = useDispatch();
   const handleClose = () => {
     setOpenModal(false);
@@ -35,8 +35,8 @@ export default function AddSubscriptionModal(props) {
     }),
     onSubmit: (values) => {
       let val = {
-        plan: values.plan,
-        subscription_amount: values.subscription_amount,
+        subscription_plan: values.plan,
+        billing: values.subscription_amount,
         description: values.description,
         status: values.status,
       };

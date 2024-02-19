@@ -74,7 +74,7 @@ export function subscriptionApi(body) {
   return apiHelper(
     addSubscriptionApiReducer,
     "POST",
-    "/managesubscription/",
+    "/subscriptionplan/",
     body
   );
 }

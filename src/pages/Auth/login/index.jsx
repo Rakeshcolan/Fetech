@@ -17,8 +17,8 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleNavigate = () => {
-    navigate("/register");
+  const handleNavigate = (val) => {
+    navigate(`/${val}`);
   };
   
 
@@ -110,7 +110,7 @@ const Login = () => {
 
               <input type="checkbox" name="rememberMe" ref={remembercheck} onChange={handleRemember}/> Remember Me
             </label>
-            <span className="forgot-password">Forgot Password?</span>
+            <span className="forgot-password" onClick={()=>handleNavigate('forgot')}>Forgot Password?</span>
           </div>
           <button className="loginBtn" onClick={formik.handleSubmit}>Login</button>
           <br />
@@ -118,7 +118,7 @@ const Login = () => {
           <div>
             <p>
               Don't have an account?{" "}
-              <b style={{ cursor: "pointer" }} onClick={handleNavigate}>
+              <b style={{ cursor: "pointer" }} onClick={()=>handleNavigate("register")}>
                 SignUp
               </b>{" "}
             </p>

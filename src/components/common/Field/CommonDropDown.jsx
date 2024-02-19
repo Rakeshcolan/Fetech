@@ -40,7 +40,6 @@ function CommonDropDown({
     return  optiontext;
   }
 
-console.log("Selectedvalue",selectedValue);
   return (
     <div className="formik-select-wrapper">
       <div
@@ -51,7 +50,7 @@ console.log("Selectedvalue",selectedValue);
           flexWrap: "wrap",
         }}
       >
-        <label style={{ fontSize: "16px",  }}>
+        <label style={{ fontSize: "16px" }}>
           {label}
           {required && <span className="field-required">*</span>}
         </label>

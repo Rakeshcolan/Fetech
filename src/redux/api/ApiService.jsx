@@ -2,22 +2,33 @@ import axios from "axios";
 import { showToast } from "../../components/commonToast/toastService";
 import { USER_BASE_URL, ADMIN_BASE_URL } from "./configURL";
 
-export const APIService = async (method, url, body, params) => {
-  const roles =
-  typeof window !== "undefined" ? sessionStorage.getItem("roles") : "" ;
-  const accessToken =
-  typeof window !== "undefined" ? sessionStorage.getItem("act") : "";
+const getRoles = () => {
+  const roles = typeof window !== "undefined" ? sessionStorage.getItem("roles") : "";
+  return roles;
+};
+
+const getAccessToken = () => {
+  const accessToken = typeof window !== "undefined" ? sessionStorage.getItem("act") : "";
+  return accessToken;
+};
+
+function baseUrl(roles) {
   const obj = {
-    ADMIN: ADMIN_BASE_URL,
-    USER: USER_BASE_URL,
+    Admin: ADMIN_BASE_URL,
+    Subadmin: ADMIN_BASE_URL,
+    User: USER_BASE_URL,
+    Client: USER_BASE_URL,
   };
-   function baseUrl(roles) {
-    return obj[roles];
-  }
+  return obj[roles];
+}
+export const APIService = async (method, url, body, params) => {
+  const roles = getRoles();
+  const accessToken = getAccessToken();
+
   if (window.navigator.onLine) {
     return await axios({
       method: method,
-      baseURL: baseUrl(roles) ,
+      baseURL: baseUrl(roles),
       url: url,
       headers: {
         // Authorization: accessToken,
@@ -29,7 +40,7 @@ export const APIService = async (method, url, body, params) => {
     })
       .then((e) => {
         if (roles === null || undefined || "") {
-          sessionStorage.clear()
+          sessionStorage.clear();
           // navigate('/')
         } else if (e.status === 200 || e.status === 201) {
           return {
@@ -47,15 +58,14 @@ export const APIService = async (method, url, body, params) => {
         // console.log("ERROR OCCURED", e);
         if (e.message === "Network Error") {
           // navigate("/common/networkIssue");
-          showToast(e.message,"error")
+          showToast(e.message, "error");
           //adding this to avoid propogation of error to the redux action
           return Promise.reject();
-        } 
-        else if(e?.response?.status === 400){
-          showToast("Please Check the Credentials","error")
+        } else if (e?.response?.status === 400) {
+          showToast("Please Check the Credentials", "error");
           return Promise.reject();
         }
-        
+
         // else if (e.response.status === 401 || e.response.status === 403) {
         //   // UNCOMMENT THIS CODE WHEN API IS READY
         //   // const refreshToken =

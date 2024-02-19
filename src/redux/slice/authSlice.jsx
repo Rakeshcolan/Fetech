@@ -7,6 +7,8 @@ const authSlice = createSlice({
     loginDetailisLoading: false,
     registerDetail: [],
     registerDetailisLoading: false,
+    forgotpasswordDetail:"",
+   forgotpasswordDetailisLoading:false
   },
   reducers: {
     loginApiReducer: (state, { payload }) => {
@@ -21,10 +23,15 @@ const authSlice = createSlice({
       state.registerDetail = payload.registerDetail;
       state.registerDetailisLoading = payload.registerDetailisLoading;
     },
+    forgotApiReducer: (state, { payload }) => {
+      state.forgotpasswordDetail = payload.apiData;
+      state.forgotpasswordDetailisLoading = payload.isLoading;
+    },
+  
   },
 });
 
-export const { loginApiReducer,registerApiReducer } = authSlice.actions;
+export const { loginApiReducer,registerApiReducer,forgotApiReducer } = authSlice.actions;
 export const authSelector = (state) => state.auth;
 const authReducer = authSlice.reducer;
 export default authReducer;

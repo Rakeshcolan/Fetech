@@ -16,7 +16,7 @@ import { useEffect } from "react";
 import { usePassword } from "../../hooks/usePassword";
 
 export default function AddSubAdminModal(props) {
-  const { openModal, setOpenModal,userId="" } = props;
+  const { openModal=false, setOpenModal,userId="" } = props;
   const dispatch = useDispatch();
   const generatePassword = usePassword();
   // const {designationData} = useSelector(adminSelector)
