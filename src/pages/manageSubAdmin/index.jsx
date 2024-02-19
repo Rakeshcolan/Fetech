@@ -4,18 +4,21 @@ import { useDispatch, useSelector } from "react-redux";
 import CustomizedTables from "../../components/common/commonTable";
 import { subAdminTableHead } from "../../components/common/tableData";
 import AddSubAdminModal from "../../components/modal/addSubAdminModal";
-import { getSubAdminsApi } from "../../redux/action/adminAction";
+import { deleteSubAdminsApi, getSubAdminsApi } from "../../redux/action/adminAction";
 import { adminSelector } from "../../redux/slice/adminSlice";
+import { authSelector } from "../../redux/slice/authSlice";
 
 const ManageSubAdmin = () => {
   const [size, setSize] = useState(0);
   const [page, setPage] = useState(5);
   const [modalOpen, setModalOpen] = useState();
   const dispatch = useDispatch();
+  let userid = sessionStorage.getItem("UId")
 
   const paginationRowsOptions = [5, 10, 20, 50, 100];
 
-  const { getallSubAdminDetail, subAdminDetail,adminDataLoading} = useSelector(adminSelector);
+  const { getallSubAdminDetail, subAdminDetail,adminDataLoading,deleteData=""} = useSelector(adminSelector);
+ 
   const handlePerRowsChange = async (event) => {
     setPage(+event.target.value);
     setSize(0);
@@ -30,13 +33,12 @@ const ManageSubAdmin = () => {
   };
 
   useEffect(() => {
-    dispatch(getSubAdminsApi());
-  }, [subAdminDetail]);
+    dispatch(getSubAdminsApi(userid));
+  }, [subAdminDetail,deleteData,dispatch]);
 
-  const handleDelete=()=>{
-    
+  const handleDelete=(userid)=>{
+    dispatch(deleteSubAdminsApi(userid))
   }
-
   return (
     <>
       <div className="commonbox">
@@ -57,8 +59,10 @@ const ManageSubAdmin = () => {
           handleChangeRowsPerPage={handlePerRowsChange}
           onDelete = {handleDelete}
           dataLoading = {adminDataLoading}
+          navigatepath ='editsubadmin'
         />
-        <AddSubAdminModal openModal={modalOpen} setOpenModal={setModalOpen} />
+        
+        <AddSubAdminModal openModal={modalOpen} setOpenModal={setModalOpen} userId = {userid} />
       </div>
     </>
   );

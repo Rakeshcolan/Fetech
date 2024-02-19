@@ -12,6 +12,7 @@ export function addLoginApi(body, navigate) {
         dispatch(loginApiReducer({ apiData: e?.data, isLoading: false }));
         sessionStorage.setItem("roles", e?.data?.UserRoles === "Admin"?"ADMIN":"USER");
         sessionStorage.setItem("ur", e?.data?.UserRoles === "Admin"?2:1);
+        sessionStorage.setItem("UId", e?.data?.Login_id)
         navigate("/dashboard");
         showToast("Login Success", "success");
       })

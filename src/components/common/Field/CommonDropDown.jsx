@@ -2,6 +2,8 @@ import { MenuItem, TextField, inputLabelClasses } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { UilAngleDown } from "@iconscout/react-unicons";
 
+
+
 function CommonDropDown({
   id,
   label,
@@ -28,7 +30,7 @@ function CommonDropDown({
        optiontext =  `Tier${option?.subscription_id}`
         break;
       case "Billing":
-        optiontext = `Tier${option?.subscription_id} -${option?.subscription_amount}`
+        optiontext = `Tier${option?.subscription_id} -${option?.billing}`
         break;
     
       default:
@@ -38,7 +40,7 @@ function CommonDropDown({
     return  optiontext;
   }
 
-
+console.log("Selectedvalue",selectedValue);
   return (
     <div className="formik-select-wrapper">
       <div
@@ -103,13 +105,13 @@ function CommonDropDown({
           }}
         >
           {selectedValue === defaultValue && (
-            <MenuItem value={defaultValue} disabled hidden>
-              {defaultValue}
+            <MenuItem value={defaultValue}  hidden>
+              {selectedValue}
             </MenuItem>
           )}
           {options?.map((option) => (
                                                                      
-            <MenuItem key={option.id} value={option.designation_id||option.subscription_id||option.value  }>
+            <MenuItem key={option.id} value={option.designation_id||option.subscription_id||option.value }>
               {statusChecker && (
                 <div
                   className={option.active ? "active-dot" : "non-active-dot"}

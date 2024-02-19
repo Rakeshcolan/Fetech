@@ -1,7 +1,6 @@
 import EditProfile from "../../components/EditProfile/editProfile";
 import AddRoles from "../../components/Roles&Permissions/addRoles";
-import Login from "../../pages/Auth/login";
-import Register from "../../pages/Auth/register/Register";
+
 import ManageRoles from "../../pages/manageRoles";
 import EditRoles from "../../pages/manageRoles/editRoles";
 import ManageSubAdmin from "../../pages/manageSubAdmin";
@@ -15,7 +14,7 @@ const UserRoutes = [
     path: "/dashboard",
     element: <RootLayout />,
     children: [
-      { index:true, element: <ManageSubAdmin /> },
+      { path:'subadmin', element: <ManageSubAdmin /> },
       { path: "editsubadmin", element: <EditSubAdmin /> },
       { path: "data", element: <ManageData /> },
       { path: "roles", element: <ManageRoles /> },
@@ -25,14 +24,7 @@ const UserRoutes = [
       { path: "stripepayment", element: <StripePayment /> },
     ],
   },
-  // {
-  //   path: "/login",
-  //   element: <Login />,
-  // },
-  // {
-  //   path: "/register",
-  //   element: <Register />,
-  // },
+
 ];
 
 export default UserRoutes;

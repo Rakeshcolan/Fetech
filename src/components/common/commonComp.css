@@ -48,7 +48,8 @@
 
 .contentEnd {
   display: flex !important;
-  justify-content: end !important;
+  justify-content: space-between !important;
+  align-items: center;
 }
 
 .card {
@@ -105,14 +106,56 @@
   background-color: white;
   /* padding: 10px; */
   width: 15%;
-  height: 55vh;
-  border-radius: 20px;
+  height: 60vh;
+  border-radius: 18px;
   font-weight: 600 !important;
+  /* overflow: scroll; */
+}
+
+.paymenttexthead{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.paymentextcontent{
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.paymenttextcontainer{
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-around; */
+  align-items: center;
+  background-color: white;
+  padding: 10px;
+  border-radius: 18px;
+  align-items: center; 
+  width: 15%;
+  padding: 10px;
+  background-color: white;
+  height: 60vh;
 }
 
 .paymentcardpricing > p {
   font-size: 28px;
   margin: 0;
+}
+
+.lastpaymentcard{
+  font-size: 16px;
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 10px;
+  height: 20%;
 }
 
 .paymentcardchecklist {
@@ -121,7 +164,9 @@
   flex-direction: column;
   justify-content: space-evenly;
   gap: 10px;
+  /* height: 60%; */
 }
+
 
 .paymentbutton {
   border: none;
@@ -141,11 +186,48 @@
   height: 0.4375em !important;
 }
 
-.css-pdct74-MuiTablePagination-selectLabel {
+.pagination-text{
+  margin: 0px !important;
+  padding:0px !important;
+}
+
+.MuiTablePagination-selectLabel{
   padding-top: 10px !important;
 }
-.css-levciy-MuiTablePagination-displayedRows {
+
+.MuiTablePagination-displayedRows {
   padding-top: 12px !important;
+}
+
+/* .pagination-text .MuiTablePagination-selectLabel .MuiTablePagination-displayedRows{
+  padding-top: 10px !important;
+} */
+
+.pagination-text:first-child{
+  padding: 0px !important;
+}
+
+.tablecontainer{
+  max-width: 30px !important;
+  overflow: hidden;
+}
+
+.tablecontainer:hover{
+  overflow:visible;
+  word-wrap:break-word ;
+}
+
+.tooltip{
+  display: none; 
+  position: absolute;  
+  z-index: 100; 
+  border: 1px; 
+  background-color: white; 
+  border: 1px solid green; 
+  padding: 3px; 
+  color: green;  
+  top: 20px;  
+  left: 20px; 
 }
 
 .skeleton {
@@ -180,4 +262,14 @@
   to {
     left: 100%;
   }
+}
+
+
+.planbutton{
+  border-radius: 5px;
+  text-align: center;
+  background-color: #a0abc7;
+  max-width: 50%;
+  padding: 5px;
+  margin: auto;
 }

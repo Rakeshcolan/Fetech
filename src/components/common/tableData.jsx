@@ -1,15 +1,15 @@
 export const subAdminTableHead = [
   {
-    id: "managesubadmin_id",
+    id: "id",
     label: "#",
   },
   {
     id: "first_name",
-    label: "FirstName",
+    label: "First Name",
   },
   {
     id: "last_name",
-    label: "LastName",
+    label: "Last Name",
   },
   {
     id: "email_id",
@@ -180,9 +180,10 @@ export const RoleAuthoriZationData = [
 ];
 
 export const ClientDataHead = [
-  {id:"manageclient_id",label:"#"},
+  {id:"id",label:"#"},
   {
-    id: "name",
+    id: "username",
+    // id: "name",
     label: "Name",
   },
   {
@@ -194,13 +195,17 @@ export const ClientDataHead = [
     label: "Mobile Number",
   },
   {
-    id: "subscription_plan",
+    id: "plan",
     label: "Subscription Plan",
   },
   {
     id: "billing",
     label: "Billing",
   },
+  // {
+  //   id: "Action",
+  //   label: "Action",
+  // },
   // {
   //   id: "Received_Data",
   //   label: "Received Data",
@@ -280,13 +285,14 @@ export const SubscriptionDataHead = [
     label: "Id",
   },
   {
-    id: "plan",
+    id: "subscription_plan",
     label: "Tier",
   },
   {
-    id: "subscription_amount",
+    id: "billing",
     label: "Subscription Amount",
   },
+  //no data in the api for description
   {
     id: "description",
     label: "Description",

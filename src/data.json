@@ -4,31 +4,31 @@
         {
             "message": "Start",
             "follow_up": {
-                "message": "Testing step 1",
+                "message": "Hi WELCOME RAKESH!",
                 "options": [
                     {
                         "response": "Yes",
                         "follow_up": {
-                            "message": "step 2",
+                            "message": "Can we proceed Further?",
                             "options": [
                                 {
                                     "response": "Yes",
                                     "follow_up": {
-                                        "message": "Done with test"
+                                        "message": "Thanks for",
+                                        "options": [
+                                            {
+                                                "response": "Yes",
+                                                "follow_up": {
+                                                    "message": "Thanks for choosing"
+                                                }
+                                            }
+                                        ]
                                     }
                                 },
                                 {
                                     "response": "No",
                                     "follow_up": {
-                                        "message": "Continuing",
-                                        "options": [
-                                            {
-                                                "response": "Last step",
-                                                "follow_up": {
-                                                    "message": "Stop"
-                                                }
-                                            }
-                                        ]
+                                        "message": "Stop"
                                     }
                                 }
                             ]
@@ -37,7 +37,15 @@
                     {
                         "response": "No",
                         "follow_up": {
-                            "message": "Stop"
+                            "message": "Not interested",
+                            "options": [
+                                {
+                                    "response": "Yes",
+                                    "follow_up": {
+                                        "message": "Stop"
+                                    }
+                                }
+                            ]
                         }
                     }
                 ]

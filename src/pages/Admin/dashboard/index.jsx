@@ -62,6 +62,7 @@ const Dashboard = () => {
         page={page}
         size={size}
         handleChangePage={handlePageChange}
+        // dataLoading = {adminDataLoading}
         handleChangeRowsPerPage={handlePerRowsChange}
       />
       </div>

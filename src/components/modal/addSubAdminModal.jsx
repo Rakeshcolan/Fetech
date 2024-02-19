@@ -11,12 +11,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { addSubAmdinsApi, getRolesApi } from "../../redux/action/adminAction";
 import CommonDropDown from "../common/Field/CommonDropDown";
 import { adminSelector } from "../../redux/slice/adminSlice";
+import { authSelector } from "../../redux/slice/authSlice";
 import { useEffect } from "react";
+import { usePassword } from "../../hooks/usePassword";
 
 export default function AddSubAdminModal(props) {
-  const { openModal, setOpenModal } = props;
+  const { openModal, setOpenModal,userId="" } = props;
   const dispatch = useDispatch();
-  const {designationData} = useSelector(adminSelector)
+  const generatePassword = usePassword();
+  // const {designationData} = useSelector(adminSelector)
   const handleClose = () => {
     setOpenModal(false);
     formik.resetForm();
@@ -34,13 +37,13 @@ export default function AddSubAdminModal(props) {
     },
     validationSchema: Yup.object({
       first_name: Yup.string()
-        .required("FirstName Is Required")
+        .required("First Name Is Required")
         .matches(
           /^[a-zA-Z\s]+$/,
           "FirstName Can Only Contain Alphabet Characters"
         ),
       last_name: Yup.string()
-        .required("LastName is required")
+        .required("Last Name is required")
         .matches(
           /^[a-zA-Z\s]+$/,
           "LastName Can Only Contain Alphabet Characters"
@@ -50,12 +53,16 @@ export default function AddSubAdminModal(props) {
         .email("Invalid Email Format"),
       mobile_no: Yup.string()
         .matches(/^[0-9]{10}$/, "Invalid Phone Number") // Check for 10-digit numeric phone number
-        .required("PhoneNumber Is Required"),
+        .required("Phone Number Is Required"),
       status: Yup.string().required("Status Is Required"),
       designation: Yup.string().required("Designation Is Required"),
     }),
+
     onSubmit: (values) => {
       let val = {
+        user_client:userId,
+        password:generatePassword(values.first_name,values.mobile_no),
+        username:values.first_name,
         first_name: values.first_name,
         last_name: values.last_name,
         email_id: values.email_id,
@@ -69,8 +76,16 @@ export default function AddSubAdminModal(props) {
     },
   });
 
+
+  // const generatePassword = (name,phno)=>{
+  //   let newname = name.split('').slice(0,5).join('')
+  //   let newnum = phno.split('').slice(0,5).join('')
+  //   let newpassword = newname+newnum;
+  //   return newpassword;
+  // }
+
   useEffect(()=>{
-    dispatch(getRolesApi())
+    // dispatch(getRolesApi())
   },[])
 
   return (
@@ -88,7 +103,7 @@ export default function AddSubAdminModal(props) {
                 id="alert-dialog-title"
                 sx={{ paddingLeft: "0px !important" }}
               >
-                Add SubAdmins
+                Add Sub Admin
               </DialogTitle>
             </div>
             <div>
@@ -100,7 +115,7 @@ export default function AddSubAdminModal(props) {
           </div>
           <div>
             <CommonTextFields
-              label="FirstName"
+              label="First Name"
               id="first_name"
               formik={formik}
               placeholder=""
@@ -109,7 +124,7 @@ export default function AddSubAdminModal(props) {
           <br />
           <div>
             <CommonTextFields
-              label="LastName"
+              label="Last Name"
               id="last_name"
               formik={formik}
               placeholder=""
@@ -127,7 +142,7 @@ export default function AddSubAdminModal(props) {
           <br />
           <div>
             <CommonTextFields
-              label="PhoneNumber"
+              label="Phone Number"
               id="mobile_no"
               formik={formik}
               placeholder=""
@@ -141,8 +156,8 @@ export default function AddSubAdminModal(props) {
               placeholder="Select an status"
               formik={formik}
               options={[
-                { value: "True", label: "Active" },
-                { value: "False", label: "InActive" },
+                { value:1, label: "Active" },
+                { value: 2, label: "InActive" },
               ]}
             />
           </div>
@@ -153,7 +168,12 @@ export default function AddSubAdminModal(props) {
               label="Designation"
               placeholder="Select an Designation"
               formik={formik}
-              options={designationData}
+              // options={designationData}
+              options={[
+                { value: 3, label: "Accountant" },
+                { value: 2, label: "Manager" },
+                { value: 1, label: "Employee" },
+              ]}
             />
           </div>
           <br />

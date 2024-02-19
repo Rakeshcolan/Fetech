@@ -19,3 +19,13 @@
     color: black;
 } */
 
+.menuname .MuiListItemText-primary {
+    font-weight: 800 !important;
+    white-space: normal !important;
+}
+.menunameIsActive .MuiListItemText-primary {
+    font-weight: 400 !important;
+    white-space: normal !important;
+    
+    
+}

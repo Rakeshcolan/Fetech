@@ -13,7 +13,7 @@ const ManageSubscription = () => {
   const [page, setPage] = useState(5);
   const [modalOpen, setModalOpen] = useState();
   const dispatch = useDispatch();
-  const { getSubscriptionDetail, subscriptionDetail } =
+  const { getSubscriptionDetail, subscriptionDetail,getSubscriptionDetailisLoading } =
     useSelector(adminSelector);
 
   const paginationRowsOptions = [5, 10, 20, 50, 100];
@@ -52,6 +52,7 @@ const ManageSubscription = () => {
           page={page}
           size={size}
           handleChangePage={handlePageChange}
+          dataLoading = {getSubscriptionDetailisLoading}
           handleChangeRowsPerPage={handlePerRowsChange}
         />
         <AddSubscriptionModal

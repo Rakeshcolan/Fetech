@@ -7,6 +7,8 @@ import { useFormik } from "formik";
 import CommonSwitch from "../../../components/common/switch/commonswitch";
 import { editSubAdminApi } from "../../../redux/action/adminAction";
 import { useDispatch } from "react-redux";
+import CommonDropDown from "../../../components/common/Field/CommonDropDown";
+import { findDesignation } from "../../../utils/findids/designationutils";
 
 const EditSubAdmin = () => {
   const [editData, setEditData] = useState({});
@@ -18,6 +20,7 @@ const EditSubAdmin = () => {
   };
   const dispatch = useDispatch();
 
+
   useEffect(() => {
     setEditData(location.state?.data);
     return () => {
@@ -26,6 +29,8 @@ const EditSubAdmin = () => {
     };
   }, []);
 
+
+
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
@@ -33,7 +38,7 @@ const EditSubAdmin = () => {
       email_id: editData?.email_id,
       lastname: editData?.last_name,
       designation: editData?.designation,
-      status:editData?.status
+      status:  editData?.status === 1
     },
     validationSchema: Yup.object({
       firstname: Yup.string().required("FirstName is required"),
@@ -48,17 +53,17 @@ const EditSubAdmin = () => {
         email_id: values.email_id,
         last_name: values.lastname,
         designation: values.designation,
-        status:values.status
+        status:values.status ? 1:2  
       };
-      dispatch(editSubAdminApi(editData?.managesubadmin_id,val))
-
+      let EditedValue = {...editData,...val}
+      dispatch(editSubAdminApi(editData?.id,EditedValue))
       navigate("/dashboard/subadmin");
     },
   });
 
   return (
     <div className="commonbox">
-      <h4>Edit SubAdmin</h4>
+      <h4>Edit Sub Admin</h4>
       <br />
       <div className="row">
         <div className="col-lg-6">
@@ -69,14 +74,23 @@ const EditSubAdmin = () => {
         <div className="col-lg-6">
           <CommonTextFields label="Last Name" id="lastname" formik={formik} />
           <br />
-          <CommonTextFields
-            label="Designation"
-            id="designation"
-            formik={formik}
-          />
+          <CommonDropDown
+              id="designation"
+              label="Designation"
+              placeholder="Select an Designation"
+              formik={formik}
+              // options={designationData}
+              defaultValue ={ editData?.designation}
+              options={[
+                { value: 3, label: "Accountant" },
+                { value: 2, label: "Manager" },
+                { value: 1, label: "Employee" },
+              ]}
+            />
         </div>
         
-        <div className="col-lg-6" >
+        <div className="col-lg-6" style={{justifyContent:"space-between"}}>
+          <br/>
           <CommonSwitch label="Status" id="status" formik={formik}/>
         </div>
       </div>
