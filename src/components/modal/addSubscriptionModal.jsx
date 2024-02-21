@@ -9,6 +9,7 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import {  subscriptionApi } from "../../redux/action/adminAction";
+import CommonDropDown from "../common/Field/CommonDropDown";
 
 export default function AddSubscriptionModal(props) {
   const { openModal=false, setOpenModal } = props;
@@ -101,11 +102,20 @@ export default function AddSubscriptionModal(props) {
           </div>
           <br />
           <div>
-            <CommonTextFields
+            {/* <CommonTextFields
               label="Status"
               id="status"
               formik={formik}
               placeholder=""
+            /> */}
+              <CommonDropDown
+              id="status"
+              label="Status"
+              formik={formik}
+              options={[
+                {value:1,label:"True"},
+                {value:2,label:"False"}
+              ]}
             />
           </div>
           <br />

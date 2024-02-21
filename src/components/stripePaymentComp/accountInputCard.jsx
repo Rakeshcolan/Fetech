@@ -6,8 +6,7 @@ import AddButton from "../common/Button/addButton";
 import "./stripepaymentcomp.css";
 
 export const AccountInputCard = (props) => {
-  const { cardInput, buttonText,formik } = props;
-console.log("formik",formik);
+  const { cardInput, buttonText,formik,onchange ,method=""} = props;
   const [checknum, setChecknum] = useState("");
   const [indexvalue, setIndexvalue] = useState(0);
   const navigate = useNavigate();
@@ -15,34 +14,9 @@ console.log("formik",formik);
     navigate("/");
   };
 
-  const handleChange = (e) => {
-    let { value } = e.target;
-   value = checkCardFormat(value)
-   console.log("this changessss");
-   
-  };
+  
 
-  const checkCardFormat = (value)=>{
-    // let {value} = e.target
-    let checkvalue = value?.split(" ");
-    if (checknum.length < value.length) {
-      if (checknum.length > 19) return;
-      if (checkvalue[indexvalue].length === 4) {
-        setChecknum(value + " ");
-       
-        setIndexvalue(indexvalue + 1);
-      } else {
-        if (checkvalue[indexvalue].length < 4) setChecknum(value);
-        else {
-          setChecknum((prevstate) => prevstate + " " + value[value.length - 1]);
-          setIndexvalue(indexvalue + 1);
-        }
-      }
-    } else {
-      setIndexvalue(checkvalue.length - 1);
-      setChecknum(value);
-    }
-  }
+
   return (
     <div
       style={{
@@ -56,15 +30,18 @@ console.log("formik",formik);
     
     >
       {cardInput.map((inputdata) => {
-        const { label, includeImg, fullwidth, placeholderText,id } = inputdata;
+        const { label, includeImg, fullwidth, placeholderText,id ,type} = inputdata;
         return (
           <div style={{ width: fullwidth == "true" ? "100%" : "40%" }}>
             <label>{label}</label>
             <div className="cardinputimage">
               <input
-                value={formik?.values[id]}
+                value={ formik?.values[id] }
+                id={id}
+                name={id}
+                // type={type}
                 className="carddatainput"
-                onChange={(e) => handleChange(e)}
+                onChange={(e)=>onchange(e)}
                 placeholder={placeholderText}
                 style={{ width: "100%" }}
               />

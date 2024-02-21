@@ -151,28 +151,28 @@ export const RoleAuthoriZationHead = [
 export const RoleAuthoriZationData = [
   {
     "#": 1,
-    Modules: "Manage Sub Clients",
+    Modules: "Manage Sub Admin",
     View: "checkbox",
     Edit: "checkbox",
     Delete: "checkbox",
   },
   {
     "#": 2,
-    Modules: "Manage Business Details",
+    Modules: "Manage Clients",
     View: "checkbox",
     Edit: "checkbox",
     Delete: "checkbox",
   },
   {
     "#": 3,
-    Modules: "Manage  Details",
+    Modules: "Manage  Chatbot",
     View: "checkbox",
     Edit: "checkbox",
     Delete: "checkbox",
   },
   {
     "#": 4,
-    Modules: "Manage Data",
+    Modules: "Manage Subscription",
     View: "checkbox",
     Edit: "checkbox",
     Delete: "checkbox",
@@ -202,10 +202,10 @@ export const ClientDataHead = [
     id: "billing",
     label: "Billing",
   },
-  // {
-  //   id: "Action",
-  //   label: "Action",
-  // },
+  {
+    id: "clientAction",
+    label: "Action",
+  },
   // {
   //   id: "Received_Data",
   //   label: "Received Data",
@@ -281,7 +281,7 @@ export const ClientData = [
 
 export const SubscriptionDataHead = [
   {
-    id: "subscription_id",
+    id: "id",
     label: "Id",
   },
   {

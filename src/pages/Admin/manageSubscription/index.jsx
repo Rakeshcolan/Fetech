@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CustomizedTables from "../../../components/common/commonTable";
 import { SubscriptionDataHead } from "../../../components/common/tableData";
 import AddSubscriptionModal from "../../../components/modal/addSubscriptionModal";
-import { getSubscriptionApi } from "../../../redux/action/adminAction";
+import { deleteRegisterApi, deleteSubscriptionApi, getSubscriptionApi } from "../../../redux/action/adminAction";
 import { adminSelector } from "../../../redux/slice/adminSlice";
 import "../../../styles/App.css";
 
@@ -30,10 +30,14 @@ const ManageSubscription = () => {
   const handleModalOpen = () => {
     setModalOpen(true);
   };
+  const handleDelete = (data)=>{
+    let id = data?.subscription_id;
+    dispatch(deleteSubscriptionApi(id))
+  }
 
   useEffect(() => {
     dispatch(getSubscriptionApi());
-  }, [subscriptionDetail]);
+  }, [subscriptionDetail,dispatch]);
 
   return (
     <>
@@ -51,6 +55,7 @@ const ManageSubscription = () => {
           rowsPerPageOptions={paginationRowsOptions}
           page={page}
           size={size}
+          onDelete = {handleDelete}
           handleChangePage={handlePageChange}
           dataLoading = {getSubscriptionDetailisLoading}
           handleChangeRowsPerPage={handlePerRowsChange}

@@ -22,6 +22,7 @@ import {
   getRolesReducer,
   editSubAdminReducer,
   deleteReducer,
+  deleteSubscriptionApiReducer,
 } from "../slice/adminSlice";
 
 
@@ -46,7 +47,8 @@ export function apiHelper(apiReducer, method, apiURL, data = "") {
 export function addSubAmdinsApi(data) {
     return apiHelper(addSubAmdinsReducer, "POST", "/register/", data);
 }
-export function deleteSubAdminsApi(id) {
+export function deleteRegisterApi(id) {
+  
     return apiHelper(deleteReducer, "DELETE", `/register/${id}/`);
 }
 
@@ -79,6 +81,8 @@ export function subscriptionApi(body) {
   );
 }
 
+
+
 export function getSubscriptionApi() {
   return apiHelper(getSubscriptionApiReducer, "GET", "/subscriptionplan/");
   // return apiHelper(getSubscriptionApiReducer, "GET", "/managesubscription/");
@@ -88,10 +92,18 @@ export function editSubscriptionApi(data, id) {
   return apiHelper(
     editSubscriptionApiReducer,
     "PUT",
-    `/managesubscription/${id}/`,
+    `/subscriptionplan/${id}/`,
     data
   );
 }
+export function deleteSubscriptionApi(id) {
+  return apiHelper(
+    deleteSubscriptionApiReducer,
+    "DELETE",
+    `/subscriptionplan/${id}/`
+  );
+}
+
 
 export function addCMSApi(body) {
   // return apiHelper(addCMSApiReducer,"POST", "/managecms/",body)
@@ -128,9 +140,9 @@ export function getallChatBotApi() {
   return apiHelper(getAllChatbotReducer, "GET", `/managechatbot/`);
 }
 
-export function deleteClientApi(id) {
-  return apiHelper(deleteClientReducer, "DELETE", `/manageclients/${id}`);
-}
+// export function deleteClientApi(id) {
+//   return apiHelper(deleteClientReducer, "DELETE", `/manageclients/${id}`);
+// }
 
 export function getChatBotByIdApi(id) {
   return apiHelper(getChatbotByIdReducer, "GET", `/managechatbot/${id}/`);

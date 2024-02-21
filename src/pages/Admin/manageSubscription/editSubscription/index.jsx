@@ -29,9 +29,9 @@ const EditSubscription = () => {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      plan: editData?.plan || "",
-      subscription_amount: editData?.subscription_amount || "",
-      description: editData?.description || "",
+      plan: editData?.subscription_plan || "",
+      subscription_amount: editData?.billing || "",
+      description: editData?.description || "No Data Available",
       status: editData?.status || "",
     },
     // validationSchema: Yup.object({
@@ -44,8 +44,8 @@ const EditSubscription = () => {
     // }),
     onSubmit: (values) => {
       let val = {
-        plan: values.plan,
-        subscription_amount: values.subscription_amount,
+        subscription_plan: values.plan,
+        billing: values.subscription_amount,
         description: values.description,
         status: values.status[0] === "on" ? true : false,
       };

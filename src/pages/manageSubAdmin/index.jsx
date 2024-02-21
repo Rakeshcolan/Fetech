@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CustomizedTables from "../../components/common/commonTable";
 import { subAdminTableHead } from "../../components/common/tableData";
 import AddSubAdminModal from "../../components/modal/addSubAdminModal";
-import { deleteSubAdminsApi, getSubAdminsApi } from "../../redux/action/adminAction";
+import { deleteRegisterApi, getSubAdminsApi } from "../../redux/action/adminAction";
 import { adminSelector } from "../../redux/slice/adminSlice";
 import { authSelector } from "../../redux/slice/authSlice";
 
@@ -36,8 +36,8 @@ const ManageSubAdmin = () => {
     dispatch(getSubAdminsApi(userid));
   }, [subAdminDetail,deleteData,dispatch]);
 
-  const handleDelete=(userid)=>{
-    dispatch(deleteSubAdminsApi(userid))
+  const handleDelete=(user)=>{
+    dispatch(deleteRegisterApi(user.id))
   }
   return (
     <>

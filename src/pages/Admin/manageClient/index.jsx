@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CustomizedTables from "../../../components/common/commonTable";
 import { ClientDataHead } from "../../../components/common/tableData";
 import AddClientModal from "../../../components/modal/addClientModal";
-import { deleteClientApi, getClientApi } from "../../../redux/action/adminAction";
+import { deleteClientApi, deleteRegisterApi, getClientApi } from "../../../redux/action/adminAction";
 import { adminSelector } from "../../../redux/slice/adminSlice";
 import "../../../styles/App.css";
 
@@ -13,7 +13,7 @@ const ManageClients = () => {
   
   const [modalOpen, setModalOpen] = useState();
   const dispatch = useDispatch();
-  const { getClientDetail, clientDetail,getClientDetailisLoading } = useSelector(adminSelector);
+  const { getClientDetail, clientDetail,getClientDetailisLoading ,deleteData} = useSelector(adminSelector);
   const paginationRowsOptions = [5, 10, 20, 50, 100];
 
 
@@ -24,15 +24,13 @@ const ManageClients = () => {
   const handleModalClose = () => {
     setModalOpen(false);
   };
-  const handleDelete = (id)=>{
-  
+  const handleDelete = (client)=>{
+    dispatch(deleteRegisterApi(client.id))
     
   }
-
-
   useEffect(() => {
     dispatch(getClientApi());
-  }, [clientDetail]); // Add getClientDetail as a dependency
+  }, [clientDetail,deleteData]); // Add getClientDetail as a dependency
 
   return (
     <>

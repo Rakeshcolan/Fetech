@@ -47,10 +47,10 @@ const CreateChatBot = lazy(() =>
   import("../../pages/Admin/manageChatBot/createChatBot")
 );
 const AddRoles = lazy(() =>
-  import("../../components/Roles&Permissions/addRoles")
+  import("../../pages/manageRoles/addRoles/addRoles")
 );
 const EditProfile = lazy(() =>
-  import("../../components/EditProfile/editProfile")
+  import("../../pages/manageRoles/editRoles/index")
 );
 const EditRoles = lazy(() =>
   import("../../pages/manageRoles/editRoles")

@@ -291,14 +291,14 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function RowActions({ handleEdit, onDelete, row }) {
+function RowActions({ handleEdit="", onDelete, row }) {
   return (
     <>
-      <DriveFileRenameOutlineIcon
+    { handleEdit? <DriveFileRenameOutlineIcon
         onClick={() => handleEdit(row)}
         className="edit-icon"
-      />
-      <DeleteIcon className="edit-icon" onClick={() => onDelete(row.id)} />
+      />:""}
+      <DeleteIcon className="edit-icon" onClick={() => onDelete(row)} />
     </>
   );
 }
@@ -450,7 +450,16 @@ function CustomizedTables({
                             </span>
                           )}
                         </>
-                      ) : (
+                      ) : column.id === "View" || column.id==="Edit"||column.id === "Delete"?
+                            <>
+                              <Checkbox  name={column.id}
+                              onChange={(e) => handleChange(e, row)} />
+                            </>
+                      :column.id==="clientAction"?
+                      <RowActions
+                      onDelete={onDelete}
+                      row={row}
+                    />:(
                         row[column.id]
                       );
 

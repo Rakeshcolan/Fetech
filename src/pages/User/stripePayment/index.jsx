@@ -8,16 +8,18 @@ import {
   GpayCardData,
   upiValidationSchema,
 } from "../../../utils/constants/cardItem";
+import { showToast } from "../../../components/commonToast/toastService";
 import { useEffect, useState } from "react";
 import { AccountInputCard } from "../../../components/stripePaymentComp/accountInputCard";
 import { useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
 
 const AccountCard = (props) => {
-    const [higlightcard,setHighlightCard]= useState('')
+  const [higlightcard, setHighlightCard] = useState("");
   const { showCard } = props;
   const changeCard = (value) => {
     showCard(value);
-    setHighlightCard(value)
+    setHighlightCard(value);
   };
   return (
     <>
@@ -27,7 +29,9 @@ const AccountCard = (props) => {
           <div
             className="accountcardcontainer"
             onClick={() => changeCard(label)}
-            style={{borderColor:higlightcard === label?"#00E785":"inherit"}}
+            style={{
+              borderColor: higlightcard === label ? "#00E785" : "inherit",
+            }}
           >
             <img src={icon} id="cardimage" />
             <div>{label}</div>
@@ -40,9 +44,17 @@ const AccountCard = (props) => {
 
 const StripePayment = () => {
   const [showcard, setShowcard] = useState("");
-
+  const navigate = useNavigate();
   const [formikConfig, setFormikConfig] = useState(null);
-
+  const [checknum, setChecknum] = useState({
+    cardNumber: "",
+    expirationDate: "",
+    ccv: "",
+    upiId:"",
+    accountNumber:"",
+    ifsc:"",
+  });
+  const [indexvalue, setIndexvalue] = useState(0);
   // const formik = useFormik({
   //   enableReinitialize: true,
   //   initialValues: {
@@ -69,91 +81,196 @@ const StripePayment = () => {
 
   //   },
   // });
+  const handleChange = (e) => {
+    // formik.handleChange(e);
+    checkCardFormat(e);
+  };
 
+  const checkCardFormat = (e) => {
+    let { value, name } = e.target;
+    if (name === "cardNumber") {
+      let checkvalue = value?.split(" ");
+      if (checknum?.cardNumber.length < value.length) {
+        if (checknum?.cardNumber.length > 19) return;
+        if (checkvalue[indexvalue].length === 4) {
+          setChecknum({ ...checknum, [name]: value + " " });
+          setIndexvalue(indexvalue + 1);
+        } else {
+          if (checkvalue[indexvalue].length < 4)
+            setChecknum({ ...checknum, [name]: value });
+          else {
+            setChecknum({
+              ...checknum,
+              [name]: checknum.cardNumber + value + " ",
+            });
+            // setChecknum((prevstate) => prevstate + " " + value[value.length - 1]);
+            setIndexvalue(indexvalue + 1);
+          }
+        }
+      } else {
+        setIndexvalue(checkvalue.length - 1);
+        setChecknum({ ...checknum, [name]: value });
+      }
+    } else if (name === "expirationDate") {
+      if (value.length > 5) return;
+      // setChecknum({...checknum,[name]:value})
+      if (checknum.expirationDate.length < value.length) {
+        if (value.length === 2) {
+          setChecknum({ ...checknum, [name]: value + "/" });
+        } else {
+          setChecknum({ ...checknum, [name]: value });
+        }
+      } else {
+        setChecknum({ ...checknum, [name]: value });
+      }
+    } else if (name === "ccv") {
+      if (value.length > 3) return;
+      setChecknum({ ...checknum, [name]: value });
+    }
+    else{
+      setChecknum({ ...checknum, [name]: value });
+    }
+  };
 
-  
+  const handleRoutes = () => {
+    showToast("Payment Sucess",'sucess')
+    navigate("/");
+    
+  };
+
   const handleCardSubmit = (values) => {
     // Handle card submission
+    handleRoutes();
   };
 
   const handleUPISubmit = (values) => {
     // Handle UPI submission
+    handleRoutes();
   };
 
   const handleBankAccountSubmit = (values) => {
     // Handle bank account submission
+    handleRoutes();
   };
 
-  const formik = useFormik(formikConfig || {
-    enableReinitialize: true,
-    initialValues: {},
-    validationSchema: {},
-    onSubmit: () => {},
-  });
+  const formik = useFormik(
+    formikConfig || {
+      enableReinitialize: true,
+      initialValues: {},
+      validationSchema: {},
+      onSubmit: () => {},
+    }
+  );
 
-  useEffect(()=>{
+  useEffect(() => {
+    const { cardNumber, ccv, expirationDate,upiId,accountNumber,ifsc } = checknum;
+
     switch (showcard) {
       case "Card":
         setFormikConfig({
           enableReinitialize: true,
-          initialValues: { cardNumber: "", expirationDate: "", cvv: "" ,country:""},
+          initialValues: {
+            cardNumber: cardNumber,
+            expirationDate: expirationDate,
+            ccv: ccv,
+            country: "",
+          },
+
           validationSchema: cardValidationSchema,
+
           onSubmit: handleCardSubmit,
         });
-        break
+        break;
 
       case "UPI":
         setFormikConfig({
           enableReinitialize: true,
-          initialValues: { upiId: "" },
+          initialValues: { upiId: upiId},
           validationSchema: upiValidationSchema,
           onSubmit: handleUPISubmit,
         });
-        break
+        break;
       case "Bank Account":
         setFormikConfig({
           enableReinitialize: true,
-          initialValues: { accountNumber: "" ,ifsc:""},
+          initialValues: { accountNumber:accountNumber, ifsc:ifsc },
           validationSchema: bankAccountValidationSchema,
           onSubmit: handleUPISubmit,
         });
-        break
+        break;
 
       default:
-        break
-      
-    }
-  },[showcard])
+        setFormikConfig({
+          enableReinitialize: true,
+          initialValues: {
+            cardNumber: cardNumber,
+            expirationDate: expirationDate,
+            ccv: ccv,
+            country: "",
+          },
 
+          validationSchema: cardValidationSchema,
+
+          onSubmit: handleCardSubmit,
+        });
+        break;
+    }
+  }, [showcard, checknum]);
 
   const inputDetails = (method) => {
     switch (method) {
       case "Card":
-      
-        return <AccountInputCard formik={formik} cardInput={AccountCardInputData} buttonText={"Paynow"}/>;
+        return (
+          <AccountInputCard
+            formik={formik}
+            cardInput={AccountCardInputData}
+            onchange={handleChange}
+            buttonText={"Paynow"}
+            method={"card"}
+          />
+        );
 
       case "UPI":
-      
-        return <AccountInputCard formik={formik}  cardInput={GpayCardData} buttonText={"verify"}/>;
+        return (
+          <AccountInputCard
+            formik={formik}
+            cardInput={GpayCardData}
+            onchange={handleChange}
+            buttonText={"verify"}
+          />
+        );
 
       case "Bank Account":
-
-        return <AccountInputCard  formik={formik} cardInput={BankAccountCardData} buttonText={"Paynow"} />;
+        return (
+          <AccountInputCard
+            formik={formik}
+            cardInput={BankAccountCardData}
+            onchange={handleChange}
+            buttonText={"Paynow"}
+          />
+        );
 
       default:
-
-        return <AccountInputCard cardInput={AccountCardInputData} buttonText={"Paynow"}/>;
+        return (
+          <AccountInputCard
+            formik={formik}
+            cardInput={AccountCardInputData}
+            onchange={handleChange}
+            buttonText={"Paynow"}
+            method={"card"}
+          />
+        );
     }
   };
   return (
     <div className="stripecontainer">
       <h1 style={{ color: "#6772E5" }}>Stripe</h1>
       <p style={{ fontSize: "20px" }}>Payment Details</p>
-      <div style={{width:"45%"}} className="stripepaymentcontainer">
+      <div style={{ width: "45%" }} className="stripepaymentcontainer">
         <div className="accountcard">
-          <AccountCard showCard={setShowcard}  />
+          <AccountCard showCard={setShowcard} />
         </div>
-        { inputDetails(showcard)}
+        {inputDetails(showcard)}
       </div>
     </div>
   );

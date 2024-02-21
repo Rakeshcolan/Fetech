@@ -16,9 +16,6 @@ const EditRoles = () => {
   const [editRoles, setEditRoles] = useState(RoleAuthoriZationData);
   const location = useLocation();
   const navigate = useNavigate();
-  const handleRedirect = () => {
-    navigate("/dashboard/subadmin");
-  };
 
   useEffect(() => {
     // setEditRoles([...editRoles,location.state?.data] )
@@ -27,6 +24,10 @@ const EditRoles = () => {
       setEditRoles({});
     };
   }, []);
+
+ const handleConfirm = ()=>{
+    navigate("/dashboard/roles");
+  }
 
   return (
     <div className="commonbox">
@@ -37,7 +38,7 @@ const EditRoles = () => {
       />
       <br />
       <div className="contentCenter">
-        <Button className="submitBtn">Confirm</Button>
+        <Button className="submitBtn" onClick={handleConfirm}>Confirm</Button>
       </div>
     </div>
   );

@@ -71,6 +71,7 @@ export const AccountCardHead=[
 
 export const AccountCardInputData=[
   {
+    type:"Number",
     label:"Card Number",
     includeImg:"true",
     fullwidth:"true",
@@ -78,6 +79,7 @@ export const AccountCardInputData=[
     id:"cardNumber"
   },
   {
+    type:"Number",
     label:"Expiration",
     includeImg:"false",
     fullwidth:"false",
@@ -85,11 +87,12 @@ export const AccountCardInputData=[
     id:"expirationDate"
   },
   {
+    type:"Number",
     label:"CCV",
     includeImg:"false",
     fullwidth:"false",
     placeholderText:"***",
-    id:"cvv"
+    id:"ccv"
   },
   {
     label:"Country",
@@ -112,6 +115,7 @@ export const GpayCardData = [
 
 export const BankAccountCardData=[
   {
+    type:"Number",
     label:"Account Number",
     includeImg:"false",
     fullwidth:"true",
@@ -119,6 +123,7 @@ export const BankAccountCardData=[
     id:"accountNumber"
   },
   {
+    type:"Number",
     label:"IFSC",
     includeImg:"false",
     fullwidth:"true",
@@ -131,7 +136,7 @@ export const BankAccountCardData=[
 export const bankAccountValidationSchema = Yup.object().shape({
   accountNumber: Yup.string()
     .required('Account number is required')
-    .matches(/^\d{10,}$/, 'Invalid account number'),
+    .matches(/^\d{10,16}$/, 'Invalid account number'),
     ifsc: Yup.string()
     .required('IFSC is required')
    
@@ -147,12 +152,13 @@ export const upiValidationSchema = Yup.object().shape({
 export const cardValidationSchema = Yup.object().shape({
   cardNumber: Yup.string()
     .required('Card Number is Required')
-    .matches(/^\d{16}$/, 'Invalid card number'),
+    // .matches(/^\d{13,20}$/, 'Invalid card number'),
+    .matches(/^\d{4}\s?\d{4}\s?\d{4}\s?\d{4}\s?$/, 'Invalid card number'),
   expirationDate: Yup.string()
     .required('Expiration Date is Required')
-    .matches(/^(0[1-9]|1[0-2])\/\d{2}$/, 'Invalid expiration date'),
-  cvv: Yup.string()
-    .required('CVV is Required')
-    .matches(/^\d{3}$/, 'Invalid CVV'),
+    .matches(/^(0[0-9]|1[0-5])\/\d{2}$/, 'Invalid expiration date'),
+  ccv: Yup.string()
+    .required('CCV is Required')
+    .matches(/^\d{3}$/, 'Invalid CCV'),
 });
 
