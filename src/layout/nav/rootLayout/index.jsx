@@ -43,10 +43,10 @@ export default function RootLayout() {
   const navigate = useNavigate();
   //setting adming and user routes
 
-  const [openDrawer, setOpenDrawer] = React.useState(true);
+  const [openDrawer, setOpenDrawer] = useState(true);
 
   const handleDrawerOpen = () => {
-    // setOpenDrawer(!openDrawer);
+    setOpenDrawer(!openDrawer);
   };
 
   const handleDrawerClose = () => {
@@ -92,11 +92,12 @@ export default function RootLayout() {
               position: "relative",
               color: "black",
             }}
+            className="backarrow"
           >
             {openDrawer ? (
               <MenuIcon style={{ color: "black" }} />
             ) : (
-              <ArrowBack style={{ color: "black" }} />
+              <ArrowBack className="backarrow" style={{ color: "black",marginLeft:"60px",textDecoration:"none" }} />
             )}
           </IconButton>
           <Avatar
@@ -154,8 +155,8 @@ export default function RootLayout() {
           </Menu>
         </Toolbar>
       </AppBar>
-      <Layout />
-      {/* <Layout openDrawer={openDrawer} /> */}
+      {/* <Layout /> */}
+      <Layout openDrawer={openDrawer} />
       <span
         style={{
           position: "relative",

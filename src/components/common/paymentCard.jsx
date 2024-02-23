@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom";
 
 const PaymentCard = ({ data }) => {
   const navigate = useNavigate();
-  const { value, name, checkList, textvalue, description } = data;
+  const { subscription_plan, billing, name,checkList, textvalue, description } = data;
 
   const handlePayment = () => {
+    sessionStorage.setItem('ur',0)
     navigate("/stripepayment");
   };
   return (
@@ -29,8 +30,8 @@ const PaymentCard = ({ data }) => {
       ) : (
         <div className="paymentcardcontainer">
           <div className="paymentcardpricing">
-            <p style={{ fontWeight: 600 }}> {name}</p>
-            <p>{textvalue ? textvalue : value}</p>
+            <p style={{ fontWeight: 600 }}> {subscription_plan}</p>
+            <p>{textvalue ? textvalue : billing}</p>
           </div>
 
           <div className="paymentcardchecklist">

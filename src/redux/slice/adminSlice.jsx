@@ -31,7 +31,8 @@ const adminSlice = createSlice({
     designationData:[],
     deleteData :"",
     deleteDataIsLoading :"",
-    deleteSubscriptionLoading:""
+    deleteSubscriptionLoading:"",
+    deleteChatbotLoading:false
   },
   reducers: {
     addSubAmdinsReducer: (state, { payload }) => {
@@ -123,7 +124,11 @@ const adminSlice = createSlice({
     deleteSubscriptionApiReducer:(state,{payload})=>{
       state.subscriptionDetail =[ "Deleted"];
       state.deleteSubscriptionLoading = payload.isLoading
-    }
+    },
+    deleteChatbotReducer:(state,{payload})=>{
+      state.chatBotData =[ "Deleted"];
+      state.deleteChatbotLoading = payload.isLoading
+    },
 
   },
 });
@@ -149,7 +154,8 @@ export const {
   addCMSApiReducer,
   getEarningsReducer,
   addManageDataReducer,
-  deleteClientReducer
+  deleteClientReducer,
+  deleteChatbotReducer,
 } = adminSlice.actions;
 
 export const adminSelector = (state) => state.admin;

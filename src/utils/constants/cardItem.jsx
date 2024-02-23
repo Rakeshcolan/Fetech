@@ -55,9 +55,9 @@ export const ResponseCardItem = [
 ];
 
 export const SubscriptionData = [
-  { name: "Tier 1", value: "$7.80", checkList: ["50 Imnage Generation","500 credits","Monthly 100 credits free","Customer Support","Dedicated Server","Priority Generation"] },
-  { name: "Tier 2", value: "$8.80", checkList: ["50 Imnage Generation","500 credits","Monthly 100 credits free","Customer Support","Dedicated Server","Priority Generation"] },
-  { name: "Tier 3", value: "$9.80", checkList: ["50 Imnage Generation","500 credits","Monthly 100 credits free","Customer Support","Dedicated Server","Priority Generation"] },
+  { subscription_plan: "Tier 1", billing: "$7.80", checkList: ["50 Imnage Generation","500 credits","Monthly 100 credits free","Customer Support","Dedicated Server","Priority Generation"] },
+  { subscription_plan: "Tier 2", billing: "$8.80", checkList: ["50 Imnage Generation","500 credits","Monthly 100 credits free","Customer Support","Dedicated Server","Priority Generation"] },
+  { subscription_plan: "Tier 3", billing: "$9.80", checkList: ["50 Imnage Generation","500 credits","Monthly 100 credits free","Customer Support","Dedicated Server","Priority Generation"] },
   { name: "For More Details", textvalue: "Contact the sales person by using the button below",description:"orem Ipsum is simply dummy text of the printing and typesetting industry. orem Ipsum is simply dummy text of the printing and typesetting industry.orem Ipsum is simply dummy text of the printing and typesetting industry.psum is simply dummy text of the printing and typesetting industry. orem Ipsum is simply dummy text of the printing and typesetting industry.orem Ipsum is simply dummy text of the printing and typesetting industry" },
 ];
 

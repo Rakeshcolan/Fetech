@@ -12,6 +12,7 @@ import { Link, useNavigate,useLocation } from "react-router-dom";
 import {
   AdminIconMenuItems,
   AdminMenuItems,
+  UsermenuIconItems,
   UsermenuItems,
 } from "../../../utils/constants/menuItem";
 import "./rootLayoutStyle.css";
@@ -59,13 +60,14 @@ const Drawer = styled(MuiDrawer, {
 
 
   
-  function MultipleList({ menuItems }) {
+  function MultipleList({ menuItems,openDrawer }) {
     const { name, path } = menuItems;
     const [open, setOpen] = useState(true);
     const navigate = useNavigate();
     let location = useLocation();
     const handleClick = (e) => {
       e.preventDefault();
+      navigate(path)
       setOpen((prev) => !prev);
     };
     return (
@@ -73,19 +75,8 @@ const Drawer = styled(MuiDrawer, {
         <ListItemButton  component={Link} to={path} className="multi-list" onClick={handleClick}>
           <ListIcon sx={{ marginRight: "8px" }} />
           <ListItemText  primary={name} 
-          onClick={() => navigate("/dashboard")} 
+          onClick={() => navigate(path)} 
           />
-          {/* {open ? (
-            <ExpandLessIcon
-              className="listicon"
-              sx={{ color: "white !important" }}
-            />
-          ) : (
-            <ExpandMoreIcon
-              className="listicon"
-              sx={{ color: "white !important" }}
-            />
-          )} */}
         </ListItemButton>
         {/* <Collapse in={open} timeout="auto" unmountOnExit> */}
           <List component="div" disablePadding>
@@ -100,7 +91,7 @@ const Drawer = styled(MuiDrawer, {
                     style={{
                       backgroundColor: isActive ? "#00E785" : "",
                       color: isActive ? "black" : "",
-                      margin: isActive ? "0px 18px 0px 0px" : "",
+                      margin: isActive && openDrawer ? "0px 18px 0px 0px" : "",
                       borderRadius: isActive ? "10px" : "",
                       display: "flex",
                     }}
@@ -115,17 +106,7 @@ const Drawer = styled(MuiDrawer, {
                     }}
                   >
                     <span style={{ margin: "9px" }}>{icon}</span>
-                    <ListItemText primary={name} className={isActive?"menuname":"menunameIsActive"}
-                      // style={{whiteSpace:"nowrap"}}
-                    //  sx={{
-                    //   '& .css-10hburv-MuiTypography-root':{
-                    //     fontWeight:isActive? "800 !important":"",
-                    //     whiteSpace:"normal"
-                    //   }
-
-
-                    //  }} 
-                      />
+                    <ListItemText primary={name} className={isActive?"menuname":"menunameIsActive"}   />
                   </ListItemButton>
                 </div>
               );
@@ -142,23 +123,23 @@ export const Layout = ({openDrawer})=>{
 
     useEffect(() => {
         if (sessionValue == 1) {
-          setLayoutData(UsermenuItems);
+          setLayoutData(openDrawer?UsermenuItems:UsermenuIconItems);
         } else {
-          setLayoutData(AdminMenuItems);
-          // setLayoutData(openDrawer?AdminMenuItems:AdminIconMenuItems);
+          // setLayoutData(AdminMenuItems);
+          setLayoutData(openDrawer?AdminMenuItems:AdminIconMenuItems);
         }
       }, [openDrawer, sessionValue]);
     
     return (
         <>
-             <div>
+             <div className="layoutcontainer">
               {/* replace true with openDrawer props later */}
-        <Drawer variant="permanent" className="layoutlist" open={true}> 
+        <Drawer variant="permanent" className="layoutlist" open={openDrawer}> 
           <img src={Logo} className="logo" style={{ width: "100%" }} />
-          <List>
+          <List >
             {layoutData.map((items, index) => {
               return items.isNested ? (
-                <MultipleList   menuItems={items} key={index} />
+                <MultipleList   menuItems={items} key={index} openDrawer={openDrawer} />
               ) : (
                 <></>
               );

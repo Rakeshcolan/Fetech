@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./manageChatbot.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getallChatBotApi } from "../../../redux/action/adminAction";
+import { deleteChatbotApi, getallChatBotApi } from "../../../redux/action/adminAction";
 import { adminSelector } from "../../../redux/slice/adminSlice";
 import CustomizedTables from "../../../components/common/commonTable";
 import { chatBotTableTitle } from "../../../components/common/tableData";
@@ -22,8 +22,9 @@ const ManageChatBot = () => {
     dispatch(getallChatBotApi());
   }, [chatBotData, editChatBotById]);
 
-  const handleDelete = ()=>{
-    console.log("Delete Triggerred");
+  const handleDelete = (data)=>{
+    
+    dispatch(deleteChatbotApi(data.chatbot_id))
   }
   return (
     <>

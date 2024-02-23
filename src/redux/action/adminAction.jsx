@@ -23,6 +23,7 @@ import {
   editSubAdminReducer,
   deleteReducer,
   deleteSubscriptionApiReducer,
+  deleteChatbotReducer,
 } from "../slice/adminSlice";
 
 
@@ -140,6 +141,9 @@ export function getallChatBotApi() {
   return apiHelper(getAllChatbotReducer, "GET", `/managechatbot/`);
 }
 
+export function deleteChatbotApi(id){
+  return apiHelper(deleteChatbotReducer,"DELETE",`/managechatbot/${id}/`)
+}
 // export function deleteClientApi(id) {
 //   return apiHelper(deleteClientReducer, "DELETE", `/manageclients/${id}`);
 // }
