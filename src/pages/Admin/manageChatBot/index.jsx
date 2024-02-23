@@ -21,6 +21,10 @@ const ManageChatBot = () => {
   useEffect(() => {
     dispatch(getallChatBotApi());
   }, [chatBotData, editChatBotById]);
+
+  const handleDelete = ()=>{
+    console.log("Delete Triggerred");
+  }
   return (
     <>
       <div className="managebotContainer commonbox">
@@ -34,6 +38,7 @@ const ManageChatBot = () => {
           dataLoading = {getAllchatBotDataisLoading}
           paginationStatus={true}
           navigatepath={"flowpage"}
+          onDelete = {handleDelete}
         />
       </div>
     </>

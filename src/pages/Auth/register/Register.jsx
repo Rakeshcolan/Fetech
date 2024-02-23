@@ -147,11 +147,11 @@ const Register = () => {
             </button>
             <br />
             <br />
-            {/* <div>
+            <div>
             <p>
               Already have an account? <b style={{cursor:"pointer"}} onClick={handleNavigate}>SignIn</b>{" "}
             </p>
-          </div> */}
+          </div>
           </div>
         </form>
       </div>

@@ -14,7 +14,7 @@ export function addLoginApi(body, navigate) {
         sessionStorage.setItem("roles", userrole);
         sessionStorage.setItem("ur", userrole=="Admin"||userrole==="Subadmin"?2:1);
         sessionStorage.setItem("UId", e?.data?.Login_id)
-        navigate("/dashboard");
+        navigate( userrole=="Admin"?"/dashboard":"/dashboard/subadmin");
         showToast("Login Success", "success");
       })
       .catch((e) => {

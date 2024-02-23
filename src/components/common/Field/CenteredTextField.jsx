@@ -17,6 +17,7 @@ const CenteredTextField = ({
   required,
   type = "text",
   handleShowPassword,
+  keypress,
   ...props
 }) => {
   const handleChange = (e) => {
@@ -29,13 +30,13 @@ const CenteredTextField = ({
   };
 
   const elemnetChange = () => {
-    if (showpassword) {
+    if (!showpassword) {
       return (
         <VisibilityOffOutlinedIcon
           sx={{
             position: "absolute",
             right: "5px",
-            bottom: "10px",
+            top: "-6px",
             fontWeight: "400px",
           }}
           onClick={() => handleclick()}
@@ -47,7 +48,7 @@ const CenteredTextField = ({
           sx={{
             position: "absolute",
             right: "5px",
-            bottom: "10px",
+            top: "-6px",
             fontWeight: "400px",
           }}
           onClick={() => handleclick()}
@@ -69,6 +70,7 @@ const CenteredTextField = ({
         id={id}
         margin="normal"
         type={showpassword?"text":type}
+        onKeyDown ={keypress}
         variant="outlined"
         disabled={disabled}
         placeholder={placeholder}

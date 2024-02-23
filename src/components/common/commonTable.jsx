@@ -304,8 +304,8 @@ function RowActions({ handleEdit="", onDelete, row }) {
 }
 
 function StatusButton({ value }) {
-  const backgroundColor = value === 1 ? "#00E785" : "#FF3939";
-  const text = value === 1 ? "Active" : "InActive";
+  const backgroundColor = value === 1||value === true ? "#00E785" : "#FF3939";
+  const text = value === 1 ||value === true ? "Active" : "InActive";
   const color = value ? "black" : "white";
 
   return (
@@ -440,7 +440,7 @@ function CustomizedTables({
                         <StatusButton value={row[column.id]} />
                       ) : column.id === "designation" ? (
                         roleObj[row["designation"]]
-                      ) : column.id === "description" ? (
+                      ) : column.id === "description" || column.id ==="question" ? (
                         <>
                           {row[column.id] ? (
                             row[column.id]

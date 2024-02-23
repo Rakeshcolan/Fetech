@@ -38,14 +38,12 @@ export const Recursivechat = ({ chats, id,show="true" }) => {
   const [showButtons, setShowButtons] = useState(show);
 
   const handleClick = (option) => {
-    console.log("optionssss",message);
     setCheckButton("");
     setShowButtons("true");
     setMessage(option);
   };
 
   useEffect(()=>{
-    console.log(chats);
    if(chats.follow_up.message && showButtons == "true") {
     let data = {message:chats.follow_up.message,option:chats.follow_up.options.map((option)=>option.response)}
     // console.log("dataaa",data); 

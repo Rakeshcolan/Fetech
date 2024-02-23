@@ -144,6 +144,7 @@ export default function AddSubAdminModal(props) {
             <CommonTextFields
               label="Phone Number"
               id="mobile_no"
+              type="number"
               formik={formik}
               placeholder=""
             />

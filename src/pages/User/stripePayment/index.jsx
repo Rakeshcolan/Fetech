@@ -50,9 +50,9 @@ const StripePayment = () => {
     cardNumber: "",
     expirationDate: "",
     ccv: "",
-    upiId:"",
-    accountNumber:"",
-    ifsc:"",
+    upiId: "",
+    accountNumber: "",
+    ifsc: "",
   });
   const [indexvalue, setIndexvalue] = useState(0);
   // const formik = useFormik({
@@ -89,6 +89,7 @@ const StripePayment = () => {
   const checkCardFormat = (e) => {
     let { value, name } = e.target;
     if (name === "cardNumber") {
+      value = value.replace(/[^0-9 @ / .]/, "");
       let checkvalue = value?.split(" ");
       if (checknum?.cardNumber.length < value.length) {
         if (checknum?.cardNumber.length > 19) return;
@@ -101,7 +102,7 @@ const StripePayment = () => {
           else {
             setChecknum({
               ...checknum,
-              [name]: checknum.cardNumber + value + " ",
+              [name]: checknum.cardNumber  + " ",
             });
             // setChecknum((prevstate) => prevstate + " " + value[value.length - 1]);
             setIndexvalue(indexvalue + 1);
@@ -112,6 +113,7 @@ const StripePayment = () => {
         setChecknum({ ...checknum, [name]: value });
       }
     } else if (name === "expirationDate") {
+      value = value.replace(/[^0-9 /]/, "");
       if (value.length > 5) return;
       // setChecknum({...checknum,[name]:value})
       if (checknum.expirationDate.length < value.length) {
@@ -124,18 +126,18 @@ const StripePayment = () => {
         setChecknum({ ...checknum, [name]: value });
       }
     } else if (name === "ccv") {
+      value = value.replace(/[^0-9]/, "");
       if (value.length > 3) return;
       setChecknum({ ...checknum, [name]: value });
-    }
-    else{
+    } else {
+      value = value.replace(/[^0-9 @ / .]/, "");
       setChecknum({ ...checknum, [name]: value });
     }
   };
 
   const handleRoutes = () => {
-    showToast("Payment Sucess",'sucess')
+    showToast("Payment Sucess", "sucess");
     navigate("/");
-    
   };
 
   const handleCardSubmit = (values) => {
@@ -163,7 +165,8 @@ const StripePayment = () => {
   );
 
   useEffect(() => {
-    const { cardNumber, ccv, expirationDate,upiId,accountNumber,ifsc } = checknum;
+    const { cardNumber, ccv, expirationDate, upiId, accountNumber, ifsc } =
+      checknum;
 
     switch (showcard) {
       case "Card":
@@ -185,7 +188,7 @@ const StripePayment = () => {
       case "UPI":
         setFormikConfig({
           enableReinitialize: true,
-          initialValues: { upiId: upiId},
+          initialValues: { upiId: upiId },
           validationSchema: upiValidationSchema,
           onSubmit: handleUPISubmit,
         });
@@ -193,7 +196,7 @@ const StripePayment = () => {
       case "Bank Account":
         setFormikConfig({
           enableReinitialize: true,
-          initialValues: { accountNumber:accountNumber, ifsc:ifsc },
+          initialValues: { accountNumber: accountNumber, ifsc: ifsc },
           validationSchema: bankAccountValidationSchema,
           onSubmit: handleUPISubmit,
         });
@@ -237,6 +240,7 @@ const StripePayment = () => {
             cardInput={GpayCardData}
             onchange={handleChange}
             buttonText={"verify"}
+            method={"upi"}
           />
         );
 
@@ -247,6 +251,7 @@ const StripePayment = () => {
             cardInput={BankAccountCardData}
             onchange={handleChange}
             buttonText={"Paynow"}
+            method={"bankaccount"}
           />
         );
 

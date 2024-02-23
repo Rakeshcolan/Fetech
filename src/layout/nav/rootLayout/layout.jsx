@@ -90,8 +90,8 @@ const Drawer = styled(MuiDrawer, {
         {/* <Collapse in={open} timeout="auto" unmountOnExit> */}
           <List component="div" disablePadding>
             {menuItems.isNested.map((nestedItem, index) => {
-              const { name, path, icon } = nestedItem;
-             let isActive = location.pathname === path;
+              const { name, path, icon,child } = nestedItem;
+             let isActive = location.pathname === path || location.pathname === child;
               return (
                 <div key={index}>
                   <ListItemButton
@@ -144,14 +144,16 @@ export const Layout = ({openDrawer})=>{
         if (sessionValue == 1) {
           setLayoutData(UsermenuItems);
         } else {
-          setLayoutData(openDrawer?AdminMenuItems:AdminIconMenuItems);
+          setLayoutData(AdminMenuItems);
+          // setLayoutData(openDrawer?AdminMenuItems:AdminIconMenuItems);
         }
       }, [openDrawer, sessionValue]);
     
     return (
         <>
              <div>
-        <Drawer variant="permanent" className="layoutlist" open={openDrawer}>
+              {/* replace true with openDrawer props later */}
+        <Drawer variant="permanent" className="layoutlist" open={true}> 
           <img src={Logo} className="logo" style={{ width: "100%" }} />
           <List>
             {layoutData.map((items, index) => {

@@ -50,7 +50,7 @@ const AddRoles = lazy(() =>
   import("../../pages/manageRoles/addRoles/addRoles")
 );
 const EditProfile = lazy(() =>
-  import("../../pages/manageRoles/editRoles/index")
+  import("../../components/EditProfile/editProfile")
 );
 const EditRoles = lazy(() =>
   import("../../pages/manageRoles/editRoles")

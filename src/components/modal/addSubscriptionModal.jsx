@@ -87,6 +87,7 @@ export default function AddSubscriptionModal(props) {
             <CommonTextFields
               label="subscription Amount"
               id="subscription_amount"
+              type="number"
               formik={formik}
               placeholder=""
             />

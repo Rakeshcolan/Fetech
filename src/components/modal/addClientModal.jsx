@@ -59,7 +59,6 @@ export default function AddClientModal(props) {
       subscription_plan: Yup.string().required("subscription plan is required"),
     }),
     onSubmit: async (values, { resetForm }) => {
-      console.log("getallvaluess",values);
       let val = {
         // name: values.name,
         email_id: values.email_id,
@@ -122,6 +121,7 @@ export default function AddClientModal(props) {
             <CommonTextFields
               label="PhoneNumber"
               id="mobile_no"
+              type="number"
               formik={formik}
               placeholder=""
             />

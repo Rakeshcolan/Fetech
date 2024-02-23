@@ -41,6 +41,8 @@ export const AdminMenuItems=[
                 path: "/dashboard/subadmin",
                 name: "Manage Sub Admin",
                 icon:<ManageAccountsIcon/> ,
+                child:"/dashboard/editsubadmin"
+            
               },
               {
                 path: "/dashboard/client",
@@ -50,17 +52,20 @@ export const AdminMenuItems=[
               {
                 path: "/dashboard/chatbot",
                 name: "Manage Chatbot",
-                icon: <ForumIcon/>
+                icon: <ForumIcon/>,
+                child:"/dashboard/flowpage"
               },
               {
                 path: "/dashboard/subscription",
                 name: "Manage Subscription",
                 icon: <CardMembershipIcon/>,
+                child:"/dashboard/editsubscription"
               },
               {
                 path: "/dashboard/roles",
                 name: "Roles and Permission",
                 icon: <SettingsIcon/>,
+                child:"/dashboard/editroles"
               },
               {
                 path: "/dashboard/cms",

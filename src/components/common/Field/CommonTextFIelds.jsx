@@ -9,6 +9,7 @@ const CommonTextFields = ({
   customStyles,
   disabled,
   placeholder,
+  type = "text",
   required,
   ...props
 }) => {
@@ -30,7 +31,7 @@ const CommonTextFields = ({
           id={id}
           margin="normal"
           disabled={disabled}
-          type="text"
+          type={type}
           placeholder={placeholder}
           onChange={handleChange}  // Add onChange handler
           value={formik?.values[id]}

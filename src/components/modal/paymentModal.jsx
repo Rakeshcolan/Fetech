@@ -38,8 +38,7 @@ const handleAgree = ()=>{
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Let Google help apps determine location. This means sending anonymous
-            location data to Google, even when no apps are running.
+           Since You have choosen "Tier1", Adding card is restricted
           </DialogContentText>
         </DialogContent>
         <DialogActions>

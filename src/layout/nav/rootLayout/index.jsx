@@ -46,7 +46,7 @@ export default function RootLayout() {
   const [openDrawer, setOpenDrawer] = React.useState(true);
 
   const handleDrawerOpen = () => {
-    setOpenDrawer(!openDrawer);
+    // setOpenDrawer(!openDrawer);
   };
 
   const handleDrawerClose = () => {
@@ -154,7 +154,8 @@ export default function RootLayout() {
           </Menu>
         </Toolbar>
       </AppBar>
-      <Layout openDrawer={openDrawer} />
+      <Layout />
+      {/* <Layout openDrawer={openDrawer} /> */}
       <span
         style={{
           position: "relative",

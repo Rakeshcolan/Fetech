@@ -9,7 +9,7 @@ const EditProfile = () => {
     navigate("/dashboard/subadmin");
   };
   return (
-    <div>
+    <div className="commonbox">
       <h4>Edit Profile</h4>
       <br />
       <div className="row">
@@ -30,10 +30,10 @@ const EditProfile = () => {
       </div>
       <br /><br />
       <div className="contentCenter">
-        <Button className="cancelBtn" onClick={handleRedirect}>
+        <Button className="cancelBtn"onClick={()=>navigate(-1)}>
           Cancel
         </Button>
-        <Button className="submitBtn">Save</Button>
+        <Button className="submitBtn" onClick={()=>navigate(-1)}>Save</Button>
       </div>
     </div>
   );

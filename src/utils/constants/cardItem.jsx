@@ -76,6 +76,7 @@ export const AccountCardInputData=[
     includeImg:"true",
     fullwidth:"true",
     placeholderText:"1234 1234 1234 1234 ",
+    type:"input",
     id:"cardNumber"
   },
   {
@@ -83,6 +84,7 @@ export const AccountCardInputData=[
     label:"Expiration",
     includeImg:"false",
     fullwidth:"false",
+    type:"input",
     placeholderText:"MM/YY",
     id:"expirationDate"
   },
@@ -92,6 +94,7 @@ export const AccountCardInputData=[
     includeImg:"false",
     fullwidth:"false",
     placeholderText:"***",
+    type:"input",
     id:"ccv"
   },
   {
@@ -99,6 +102,7 @@ export const AccountCardInputData=[
     includeImg:"false",
     fullwidth:"true",
     placeholderText:"Select",
+    type:"select",
     id:"country"
   },
 ]

@@ -62,6 +62,11 @@ const Login = () => {
     }
   },[rememberme])
 
+  const handleKeyPress = (event) => {
+    if(event.key === 'Enter'){
+      formik.handleSubmit(formik.values)
+    }
+  }
   const handleRemember = ()=>{
     setRememberstatus(remembercheck?.current?.checked)
     if(rememberme == 'true'){
@@ -103,6 +108,7 @@ const Login = () => {
             type={"password"}
             placeholder="Password"
             formik={formik}
+            keypress= {handleKeyPress}
           />
           <br />
           <div className="form-options">
