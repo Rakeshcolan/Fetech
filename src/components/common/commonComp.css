@@ -273,3 +273,9 @@
   padding: 5px;
   margin: auto;
 }
+
+.viewtext{
+  color:#67c5f5;
+  cursor: pointer;
+  font-weight: 400;
+}

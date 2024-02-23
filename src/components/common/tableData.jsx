@@ -207,7 +207,7 @@ export const ClientDataHead = [
     label: "Action",
   },
   // {
-  //   id: "Received_Data",
+  //   id: "receiveddata",
   //   label: "Received Data",
   // },
 ];
@@ -294,7 +294,7 @@ export const SubscriptionDataHead = [
   },
   //no data in the api for description
   {
-    id: "description",
+    id: "descrption",
     label: "Description",
   },
   {

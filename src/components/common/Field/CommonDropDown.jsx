@@ -24,13 +24,14 @@ function CommonDropDown({
     setSelectedValue(formik.values[id] || defaultValue || value);
   }, [defaultValue, formik.values, id, value]);
   const showOption = (option)=>{
+    
     let optiontext;
     switch (label) {
       case "Subscriptions Plan":
-       optiontext =  `Tier${option?.subscription_id}`
+       optiontext =  option.subscription_plan
         break;
       case "Billing":
-        optiontext = `Tier${option?.subscription_id} -${option?.billing}`
+        optiontext = `${option.subscription_plan}-${option?.billing}`
         break;
     
       default:

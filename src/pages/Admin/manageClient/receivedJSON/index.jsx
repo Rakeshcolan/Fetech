@@ -2,10 +2,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import CustomizedTables from "../../../components/common/commonTable";
-import { ClientDataHead } from "../../../components/common/tableData";
-import AddClientModal from "../../../components/modal/addClientModal";
-import { deleteClientApi, deleteRegisterApi, getClientApi, getSubscriptionApi } from "../../../redux/action/adminAction";
+
+import { deleteClientApi, deleteRegisterApi, getClientApi } from "../../../redux/action/adminAction";
 import { adminSelector } from "../../../redux/slice/adminSlice";
 import "../../../styles/App.css";
 
@@ -13,7 +11,7 @@ const ManageClients = () => {
   
   const [modalOpen, setModalOpen] = useState();
   const dispatch = useDispatch();
-  const { getClientDetail, clientDetail,getClientDetailisLoading ,deleteData,getSubscriptionDetail, subscriptionDetail} = useSelector(adminSelector);
+  const { getClientDetail, clientDetail,getClientDetailisLoading ,deleteData} = useSelector(adminSelector);
   const paginationRowsOptions = [5, 10, 20, 50, 100];
 
 
@@ -24,16 +22,10 @@ const ManageClients = () => {
   const handleModalClose = () => {
     setModalOpen(false);
   };
-  const handleDelete = (client)=>{
-    dispatch(deleteRegisterApi(client.id))
-    
-  }
+
   useEffect(() => {
     dispatch(getClientApi());
-    dispatch(getSubscriptionApi());
-  }, [clientDetail,deleteData,subscriptionDetail]); // Add getClientDetail as a dependency
-
-
+  }, [clientDetail,deleteData]); // Add getClientDetail as a dependency
 
   return (
     <>
@@ -41,7 +33,7 @@ const ManageClients = () => {
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
         <h4>Manage Clients</h4>
         <Button className="addBtn" onClick={handleModalOpen}>
-          +Add
+          Download
         </Button>
         </div>
        
@@ -50,13 +42,14 @@ const ManageClients = () => {
           rows={getClientDetail}
           paginationStatus={true}
           rowsPerPageOptions={paginationRowsOptions}
-          onDelete = {handleDelete}
+        
           dataLoading = {getClientDetailisLoading}
-          subscriptionData={getSubscriptionDetail}
           
         />
-        <AddClientModal openModal={modalOpen} setOpenModal={handleModalClose} />
-     
+       
+       <Button className="addBtn" onClick={handleModalOpen}>
+          Approve
+        </Button>
       </div>
 
     </>

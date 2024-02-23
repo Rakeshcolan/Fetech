@@ -38,7 +38,7 @@ export default function AddSubscriptionModal(props) {
       let val = {
         subscription_plan: values.plan,
         billing: values.subscription_amount,
-        description: values.description,
+        descrption: values.description,
         status: values.status,
       };
       dispatch(subscriptionApi(val));

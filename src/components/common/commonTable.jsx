@@ -334,6 +334,7 @@ function CustomizedTables({
   handleChange,
   paginationStatus,
   dataLoading = false,
+  subscriptionData,
   ...props
 }) {
 
@@ -372,6 +373,35 @@ function CustomizedTables({
     2: "Manager",
     3: "Accountant",
   };
+
+  let getbilling = (value)=>{
+    if(value.plan){
+      return subscriptionData?.map((data)=>{
+         if(data.subscription_id === value.plan){
+           return `$${data.billing}`
+         }
+       })
+    }
+    else{
+      return "$500"
+    }
+  }
+
+  let getplan = (value)=>{
+    if(value){
+      return subscriptionData?.map((data)=>{
+         if(data.subscription_id === value){
+           return data.subscription_plan
+         }
+       })
+  
+
+    }
+
+    else {
+      return "Tier-1"
+    }
+  }
 
   return (
     <Paper elevation={0}>
@@ -417,6 +447,7 @@ function CustomizedTables({
           ) : (
             <TableBody>
               {rows?.slice(size * page, size * page + page).map((row, i) => (
+                
                 <StyledTableRow
                   hover
                   role="checkbox"
@@ -429,7 +460,7 @@ function CustomizedTables({
                       column.id === "id" ? (
                         i + 1
                       ) : column.id === "plan" ? (
-                        <div className="planbutton">Tier{row[column.id]}</div>
+                        <div className="planbutton">{getplan(row[column.id])}</div>
                       ) : column.id === "Action" ? (
                         <RowActions
                           handleEdit={handleEdit}
@@ -440,7 +471,7 @@ function CustomizedTables({
                         <StatusButton value={row[column.id]} />
                       ) : column.id === "designation" ? (
                         roleObj[row["designation"]]
-                      ) : column.id === "description" || column.id ==="question" ? (
+                      ) : column.id === "descrption" || column.id ==="question" ? (
                         <>
                           {row[column.id] ? (
                             row[column.id]
@@ -459,7 +490,11 @@ function CustomizedTables({
                       <RowActions
                       onDelete={onDelete}
                       row={row}
-                    />:(
+                    />
+                    
+                    :column.id==="receiveddata"?<p onClick={handleEdit} className="viewtext"><u>View</u></p>
+                    :column.id==="billing"?row[column.id]?`$${row[column.id]}`:getbilling(row)
+                     :(
                         row[column.id]
                       );
 

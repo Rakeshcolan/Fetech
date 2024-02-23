@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import "../commonComp.css";
 
-const CommonUpload = ({ label, onFileChange }) => {
+const CommonUpload = ({ label, onFileChange,id }) => {
   const [images, setImages] = useState([]);
 
   const handleImageChange = (e) => {
@@ -24,12 +24,12 @@ const CommonUpload = ({ label, onFileChange }) => {
               <input
                 type="file"
                 className="custom-file-input"
-                id="customFile"
-                onChange={handleImageChange}
-                multiple
+                id={id}
+                onChange={(e)=>onFileChange(e)}
+                // multiple
                 style={{ width: "150px" }}
               />
-              <label className="custom-file-label" htmlFor="customFile">
+              <label className="custom-file-label" htmlFor={id}>
                 Choose files
               </label>
             </div>
