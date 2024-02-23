@@ -43,8 +43,8 @@ const Payment = () => {
         <div
           style={{
             display: "flex",
-            justifyContent: "space-around ",
-            width: "100%",
+            // justifyContent: "space-around ",
+            // width: "100%",
           }}
         >
           {SubscriptionData.map((subscription,i) => (

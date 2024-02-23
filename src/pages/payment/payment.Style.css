@@ -1,7 +1,7 @@
 .swichlayout{
     max-width: 280px;
     width: 500px;
-    height: 70px;
+    /* height: 70px; */
     display: flex;
     justify-content: space-around;
     align-items: center;
