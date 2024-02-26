@@ -32,14 +32,20 @@ const EditSubscription = () => {
       plan: editData?.subscription_plan || "",
       subscription_amount: editData?.billing || "",
       description: editData?.description || "No Data Available",
-      status: editData?.status ===1?true:false || "",
+      status: editData?.status === 1 ? true : false || "",
     },
+    validationSchema: Yup.object({
+      subscription_amount: Yup.number()
+        .required("Subscription amount is required")
+        .positive("Subscription amount must be a positive number")
+        .integer("Subscription amount must be an integer"),
+    }),
     onSubmit: (values) => {
       let val = {
         subscription_plan: values.plan,
         billing: values.subscription_amount,
         description: values.description,
-        status: values.status ?1:2
+        status: values.status ? 1 : 2,
       };
       dispatch(editSubscriptionApi(val, editData?.subscription_id));
       navigate("/dashboard/subscription");

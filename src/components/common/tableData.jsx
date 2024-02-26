@@ -85,15 +85,15 @@ export const dashboardTableHead = [
 
 export const manageDataTableHead = [
   {
-    id: "Name",
+    id: "first_name",
     label: "Name",
   },
   {
-    id: "Email",
+    id: "email_id",
     label: "Email",
   },
   {
-    id: "PhoneNumber",
+    id: "mobile_no",
     label: "Phone Number",
   },
 ];
@@ -106,8 +106,8 @@ export const manageDataTableData = [
 
 export const RolesAndPermissionsHead = [
   {
-    id:"#",
-    label:"#"
+    id: "#",
+    label: "#",
   },
 
   {
@@ -118,12 +118,12 @@ export const RolesAndPermissionsHead = [
     id: "Action",
     label: "Action",
   },
-]
+];
 export const RolesAndPermissionsData = [
-  { "#":"1",Roles: "Accountant", Action: "checkbox" },
-  { "#":"2",Roles: "Manager", Action: "checkbox" },
-  { "#":"3",Roles: "Employee", Action: "checkbox" },
-]
+  { "#": "1", Roles: "Accountant", Action: "checkbox" },
+  { "#": "2", Roles: "Manager", Action: "checkbox" },
+  { "#": "3", Roles: "Employee", Action: "checkbox" },
+];
 
 export const RoleAuthoriZationHead = [
   {
@@ -180,7 +180,7 @@ export const RoleAuthoriZationData = [
 ];
 
 export const ClientDataHead = [
-  {id:"id",label:"#"},
+  { id: "id", label: "#" },
   {
     id: "username",
     // id: "name",
@@ -213,7 +213,7 @@ export const ClientDataHead = [
 ];
 
 export const DemoaHeadData = [
-  {id:"#",label:"#"},
+  { id: "#", label: "#" },
   {
     id: "name",
     label: "Name",
@@ -330,11 +330,10 @@ export const EditRole = [
   },
 ];
 
-export const chatBotTableTitle=[
-    
-  {id:"chatbot_id",label:"#"},
-  {id:"Chatbot_name",label:"Chatbot Name"},
-  {id:"question",label:"Question"},
-  {id:"status",label:"Status"},
-  {id:"Action",label:"Action"},
-]
+export const chatBotTableTitle = [
+  { id: "chatbot_id", label: "#" },
+  { id: "Chatbot_name", label: "Chatbot Name" },
+  { id: "question", label: "Question" },
+  { id: "status", label: "Status" },
+  { id: "Action", label: "Action" },
+];

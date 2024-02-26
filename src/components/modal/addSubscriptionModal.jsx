@@ -8,15 +8,15 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
-import {  subscriptionApi } from "../../redux/action/adminAction";
+import { subscriptionApi } from "../../redux/action/adminAction";
 import CommonDropDown from "../common/Field/CommonDropDown";
 
 export default function AddSubscriptionModal(props) {
-  const { openModal=false, setOpenModal } = props;
+  const { openModal = false, setOpenModal } = props;
   const dispatch = useDispatch();
   const handleClose = () => {
     setOpenModal(false);
-    formik.resetForm()
+    formik.resetForm();
   };
   const formik = useFormik({
     enableReinitialize: true,
@@ -28,9 +28,10 @@ export default function AddSubscriptionModal(props) {
     },
     validationSchema: Yup.object({
       plan: Yup.string().required("Tier is required"),
-      subscription_amount: Yup.string().required(
-        "subscription amount is required"
-      ),
+      subscription_amount: Yup.number()
+        .required("Subscription amount is required")
+        .positive("Subscription amount must be a positive number")
+        .integer("Subscription amount must be an integer"),
       description: Yup.string().required("Description is required"),
       status: Yup.string().required("status is required"),
     }),
@@ -109,13 +110,13 @@ export default function AddSubscriptionModal(props) {
               formik={formik}
               placeholder=""
             /> */}
-              <CommonDropDown
+            <CommonDropDown
               id="status"
               label="Status"
               formik={formik}
               options={[
-                {value:1,label:"True"},
-                {value:2,label:"False"}
+                { value: 1, label: "True" },
+                { value: 2, label: "False" },
               ]}
             />
           </div>
