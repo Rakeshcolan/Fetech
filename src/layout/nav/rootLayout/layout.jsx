@@ -72,12 +72,12 @@ const Drawer = styled(MuiDrawer, {
     };
     return (
       <>
-        <ListItemButton  component={Link} to={path} className="multi-list" onClick={handleClick}>
+       {name&& <ListItemButton  component={Link} to={path} className="multi-list" onClick={handleClick}>
           <ListIcon sx={{ marginRight: "8px" }} />
           <ListItemText  primary={name} 
           onClick={() => navigate(path)} 
           />
-        </ListItemButton>
+        </ListItemButton>}
         {/* <Collapse in={open} timeout="auto" unmountOnExit> */}
           <List component="div" disablePadding>
             {menuItems.isNested.map((nestedItem, index) => {

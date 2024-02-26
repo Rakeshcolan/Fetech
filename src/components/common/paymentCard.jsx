@@ -7,7 +7,6 @@ const PaymentCard = ({ data }) => {
   const navigate = useNavigate();
   const { subscription_plan, billing, name,value,checkList, textvalue, description } = data;
 
-  // console.log("textvalue", textvalue);
 
   const handlePayment = () => {
     sessionStorage.setItem('ur',0)

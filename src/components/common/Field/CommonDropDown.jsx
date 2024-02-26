@@ -11,7 +11,7 @@ function CommonDropDown({
   options,
   sx,
   customStyles,
-  defaultValue,
+  defaultValue="",
   value,
   disabled,
   required,
@@ -19,7 +19,6 @@ function CommonDropDown({
   statusChecker = false,
 }) {
   const [selectedValue, setSelectedValue] = useState();
-
   useEffect(() => {
     setSelectedValue(formik.values[id] || defaultValue || value);
   }, [defaultValue, formik.values, id, value]);
@@ -56,6 +55,7 @@ function CommonDropDown({
           {required && <span className="field-required">*</span>}
         </label>
         <TextField
+        
           size="small"
           id={id}
           select
@@ -110,8 +110,9 @@ function CommonDropDown({
             </MenuItem>
           )}
           {options?.map((option) => (
-                                                                     
-            <MenuItem key={option.id} value={option.designation_id||option.subscription_id||option.value }>
+            //we can use option.subscription
+                                                             
+            <MenuItem key={option.id} value={option?.designation_id||option?.subscription_id||option?.value} sx={{color:option.active?"grey":"inherit"}} disabled={option.disabled}>
               {statusChecker && (
                 <div
                   className={option.active ? "active-dot" : "non-active-dot"}

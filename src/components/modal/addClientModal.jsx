@@ -31,6 +31,17 @@ export default function AddClientModal(props) {
     formik.resetForm()
   };
 
+  const handleChange = (e)=>{
+    let {value} = e.target;
+   formik.setFieldValue("subscription_plan",value)
+   formik.setFieldValue("billing",findBilling(value))
+  }
+
+  const findBilling=(value)=>{
+   let data =  getSubscriptionDetail?.filter((detail)=>detail.subscription_id===value);
+   return data[0]?.billing
+  }
+
 
   useEffect(() => {
     dispatch(getSubscriptionApi());
@@ -140,16 +151,23 @@ export default function AddClientModal(props) {
               label="Subscriptions Plan"
               formik={formik}
               options={getSubscriptionDetail}
+              customChange = {handleChange}
             />
           </div>
           <br />
           <div>
-            <CommonDropDown
+              <CommonTextFields
+              label="Billing"
+              id="billing"
+              formik={formik}
+              placeholder=""
+            />
+            {/* <CommonDropDown
               label="Billing"
               id="billing"
               formik={formik}
               options={getSubscriptionDetail}
-            />
+            /> */}
           </div>
           <br />
           <div className="contentCenter">

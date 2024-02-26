@@ -31,14 +31,22 @@ const EditSubscription = () => {
     initialValues: {
       plan: editData?.subscription_plan || "",
       subscription_amount: editData?.billing || "",
-      description: editData?.description || "No Data Available",
+      descrption: editData?.descrption || "No Data Available",
       status: editData?.status ===1?true:false || "",
     },
+    validationSchema: Yup.object({
+
+      subscription_amount: Yup.number()
+      .required("Subscription amount is required")
+      .positive("Subscription amount must be a positive number")
+      .integer("Subscription amount must be an integer"),
+     
+    }),
     onSubmit: (values) => {
       let val = {
         subscription_plan: values.plan,
         billing: values.subscription_amount,
-        description: values.description,
+        descrption: values.descrption,
         status: values.status ?1:2
       };
       dispatch(editSubscriptionApi(val, editData?.subscription_id));
@@ -52,7 +60,7 @@ const EditSubscription = () => {
       <br />
       <div className="row">
         <div className="col-lg-6">
-          <CommonTextFields label="Tier" id="plan" formik={formik} />
+          <CommonTextFields label="Tier" id="plan" formik={formik} disabled={true} />
           <br />
           <CommonTextFields
             label="Subscription Amount "
@@ -63,7 +71,7 @@ const EditSubscription = () => {
         <div className="col-lg-6">
           <CommonTextFields
             label="Description"
-            id="description"
+            id="descrption"
             formik={formik}
           />
           <br />

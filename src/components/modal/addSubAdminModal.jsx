@@ -34,6 +34,7 @@ export default function AddSubAdminModal(props) {
       mobile_no: "",
       status: "",
       designation: "",
+      username:""
     },
     validationSchema: Yup.object({
       first_name: Yup.string()
@@ -47,6 +48,12 @@ export default function AddSubAdminModal(props) {
         .matches(
           /^[a-zA-Z\s]+$/,
           "LastName Can Only Contain Alphabet Characters"
+        ),
+        username:Yup.string()
+        .required("User Name is required")
+        .matches(
+          /^[a-zA-Z\s]+$/,
+          "UserName Can Only Contain Alphabet Characters"
         ),
       email_id: Yup.string()
         .required("Email Is Required")
@@ -62,7 +69,7 @@ export default function AddSubAdminModal(props) {
       let val = {
         user_client:userId,
         password:generatePassword(values.first_name,values.mobile_no),
-        username:values.first_name,
+        username:values.username,
         first_name: values.first_name,
         last_name: values.last_name,
         email_id: values.email_id,
@@ -126,6 +133,15 @@ export default function AddSubAdminModal(props) {
             <CommonTextFields
               label="Last Name"
               id="last_name"
+              formik={formik}
+              placeholder=""
+            />
+          </div>
+          <br />
+          <div>
+            <CommonTextFields
+              label="User Name"
+              id="username"
               formik={formik}
               placeholder=""
             />

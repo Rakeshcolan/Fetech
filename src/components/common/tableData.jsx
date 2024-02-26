@@ -12,6 +12,11 @@ export const subAdminTableHead = [
     label: "Last Name",
   },
   {
+    id: "username",
+    label: "User Name",
+  },
+
+  {
     id: "email_id",
     label: "Email ID",
   },
@@ -283,6 +288,10 @@ export const SubscriptionDataHead = [
   {
     id: "id",
     label: "Id",
+  },
+  {
+    id:"plan_period",
+    label:"Plan"
   },
   {
     id: "subscription_plan",

@@ -55,10 +55,17 @@ export const APIService = async (method, url, body, params) => {
         }
       })
       .catch((e) => {
+        let errorarr=[];
         // console.log("ERROR OCCURED", e);
         if (e.message === "Network Error") {
           // navigate("/common/networkIssue");
-          showToast(e.message, "error");
+          errorarr.push(e.message);
+          setTimeout(()=>{
+            if(errorarr.length>1){
+
+              showToast(e.message, "error");
+            }
+          },500)
           //adding this to avoid propogation of error to the redux action
           return Promise.reject();
         } else if (e?.response?.status === 400) {

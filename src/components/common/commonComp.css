@@ -279,3 +279,12 @@
   cursor: pointer;
   font-weight: 400;
 }
+
+
+.active-dot{
+  color: gray;
+}
+
+.non-active-dot{
+  color: inherit;
+}

@@ -6,9 +6,9 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 export const UsermenuItems = [
   {
-    path: "/dashboard/subadmin",
-    name: "Dashboard",
-    icon: "",
+    // path: "/dashboard/subadmin",
+    // name: "Dashboard",
+    // icon: "",
 
     isNested: [
       {
