@@ -42,7 +42,7 @@ const CommonTextFields = ({
           sx={{
             "& legend": { display: "none" },
             "& fieldset": { top: 0 },
-            width: "50%",
+            width: "70%",
             mt: 0,
             mb: 0,
             borderRadius: "10px",

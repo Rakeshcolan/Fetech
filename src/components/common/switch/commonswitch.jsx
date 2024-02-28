@@ -68,13 +68,13 @@ const CommonSwitch = ({ label, id, formik }) => {
     },
   }));
   return (
-      <FlexContainer>
-        {" "}
-        <label style={{ fontSize: "16px", width:"100%" }}>
-          {label}
-          {/* {required && <span className="field-required">*</span>} */}
-        </label>
-        <div style={{display:"flex",alignItems:"center",width:"100%"}}>
+    <FlexContainer>
+      {" "}
+      <label style={{ fontSize: "16px", width: "30%" }}>
+        {label}
+        {/* {required && <span className="field-required">*</span>} */}
+      </label>
+      <div style={{ display: "flex", alignItems: "center", width: "70%" }}>
         <Typography>Inactive</Typography>
         <FormControlLabel
           control={
