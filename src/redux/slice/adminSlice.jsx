@@ -32,7 +32,8 @@ const adminSlice = createSlice({
     deleteData :"",
     deleteDataIsLoading :"",
     deleteSubscriptionLoading:"",
-    deleteChatbotLoading:false
+    deleteChatbotLoading:false,
+    userName:""
   },
   reducers: {
     addSubAmdinsReducer: (state, { payload }) => {
@@ -129,6 +130,9 @@ const adminSlice = createSlice({
       state.chatBotData =[ "Deleted"];
       state.deleteChatbotLoading = payload.isLoading
     },
+    getUserNameReducer:(state,{payload})=>{
+      state.userName=payload.apiData;
+    }
 
   },
 });
@@ -156,6 +160,7 @@ export const {
   addManageDataReducer,
   deleteClientReducer,
   deleteChatbotReducer,
+  getUserNameReducer,
 } = adminSlice.actions;
 
 export const adminSelector = (state) => state.admin;

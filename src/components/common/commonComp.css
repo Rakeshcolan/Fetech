@@ -22,6 +22,19 @@
   font-weight: 600;
 }
 
+.approvebtn{
+  background-color: #00e785 !important;
+  color: black !important;
+  display: flex !important;
+  justify-content: center; 
+  margin: auto !important;
+  border: none !important;
+  outline: none !important;
+  padding: 12px;
+  padding: 8px 16px;
+  font-weight: 600;
+}
+
 .uploadBtn {
   background-color: #00e785;
   padding: 0px 20px;

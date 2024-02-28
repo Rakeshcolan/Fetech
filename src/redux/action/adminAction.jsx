@@ -24,18 +24,21 @@ import {
   deleteReducer,
   deleteSubscriptionApiReducer,
   deleteChatbotReducer,
+  getUserNameReducer,
 } from "../slice/adminSlice";
 
 
-export function apiHelper(apiReducer, method, apiURL, data = "") {
+export function apiHelper(apiReducer, method, apiURL, data = "",Toastmessage = "",giveToast=true) {
   return async (dispatch) => {
     dispatch(apiReducer({ isLoading: true }));
     APIService(method, apiURL, data)
       .then((e) => {
         dispatch(apiReducer({ apiData: e?.data, isLoading: false }));
-        if (method === "POST") showToast("Added Data", "success");
-        else if (method === "PUT") {
-          showToast("Updated Data", "success");
+        if(giveToast){
+          if (method === "POST") showToast(`${Toastmessage} Added Successfully`, "success");
+          else if (method === "PUT") {
+            showToast("Updated Data", "success");
+          }
         }
       })
       .catch((e) => {
@@ -46,7 +49,7 @@ export function apiHelper(apiReducer, method, apiURL, data = "") {
 }
 
 export function addSubAmdinsApi(data) {
-    return apiHelper(addSubAmdinsReducer, "POST", "/register/", data);
+    return apiHelper(addSubAmdinsReducer, "POST", "/register/", data,"SubAdmin");
 }
 export function deleteRegisterApi(id) {
   
@@ -66,7 +69,7 @@ export function editSubAdminApi(id, data) {
 // }
 export function addClientApi(body) {
   // return apiHelper(addClientApiReducer, "POST", "/manageclients/", body); old code
-  return apiHelper(addClientApiReducer, "POST", "/register/", body); // saving without userid gives the client credentials
+  return apiHelper(addClientApiReducer, "POST", "/register/", body,"Client"); // saving without userid gives the client credentials
 }
 
 export function getClientApi() {
@@ -78,7 +81,8 @@ export function subscriptionApi(body) {
     addSubscriptionApiReducer,
     "POST",
     "/subscriptionplan/",
-    body
+    body,
+    "Subscription"
   );
 }
 
@@ -127,11 +131,11 @@ export function getEarningsApi() {
 }
 
 export function addManageDataApi() {
-  return apiHelper(addManageDataReducer, "GET", "/managedata/");
+  return apiHelper(addManageDataReducer, "GET", "/managedata/","User Data");
 }
 
 export function addChatBotApi(data) {
-  return apiHelper(addChatbotReducer, "POST", "/managechatbot/", data);
+  return apiHelper(addChatbotReducer, "POST", "/managechatbot/", data,"Chatbot");
 }
 
 export function getChatBotApi(id) {
@@ -150,6 +154,13 @@ export function deleteChatbotApi(id){
 
 export function getChatBotByIdApi(id) {
   return apiHelper(getChatbotByIdReducer, "GET", `/managechatbot/${id}/`);
+}
+
+export function getUserNameExistApi(data){
+  let body = {
+    "username" :data
+}
+  return apiHelper(getUserNameReducer,"POST",'/username_exist/',body,"",false)
 }
 
 export function editChatByIdApi(id, data) {

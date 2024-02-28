@@ -91,6 +91,9 @@ export default function AddSubscriptionModal(props) {
         }
         setModalOption(optionData);
       }
+      else{
+        setModalOption(optionArray)
+      }
     }
   }, [getSubscriptionDetail, formik.values["plan_period"]]);
 

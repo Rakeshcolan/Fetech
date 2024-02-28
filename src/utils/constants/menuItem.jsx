@@ -71,6 +71,7 @@ export const AdminMenuItems=[
                 path: "/dashboard/client",
                 name: "Manage Clients",
                 icon: <PeopleIcon/>,
+                child:"/dashboard/receivedclient"
               },
               {
                 path: "/dashboard/chatbot",

@@ -2,16 +2,20 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import CustomizedTables from "../../../../components/common/commonTable";
+import { ClientDataHead, manageDataTableHead } from "../../../../components/common/tableData";
+import { getManualUploadDataApi } from "../../../../redux/action/userAction";
+import { userSelector } from "../../../../redux/slice/userSlice";
+import xlsx from "json-as-xlsx"
 
-import { deleteClientApi, deleteRegisterApi, getClientApi } from "../../../redux/action/adminAction";
-import { adminSelector } from "../../../redux/slice/adminSlice";
-import "../../../styles/App.css";
 
-const ManageClients = () => {
-  
+const ReceivedClients = () => {
+  let location = useLocation();
+  const{data} = location.state;
   const [modalOpen, setModalOpen] = useState();
   const dispatch = useDispatch();
-  const { getClientDetail, clientDetail,getClientDetailisLoading ,deleteData} = useSelector(adminSelector);
+  const { getTableData,manualUpload,fileData,getTableDataLoading } = useSelector(userSelector);
   const paginationRowsOptions = [5, 10, 20, 50, 100];
 
 
@@ -19,35 +23,52 @@ const ManageClients = () => {
     setModalOpen(true);
   };
 
-  const handleModalClose = () => {
-    setModalOpen(false);
-  };
+
+
+  const downloadExcel = ()=>{
+    let data = [
+      {
+        sheet: "Clients",
+        columns:manageDataTableHead,
+        content: getTableData
+      },
+    
+    ]
+    let settings = {
+      fileName: "MySpreadsheet", // Name of the resulting spreadsheet
+      extraLength: 3, // A bigger number means that columns will be wider
+      writeMode: "writeFile", // The available parameters are 'WriteFile' and 'write'. This setting is optional. Useful in such cases https://docs.sheetjs.com/docs/solutions/output#example-remote-file
+      writeOptions: {}, // Style options from https://docs.sheetjs.com/docs/api/write-options
+      RTL: true, // Display the columns from right-to-left (the default value is false)
+    }
+    
+    xlsx(data, settings) 
+  }
 
   useEffect(() => {
-    dispatch(getClientApi());
-  }, [clientDetail,deleteData]); // Add getClientDetail as a dependency
+    dispatch(getManualUploadDataApi(data?.id));
+  }, [manualUpload,fileData]); // Add getClientDetail as a dependency
 
   return (
     <>
       <div className="commonbox">
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
         <h4>Manage Clients</h4>
-        <Button className="addBtn" onClick={handleModalOpen}>
+        <Button className="addBtn" onClick={downloadExcel}>
           Download
         </Button>
         </div>
        
         <CustomizedTables
-          columns={ClientDataHead}
-          rows={getClientDetail}
+          columns={manageDataTableHead}
+          rows={getTableData}
           paginationStatus={true}
           rowsPerPageOptions={paginationRowsOptions}
-        
-          dataLoading = {getClientDetailisLoading}
+          dataLoading = {getTableDataLoading}
           
         />
        
-       <Button className="addBtn" onClick={handleModalOpen}>
+       <Button className="approvebtn" onClick={handleModalOpen}>
           Approve
         </Button>
       </div>
@@ -56,4 +77,4 @@ const ManageClients = () => {
   );
 };
 
-export default ManageClients;
+export default ReceivedClients;

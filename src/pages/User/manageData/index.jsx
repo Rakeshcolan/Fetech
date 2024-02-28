@@ -20,7 +20,7 @@ import {
 import { userSelector } from "../../../redux/slice/userSlice";
 
 const ManageData = () => {
-  const { getTableData } = useSelector(userSelector);
+  const { getTableData,manualUpload,fileData } = useSelector(userSelector);
 
   const [size, setSize] = useState(0);
   const [page, setPage] = useState(5);
@@ -64,13 +64,14 @@ const ManageData = () => {
         client_id: storedUId,
       };
       dispatch(manualUploadDataApi(val));
+      formik.resetForm();
       // navigate("/dashboard/subadmin");
     },
   });
 
   useEffect(() => {
-    dispatch(getManualUploadDataApi());
-  }, [getTableData?.data?.id]); // getTableData?.data?.id
+    dispatch(getManualUploadDataApi(storedUId));
+  }, [getTableData?.data?.id,manualUpload,fileData]); // getTableData?.data?.id
 
   const onFileChange = (e) => {
     try {
@@ -98,7 +99,7 @@ const ManageData = () => {
         <div className="col-lg-3">
           <input
             type="file"
-            className="custom-file-input"
+            className="custom-file-input mt-4"
             name="file"
             defaultValue={selectedFile}
             onChange={(e) => onFileChange(e)}
@@ -155,9 +156,9 @@ const ManageData = () => {
           handleChangeRowsPerPage={handlePerRowsChange}
         />
       </div>
-      <div className="contentCenter">
+      {/* <div className="contentCenter">
         <Button className="submitBtn">Submit</Button>
-      </div>
+      </div> */}
     </div>
   );
 };

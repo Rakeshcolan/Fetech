@@ -30,8 +30,8 @@ export function manualUploadDataApi(data) {
   return apiHelper(manualUploadDataReducer, "POST", "/managedata/", data);
 }
 
-export function getManualUploadDataApi() {
-  return apiHelper(getTableDataReducer, "GET", "/managedata/");
+export function getManualUploadDataApi(id) {
+  return apiHelper(getTableDataReducer, "GET", `/managedata/file/${id}/`);
 }
 
 // export function manualUploadFileApi(data) {

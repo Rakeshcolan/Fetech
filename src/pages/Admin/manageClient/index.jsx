@@ -53,6 +53,7 @@ const ManageClients = () => {
           onDelete = {handleDelete}
           dataLoading = {getClientDetailisLoading}
           subscriptionData={getSubscriptionDetail}
+          navigatepath={'receivedclient'}
           
         />
         <AddClientModal openModal={modalOpen} setOpenModal={handleModalClose} />

@@ -335,6 +335,7 @@ function CustomizedTables({
   paginationStatus,
   dataLoading = false,
   subscriptionData,
+  navigatepath="",
   ...props
 }) {
 
@@ -362,8 +363,8 @@ function CustomizedTables({
   };
 
   const handleEdit = (data) => {
-    const id = data.chatbot_id;
-    navigate(`/dashboard/${props.navigatepath || `edit${pathname}`}`, {
+    const id = data?.chatbot_id;
+    navigate(`/dashboard/${navigatepath || `edit${pathname}`}`, {
       state: { action: "Edit", arrayIndex: id, data },
     });
   };
@@ -492,7 +493,7 @@ function CustomizedTables({
                       row={row}
                     />
                     
-                    :column.id==="receiveddata"?<p onClick={handleEdit} className="viewtext"><u>View</u></p>
+                    :column.id==="receiveddata"?<p onClick={()=>handleEdit(row)} className="viewtext"><u>View</u></p>
                     :column.id==="billing"?row[column.id]?`$${row[column.id]}`:getbilling(row)
                      :(
                         row[column.id]

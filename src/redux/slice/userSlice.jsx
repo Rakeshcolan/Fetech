@@ -19,7 +19,7 @@ const userSlice = createSlice({
       state.userDetailLoading = payload.isLoading;
     },
     manualUploadDataReducer: (state, { payload }) => {
-      state.manualUpload = payload.userDetail;
+      state.manualUpload = payload.apiData;
       state.manualUploadLoading = payload.isLoading;
     },
     getTableDataReducer: (state, { payload }) => {

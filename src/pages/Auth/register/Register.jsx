@@ -41,7 +41,7 @@ const Register = () => {
       mobile_no: Yup.string()
         .matches(/^[0-9]{10}$/, "Invalid phone number") // Check for 10-digit numeric phone number
         .required("Phone Number is required"),
-      password: Yup.string().required("Password is required"),
+      password: Yup.string().required("Password is required") .matches(/^(?=.*?[0-9])(?=.*?[A-Za-z])(?=.*?[^0-9A-Za-z]).{8,32}$/, "Password should contain atleast one Number,one Alphatet,one SpecialCharacters"),
       isTermChecked: Yup.bool().oneOf([true], 'Accept Terms & Conditions is required')
     }),
     onSubmit: (values) => {

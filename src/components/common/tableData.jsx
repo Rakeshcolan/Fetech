@@ -90,17 +90,36 @@ export const dashboardTableHead = [
 
 export const manageDataTableHead = [
   {
+    label:"#",
+    id:'id',
+    value:'id'
+  },
+  {
     id: "first_name",
+    value: "first_name",
     label: "Name",
   },
   {
+    id:'last_name',
+    value:"last_name",
+    label:"Last Name"
+
+  },
+  {
     id: "email_id",
+    value: "email_id",
     label: "Email",
   },
   {
     id: "mobile_no",
+    value: "mobile_no",
     label: "Phone Number",
   },
+  {
+    id:"product_name",
+    value:"product_name",
+    label:"Product"
+  }
 ];
 
 export const manageDataTableData = [
@@ -211,10 +230,10 @@ export const ClientDataHead = [
     id: "clientAction",
     label: "Action",
   },
-  // {
-  //   id: "receiveddata",
-  //   label: "Received Data",
-  // },
+  {
+    id: "receiveddata",
+    label: "Received Data",
+  },
 ];
 
 export const DemoaHeadData = [
