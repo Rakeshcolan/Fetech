@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CommonTextFields from "../../../components/common/Field/CommonTextFIelds";
 import CommonUpload from "../../../components/common/Field/CommonUpload";
 import CustomizedTables from "../../../components/common/commonTable";
@@ -10,12 +10,21 @@ import {
 import DynamicField from "../../../components/common/Field/DynamicField";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addManageDataApi } from "../../../redux/action/adminAction";
+import {
+  getManualUploadDataApi,
+  manualUploadDataApi,
+  manualUploadFileApi,
+} from "../../../redux/action/userAction";
+import { userSelector } from "../../../redux/slice/userSlice";
 
 const ManageData = () => {
+  const { getTableData,manualUpload,fileData } = useSelector(userSelector);
+
   const [size, setSize] = useState(0);
   const [page, setPage] = useState(5);
+  const [selectedFile, setSelectedFile] = useState(null);
   const dispatch = useDispatch();
 
   const paginationRowsOptions = [5, 10, 20, 50, 100];
@@ -28,7 +37,7 @@ const ManageData = () => {
   const handlePageChange = async (event, newPage) => {
     setPage(newPage);
   };
-
+  const storedUId = sessionStorage.getItem("UId");
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
@@ -52,19 +61,55 @@ const ManageData = () => {
         email_id: values.email_id,
         mobile_no: values.mobile_no,
         product_name: values.product_name,
+        client_id: storedUId,
       };
-      dispatch(addManageDataApi(val));
+      dispatch(manualUploadDataApi(val));
+      formik.resetForm();
       // navigate("/dashboard/subadmin");
     },
   });
 
+  useEffect(() => {
+    dispatch(getManualUploadDataApi(storedUId));
+  }, [getTableData?.data?.id,manualUpload,fileData]); // getTableData?.data?.id
+
+  const onFileChange = (e) => {
+    try {
+      const files = e.target.files;
+
+      if (files.length > 0) {
+        const selectedFileName = files[0].name;
+
+        setSelectedFile(selectedFileName);
+
+        const formData = new FormData();
+        formData.append("file", files[0]);
+        formData.append("client_id", storedUId);
+
+        dispatch(manualUploadFileApi(formData));
+      }
+    } catch (error) {
+      console.error("Error in onFileChange:", error);
+    }
+  };
   return (
     <div className="commonbox">
       <h4>Upload Data</h4>
-      <CommonUpload />
+      <div className="row">
+        <div className="col-lg-3">
+          <input
+            type="file"
+            className="custom-file-input mt-4"
+            name="file"
+            defaultValue={selectedFile}
+            onChange={(e) => onFileChange(e)}
+          />
+          <label className="custom-file-label">Choose files</label>
+        </div>
+      </div>
       <br />
       <div className="contentEnd">
-      <h4>Manual Upload Data</h4>
+        <h4>Manual Upload Data</h4>
         <Button className="addBtn" onClick={formik.handleSubmit}>
           +Add
         </Button>
@@ -101,7 +146,7 @@ const ManageData = () => {
       <div>
         <CustomizedTables
           columns={manageDataTableHead}
-          rows={manageDataTableData}
+          rows={getTableData}
           paginationStatus={true}
           rowsPerPageOptions={paginationRowsOptions}
           // dataLoading = {adminDataLoading}
@@ -111,9 +156,9 @@ const ManageData = () => {
           handleChangeRowsPerPage={handlePerRowsChange}
         />
       </div>
-      <div className="contentCenter">
+      {/* <div className="contentCenter">
         <Button className="submitBtn">Submit</Button>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CustomizedTables from "../../../components/common/commonTable";
 import { ClientDataHead } from "../../../components/common/tableData";
 import AddClientModal from "../../../components/modal/addClientModal";
-import { deleteClientApi, deleteRegisterApi, getClientApi } from "../../../redux/action/adminAction";
+import { deleteClientApi, deleteRegisterApi, getClientApi, getSubscriptionApi } from "../../../redux/action/adminAction";
 import { adminSelector } from "../../../redux/slice/adminSlice";
 import "../../../styles/App.css";
 
@@ -13,7 +13,7 @@ const ManageClients = () => {
   
   const [modalOpen, setModalOpen] = useState();
   const dispatch = useDispatch();
-  const { getClientDetail, clientDetail,getClientDetailisLoading ,deleteData} = useSelector(adminSelector);
+  const { getClientDetail, clientDetail,getClientDetailisLoading ,deleteData,getSubscriptionDetail, subscriptionDetail} = useSelector(adminSelector);
   const paginationRowsOptions = [5, 10, 20, 50, 100];
 
 
@@ -30,7 +30,10 @@ const ManageClients = () => {
   }
   useEffect(() => {
     dispatch(getClientApi());
-  }, [clientDetail,deleteData]); // Add getClientDetail as a dependency
+    dispatch(getSubscriptionApi());
+  }, [clientDetail,deleteData,subscriptionDetail]); // Add getClientDetail as a dependency
+
+
 
   return (
     <>
@@ -49,6 +52,8 @@ const ManageClients = () => {
           rowsPerPageOptions={paginationRowsOptions}
           onDelete = {handleDelete}
           dataLoading = {getClientDetailisLoading}
+          subscriptionData={getSubscriptionDetail}
+          navigatepath={'receivedclient'}
           
         />
         <AddClientModal openModal={modalOpen} setOpenModal={handleModalClose} />

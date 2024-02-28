@@ -5,11 +5,11 @@ import { Grid } from "@mui/material";
 
 const PaymentCard = ({ data }) => {
   const navigate = useNavigate();
-  const { value, name, checkList, textvalue, description } = data;
+  const { subscription_plan, billing, name,value,checkList, textvalue, description } = data;
 
-  // console.log("textvalue", textvalue);
 
   const handlePayment = () => {
+    sessionStorage.setItem('ur',0)
     navigate("/stripepayment");
   };
 
@@ -33,8 +33,8 @@ const PaymentCard = ({ data }) => {
       ) : (
         <div className="paymentcardcontainer">
           <div className="paymentcardpricing">
-            <p style={{ fontWeight: 600 }}> {name}</p>
-            <p>{textvalue ? textvalue : value}</p>
+            <p style={{ fontWeight: 600 }}> {subscription_plan}</p>
+            <p>{textvalue ? textvalue : billing}</p>
           </div>
           <div className="paymentcardchecklist">
             {checkList?.map((name, i) => (
@@ -69,8 +69,8 @@ const PaymentCard = ({ data }) => {
           ) : (
             <div className="paymentcardcontainer">
               <div className="paymentcardpricing">
-                <p style={{ fontWeight: 600 }}> {name}</p>
-                <p>{textvalue ? textvalue : value}</p>
+                <p style={{ fontWeight: 600 }}> {subscription_plan}</p>
+                <p>{textvalue ? textvalue : billing}</p>
               </div>
               <div className="paymentcardchecklist">
                 {checkList?.map((name, i) => (

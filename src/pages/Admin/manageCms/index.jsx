@@ -11,26 +11,22 @@ const ManageCMS = () => {
   const [aboutUsFiles, setAboutUsFiles] = useState([]);
   const [termsAndConditionsFiles, setTermsAndConditionsFiles] = useState([]);
 
-  const handleAboutUsFileChange = (file) => {
-    const files = file;
-    if (files && files.length > 0) {
-      setAboutUsFiles(Array.from(files));
-    }
+  const handleAboutUsFileChange = (e) => {
+      setAboutUsFiles(e.target.files[0]);
+    
   };
 
-  const handleTermsAndConditionsFileChange = (file) => {
-    const files =file;
-    if (files && files.length > 0) {
-      setTermsAndConditionsFiles(Array.from(files));
-    }
-  };
+  const handleTermsAndConditionsFileChange = (e) => {
+      setTermsAndConditionsFiles(e.target.files[0]);
+    
+  }
 
 
   const handleUploadDocuments = () => {
     try{
       const formData = new FormData();
-      formData.append(`about`, aboutUsFiles[0]);
-      formData.append(`terms_condition`, termsAndConditionsFiles[0]);
+      formData.append(`about`, aboutUsFiles);
+      formData.append(`terms_condition`, termsAndConditionsFiles);
       //  aboutUsFiles.forEach((file, index) => {
       //   formData.append(`about`, file);
       // });
@@ -55,6 +51,7 @@ const ManageCMS = () => {
             <CommonUpload
               label={"Upload Your Files"}
               onFileChange={handleAboutUsFileChange}
+              id={"about"}
             />
           </div>
           <div className="cmsupload">
@@ -62,6 +59,7 @@ const ManageCMS = () => {
             <CommonUpload
               label={"Upload Your Files"}
               onFileChange={handleTermsAndConditionsFileChange}
+              id={"terms"}
             />
           </div>
           <button className="cmsbutton" onClick={handleUploadDocuments}>

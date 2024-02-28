@@ -2,16 +2,16 @@ import React from "react";
 import { useState } from "react";
 import "../commonComp.css";
 
-const CommonUpload = ({ label, onFileChange }) => {
+const CommonUpload = ({ label, onFileChange, id }) => {
   const [images, setImages] = useState([]);
 
   const handleImageChange = (e) => {
     const files = e.target.files;
     // if (files.length>0) {
-      onFileChange(e.target.files);
+    onFileChange(e.target.files);
     // }
   };
-  
+
   return (
     <div className="row">
       <div className="col-lg-4">
@@ -24,12 +24,12 @@ const CommonUpload = ({ label, onFileChange }) => {
               <input
                 type="file"
                 className="custom-file-input"
-                id="customFile"
-                onChange={handleImageChange}
-                multiple
+                id={id}
+                onChange={(e) => onFileChange(e)}
+                // multiple
                 style={{ width: "150px" }}
               />
-              <label className="custom-file-label" htmlFor="customFile">
+              <label className="custom-file-label" htmlFor={id}>
                 Choose files
               </label>
             </div>

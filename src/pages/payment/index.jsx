@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import PaymentCard from "../../components/common/paymentCard";
+import { getSubscriptionApi } from "../../redux/action/adminAction";
+import { adminSelector } from "../../redux/slice/adminSlice";
 import { SubscriptionData } from "../../utils/constants/cardItem";
 import "./payment.Style.css";
 function Switch() {
   const [switchvalue, setSwitchValue] = useState(false);
+  
   const handleSwitch = () => {
     setSwitchValue(!switchvalue);
   };
@@ -27,7 +31,15 @@ function Switch() {
   );
 }
 
+
+
 const Payment = () => {
+  const {getSubscriptionDetail} = useSelector(adminSelector);
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(getSubscriptionApi())
+  },[])
+
   return (
     <>
       {/* <h1>Payments</h1> */}

@@ -46,7 +46,6 @@ export const Recursivechat = ({ chats, id,show="true" }) => {
   useEffect(()=>{
    if(chats.follow_up.message && showButtons == "true") {
     let data = {message:chats.follow_up.message,option:chats.follow_up.options.map((option)=>option.response)}
-    // console.log("dataaa",data); 
     setPreviouschat([...previouschat,data])
     setShowButtons("false")
     setMessage(chats)

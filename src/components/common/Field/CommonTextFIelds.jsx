@@ -5,10 +5,11 @@ import { Stack } from "@mui/system";
 const CommonTextFields = ({
   id,
   label,
-  formik,
+  formik={},
   customStyles,
   disabled,
   placeholder,
+  customChange,
   type = "text",
   required,
   ...props
@@ -16,7 +17,6 @@ const CommonTextFields = ({
   const handleChange = (e) => {
     formik.handleChange(e);
   };
-
   return (
     <>
       <Stack
@@ -33,7 +33,7 @@ const CommonTextFields = ({
           disabled={disabled}
           type={type}
           placeholder={placeholder}
-          onChange={handleChange}  // Add onChange handler
+          onChange={customChange?customChange:handleChange}  // Add onChange handler
           value={formik?.values[id]}
           error={Boolean(formik?.touched[id] && formik?.errors[id])}
           helperText={<>{formik?.touched[id] && formik?.errors[id]}</>}

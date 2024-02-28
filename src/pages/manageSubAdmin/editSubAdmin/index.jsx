@@ -29,7 +29,11 @@ const EditSubAdmin = () => {
     };
   }, []);
 
-
+let designationObj={
+  1:"Employee",
+  2:"Manager",
+  3:"Accountant"
+}
 
   const formik = useFormik({
     enableReinitialize: true,
@@ -37,7 +41,7 @@ const EditSubAdmin = () => {
       firstname: editData?.first_name,
       email_id: editData?.email_id,
       lastname: editData?.last_name,
-      designation: editData?.designation,
+      designation:editData?.designation,
       status:  editData?.status === 1
     },
     validationSchema: Yup.object({

@@ -8,23 +8,29 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { addSubAmdinsApi, getRolesApi } from "../../redux/action/adminAction";
+import { addSubAmdinsApi, getRolesApi, getUserNameExistApi } from "../../redux/action/adminAction";
 import CommonDropDown from "../common/Field/CommonDropDown";
 import { adminSelector } from "../../redux/slice/adminSlice";
 import { authSelector } from "../../redux/slice/authSlice";
 import { useEffect } from "react";
 import { usePassword } from "../../hooks/usePassword";
+import useDebounceEffect from "../../hooks/useDebounced";
+import { useState } from "react";
+import { TextField } from "@mui/material";
+import { Stack } from "@mui/system";
+
 
 export default function AddSubAdminModal(props) {
   const { openModal=false, setOpenModal,userId="" } = props;
+  const [validationTriggered, setValidationTriggered] = useState(false); // Add a state to track if validation has been triggered
+
+  const{userName} = useSelector(adminSelector)
   const dispatch = useDispatch();
   const generatePassword = usePassword();
-  // const {designationData} = useSelector(adminSelector)
   const handleClose = () => {
     setOpenModal(false);
     formik.resetForm();
   };
-
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
@@ -34,6 +40,7 @@ export default function AddSubAdminModal(props) {
       mobile_no: "",
       status: "",
       designation: "",
+      username:""
     },
     validationSchema: Yup.object({
       first_name: Yup.string()
@@ -48,6 +55,12 @@ export default function AddSubAdminModal(props) {
           /^[a-zA-Z\s]+$/,
           "LastName Can Only Contain Alphabet Characters"
         ),
+        username:Yup.string()
+        .required("User Name is required")
+        .matches(
+          /^[a-zA-Z\s]+$/,
+          "UserName Can Only Contain Alphabet Characters"
+        ),
       email_id: Yup.string()
         .required("Email Is Required")
         .email("Invalid Email Format"),
@@ -57,12 +70,11 @@ export default function AddSubAdminModal(props) {
       status: Yup.string().required("Status Is Required"),
       designation: Yup.string().required("Designation Is Required"),
     }),
-
     onSubmit: (values) => {
       let val = {
         user_client:userId,
         password:generatePassword(values.first_name,values.mobile_no),
-        username:values.first_name,
+        username:values.username,
         first_name: values.first_name,
         last_name: values.last_name,
         email_id: values.email_id,
@@ -75,19 +87,33 @@ export default function AddSubAdminModal(props) {
       formik.resetForm();
     },
   });
+  const handleUserName = (e)=>{
+    let {value} = e.target;
+    formik.setFieldValue("username",value)
+    // formik.setFieldTouched("username",true)
+    handleUserNameSearch(value)
+  }
 
+  
+ const handleUserNameSearch = useDebounceEffect((term)=>{
+  dispatch(getUserNameExistApi(term))
+  formik.setFieldTouched("username",true)
+ },500)
 
-  // const generatePassword = (name,phno)=>{
-  //   let newname = name.split('').slice(0,5).join('')
-  //   let newnum = phno.split('').slice(0,5).join('')
-  //   let newpassword = newname+newnum;
-  //   return newpassword;
-  // }
+  useEffect( ()=>{
+    if(userName?.error ){
 
-  useEffect(()=>{
-    // dispatch(getRolesApi())
-  },[])
+      formik.setFieldError("username","Username Already Taken");
+      
+    }
+    // else if(userName?.message){
+    //   formik.setFieldTouched("username",false)
+    //   formik.setFieldError("username","");
+    // }
 
+  },[userName?.error])
+
+console.log("formikddddddddd",formik.touched,formik.errors);
   return (
     <React.Fragment>
       <Dialog
@@ -130,6 +156,43 @@ export default function AddSubAdminModal(props) {
               placeholder=""
             />
           </div>
+          <br />
+           <Stack
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+        spacing={2}
+       >
+          <label>User Name</label>
+        <TextField
+          fullWidth
+          id='username'
+          margin="normal"
+          onChange={handleUserName}  // Add onChange handler
+          onBlur={(e)=>formik.handleBlur(e)}
+          value={formik?.values["username"]}
+          error={Boolean(formik?.touched["username"] && formik?.errors["username"])}
+          helperText={<>{formik?.touched["username"] && formik?.errors["username"]}</>}
+          variant="outlined"
+          sx={{
+            "& legend": { display: "none" },
+            "& fieldset": { top: 0 },
+            width: "50%",
+            mt: 0,
+            mb: 0,
+            borderRadius: "10px",
+            "& .MuiOutlinedInput-input": ""
+          }}
+         
+        />
+            {/* <CommonTextFields
+              label="User Name"
+              id="username"
+              formik={formik}
+              placeholder=""
+              customChange = {handleUserName}
+            /> */}
+          </Stack>
           <br />
           <div>
             <CommonTextFields

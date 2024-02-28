@@ -12,6 +12,11 @@ export const subAdminTableHead = [
     label: "Last Name",
   },
   {
+    id: "username",
+    label: "User Name",
+  },
+
+  {
     id: "email_id",
     label: "Email ID",
   },
@@ -85,17 +90,36 @@ export const dashboardTableHead = [
 
 export const manageDataTableHead = [
   {
-    id: "Name",
+    label:"#",
+    id:'id',
+    value:'id'
+  },
+  {
+    id: "first_name",
+    value: "first_name",
     label: "Name",
   },
   {
-    id: "Email",
+    id:'last_name',
+    value:"last_name",
+    label:"Last Name"
+
+  },
+  {
+    id: "email_id",
+    value: "email_id",
     label: "Email",
   },
   {
-    id: "PhoneNumber",
+    id: "mobile_no",
+    value: "mobile_no",
     label: "Phone Number",
   },
+  {
+    id:"product_name",
+    value:"product_name",
+    label:"Product"
+  }
 ];
 
 export const manageDataTableData = [
@@ -106,8 +130,8 @@ export const manageDataTableData = [
 
 export const RolesAndPermissionsHead = [
   {
-    id:"#",
-    label:"#"
+    id: "#",
+    label: "#",
   },
 
   {
@@ -118,12 +142,12 @@ export const RolesAndPermissionsHead = [
     id: "Action",
     label: "Action",
   },
-]
+];
 export const RolesAndPermissionsData = [
-  { "#":"1",Roles: "Accountant", Action: "checkbox" },
-  { "#":"2",Roles: "Manager", Action: "checkbox" },
-  { "#":"3",Roles: "Employee", Action: "checkbox" },
-]
+  { "#": "1", Roles: "Accountant", Action: "checkbox" },
+  { "#": "2", Roles: "Manager", Action: "checkbox" },
+  { "#": "3", Roles: "Employee", Action: "checkbox" },
+];
 
 export const RoleAuthoriZationHead = [
   {
@@ -180,7 +204,7 @@ export const RoleAuthoriZationData = [
 ];
 
 export const ClientDataHead = [
-  {id:"id",label:"#"},
+  { id: "id", label: "#" },
   {
     id: "username",
     // id: "name",
@@ -206,14 +230,14 @@ export const ClientDataHead = [
     id: "clientAction",
     label: "Action",
   },
-  // {
-  //   id: "Received_Data",
-  //   label: "Received Data",
-  // },
+  {
+    id: "receiveddata",
+    label: "Received Data",
+  },
 ];
 
 export const DemoaHeadData = [
-  {id:"#",label:"#"},
+  { id: "#", label: "#" },
   {
     id: "name",
     label: "Name",
@@ -285,6 +309,10 @@ export const SubscriptionDataHead = [
     label: "Id",
   },
   {
+    id:"plan_period",
+    label:"Plan"
+  },
+  {
     id: "subscription_plan",
     label: "Tier",
   },
@@ -294,7 +322,7 @@ export const SubscriptionDataHead = [
   },
   //no data in the api for description
   {
-    id: "description",
+    id: "descrption",
     label: "Description",
   },
   {
@@ -330,11 +358,10 @@ export const EditRole = [
   },
 ];
 
-export const chatBotTableTitle=[
-    
-  {id:"chatbot_id",label:"#"},
-  {id:"Chatbot_name",label:"Chatbot Name"},
-  {id:"question",label:"Question"},
-  {id:"status",label:"Status"},
-  {id:"Action",label:"Action"},
-]
+export const chatBotTableTitle = [
+  { id: "chatbot_id", label: "#" },
+  { id: "Chatbot_name", label: "Chatbot Name" },
+  { id: "question", label: "Question" },
+  { id: "status", label: "Status" },
+  { id: "Action", label: "Action" },
+];

@@ -17,6 +17,7 @@
 
 import { lazy } from "react";
 import ChatBotPreview from "../../components/chatbotpreview";
+import ReceivedClients from "../../pages/Admin/manageClient/receivedJSON";
 
 const RootLayout = lazy(()=>import ('../nav/rootLayout'))
 const Dashboard = lazy(() =>
@@ -84,6 +85,7 @@ const AdminRoutes = [
       { path: "editProfile", element: <EditProfile /> },
       { path: "editsubadmin", element: <EditSubAdmin /> },
       { path: "editsubscription", element: <EditSubscription /> },
+      { path: "receivedclient", element: <ReceivedClients /> },
     ],
   },
   {

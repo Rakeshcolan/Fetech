@@ -35,6 +35,8 @@ export function addRegisterApi(body, navigate) {
       .then((e) => {
         if (e?.status === 200 || e?.status === 201 || e?.status === "success") {
           dispatch(registerApiReducer({ apiData: e.data, isLoading: false }));
+          sessionStorage.setItem("roles", "Client");
+          sessionStorage.setItem("ur",1);
           navigate("/payment");
           showToast("Registration Success", "success");
         } else {

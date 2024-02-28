@@ -6,9 +6,9 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 export const UsermenuItems = [
   {
-    path: "/",
-    name: "Dashboard",
-    icon: "",
+    // path: "/dashboard/subadmin",
+    // name: "Dashboard",
+    // icon: "",
 
     isNested: [
       {
@@ -29,10 +29,33 @@ export const UsermenuItems = [
     ],
   },
 ];
+export const UsermenuIconItems = [
+  {
+    path: "/dashboard/subadmin",
+    icon: "",
+
+    isNested: [
+      {
+        path: "/dashboard/subadmin",
+       
+        icon: <ManageAccountsIcon />,
+      },
+      {
+        path: "/dashboard/data",
+       
+        icon: <SettingsIcon />,
+      },
+      {
+        path: "/dashboard/roles",
+        icon: <ForumIcon />,
+      },
+    ],
+  },
+];
 
 export const AdminMenuItems=[
     {
-        path: "/",
+        path: "/dashboard",
         name: "Dashboard",
         icon: "",
         isNested:[
@@ -48,6 +71,7 @@ export const AdminMenuItems=[
                 path: "/dashboard/client",
                 name: "Manage Clients",
                 icon: <PeopleIcon/>,
+                child:"/dashboard/receivedclient"
               },
               {
                 path: "/dashboard/chatbot",
@@ -82,7 +106,7 @@ export const AdminMenuItems=[
 ]
 export const AdminIconMenuItems=[
     {
-        path: "/",
+        path: "/dashboard",
         icon: "",
         isNested:[
 
