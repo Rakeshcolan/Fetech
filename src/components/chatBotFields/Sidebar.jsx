@@ -6,6 +6,7 @@ import UploadIcon from '@mui/icons-material/Upload';
 
 export default () => {
   const [headText, setHeadText] = useState([]);
+  const [fileName,setFileName] = useState(null)
   const onDragStart = (event, nodeType) => {
     event.dataTransfer.setData("application/reactflow", nodeType);
     event.dataTransfer.setData("id", event.target.id);
@@ -16,7 +17,10 @@ export default () => {
   const handleUpload = (e) => {
     try {
       let files = e.target.files[0];
-        if(files.name.split('.')[1] !== 'xlsx'){
+      let fileName = files.name.split('.');
+      setFileName(fileName[0])
+        if(fileName[1] !== 'xlsx'){
+         
         throw "please Upload Excel file"
       }
       readXlsxFile(e.target.files[0]).then((rows) => {
@@ -26,14 +30,17 @@ export default () => {
       console.log("err", error);
     }
   };
+  console.log(fileName,"fileNameeee");
 
   return (
     <>
   
       <aside>
       <form>
-        <label htmlFor="excelupload" style={{color:"#62B2EA",cursor:"pointer",fontSize:"18px",border:"2px #62B2EA solid ",fontWeight:"bold",display:"flex",alignItems:"center",justifyContent:'space-around'}}><UploadIcon/>Please Upload Excel
-         <input id="excelupload" type="file" onChange={(e) => handleUpload(e)} style={{display:"none"}}/>
+        <label htmlFor="excelupload" 
+          style={{color:"#62B2EA",cursor:"pointer",fontSize:"18px",border:"2px #62B2EA solid ",fontWeight:"bold",display:"flex",alignItems:"center",justifyContent:'space-around'}}>
+          <UploadIcon/>{fileName?fileName:"Please Upload Excel"}
+         <input id="excelupload" type="file"  onChange={(e) => handleUpload(e)} style={{display:"none"}}/>
         </label >
       </form>
       <hr></hr>

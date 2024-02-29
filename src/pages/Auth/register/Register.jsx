@@ -37,7 +37,7 @@ const Register = () => {
         .matches(/^[a-zA-Z\s]+$/, "Name can only contain alphabet characters"),
       email_id: Yup.string()
         .required("Email is required")
-        .email("Invalid email format"),
+        .email("Invalid Email Format"),
       mobile_no: Yup.string()
         .matches(/^[0-9]{10}$/, "Invalid phone number") // Check for 10-digit numeric phone number
         .required("Phone Number is required"),

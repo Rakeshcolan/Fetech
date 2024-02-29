@@ -48,6 +48,7 @@ export const APIService = async (method, url, body, params) => {
             data: e?.data,
           };
         } else {
+          console.log("eroooororrrrrrr",e);
           return {
             status: "error",
             message: e.status && e.statusText,
@@ -55,6 +56,7 @@ export const APIService = async (method, url, body, params) => {
         }
       })
       .catch((e) => {
+        console.log("erooooooooo",e);
         let errorarr=[];
         // console.log("ERROR OCCURED", e);
         if (e.message === "Network Error") {

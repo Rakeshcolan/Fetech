@@ -44,11 +44,11 @@ export default function AddSubscriptionModal(props) {
       plan_period: Yup.string().required("Plan Period is required"),
       tier: Yup.string().required("Tier is required"),  
       subscription_amount: Yup.number()
-      .required("Subscription amount is required")
-      .positive("Subscription amount must be a positive number")
-      .integer("Subscription amount must be an integer"),
+      .required("Subscription Amount is required")
+      .positive("Subscription Amount must be a positive number")
+      .integer("Subscription Amount must be an integer"),
       description: Yup.string().required("Description is required"),
-      status: Yup.string().required("status is required"),
+      status: Yup.string().required("Status is required"),
     }),
     onSubmit: (values) => {
       let val = {

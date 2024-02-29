@@ -359,7 +359,7 @@ export const EditRole = [
 ];
 
 export const chatBotTableTitle = [
-  { id: "chatbot_id", label: "#" },
+  { id: "id", label: "#" },
   { id: "Chatbot_name", label: "Chatbot Name" },
   { id: "question", label: "Question" },
   { id: "status", label: "Status" },

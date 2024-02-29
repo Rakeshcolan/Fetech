@@ -6,7 +6,7 @@ import "reactflow/dist/style.css";
 import FlowPage from "../../../../components/chatBot/reactflow";
 import "../manageChatbot.css";
 import Switch from "@mui/material/Switch";
-import { useDispatch ,useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addChatBotApi,
   editChatByIdApi,
@@ -27,7 +27,7 @@ const initialNodes = [
 const CreateChat = () => {
   const reactFlowWrapper = useRef(null);
   //added custom hook with teh buildjson function to create the json
-  const {buildJSON} = useBuildJson();
+  const { buildJSON } = useBuildJson();
   const location = useLocation();
   const navigate = useNavigate();
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
@@ -37,10 +37,11 @@ const CreateChat = () => {
   let dispatch = useDispatch();
   const { getChatBotDataByIdisLoading, getChatBotDataById } =
     useSelector(adminSelector);
-
   const [chatbotData, setChatbotData] = useState({
     clientName: "",
     chatbotName: "",
+    question: "",
+    status: false,
   });
 
   const onStop = (event, node) => {};
@@ -48,8 +49,6 @@ const CreateChat = () => {
     event.preventDefault();
     event.dataTransfer.dropEffect = "move";
   }, []);
- 
-
 
   useEffect(() => {
     if (getChatBotDataById?.flow_data && action == "Edit") {
@@ -57,7 +56,13 @@ const CreateChat = () => {
       let savedNodeObject = nodeObject?.nodes;
       // let savedNodeObject = [...nodeObject[arrayIndex]?.flowElements.nodes];
       // let savedEdges = [...nodeObject[arrayIndex]?.flowElements.edges];
-      setChatbotData({ clientName: getChatBotDataById?.Chatbot_name, chatbotName: getChatBotDataById?.Chatbot_name });
+      setChatbotData({
+        clientName: getChatBotDataById?.Chatbot_name,
+        chatbotName: getChatBotDataById?.Chatbot_name,
+        question: getChatBotDataById?.question,
+        status:getChatBotDataById?.status
+      });
+      
       setNodes(nodeObject?.nodes);
       setEdges(nodeObject?.edges);
     } else {
@@ -71,7 +76,6 @@ const CreateChat = () => {
     }
   }, [arrayIndex, dispatch, setNodes, setEdges]);
 
-
   const saveElements = () => {
     const startingNodeId = "1";
     const resultJSON = buildJSON(
@@ -81,8 +85,9 @@ const CreateChat = () => {
     );
     let savedElements = {
       flow_data: reactFlowInstance.toObject(),
-      Chatbot_name: chatbotData.clientName,
-      status: true,
+      Chatbot_name: chatbotData.chatbotName,
+      question: chatbotData.question,
+      status: chatbotData?.status,
       json_content: resultJSON,
     };
     if (action == "Edit") {
@@ -99,19 +104,24 @@ const CreateChat = () => {
     setChatbotData({ ...chatbotData, [name]: value });
   };
 
+  const handleStatus = (e) => {
+   
+    setChatbotData({...chatbotData,status:!chatbotData.status})
+  };
+
   return (
     <>
       <div className="dndflowheader">
         <h2>Manage ChatBot</h2>
         <div className="dndflowfields">
-          <div className="dndflowinput">
+          {/* <div className="dndflowinput">
             <label>Client Name</label>
             <input
               value={chatbotData.clientName}
               name="clientName"
               onChange={(e) => updateName(e)}
             />
-          </div>
+          </div> */}
           <div className="dndflowinput">
             <label>Chatbot Name</label>
             <input
@@ -120,10 +130,25 @@ const CreateChat = () => {
               onChange={(e) => updateName(e)}
             />
           </div>
+          <div className="dndflowinput">
+            <label>Question</label>
+            <input
+              value={chatbotData.question}
+              name="question"
+              onChange={(e) => updateName(e)}
+            />
+          </div>
+
           <div className="dndactive">
             <label>Status:</label>
             <span>Active</span>
-            <Switch {...label} defaultChecked />
+            <Switch
+              {...label}
+              name="status"
+              checked={chatbotData.status}
+              value={chatbotData.status}
+              onChange={(e) => handleStatus(e)}
+            />
             <span>InActive</span>
           </div>
         </div>

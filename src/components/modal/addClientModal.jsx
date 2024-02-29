@@ -62,12 +62,12 @@ export default function AddClientModal(props) {
         .matches(/^[a-zA-Z\s]+$/, "Name can only contain alphabet characters"),
       email_id: Yup.string()
         .required("Email is required")
-        .email("Invalid email format"),
+        .email("Invalid Email Format"),
       mobile_no: Yup.string()
-        .matches(/^[0-9]{10}$/, "Invalid phone number") // Check for 10-digit numeric phone number
+        .matches(/^[0-9]{10}$/, "Invalid Phone Number") // Check for 10-digit numeric phone number
         .required("PhoneNumber is required"),
       billing: Yup.string().required("Billing is required"),
-      subscription_plan: Yup.string().required("subscription plan is required"),
+      subscription_plan: Yup.string().required("Subscription Plan is required"),
     }),
     onSubmit: async (values, { resetForm }) => {
       let val = {

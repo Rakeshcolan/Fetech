@@ -45,10 +45,10 @@ let designationObj={
       status:  editData?.status === 1
     },
     validationSchema: Yup.object({
-      firstname: Yup.string().required("FirstName is required"),
+      firstname: Yup.string().required("First Name is required"),
       email_id: Yup.string().required("Email is required"),
-      lastname: Yup.string().required("PhoneNumber is required"),
-      designation: Yup.string().required("designation is required"),
+      lastname: Yup.string().required("Phone Number is required"),
+      designation: Yup.string().required("Designation is required"),
       
     }),
     onSubmit: (values) => {

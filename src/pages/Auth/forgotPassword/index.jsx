@@ -27,7 +27,7 @@ const navigate = useNavigate();
             .required("Email is required")
             .email("Invalid Email Format"),
             username:Yup.string()
-            .required("Username is required"),
+            .required("User Name is required"),
             password:Yup.string()
             .required("Password is required"),
             mobile_no:Yup.string()
