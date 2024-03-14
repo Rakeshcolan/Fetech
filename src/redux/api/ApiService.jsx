@@ -1,5 +1,6 @@
 import axios from "axios";
 import { showToast } from "../../components/commonToast/toastService";
+import { roleBasedURL } from "../../utils/findids/helperutils";
 import { USER_BASE_URL, ADMIN_BASE_URL } from "./configURL";
 
 const getRoles = () => {
@@ -12,15 +13,7 @@ const getAccessToken = () => {
   return accessToken;
 };
 
-function baseUrl(roles) {
-  const obj = {
-    Admin: ADMIN_BASE_URL,
-    Subadmin: ADMIN_BASE_URL,
-    User: USER_BASE_URL,
-    Client: USER_BASE_URL,
-  };
-  return obj[roles];
-}
+
 export const APIService = async (method, url, body, params) => {
   const roles = getRoles();
   const accessToken = getAccessToken();
@@ -28,7 +21,7 @@ export const APIService = async (method, url, body, params) => {
   if (window.navigator.onLine) {
     return await axios({
       method: method,
-      baseURL: baseUrl(roles),
+      baseURL: roleBasedURL(roles),
       url: url,
       headers: {
         // Authorization: accessToken,
@@ -39,6 +32,7 @@ export const APIService = async (method, url, body, params) => {
       params: params && params,
     })
       .then((e) => {
+        console.log("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",e);
         if (roles === null || undefined || "") {
           sessionStorage.clear();
           // navigate('/')
@@ -71,6 +65,7 @@ export const APIService = async (method, url, body, params) => {
           //adding this to avoid propogation of error to the redux action
           return Promise.reject();
         } else if (e?.response?.status === 400) {
+          console.log("hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
           showToast("Please Check the Credentials", "error");
           return Promise.reject();
         }

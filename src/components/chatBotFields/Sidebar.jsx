@@ -30,7 +30,6 @@ export default () => {
       console.log("err", error);
     }
   };
-  console.log(fileName,"fileNameeee");
 
   return (
     <>

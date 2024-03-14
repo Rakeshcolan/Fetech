@@ -9,7 +9,7 @@ const userSlice = createSlice({
     manualUploadLoading: false,
     getTableData: [],
     getTableDataLoading: false,
-    fileData: [],
+    fileData: "",
     fileDataLoading: false,
   },
 
@@ -23,6 +23,7 @@ const userSlice = createSlice({
       state.manualUploadLoading = payload.isLoading;
     },
     getTableDataReducer: (state, { payload }) => {
+      console.log("payyyyyyyyyyyyloaaaaaaaa",payload);
       state.getTableData = payload.apiData;
       state.getTableDataLoading = payload.isLoading;
     },

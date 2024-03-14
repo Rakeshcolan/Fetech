@@ -18,10 +18,12 @@ import {
   manualUploadFileApi,
 } from "../../../redux/action/userAction";
 import { userSelector } from "../../../redux/slice/userSlice";
+import { useRef } from "react";
+import { showToast } from "../../../components/commonToast/toastService";
 
 const ManageData = () => {
   const { getTableData,manualUpload,fileData } = useSelector(userSelector);
-
+let inputref = useRef();
   const [size, setSize] = useState(0);
   const [page, setPage] = useState(5);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -70,6 +72,7 @@ const ManageData = () => {
   });
 
   useEffect(() => {
+    console.log("workinggggggggggggggggggg");
     dispatch(getManualUploadDataApi(storedUId));
   }, [getTableData?.data?.id,manualUpload,fileData]); // getTableData?.data?.id
 
@@ -79,34 +82,40 @@ const ManageData = () => {
 
       if (files.length > 0) {
         const selectedFileName = files[0].name;
-
         setSelectedFile(selectedFileName);
-
         const formData = new FormData();
         formData.append("file", files[0]);
         formData.append("client_id", storedUId);
-
+        // inputref.current.files[0].name = "Rest"
         dispatch(manualUploadFileApi(formData));
       }
     } catch (error) {
-      console.error("Error in onFileChange:", error);
+      showToast('Issue With Uploading File','error')
     }
   };
   return (
     <div className="commonbox">
       <h4>Upload Data</h4>
-      <div className="row">
+      <CommonUpload
+              label={"Upload Your Files"}
+              onFileChange={onFileChange}
+              id={"about"}
+              ref = {inputref}
+            />
+      {/* <div className="row">
         <div className="col-lg-3">
-          <input
+          <label htmlFor="fileinput" className="custom-file-label" > <input
+          style={{backgroundColor:'green'}}
+            id="fileinput"
+            placeholder="Choose Files"
             type="file"
             className="custom-file-input mt-4"
             name="file"
             defaultValue={selectedFile}
             onChange={(e) => onFileChange(e)}
-          />
-          <label className="custom-file-label">Choose files</label>
+          /> </label>
         </div>
-      </div>
+      </div> */}
       <br />
       <div className="contentEnd">
         <h4>Manual Upload Data</h4>

@@ -49,14 +49,14 @@ export function manualUploadFileApi(formData) {
       .then((e) => {
         const { status, message, response } = e.data;
         if (status === 200 || status === "success" || status === 201) {
-          dispatch(
-            manualUploadFileReducer({ isLoading: false, response: response })
-          );
+          dispatch( manualUploadFileReducer({ isLoading: false, response: response }));
+          showToast("File Uploaded Sucessfully",'success')
         } else {
           dispatch(manualUploadFileReducer({ isLoading: false }));
         }
       })
       .catch((e) => {
+        showToast("Error Uploading File",'error')
         dispatch(manualUploadFileReducer({ isLoading: false }));
       });
   };

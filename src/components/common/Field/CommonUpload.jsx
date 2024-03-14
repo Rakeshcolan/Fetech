@@ -1,8 +1,8 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { useState } from "react";
 import "../commonComp.css";
 
-const CommonUpload = ({ label, onFileChange, id }) => {
+const CommonUpload = forwardRef(({ref, label, onFileChange, id }) => {
   const [images, setImages] = useState([]);
 
   const handleImageChange = (e) => {
@@ -23,6 +23,7 @@ const CommonUpload = ({ label, onFileChange, id }) => {
             <div className="custom-file">
               <input
                 type="file"
+                ref={ref}
                 className="custom-file-input"
                 id={id}
                 onChange={(e) => onFileChange(e)}
@@ -44,6 +45,6 @@ const CommonUpload = ({ label, onFileChange, id }) => {
       </div>
     </div>
   );
-};
+});
 
 export default CommonUpload;

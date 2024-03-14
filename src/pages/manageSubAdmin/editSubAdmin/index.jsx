@@ -8,7 +8,7 @@ import CommonSwitch from "../../../components/common/switch/commonswitch";
 import { editSubAdminApi } from "../../../redux/action/adminAction";
 import { useDispatch } from "react-redux";
 import CommonDropDown from "../../../components/common/Field/CommonDropDown";
-import { findDesignation } from "../../../utils/findids/designationutils";
+import { findDesignation } from "../../../utils/findids/helperutils";
 
 const EditSubAdmin = () => {
   const [editData, setEditData] = useState({});

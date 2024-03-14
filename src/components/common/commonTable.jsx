@@ -395,10 +395,7 @@ function CustomizedTables({
            return data.subscription_plan
          }
        })
-  
-
     }
-
     else {
       return "Tier-1"
     }
