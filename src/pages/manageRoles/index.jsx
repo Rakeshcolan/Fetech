@@ -1,5 +1,8 @@
 import { useState } from "react";
-import { Button } from "react-bootstrap";
+// import { Button, } from "react-bootstrap";
+import { Button, ThemeProvider } from '@mui/material';
+
+
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CustomizedTables from "../../components/common/commonTable";
@@ -7,6 +10,8 @@ import {
   RolesAndPermissionsData,
   RolesAndPermissionsHead,
 } from "../../components/common/tableData";
+import { theme } from "../../styles/globalTheme";
+import AddButton from "../../components/common/Button/addButton";
 
 const ManageRoles = () => {
   const [size, setSize] = useState(0);
@@ -42,9 +47,10 @@ const ManageRoles = () => {
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
 
         <h4>Manage Roles & Permissions</h4>
-          <Button className="addBtn" onClick={handleAddRoles}>
+          {/* <Button variant="contained" className="addBtn" color="primary" onClick={handleAddRoles}>
             +Add
-          </Button>
+          </Button> */}
+          <AddButton  buttonText={"Add"} handleClick={handleAddRoles} />
           </div>
         <div>
           <CustomizedTables

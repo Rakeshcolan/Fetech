@@ -32,7 +32,6 @@ export const APIService = async (method, url, body, params) => {
       params: params && params,
     })
       .then((e) => {
-        console.log("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",e);
         if (roles === null || undefined || "") {
           sessionStorage.clear();
           // navigate('/')
@@ -42,7 +41,6 @@ export const APIService = async (method, url, body, params) => {
             data: e?.data,
           };
         } else {
-          console.log("eroooororrrrrrr",e);
           return {
             status: "error",
             message: e.status && e.statusText,
@@ -50,7 +48,6 @@ export const APIService = async (method, url, body, params) => {
         }
       })
       .catch((e) => {
-        console.log("erooooooooo",e);
         let errorarr=[];
         // console.log("ERROR OCCURED", e);
         if (e.message === "Network Error") {
@@ -65,7 +62,7 @@ export const APIService = async (method, url, body, params) => {
           //adding this to avoid propogation of error to the redux action
           return Promise.reject();
         } else if (e?.response?.status === 400) {
-          console.log("hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+  
           showToast("Please Check the Credentials", "error");
           return Promise.reject();
         }

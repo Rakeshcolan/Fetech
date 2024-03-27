@@ -55,7 +55,6 @@ else{
 }
     // setShowButtons(true);
   },[chats,showButtons])
-  console.log("previos",previouschat);
 
   return (
 //     <>

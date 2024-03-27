@@ -99,7 +99,11 @@ const navigate = useNavigate();
            
 
             <button className="loginBtn" onClick={formik.handleSubmit}>Continue</button>
-            
+           <br></br>
+           <br />
+           <p>
+            <span style={{ cursor: "pointer" }} onClick={()=>navigate('/')}>Back To Login</span> 
+           </p>
             
           </div>
         </div>

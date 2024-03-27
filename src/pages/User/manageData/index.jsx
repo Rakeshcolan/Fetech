@@ -1,4 +1,3 @@
-import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import CommonTextFields from "../../../components/common/Field/CommonTextFIelds";
 import CommonUpload from "../../../components/common/Field/CommonUpload";
@@ -20,13 +19,14 @@ import {
 import { userSelector } from "../../../redux/slice/userSlice";
 import { useRef } from "react";
 import { showToast } from "../../../components/commonToast/toastService";
+import AddButton from "../../../components/common/Button/addButton";
 
 const ManageData = () => {
   const { getTableData,manualUpload,fileData } = useSelector(userSelector);
 let inputref = useRef();
   const [size, setSize] = useState(0);
   const [page, setPage] = useState(5);
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState('Upload XLSX File');
   const dispatch = useDispatch();
 
   const paginationRowsOptions = [5, 10, 20, 50, 100];
@@ -72,25 +72,26 @@ let inputref = useRef();
   });
 
   useEffect(() => {
-    console.log("workinggggggggggggggggggg");
     dispatch(getManualUploadDataApi(storedUId));
   }, [getTableData?.data?.id,manualUpload,fileData]); // getTableData?.data?.id
 
   const onFileChange = (e) => {
+    const files = e.target.files;
     try {
-      const files = e.target.files;
-
-      if (files.length > 0) {
+       if(files[0].type.split('/')[1] == "pdf"){
+        throw "File Format should be XLSX"
+       }
+      else if (files.length > 0) {
         const selectedFileName = files[0].name;
-        setSelectedFile(selectedFileName);
         const formData = new FormData();
         formData.append("file", files[0]);
         formData.append("client_id", storedUId);
-        // inputref.current.files[0].name = "Rest"
         dispatch(manualUploadFileApi(formData));
+        setSelectedFile(selectedFileName);
       }
     } catch (error) {
-      showToast('Issue With Uploading File','error')
+      setSelectedFile("please upload PDF files");
+      showToast(error,'error')
     }
   };
   return (
@@ -100,7 +101,7 @@ let inputref = useRef();
               label={"Upload Your Files"}
               onFileChange={onFileChange}
               id={"about"}
-              ref = {inputref}
+             filename = {selectedFile}
             />
       {/* <div className="row">
         <div className="col-lg-3">
@@ -119,9 +120,10 @@ let inputref = useRef();
       <br />
       <div className="contentEnd">
         <h4>Manual Upload Data</h4>
-        <Button className="addBtn" onClick={formik.handleSubmit}>
+        {/* <Button className="addBtn" onClick={formik.handleSubmit}>
           +Add
-        </Button>
+        </Button> */}
+        <AddButton handleClick={formik.handleSubmit} buttonText={"Add"}/>
       </div>
       <div className="row">
         <div className="col-lg-6">

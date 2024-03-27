@@ -56,7 +56,7 @@ export function manualUploadFileApi(formData) {
         }
       })
       .catch((e) => {
-        showToast("Error Uploading File",'error')
+        showToast(e.response.data.error,'error')
         dispatch(manualUploadFileReducer({ isLoading: false }));
       });
   };

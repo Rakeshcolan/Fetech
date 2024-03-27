@@ -17,7 +17,10 @@ import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { ArrowBack } from "@mui/icons-material";
 import { Layout } from "./layout";
+import { useEffect } from "react";
+import useDebounceEffect from "../../../hooks/useDebounced";
 
+const drawerWidth = 280;
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
@@ -35,8 +38,6 @@ const AppBar = styled(MuiAppBar, {
     }),
   }),
 }));
-
-const drawerWidth = 280;
 
 export default function RootLayout() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -63,8 +64,8 @@ export default function RootLayout() {
   };
 
   const handleRedirect = () => {
-    navigate("/dashboard/editProfile");
     setAnchorEl(null);
+    navigate("/dashboard/editProfile");
   };
 
   const handleLogOut = () => {
@@ -73,8 +74,34 @@ export default function RootLayout() {
     navigate("/");
   };
 
+  useEffect(() => {
+    const onResize = (val) => {
+        if (window.innerWidth < 1100) {
+          {
+            openDrawer && setOpenDrawer(false);
+          }
+        } else {
+          {
+            openDrawer && setOpenDrawer(true);
+          }
+        }
+    }
+    const debounce = (fn, delay) => {
+      let timerId;
+      return (...args) => {
+        clearTimeout(timerId);
+        timerId = setTimeout(() => fn(...args), delay);
+      }
+    };
+
+    window.addEventListener("resize", debounce(onResize,500));
+    
+    return () => {
+      window.removeEventListener("resize", debounce(onResize,500));
+    };
+  }, [openDrawer]);
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", position: "relative" }}>
       {/* <CssBaseline /> */}
       <AppBar
         position="fixed"
@@ -97,7 +124,14 @@ export default function RootLayout() {
             {openDrawer ? (
               <MenuIcon style={{ color: "black" }} />
             ) : (
-              <ArrowBack className="backarrow" style={{ color: "black",marginLeft:"60px",textDecoration:"none" }} />
+              <ArrowBack
+                className="backarrow"
+                style={{
+                  color: "black",
+                  marginLeft: "60px",
+                  textDecoration: "none",
+                }}
+              />
             )}
           </IconButton>
           <Avatar
@@ -156,17 +190,16 @@ export default function RootLayout() {
         </Toolbar>
       </AppBar>
       {/* <Layout /> */}
+      {/* <div style={{position:"relative"}}> */}
       <Layout openDrawer={openDrawer} />
       <span
-        style={{
-          position: "relative",
-          top: "77px",
-          padding: "10px",
-          width: "100%",
-        }}
+        className={openDrawer?"outletcontainer opendrawer":"outletcontainer closedrawer"}
+       
       >
         <Outlet />
       </span>
+
+      {/* </div> */}
     </Box>
   );
 }

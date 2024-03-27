@@ -18,6 +18,7 @@
 import { lazy } from "react";
 import ChatBotPreview from "../../components/chatbotpreview";
 import ReceivedClients from "../../pages/Admin/manageClient/receivedJSON";
+import NotFound from "../../pages/Auth/notFound/notFound";
 
 const RootLayout = lazy(()=>import ('../nav/rootLayout'))
 const Dashboard = lazy(() =>
@@ -95,7 +96,7 @@ const AdminRoutes = [
   {path:'/chatbotpreview',element:<ChatBotPreview/>},
   {
     path:'/*',
-    element:<h1>Page Not Found</h1>
+    element:<NotFound/>
   }
 ];
 

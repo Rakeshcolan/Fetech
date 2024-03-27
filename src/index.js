@@ -6,12 +6,14 @@ import reportWebVitals from './reportWebVitals';
 import App from './pages/App';
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import { ThemeProvider } from 'styled-components';
+import { theme } from './styles/globalTheme';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Route>
-    <ToastContainer/>
-    <App />
+      <ToastContainer />
+      <App />
   </Route>
 );
 

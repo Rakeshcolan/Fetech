@@ -25,7 +25,6 @@ export default function AddClientModal(props) {
 
   const { getSubscriptionDetail, subscriptionDetail } =
     useSelector(adminSelector);
-
   const handleClose = () => {
     setOpenModal(false);
     formik.resetForm()
@@ -112,7 +111,7 @@ export default function AddClientModal(props) {
           </div>
           <div>
             <CommonTextFields
-              label="Username"
+              label="User Name"
               id="name"
               formik={formik}
               placeholder=""
@@ -130,7 +129,7 @@ export default function AddClientModal(props) {
           <br />
           <div>
             <CommonTextFields
-              label="PhoneNumber"
+              label="Phone Number"
               id="mobile_no"
               type="number"
               formik={formik}

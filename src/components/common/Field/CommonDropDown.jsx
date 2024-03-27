@@ -2,8 +2,6 @@ import { MenuItem, TextField, inputLabelClasses } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { UilAngleDown } from "@iconscout/react-unicons";
 
-
-
 function CommonDropDown({
   id,
   label,
@@ -11,7 +9,7 @@ function CommonDropDown({
   options,
   sx,
   customStyles,
-  defaultValue="",
+  defaultValue = "",
   value,
   disabled,
   required,
@@ -22,23 +20,22 @@ function CommonDropDown({
   useEffect(() => {
     setSelectedValue(formik.values[id] || defaultValue || value);
   }, [defaultValue, formik.values, id, value]);
-  const showOption = (option)=>{
-    
+  const showOption = (option) => {
     let optiontext;
     switch (label) {
       case "Subscriptions Plan":
-       optiontext =  option.subscription_plan
+        optiontext = ` ${option.plan_period}-${option.subscription_plan}`;
         break;
       case "Billing":
-        optiontext = `${option.subscription_plan}-${option?.billing}`
+        optiontext = `${option.subscription_plan}-${option?.billing}`;
         break;
-    
+
       default:
-        optiontext = option?.label || option?.designation
+        optiontext = option?.label || option?.designation;
         break;
     }
-    return  optiontext;
-  }
+    return optiontext;
+  };
 
   return (
     <div className="formik-select-wrapper">
@@ -46,7 +43,7 @@ function CommonDropDown({
         style={{
           display: "flex",
           flexDirection: "row",
-          justifyContent: "space-between",
+          justifyContent: "space-around",
           flexWrap: "wrap",
         }}
       >
@@ -55,7 +52,6 @@ function CommonDropDown({
           {required && <span className="field-required">*</span>}
         </label>
         <TextField
-        
           size="small"
           id={id}
           select
@@ -105,14 +101,23 @@ function CommonDropDown({
           }}
         >
           {selectedValue === defaultValue && (
-            <MenuItem value={defaultValue}  hidden>
+            <MenuItem value={defaultValue} hidden>
               {selectedValue}
             </MenuItem>
           )}
           {options?.map((option) => (
             //we can use option.subscription
-                                                             
-            <MenuItem key={option.id} value={option?.designation_id||option?.subscription_id||option?.value} sx={{color:option.active?"grey":"inherit"}} disabled={option.disabled}>
+
+            <MenuItem
+              key={option.id}
+              value={
+                option?.designation_id ||
+                option?.subscription_id ||
+                option?.value
+              }
+              sx={{ color: option.active ? "grey" : "inherit" }}
+              disabled={option.disabled}
+            >
               {statusChecker && (
                 <div
                   className={option.active ? "active-dot" : "non-active-dot"}

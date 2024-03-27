@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import AddButton from "../../components/common/Button/addButton";
 import CustomizedTables from "../../components/common/commonTable";
 import { subAdminTableHead } from "../../components/common/tableData";
 import AddSubAdminModal from "../../components/modal/addSubAdminModal";
@@ -41,12 +42,13 @@ const ManageSubAdmin = () => {
   }
   return (
     <>
-      <div className="commonbox">
+      <div className="commonbox" >
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
         <h4>Manage Sub Admin</h4>
-        <Button className="addBtn" onClick={handleModalOpen}>
+        {/* <Button className="addBtn" onClick={handleModalOpen}>
           + Add
-        </Button>
+        </Button> */}
+        <AddButton handleClick={handleModalOpen} buttonText={"Add"}/>
         </div>
         <CustomizedTables
           columns={subAdminTableHead}

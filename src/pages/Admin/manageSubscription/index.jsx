@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import AddButton from "../../../components/common/Button/addButton";
 import CustomizedTables from "../../../components/common/commonTable";
 import { SubscriptionDataHead } from "../../../components/common/tableData";
 import AddSubscriptionModal from "../../../components/modal/addSubscriptionModal";
@@ -44,9 +45,10 @@ const ManageSubscription = () => {
       <div className="commonbox">
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
         <h4>Manage Subscription</h4>
-        <Button className="addBtn" onClick={handleModalOpen}>
+        {/* <Button className="addBtn" onClick={handleModalOpen}>
           + Add
-        </Button>
+        </Button> */}
+        <AddButton handleClick={handleModalOpen} buttonText={"Add"}/>
         </div>
         <CustomizedTables
           columns={SubscriptionDataHead}

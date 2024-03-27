@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import AddButton from "../../../components/common/Button/addButton";
 import CustomizedTables from "../../../components/common/commonTable";
 import { ClientDataHead } from "../../../components/common/tableData";
 import AddClientModal from "../../../components/modal/addClientModal";
@@ -40,9 +41,11 @@ const ManageClients = () => {
       <div className="commonbox">
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
         <h4>Manage Clients</h4>
-        <Button className="addBtn" onClick={handleModalOpen}>
+        {/* <Button className="addBtn" onClick={handleModalOpen}>
           +Add
-        </Button>
+        </Button> */}
+        {/* Moving to commmon Button */}
+        <AddButton buttonText={"Add"} handleClick={handleModalOpen}/>
         </div>
        
         <CustomizedTables

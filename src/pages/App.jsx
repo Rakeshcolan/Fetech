@@ -7,6 +7,8 @@ import { NodeContextProvider } from "../nodecontext/nodeContext";
 import store from "../redux/store";
 import { useEffect } from "react";
 import { useState } from "react";
+import { ThemeProvider } from "@mui/material";
+import { theme } from "../styles/globalTheme";
 
 function App() {
   // const[routerType,setRouterType] = useState(0)
@@ -37,12 +39,15 @@ function App() {
 
   return (
     <>
+    <ThemeProvider theme={theme}>
       <Provider store={store}>
         <NodeContextProvider>
           {/* {router} */}
           <LazyLoader>{router}</LazyLoader>
         </NodeContextProvider>
       </Provider>
+      
+    </ThemeProvider>
     </>
   );
 }

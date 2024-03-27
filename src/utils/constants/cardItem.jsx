@@ -149,7 +149,8 @@ export const bankAccountValidationSchema = Yup.object().shape({
 export const upiValidationSchema = Yup.object().shape({
   upiId: Yup.string()
     .required('UPI ID is required')
-    .matches(/^[\w.-]+@\w+$/, 'Invalid UPI ID'),
+    .matches(/^[\w.-]+@\w+$/, 'Invalid UPI ID')
+    .matches(/^[A-Z]/, 'First Letter should be in Uppercase'),
 });
  
 

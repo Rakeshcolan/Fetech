@@ -8,6 +8,7 @@ import { ClientDataHead, manageDataTableHead } from "../../../../components/comm
 import { getManualUploadDataApi } from "../../../../redux/action/userAction";
 import { userSelector } from "../../../../redux/slice/userSlice";
 import xlsx from "json-as-xlsx"
+import AddButton from "../../../../components/common/Button/addButton";
 
 
 const ReceivedClients = () => {
@@ -54,9 +55,10 @@ const ReceivedClients = () => {
       <div className="commonbox">
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
         <h4>Manage Clients</h4>
-        <Button className="addBtn" onClick={downloadExcel}>
+        {/* <Button className="addBtn" onClick={downloadExcel}>
           Download
-        </Button>
+        </Button> */}
+        <AddButton handleClick={downloadExcel} buttonText={"Download"}/>
         </div>
        
         <CustomizedTables

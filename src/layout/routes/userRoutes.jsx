@@ -1,5 +1,6 @@
 import EditProfile from "../../components/EditProfile/editProfile";
 import AddRoles from "../../components/Roles&Permissions/addRoles";
+import NotFound from "../../pages/Auth/notFound/notFound";
 
 import ManageRoles from "../../pages/manageRoles";
 import EditRoles from "../../pages/manageRoles/editRoles";
@@ -29,7 +30,10 @@ const UserRoutes = [
     path: "/payment",
     element: <Payment />,
   },
-
+  {
+    path:'/*',
+    element:<NotFound/>
+  }
 ];
 
 export default UserRoutes;
