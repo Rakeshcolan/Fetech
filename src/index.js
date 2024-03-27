@@ -2,14 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { BrowserRouter as Route } from "react-router-dom";
-
 import reportWebVitals from './reportWebVitals';
 import App from './pages/App';
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+import { ThemeProvider } from 'styled-components';
+import { theme } from './styles/globalTheme';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Route>
-    <App />
+      <ToastContainer />
+      <App />
   </Route>
 );
 

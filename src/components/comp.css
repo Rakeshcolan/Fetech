@@ -1,0 +1,16 @@
+.responsecontainer{
+    width: 50vw;
+     height:100%;
+     padding: 8px;
+     max-width: 450px;
+     border-radius: 10px;
+     border: Mixed solid #E5E5EF;
+     background-color: white;
+     /* need to give as common */
+     -webkit-box-shadow: -2px -2px 20px 3px rgba(184,184,184,1);
+     -moz-box-shadow: -2px -2px 20px 3px rgba(184,184,184,1);
+     box-shadow: -2px -2px 20px 3px rgba(184,184,184,1);
+     overflow: auto;
+}
+
+

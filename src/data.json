@@ -1,0 +1,55 @@
+{
+    "message": "Start",
+    "options": [
+        {
+            "message": "Start",
+            "follow_up": {
+                "message": "Hi WELCOME RAKESH!",
+                "options": [
+                    {
+                        "response": "Yes",
+                        "follow_up": {
+                            "message": "Can we proceed Further?",
+                            "options": [
+                                {
+                                    "response": "Yes",
+                                    "follow_up": {
+                                        "message": "Thanks for",
+                                        "options": [
+                                            {
+                                                "response": "Yes",
+                                                "follow_up": {
+                                                    "message": "Thanks for choosing"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "response": "No",
+                                    "follow_up": {
+                                        "message": "Stop"
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "response": "No",
+                        "follow_up": {
+                            "message": "Not interested",
+                            "options": [
+                                {
+                                    "response": "Yes",
+                                    "follow_up": {
+                                        "message": "Stop"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

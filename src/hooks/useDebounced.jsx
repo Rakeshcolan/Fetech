@@ -1,22 +1,26 @@
+// import { callback } from "chart.js/dist/helpers/helpers.core";
 import React, { useEffect, useCallback, useRef } from "react";
 
-const useDebouncedEffect = (effect, delay, deps) => {
-  const firstRenderRef = useRef(true);
-  const callback = useCallback(effect, deps);
+const useDebounceEffect = (callback,delay)=>{
+  const timeoutRef = useRef(null);
 
-  useEffect(() => {
-    if (firstRenderRef.current) {
-      firstRenderRef.current = false;
-      return;
+  useEffect(()=>{
+    return ()=>{
+      if(timeoutRef.current){
+        clearTimeout(timeoutRef.current)
+      }
     }
-    const handler = setTimeout(() => {
-      callback();
-    }, delay);
+    
+  },[])
 
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [callback, delay]);
-};
-
-export default useDebouncedEffect;
+  const debounceEffect = (...args)=>{
+    if(timeoutRef.current){
+      clearTimeout(timeoutRef.current)
+    }
+    timeoutRef.current = setTimeout(()=>{
+      callback(...args);
+    },delay)
+  }
+  return debounceEffect
+}
+export default useDebounceEffect

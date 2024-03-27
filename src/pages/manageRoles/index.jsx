@@ -1,0 +1,77 @@
+import { useState } from "react";
+// import { Button, } from "react-bootstrap";
+import { Button, ThemeProvider } from '@mui/material';
+
+
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import CustomizedTables from "../../components/common/commonTable";
+import {
+  RolesAndPermissionsData,
+  RolesAndPermissionsHead,
+} from "../../components/common/tableData";
+import { theme } from "../../styles/globalTheme";
+import AddButton from "../../components/common/Button/addButton";
+
+const ManageRoles = () => {
+  const [size, setSize] = useState(0);
+  const [page, setPage] = useState(5);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const paginationRowsOptions = [5, 10, 20, 50, 100];
+
+  const handlePerRowsChange = async (event) => {
+    setPage(+event.target.value);
+    setSize(0);
+  };
+
+  const handlePageChange = async (event, newPage) => {
+    setPage(newPage);
+  };
+
+  // const handleRedirect = () => {
+  //   navigate("/dashboard/roles/addRole");
+  // };
+
+  const handleAddRoles = () => {
+    navigate("/dashboard/addrole");
+  };
+
+  const handleDelete = ()=>{
+    
+  }
+
+  return (
+    <>
+      <div className="commonbox">
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+
+        <h4>Manage Roles & Permissions</h4>
+          {/* <Button variant="contained" className="addBtn" color="primary" onClick={handleAddRoles}>
+            +Add
+          </Button> */}
+          <AddButton  buttonText={"Add"} handleClick={handleAddRoles} />
+          </div>
+        <div>
+          <CustomizedTables
+            columns={RolesAndPermissionsHead}
+            rows={RolesAndPermissionsData}
+            paginationStatus={true}
+            rowsPerPageOptions={paginationRowsOptions}
+            page={page}
+            size={size}
+            handleChangePage={handlePageChange}
+            // dataLoading = {adminDataLoading}
+            handleChangeRowsPerPage={handlePerRowsChange}
+            onDelete = {handleDelete}
+          />
+          {/* <div className="contentCenter">
+            <Button className="submitBtn">Submit</Button>
+          </div> */}
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default ManageRoles;

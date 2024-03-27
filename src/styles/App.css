@@ -2,6 +2,31 @@
   text-align: center;
 }
 
+/* .css-pdct74-MuiTablePagination-selectLabel {
+  padding-top: 10px !important;
+}
+.css-levciy-MuiTablePagination-displayedRows {
+  padding-top: 12px !important;
+} */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+       -webkit-appearance: none;
+        margin: 0;
+}
+
+h2{
+  font-family: Melete;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+h4{
+  font-family: Mazzard;
+  font-weight: 600;
+  font-size: 20px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -12,6 +37,28 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
+
+::-webkit-scrollbar {
+  width: 8px;
+  border-radius: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(61, 80, 187); 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
 
 .App-header {
   background-color: #282c34;
@@ -32,7 +79,79 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+
+
+
+.commonbox{
+  border: 2px solid #8080804d;
+  padding: 18px;
+  border-radius: 10px;
+  margin: 18px;
+  animation: fade-in ease 1s 1 forwards
+  /* min-width: 700px */
+
+}
+
+
+@keyframes fade-in {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 100;
+  }
+}
+
+.loginCard{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #030028;
+}
+
+.loginContainer {
+  padding: 2rem 2rem 1rem 2rem ;
+  width: 400px;
+  margin: auto;
+  border: solid 1px white;
+  background-color: white;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  
+  margin-bottom: 16px;
+}
+
+.forgot-password {
+  color: black;
+  cursor: pointer;
+}
+
+.loginBtn {
+  background-color: #00E785 !important;
+  border: none !important;
+  outline: none !important;
+  color: black !important;
+  text-align: center !important;
+  width: 280px !important;
+  padding: 10px;
+  border-radius: 10px;
+
+}
+
+.custom-notched-outline {
+  border-color: transparent !important; /* Set border color to transparent */
 }

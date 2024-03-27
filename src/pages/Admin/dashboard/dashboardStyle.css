@@ -1,0 +1,41 @@
+.barContainer {
+  width: 50%;
+  border-radius: 10px;
+  border: Mixed solid #e5e5ef;
+  background-color: white;
+  /* need to give as common */
+  -webkit-box-shadow: -2px -2px 20px 3px rgba(184, 184, 184, 1);
+  -moz-box-shadow: -2px -2px 20px 3px rgba(184, 184, 184, 1);
+  box-shadow: -2px -2px 20px 3px rgba(184, 184, 184, 1);
+  padding: 10px;
+  overflow: auto;
+}
+
+.statistics {
+  display: flex;
+  justify-content: space-around;
+  height: 60vh;
+}
+
+.dashboardcontainer {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-content: space-between;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.barheader:nth-child(1) {
+  font-size: 18px;
+  font-weight: 400;
+  text-align: left;
+  color: #9291a5;
+  margin-bottom: 10px;
+}
+.barheader:nth-child(2) {
+  margin-top: 0;
+  color: #1e1b39;
+  font-size: 22px;
+  font-weight: 600;
+}
