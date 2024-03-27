@@ -4,6 +4,7 @@ import ForumIcon from "@mui/icons-material/Forum";
 import CardMembershipIcon from "@mui/icons-material/CardMembership";
 import SettingsIcon from "@mui/icons-material/Settings";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
+import ListIcon from '@mui/icons-material/List';
 export const UsermenuItems = [
   {
     // path: "/dashboard/subadmin",
@@ -35,6 +36,10 @@ export const UsermenuIconItems = [
     icon: "",
 
     isNested: [
+      {
+        path: "/dashboard",
+        icon:<ListIcon/> ,
+      },
       {
         path: "/dashboard/subadmin",
        
@@ -110,6 +115,10 @@ export const AdminIconMenuItems=[
         icon: "",
         isNested:[
 
+            {
+                path: "/dashboard",
+                icon:<ListIcon/> ,
+              },
             {
                 path: "/dashboard/subadmin",
                 icon:<ManageAccountsIcon/> ,

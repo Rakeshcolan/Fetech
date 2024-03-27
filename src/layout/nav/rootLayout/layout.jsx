@@ -92,8 +92,11 @@ const Drawer = styled(MuiDrawer, {
                       backgroundColor: isActive ? "#00E785" : "",
                       color: isActive ? "black" : "",
                       margin: isActive && openDrawer ? "0px 18px 0px 0px" : "",
+                      // width:openDrawer?"" :"10px",
                       borderRadius: isActive ? "10px" : "",
                       display: "flex",
+                      justifyContent:"center"
+
                     }}
                     key={`${index}-item`}
                     className="nested-list"
@@ -134,7 +137,7 @@ export const Layout = ({openDrawer})=>{
         <>
              <div className="layoutcontainer">
               {/* replace true with openDrawer props later */}
-        <Drawer variant="permanent" className="layoutlist" open={openDrawer}> 
+        <Drawer variant="permanent" className="layoutlist" open={openDrawer} style={{width:openDrawer?"":"20px"}}>  
           <img src={Logo} className="logo" style={{ width: "100%" }} />
           <List >
             {layoutData.map((items, index) => {

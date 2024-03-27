@@ -5,7 +5,7 @@ import { Stack } from "@mui/system";
 const CommonTextFields = ({
   id,
   label,
-  formik={},
+  formik,
   customStyles,
   disabled,
   placeholder,
@@ -21,9 +21,9 @@ const CommonTextFields = ({
     <>
       <Stack
         direction="row"
-        justifyContent="space-between"
+        justifyContent="space-around"
         alignItems="center"
-        spacing={2}
+        // spacing={2}
       >
         <label>{label}</label>
         <TextField

@@ -25,7 +25,6 @@ export default function AddClientModal(props) {
 
   const { getSubscriptionDetail, subscriptionDetail } =
     useSelector(adminSelector);
-
   const handleClose = () => {
     setOpenModal(false);
     formik.resetForm()
@@ -62,12 +61,12 @@ export default function AddClientModal(props) {
         .matches(/^[a-zA-Z\s]+$/, "Name can only contain alphabet characters"),
       email_id: Yup.string()
         .required("Email is required")
-        .email("Invalid email format"),
+        .email("Invalid Email Format"),
       mobile_no: Yup.string()
-        .matches(/^[0-9]{10}$/, "Invalid phone number") // Check for 10-digit numeric phone number
+        .matches(/^[0-9]{10}$/, "Invalid Phone Number") // Check for 10-digit numeric phone number
         .required("PhoneNumber is required"),
       billing: Yup.string().required("Billing is required"),
-      subscription_plan: Yup.string().required("subscription plan is required"),
+      subscription_plan: Yup.string().required("Subscription Plan is required"),
     }),
     onSubmit: async (values, { resetForm }) => {
       let val = {
@@ -112,7 +111,7 @@ export default function AddClientModal(props) {
           </div>
           <div>
             <CommonTextFields
-              label="Username"
+              label="User Name"
               id="name"
               formik={formik}
               placeholder=""
@@ -130,7 +129,7 @@ export default function AddClientModal(props) {
           <br />
           <div>
             <CommonTextFields
-              label="PhoneNumber"
+              label="Phone Number"
               id="mobile_no"
               type="number"
               formik={formik}

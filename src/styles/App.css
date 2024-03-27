@@ -86,13 +86,26 @@ h4{
 }
 
 
+
+
 .commonbox{
   border: 2px solid #8080804d;
   padding: 18px;
   border-radius: 10px;
   margin: 18px;
-  
+  animation: fade-in ease 1s 1 forwards
+  /* min-width: 700px */
 
+}
+
+
+@keyframes fade-in {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 100;
+  }
 }
 
 .loginCard{

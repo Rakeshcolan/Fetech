@@ -1,4 +1,3 @@
-import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import CommonTextFields from "../../../components/common/Field/CommonTextFIelds";
 import CommonUpload from "../../../components/common/Field/CommonUpload";
@@ -18,13 +17,16 @@ import {
   manualUploadFileApi,
 } from "../../../redux/action/userAction";
 import { userSelector } from "../../../redux/slice/userSlice";
+import { useRef } from "react";
+import { showToast } from "../../../components/commonToast/toastService";
+import AddButton from "../../../components/common/Button/addButton";
 
 const ManageData = () => {
   const { getTableData,manualUpload,fileData } = useSelector(userSelector);
-
+let inputref = useRef();
   const [size, setSize] = useState(0);
   const [page, setPage] = useState(5);
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState('Upload XLSX File');
   const dispatch = useDispatch();
 
   const paginationRowsOptions = [5, 10, 20, 50, 100];
@@ -74,45 +76,54 @@ const ManageData = () => {
   }, [getTableData?.data?.id,manualUpload,fileData]); // getTableData?.data?.id
 
   const onFileChange = (e) => {
+    const files = e.target.files;
     try {
-      const files = e.target.files;
-
-      if (files.length > 0) {
+       if(files[0].type.split('/')[1] == "pdf"){
+        throw "File Format should be XLSX"
+       }
+      else if (files.length > 0) {
         const selectedFileName = files[0].name;
-
-        setSelectedFile(selectedFileName);
-
         const formData = new FormData();
         formData.append("file", files[0]);
         formData.append("client_id", storedUId);
-
         dispatch(manualUploadFileApi(formData));
+        setSelectedFile(selectedFileName);
       }
     } catch (error) {
-      console.error("Error in onFileChange:", error);
+      setSelectedFile("please upload PDF files");
+      showToast(error,'error')
     }
   };
   return (
     <div className="commonbox">
       <h4>Upload Data</h4>
-      <div className="row">
+      <CommonUpload
+              label={"Upload Your Files"}
+              onFileChange={onFileChange}
+              id={"about"}
+             filename = {selectedFile}
+            />
+      {/* <div className="row">
         <div className="col-lg-3">
-          <input
+          <label htmlFor="fileinput" className="custom-file-label" > <input
+          style={{backgroundColor:'green'}}
+            id="fileinput"
+            placeholder="Choose Files"
             type="file"
             className="custom-file-input mt-4"
             name="file"
             defaultValue={selectedFile}
             onChange={(e) => onFileChange(e)}
-          />
-          <label className="custom-file-label">Choose files</label>
+          /> </label>
         </div>
-      </div>
+      </div> */}
       <br />
       <div className="contentEnd">
         <h4>Manual Upload Data</h4>
-        <Button className="addBtn" onClick={formik.handleSubmit}>
+        {/* <Button className="addBtn" onClick={formik.handleSubmit}>
           +Add
-        </Button>
+        </Button> */}
+        <AddButton handleClick={formik.handleSubmit} buttonText={"Add"}/>
       </div>
       <div className="row">
         <div className="col-lg-6">

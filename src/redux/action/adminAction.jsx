@@ -112,15 +112,15 @@ export function deleteSubscriptionApi(id) {
 
 export function addCMSApi(body) {
   // return apiHelper(addCMSApiReducer,"POST", "/managecms/",body)
-  return async (dispatch) => {
-    dispatch(addCMSApiReducer({ isLoading: true }));
+  return async (call) => {
+    call(addCMSApiReducer({ isLoading: true }));
     FileAPIService("POST", "/managecms/", body)
       .then((e) => {
-        dispatch(addCMSApiReducer({ apiData: e.data, isLoading: false }));
+        call(addCMSApiReducer({ apiData: e.data, isLoading: false }));
         showToast("Files Added Successfully", "success");
       })
       .catch((e) => {
-        dispatch(addCMSApiReducer({ isLoading: false }));
+        call(addCMSApiReducer({ isLoading: false }));
         showToast("Error", "error");
       });
   };

@@ -318,7 +318,7 @@ function StatusButton({ value }) {
         width: "80px",
         "&:hover": {
           backgroundColor:
-            value === false ? "#FF3939 !important" : "#00e785 !important",
+            value === 2 ? "#FF3939 !important" : "#00e785 !important",
         },
       }}
     >
@@ -351,8 +351,6 @@ function CustomizedTables({
   const endIndex = Math.min((size + 1) * page, rows?.length);
   const totalEntries = rows?.length;
 
-
-//   // const { getallSubAdminDetail, subAdminDetail } = useSelector(adminSelector);
   const handlePerRowsChange = async (event) => {
     setPage(+event.target.value);
     setSize(0);
@@ -395,10 +393,7 @@ function CustomizedTables({
            return data.subscription_plan
          }
        })
-  
-
     }
-
     else {
       return "Tier-1"
     }
@@ -459,7 +454,7 @@ function CustomizedTables({
                   {columns.map((column) => {
                     const value =
                       column.id === "id" ? (
-                        i + 1
+                        startIndex +i
                       ) : column.id === "plan" ? (
                         <div className="planbutton">{getplan(row[column.id])}</div>
                       ) : column.id === "Action" ? (

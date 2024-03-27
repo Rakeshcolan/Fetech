@@ -27,7 +27,7 @@ const navigate = useNavigate();
             .required("Email is required")
             .email("Invalid Email Format"),
             username:Yup.string()
-            .required("Username is required"),
+            .required("User Name is required"),
             password:Yup.string()
             .required("Password is required"),
             mobile_no:Yup.string()
@@ -99,7 +99,11 @@ const navigate = useNavigate();
            
 
             <button className="loginBtn" onClick={formik.handleSubmit}>Continue</button>
-            
+           <br></br>
+           <br />
+           <p>
+            <span style={{ cursor: "pointer" }} onClick={()=>navigate('/')}>Back To Login</span> 
+           </p>
             
           </div>
         </div>

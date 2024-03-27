@@ -30,8 +30,8 @@ const Login = () => {
     },
     validationSchema: Yup.object({
       username: Yup.string()
-        .required("Username is required")
-        .matches(/^[a-zA-Z\s]+$/, "Username can only contain alphabet characters"),
+        .required("User Name is required")
+        .matches(/^[a-zA-Z\s]+$/, "User Name can only contain alphabet characters"),
       password: Yup.string().required("Password is required")
       .matches(/^(?=.*?[0-9])(?=.*?[A-Za-z])(?=.*?[^0-9A-Za-z]).{8,32}$/, "Password should contain atleast one Number,one Alphatet,one SpecialCharacters"),
     }),

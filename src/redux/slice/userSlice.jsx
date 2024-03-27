@@ -9,7 +9,7 @@ const userSlice = createSlice({
     manualUploadLoading: false,
     getTableData: [],
     getTableDataLoading: false,
-    fileData: [],
+    fileData: "",
     fileDataLoading: false,
   },
 

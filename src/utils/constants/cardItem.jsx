@@ -139,8 +139,8 @@ export const BankAccountCardData=[
 
 export const bankAccountValidationSchema = Yup.object().shape({
   accountNumber: Yup.string()
-    .required('Account number is required')
-    .matches(/^\d{10,16}$/, 'Invalid account number'),
+    .required('Account Number is required')
+    .matches(/^\d{10,16}$/, 'Invalid Account Number'),
     ifsc: Yup.string()
     .required('IFSC is required')
    
@@ -149,20 +149,21 @@ export const bankAccountValidationSchema = Yup.object().shape({
 export const upiValidationSchema = Yup.object().shape({
   upiId: Yup.string()
     .required('UPI ID is required')
-    .matches(/^[\w.-]+@\w+$/, 'Invalid UPI ID'),
+    .matches(/^[\w.-]+@\w+$/, 'Invalid UPI ID')
+    .matches(/^[A-Z]/, 'First Letter should be in Uppercase'),
 });
  
 
 export const cardValidationSchema = Yup.object().shape({
   cardNumber: Yup.string()
-    .required('Card Number is Required')
+    .required('Card Number is required')
     // .matches(/^\d{13,20}$/, 'Invalid card number'),
-    .matches(/^\d{4}\s?\d{4}\s?\d{4}\s?\d{4}\s?$/, 'Invalid card number'),
+    .matches(/^\d{4}\s?\d{4}\s?\d{4}\s?\d{4}\s?$/, 'Invalid Card Number'),
   expirationDate: Yup.string()
-    .required('Expiration Date is Required')
-    .matches(/^(0[0-9]|1[0-5])\/\d{2}$/, 'Invalid expiration date'),
+    .required('Expiration Date is required')
+    .matches(/^(0[0-9]|1[0-5])\/\d{2}$/, 'Invalid Expiration Date'),
   ccv: Yup.string()
-    .required('CCV is Required')
+    .required('CCV is required')
     .matches(/^\d{3}$/, 'Invalid CCV'),
 });
 

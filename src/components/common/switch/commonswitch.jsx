@@ -8,7 +8,7 @@ const CommonSwitch = ({ label, id, formik }) => {
   const FlexContainer = styled("div")({
     display: "flex",
     alignItems: "center",
-    justifyContent:"space-around"
+    justifyContent: "space-around",
   });
   const IOSSwitch = styled((SwitchProps) => (
     <Switch
@@ -21,7 +21,7 @@ const CommonSwitch = ({ label, id, formik }) => {
     height: 26,
     padding: 0,
     display: "flex",
-    justifyContent:"space-between",
+    justifyContent: "space-between",
     "& .MuiSwitch-switchBase": {
       padding: 0,
       margin: 2,
@@ -68,29 +68,29 @@ const CommonSwitch = ({ label, id, formik }) => {
     },
   }));
   return (
-    <FlexContainer>
-      {" "}
-      <label style={{ fontSize: "16px", width: "30%" }}>
-        {label}
-        {/* {required && <span className="field-required">*</span>} */}
-      </label>
-      <div style={{ display: "flex", alignItems: "center", width: "70%" }}>
-        <Typography>Inactive</Typography>
-        <FormControlLabel
-          control={
-            <IOSSwitch
-              sx={{ marginLeft: 3 }}
-              defaultChecked
-              checked={formik?.values[id]}
-              onChange={formik?.handleChange}
-              name={id}
-            />
-          }
-        />
-        <Typography>Active</Typography>
+    // <FlexContainer>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <label style={{ fontSize: "16px", width: "100%" }}>
+          {label}
+          {/* {required && <span className="field-required">*</span>} */}
+        </label>
+        <div style={{ display: "flex", alignItems: "center", width: "100%" }}>
+          <Typography>Inactive</Typography>
+          <FormControlLabel
+            control={
+              <IOSSwitch
+                sx={{ marginLeft: 3 }}
+                defaultChecked
+                checked={formik?.values[id]}
+                onChange={formik?.handleChange}
+                name={id}
+              />
+            }
+          />
+          <Typography>Active</Typography>
         </div>
-     
-      </FlexContainer>
+      </div>
+    // </FlexContainer>
   );
 };
 

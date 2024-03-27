@@ -90,7 +90,7 @@ const CenteredTextField = ({
           mb: 0,
           borderRadius: "10px",
           // backgroundColor: "#D9D9D9",
-
+          
           "& .MuiOutlinedInput-input": customStyles?.OutlinedInput,
         }}
         // InputProps={{

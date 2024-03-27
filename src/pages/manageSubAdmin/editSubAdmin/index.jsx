@@ -8,7 +8,7 @@ import CommonSwitch from "../../../components/common/switch/commonswitch";
 import { editSubAdminApi } from "../../../redux/action/adminAction";
 import { useDispatch } from "react-redux";
 import CommonDropDown from "../../../components/common/Field/CommonDropDown";
-import { findDesignation } from "../../../utils/findids/designationutils";
+import { findDesignation } from "../../../utils/findids/helperutils";
 
 const EditSubAdmin = () => {
   const [editData, setEditData] = useState({});
@@ -45,10 +45,10 @@ let designationObj={
       status:  editData?.status === 1
     },
     validationSchema: Yup.object({
-      firstname: Yup.string().required("FirstName is required"),
+      firstname: Yup.string().required("First Name is required"),
       email_id: Yup.string().required("Email is required"),
-      lastname: Yup.string().required("PhoneNumber is required"),
-      designation: Yup.string().required("designation is required"),
+      lastname: Yup.string().required("Phone Number is required"),
+      designation: Yup.string().required("Designation is required"),
       
     }),
     onSubmit: (values) => {

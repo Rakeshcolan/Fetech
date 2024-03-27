@@ -37,9 +37,9 @@ const EditSubscription = () => {
     validationSchema: Yup.object({
 
       subscription_amount: Yup.number()
-      .required("Subscription amount is required")
-      .positive("Subscription amount must be a positive number")
-      .integer("Subscription amount must be an integer"),
+      .required("Subscription Amount is required")
+      .positive("Subscription Amount must be a positive number")
+      .integer("Subscription Amount must be an integer"),
      
     }),
     onSubmit: (values) => {

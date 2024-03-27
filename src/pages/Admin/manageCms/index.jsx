@@ -3,10 +3,11 @@ import "./manageCmsStyle.css";
 import "../../../styles/App.css";
 import { useDispatch } from "react-redux";
 import { addCMSApi } from "../../../redux/action/adminAction";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { async } from "q";
 
 const ManageCMS = () => {
+  let inputref = useRef();
   const dispatch = useDispatch();
   const [aboutUsFiles, setAboutUsFiles] = useState([]);
   const [termsAndConditionsFiles, setTermsAndConditionsFiles] = useState([]);
@@ -27,12 +28,7 @@ const ManageCMS = () => {
       const formData = new FormData();
       formData.append(`about`, aboutUsFiles);
       formData.append(`terms_condition`, termsAndConditionsFiles);
-      //  aboutUsFiles.forEach((file, index) => {
-      //   formData.append(`about`, file);
-      // });
-      //  termsAndConditionsFiles.forEach((file, index) => {
-        
-      // });
+      console.log(addCMSApi(formData));
       dispatch(addCMSApi(formData));
     }
     catch(err){
@@ -52,6 +48,7 @@ const ManageCMS = () => {
               label={"Upload Your Files"}
               onFileChange={handleAboutUsFileChange}
               id={"about"}
+              filename = {aboutUsFiles?.name}
             />
           </div>
           <div className="cmsupload">
@@ -60,6 +57,7 @@ const ManageCMS = () => {
               label={"Upload Your Files"}
               onFileChange={handleTermsAndConditionsFileChange}
               id={"terms"}
+              filename = {termsAndConditionsFiles?.name}
             />
           </div>
           <button className="cmsbutton" onClick={handleUploadDocuments}>
